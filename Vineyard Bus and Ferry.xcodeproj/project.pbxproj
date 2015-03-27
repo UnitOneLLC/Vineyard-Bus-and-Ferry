@@ -8,12 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		B603147B1ABA14B0001D4788 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B603147A1ABA14B0001D4788 /* AppDelegate.swift */; };
-		B603147D1ABA14B0001D4788 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B603147C1ABA14B0001D4788 /* FirstViewController.swift */; };
-		B603147F1ABA14B0001D4788 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B603147E1ABA14B0001D4788 /* SecondViewController.swift */; };
+		B603147D1ABA14B0001D4788 /* DestinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B603147C1ABA14B0001D4788 /* DestinationViewController.swift */; };
 		B60314821ABA14B0001D4788 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B60314801ABA14B0001D4788 /* Main.storyboard */; };
 		B60314841ABA14B0001D4788 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B60314831ABA14B0001D4788 /* Images.xcassets */; };
 		B60314871ABA14B0001D4788 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B60314851ABA14B0001D4788 /* LaunchScreen.xib */; };
 		B60314931ABA14B1001D4788 /* Vineyard_Bus_and_FerryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60314921ABA14B1001D4788 /* Vineyard_Bus_and_FerryTests.swift */; };
+		B603149D1ABA1581001D4788 /* Polyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = B603149C1ABA1581001D4788 /* Polyline.swift */; };
+		B603149F1ABA1603001D4788 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = B603149E1ABA1603001D4788 /* Schedule.swift */; };
+		B60314A11ABA55BD001D4788 /* ScheduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60314A01ABA55BD001D4788 /* ScheduleManager.swift */; };
+		B60314A31ABA59C4001D4788 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60314A21ABA59C4001D4788 /* Utils.swift */; };
+		B60314A51ABAFCC0001D4788 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B60314A41ABAFCC0001D4788 /* CoreData.framework */; };
+		B60314D91ABB1AEC001D4788 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B60314D71ABB1AEC001D4788 /* Model.xcdatamodeld */; };
+		B60314DB1ABB1C7D001D4788 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60314DA1ABB1C7D001D4788 /* Settings.swift */; };
+		B607FD981AC2E27E004761BE /* VectorTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B607FD971AC2E27E004761BE /* VectorTable.swift */; };
+		B607FD9A1AC315E5004761BE /* TripCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B607FD991AC315E5004761BE /* TripCollection.swift */; };
+		B607FD9E1AC31F70004761BE /* StopTimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B607FD9D1AC31F70004761BE /* StopTimeTable.swift */; };
+		B6388B501ABD97B300D16058 /* RouteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6388B4F1ABD97B300D16058 /* RouteListViewController.swift */; };
+		B6388B521ABD993600D16058 /* RouteListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6388B511ABD993600D16058 /* RouteListCell.swift */; };
+		B6388BB61AC0AA3E00D16058 /* VectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6388BB51AC0AA3E00D16058 /* VectorViewController.swift */; };
+		B6CCEE8C1ABBA8E90051E567 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CCEE8B1ABBA8E90051E567 /* SettingsManager.swift */; };
+		B6E067121AC575F0002705AB /* DaySelectionControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E067111AC575F0002705AB /* DaySelectionControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,14 +44,28 @@
 		B60314751ABA14B0001D4788 /* Vineyard Bus and Ferry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vineyard Bus and Ferry.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B60314791ABA14B0001D4788 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B603147A1ABA14B0001D4788 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B603147C1ABA14B0001D4788 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		B603147E1ABA14B0001D4788 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		B603147C1ABA14B0001D4788 /* DestinationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationViewController.swift; sourceTree = "<group>"; };
 		B60314811ABA14B0001D4788 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B60314831ABA14B0001D4788 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B60314861ABA14B0001D4788 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		B603148C1ABA14B1001D4788 /* Vineyard Bus and FerryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Vineyard Bus and FerryTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B60314911ABA14B1001D4788 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B60314921ABA14B1001D4788 /* Vineyard_Bus_and_FerryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vineyard_Bus_and_FerryTests.swift; sourceTree = "<group>"; };
+		B603149C1ABA1581001D4788 /* Polyline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Polyline.swift; path = "Vineyard Bus and Ferry/Polyline.swift"; sourceTree = "<group>"; };
+		B603149E1ABA1603001D4788 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		B60314A01ABA55BD001D4788 /* ScheduleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleManager.swift; sourceTree = "<group>"; };
+		B60314A21ABA59C4001D4788 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		B60314A41ABAFCC0001D4788 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B60314D81ABB1AEC001D4788 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		B60314DA1ABB1C7D001D4788 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		B607FD971AC2E27E004761BE /* VectorTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorTable.swift; sourceTree = "<group>"; };
+		B607FD991AC315E5004761BE /* TripCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCollection.swift; sourceTree = "<group>"; };
+		B607FD9D1AC31F70004761BE /* StopTimeTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopTimeTable.swift; sourceTree = "<group>"; };
+		B6388B4F1ABD97B300D16058 /* RouteListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteListViewController.swift; sourceTree = "<group>"; };
+		B6388B511ABD993600D16058 /* RouteListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteListCell.swift; sourceTree = "<group>"; };
+		B6388BB51AC0AA3E00D16058 /* VectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorViewController.swift; sourceTree = "<group>"; };
+		B6CCEE8B1ABBA8E90051E567 /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
+		B6E067111AC575F0002705AB /* DaySelectionControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaySelectionControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B60314A51ABAFCC0001D4788 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +90,12 @@
 		B603146C1ABA14B0001D4788 = {
 			isa = PBXGroup;
 			children = (
+				B6CCEE8B1ABBA8E90051E567 /* SettingsManager.swift */,
+				B60314A41ABAFCC0001D4788 /* CoreData.framework */,
+				B60314A21ABA59C4001D4788 /* Utils.swift */,
+				B60314A01ABA55BD001D4788 /* ScheduleManager.swift */,
+				B603149E1ABA1603001D4788 /* Schedule.swift */,
+				B603149C1ABA1581001D4788 /* Polyline.swift */,
 				B60314771ABA14B0001D4788 /* Vineyard Bus and Ferry */,
 				B603148F1ABA14B1001D4788 /* Vineyard Bus and FerryTests */,
 				B60314761ABA14B0001D4788 /* Products */,
@@ -79,13 +114,21 @@
 		B60314771ABA14B0001D4788 /* Vineyard Bus and Ferry */ = {
 			isa = PBXGroup;
 			children = (
-				B603147A1ABA14B0001D4788 /* AppDelegate.swift */,
-				B603147C1ABA14B0001D4788 /* FirstViewController.swift */,
-				B603147E1ABA14B0001D4788 /* SecondViewController.swift */,
 				B60314801ABA14B0001D4788 /* Main.storyboard */,
+				B603147A1ABA14B0001D4788 /* AppDelegate.swift */,
+				B603147C1ABA14B0001D4788 /* DestinationViewController.swift */,
+				B6388B4F1ABD97B300D16058 /* RouteListViewController.swift */,
+				B6388B511ABD993600D16058 /* RouteListCell.swift */,
+				B6388BB51AC0AA3E00D16058 /* VectorViewController.swift */,
+				B607FD971AC2E27E004761BE /* VectorTable.swift */,
+				B6E067111AC575F0002705AB /* DaySelectionControl.swift */,
+				B607FD991AC315E5004761BE /* TripCollection.swift */,
+				B607FD9D1AC31F70004761BE /* StopTimeTable.swift */,
 				B60314831ABA14B0001D4788 /* Images.xcassets */,
 				B60314851ABA14B0001D4788 /* LaunchScreen.xib */,
 				B60314781ABA14B0001D4788 /* Supporting Files */,
+				B60314D71ABB1AEC001D4788 /* Model.xcdatamodeld */,
+				B60314DA1ABB1C7D001D4788 /* Settings.swift */,
 			);
 			path = "Vineyard Bus and Ferry";
 			sourceTree = "<group>";
@@ -215,9 +258,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B603147F1ABA14B0001D4788 /* SecondViewController.swift in Sources */,
+				B603149D1ABA1581001D4788 /* Polyline.swift in Sources */,
+				B60314A11ABA55BD001D4788 /* ScheduleManager.swift in Sources */,
+				B607FD9E1AC31F70004761BE /* StopTimeTable.swift in Sources */,
+				B6388B521ABD993600D16058 /* RouteListCell.swift in Sources */,
+				B60314D91ABB1AEC001D4788 /* Model.xcdatamodeld in Sources */,
+				B607FD9A1AC315E5004761BE /* TripCollection.swift in Sources */,
+				B60314A31ABA59C4001D4788 /* Utils.swift in Sources */,
 				B603147B1ABA14B0001D4788 /* AppDelegate.swift in Sources */,
-				B603147D1ABA14B0001D4788 /* FirstViewController.swift in Sources */,
+				B60314DB1ABB1C7D001D4788 /* Settings.swift in Sources */,
+				B6E067121AC575F0002705AB /* DaySelectionControl.swift in Sources */,
+				B607FD981AC2E27E004761BE /* VectorTable.swift in Sources */,
+				B603149F1ABA1603001D4788 /* Schedule.swift in Sources */,
+				B6CCEE8C1ABBA8E90051E567 /* SettingsManager.swift in Sources */,
+				B6388B501ABD97B300D16058 /* RouteListViewController.swift in Sources */,
+				B603147D1ABA14B0001D4788 /* DestinationViewController.swift in Sources */,
+				B6388BB61AC0AA3E00D16058 /* VectorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +467,7 @@
 				B60314981ABA14B1001D4788 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B60314991ABA14B1001D4788 /* Build configuration list for PBXNativeTarget "Vineyard Bus and FerryTests" */ = {
 			isa = XCConfigurationList;
@@ -419,8 +476,22 @@
 				B603149B1ABA14B1001D4788 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B60314D71ABB1AEC001D4788 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B60314D81ABB1AEC001D4788 /* Model.xcdatamodel */,
+			);
+			currentVersion = B60314D81ABB1AEC001D4788 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B603146D1ABA14B0001D4788 /* Project object */;
 }
