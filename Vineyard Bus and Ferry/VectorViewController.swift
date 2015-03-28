@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class VectorViewController: UIViewController {
+class VectorViewController: UIViewController, DaySelectionControlDelegate {
     
     let SCHED_FRACTION: Double = 0.66
     let VERT_OFFSET_FOR_NAV: CGFloat = 80.0
@@ -19,8 +19,6 @@ class VectorViewController: UIViewController {
     var route: Route!
     var vectorIndex: Int!
     
-
-
     @IBOutlet var frameView: UIView!
     @IBOutlet weak var mapView: MKMapView!
     
@@ -61,8 +59,9 @@ class VectorViewController: UIViewController {
         dayFrame.origin.y = VERT_OFFSET_FOR_NAV
         dayFrame = hCenterInFrame(frameToCenter: dayFrame, container: frameView.frame)
         daySelect.frame = dayFrame
+        daySelect.delegate = self
         frameView.addSubview(daySelect)
-        println("daySelect frame= \(daySelect.frame)")
+        daySelect.selectDayAtIndex(ScheduleManager.getDayOfWeekIndex(forDate: NSDate()))
         
         let sizeSched = CGSize(width: w, height: h)
 
@@ -73,40 +72,38 @@ class VectorViewController: UIViewController {
         frameView.addSubview(schedBox)
         
         mapView.autoresizingMask = UIViewAutoresizing.FlexibleHeight
-
+//TODO constant
         let vtFrame = CGRect(x: 0.0, y: 0.0, width: schedBox.frame.width - 20.0, height: /*schedBox.frame.height - 20.0*/ 1200.0)
         vectorTable = VectorTable(frame: vtFrame, route: route, vectorIndex: vectorIndex)
         schedBox.addSubview(vectorTable)
         schedBox.contentSize = vtFrame.size
-        
-//        let tapper = UITapGestureRecognizer(target: self, action: "didTap:")
-//        schedBox.addGestureRecognizer(tapper)
     }
     
-    func didTap(sender: AnyObject) {
-        println("the current offset is \(vectorTable.tripCollection.collectionView.contentOffset)")
-//        vectorTable.tripCollection.collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: UICollectionViewScrollPosition.None, animated: true)
+    func daySelection(selectedDayIndex index: Int) {
+        let SECONDS_PER_DAY = 86400
         
-        var sFrame = schedBox.frame
-        var mFrame = mapView.frame
-        var vFrame = vectorTable.frame
+        // reset the effective date
+        let today = NSDate()
+        let appDel = UIApplication.sharedApplication().delegate as AppDelegate
         
-        println("mapView: \(mapView.frame)")
-        println("schedBox: \(schedBox.frame)")
-        println("vectorTable: \(vectorTable.frame)")
-        
-        let h = sFrame.height
-        sFrame.size.height = mFrame.height
-        mFrame.size.height = h
-        
-        mFrame.origin.y = sFrame.size.height
-
-//        var vFrame = CGRect(x: 0, y: 0, width: mFrame.size.width, height: mFrame.size.height)
-        
-        
-//        UIView.animateWithDuration(0.2) {
-//            self.mapView.frame = mFrame
-//            self.schedBox.frame = sFrame
-//        }
+        let indexToday = ScheduleManager.getDayOfWeekIndex(forDate: today)
+        if index == indexToday {
+            appDel.effectiveDate = NSDate()
+        }
+        else {
+            var offset: Int
+            if index > indexToday {
+                offset = index - indexToday
+            }
+            else {
+                offset = index - indexToday + 7
+            }
+            
+            let offsetInterval = NSTimeInterval(offset * SECONDS_PER_DAY)
+            
+            appDel.effectiveDate = NSDate(timeInterval: offsetInterval, sinceDate: today)
+            println("the new effective date is \(appDel.effectiveDate)")
+            vectorTable.resetTripCollection()
+        }
     }
 }

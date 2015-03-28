@@ -50,14 +50,13 @@ class TripCollection: NSObject {
     var stopSequence: [Stop]!
     
     
-    init? (stopSequence: [Stop], rowHeights: [Double], tripArray: [Trip], frame: CGRect, delegate: TripCollectionDelegate) {
+    init? (stopSequence: [Stop], rowHeights: [Double], tripArray: [Trip], frame: CGRect) {
         super.init()
         if tripArray.count == 0 {
             return nil
         }
         
         self.trips = tripArray
-        self.delegate = delegate
         self.frame = frame
         self.stopSequence = stopSequence
         self.rowHeights = rowHeights

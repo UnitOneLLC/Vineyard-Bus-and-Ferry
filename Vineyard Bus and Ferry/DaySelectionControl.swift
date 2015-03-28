@@ -9,7 +9,7 @@
 import UIKit
 
 protocol DaySelectionControlDelegate {
-    func didSelectDay(dayIndex: Int)
+    func daySelection(selectedDayIndex index: Int)
 }
 
 class DaySelectionControl : UIView {
@@ -42,14 +42,15 @@ class DaySelectionControl : UIView {
             buttonFrame.origin.x += deltaX
             button.titleLabel!.font = UIFont.systemFontOfSize(FONT_SIZE)
             
-            
             var attrs = [NSObject : AnyObject]()
+            
             attrs[NSForegroundColorAttributeName] = UIColor.blackColor()
-            let normal = NSAttributedString(string: abbrev, attributes: attrs)
+            let normal = NSMutableAttributedString(string: abbrev, attributes: attrs)
             button.setAttributedTitle(normal, forState: UIControlState.Normal)
             
             attrs[NSForegroundColorAttributeName] = UIColor.blueColor()
             attrs[NSFontAttributeName] = UIFont.boldSystemFontOfSize(FONT_SIZE)
+            
             let selected = NSMutableAttributedString(string: abbrev, attributes: attrs)
             selected.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue, range: NSMakeRange(0, button.titleLabel!.text!.utf16Count))
 
@@ -60,6 +61,13 @@ class DaySelectionControl : UIView {
             addSubview(button)
             buttons.append(button)
         }
+    }
+    
+    func selectDayAtIndex(index: Int) {
+        for button in buttons {
+            button.selected = false
+        }
+        buttons[index].selected = true
     }
     
     func didTapButton(sender: AnyObject) {
@@ -74,7 +82,7 @@ class DaySelectionControl : UIView {
                 let tapped = b.titleLabel!.text
                 for (var index=0; index < dayAbbrevs.count; ++index) {
                     if dayAbbrevs[index] == tapped {
-                        delegate?.didSelectDay(index)
+                        delegate?.daySelection(selectedDayIndex: index)
                         break
                     }
                 }

@@ -53,6 +53,16 @@ func isInternetConnected() -> Bool {
     return (isReachable && !needsConnection)
 }
 
+func normalizedDate(date: NSDate) -> NSDate {
+    let calendar = NSCalendar.currentCalendar()
+    let mask = NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitDay
+    let components = calendar.components(mask, fromDate: date)
+    let result = calendar.dateFromComponents(components)
+    return result!
+}
+
+
+
 extension NSDate {
     
     func isBefore(d: NSDate) -> Bool {

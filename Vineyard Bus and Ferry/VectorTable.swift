@@ -43,6 +43,7 @@ class VectorTable : UIScrollView, UITableViewDataSource, UITableViewDelegate, Tr
     var tripCollection: TripCollection!
     var rowHeights: [Double]!
     var stopInTrip: [Bool]!
+    var tableFrame: CGRect!
     
     init(frame: CGRect, route: Route, vectorIndex: Int) {
         super.init(frame: frame)
@@ -59,7 +60,7 @@ class VectorTable : UIScrollView, UITableViewDataSource, UITableViewDelegate, Tr
         stopSequence = AppDelegate.theScheduleManager.stopSequenceForVector(route.vectors[vectorIndex], inSchedule: self.schedule)
         
         stopListWidth = frame.width * 0.70
-        let tableFrame = CGRect(x: 0.0, y: 0.0, width: stopListWidth, height: CGFloat(totalHeight))
+        tableFrame = CGRect(x: 0.0, y: 0.0, width: stopListWidth, height: CGFloat(totalHeight))
         stopTable = UITableView(frame: tableFrame)
         stopTable.separatorStyle = UITableViewCellSeparatorStyle.None
         stopTable.registerClass(VectorTableStopCell.self, forCellReuseIdentifier: VectorTable.REUSE_ID)
@@ -69,22 +70,29 @@ class VectorTable : UIScrollView, UITableViewDataSource, UITableViewDelegate, Tr
         addSubview(stopTable)
         
         rowHeights = [Double]()
-        var totalHeight2 = 0.0
         for stop in stopSequence {
             let h: Double = Double(getLabelHeight(stop.name, UIFont.systemFontOfSize(VectorTable.CELL_FONT_SIZE), stopListWidth - VectorTable.PADDING_PX)) + Double(VectorTable.CELL_HEIGHT_PADDING)
             rowHeights.append(h)
-            totalHeight2 += h
         }
         
-        println("theight = \(totalHeight), tHeight2=\(totalHeight2)")
-        
+        resetTripCollection()
+    }
+    
+    func resetTripCollection() {
+        if tripCollection != nil && tripCollection.collectionView != nil {
+            tripCollection.collectionView.removeFromSuperview()
+        }
         let tripCollectionFrame = CGRect(x: stopListWidth, y: tableFrame.origin.y, width: VectorTable.TIME_WIDTH, height: tableFrame.height)
-        tripCollection = TripCollection(stopSequence: stopSequence, rowHeights: rowHeights, tripArray: route.vectors[vectorIndex].trips, frame: tripCollectionFrame, delegate: self)
+        let effectiveDate = (UIApplication.sharedApplication().delegate as AppDelegate).effectiveDate
+        let effectiveTrips = AppDelegate.theScheduleManager.filterTripsForDate(effectiveDate, trips: route.vectors[vectorIndex].trips, inSchedule: schedule)
+        tripCollection = TripCollection(stopSequence: stopSequence, rowHeights: rowHeights, tripArray: effectiveTrips, frame: tripCollectionFrame)
+        tripCollection.delegate = self
         addSubview(tripCollection.collectionView)
         
         tripCollection.collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: UICollectionViewScrollPosition.None, animated: true)
         tripCollection.didScrollToTrip(0)
     }
+    
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
