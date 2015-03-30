@@ -74,7 +74,30 @@ class TripCollection: NSObject {
         selectedTrip = trips[index]
         delegate.tripCollection(selectedTrip)
     }
+    
+    func scrollToNext() {
+        let w = collectionView.frame.width
+        var currentIndex: Int = Int(round(collectionView.contentOffset.x/w))
+        if currentIndex < (trips.count-1) {
+            currentIndex++
+            let newOffset = CGFloat(currentIndex) * w
+            let targetRect = CGRect(x: newOffset, y: CGFloat(0.0), width: w, height: CGFloat(1.0))
+            collectionView.scrollRectToVisible(targetRect, animated: true)
+            didScrollToTrip(currentIndex)
+        }
+    }
 
+    func scrollToPrev() {
+        let w = collectionView.frame.width
+        var currentIndex: Int = Int(round(collectionView.contentOffset.x/w))
+        if currentIndex > 0 {
+            currentIndex--
+            let newOffset = CGFloat(currentIndex) * w
+            let targetRect = CGRect(x: newOffset, y: CGFloat(0.0), width: w, height: CGFloat(1.0))
+            collectionView.scrollRectToVisible(targetRect, animated: true)
+            didScrollToTrip(currentIndex)
+        }
+    }
 }
 
 extension TripCollection:  UICollectionViewDataSource, UICollectionViewDelegate {
@@ -94,6 +117,7 @@ extension TripCollection:  UICollectionViewDataSource, UICollectionViewDelegate 
         tvForCell.separatorStyle = UITableViewCellSeparatorStyle.None
         tvForCell.registerClass(UITableViewCell.self, forCellReuseIdentifier: StopTimeTable.REUSE_ID)
         tvForCell.scrollEnabled = false
+        tvForCell.allowsSelection = false
         tvForCell.dataSource = stopTimeTable
         tvForCell.delegate = stopTimeTable
         

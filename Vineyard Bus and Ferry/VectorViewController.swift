@@ -71,9 +71,14 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate, Vecto
         frameView.addSubview(daySelect)
         daySelect.selectDayAtIndex(ScheduleManager.getDayOfWeekIndex(forDate: NSDate()))
         
+        let tripPagerFrame =
+            CGRect(x: 0.0, y: dayFrame.origin.y + dayFrame.height, width: frameView.frame.width, height: TripPager.PAGER_HEIGHT)
+        var tripPager = TripPager(frame: tripPagerFrame, xOffset: tripPagerFrame.width * VectorTable.STOPLIST_RATIO)
+        frameView.addSubview(tripPager)
+        
         let sizeSched = CGSize(width: w, height: h)
 
-        let schedOffsetY = dayFrame.origin.y + dayFrame.height
+        let schedOffsetY = tripPagerFrame.origin.y + tripPagerFrame.height
         schedBox = UIScrollView(frame: CGRect(origin: CGPoint(x: 0.0, y: schedOffsetY), size:sizeSched))
         schedBox.scrollEnabled = true
 
@@ -85,6 +90,7 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate, Vecto
         vectorTable = VectorTable(frame: vtFrame, route: route, vectorIndex: vectorIndex)
         vectorTable.delegate = self
         vectorTable(route, vectorIndex: vectorIndex)
+        tripPager.delegate = vectorTable
         schedBox.addSubview(vectorTable)
         vectorTable.scroller = schedBox
         vectorTable.resetTripCollection()

@@ -27,12 +27,15 @@ class VectorTableStopCell : UITableViewCell {
 }
 
 
-class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripCollectionDelegate, ConnectionTableDelegate {
+class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripCollectionDelegate,
+                    ConnectionTableDelegate, TripPagerDelegate {
     class var REUSE_ID: String { return "vectorTableStopCell" }
     class var CELL_FONT_SIZE: CGFloat { return 17.0 }
-    class var CELL_HEIGHT_PADDING: CGFloat { return 10.0 }
-    class var PADDING_PX: CGFloat { return 15.0 }
     class var TIME_WIDTH: CGFloat { return 124.0 }
+    class var STOPLIST_RATIO: CGFloat { return 0.70 }
+    
+    let CELL_HEIGHT_PADDING: CGFloat = 10.0
+    let PADDING_PX: CGFloat = 15.0
     
     class var cellFont: UIFont {
         return UIFont.systemFontOfSize(CELL_FONT_SIZE)
@@ -55,7 +58,7 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
     
     init(frame: CGRect, route: Route, vectorIndex: Int) {
         super.init(frame: frame)
-        stopListWidth = frame.width * 0.70
+        stopListWidth = frame.width * VectorTable.STOPLIST_RATIO
         
         setVector(forRoute: route, vectorIndex: vectorIndex)
         
@@ -87,7 +90,7 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
         self.stopSequence = AppDelegate.theScheduleManager.stopSequenceForVector(route.vectors[vectorIndex], inSchedule: self.schedule)
         rowHeights = [Double]()
         for stop in stopSequence {
-            let h: Double = Double(getLabelHeight(stop.name, UIFont.systemFontOfSize(VectorTable.CELL_FONT_SIZE), stopListWidth - VectorTable.PADDING_PX)) + Double(VectorTable.CELL_HEIGHT_PADDING)
+            let h: Double = Double(getLabelHeight(stop.name, UIFont.systemFontOfSize(VectorTable.CELL_FONT_SIZE), stopListWidth - PADDING_PX)) + Double(CELL_HEIGHT_PADDING)
             rowHeights.append(h)
         }
         
@@ -107,7 +110,7 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
         if tripCollection != nil && tripCollection.collectionView != nil {
             tripCollection.collectionView.removeFromSuperview()
         }
-        let tripCollectionFrame = CGRect(x: stopListWidth, y: tableFrame.origin.y, width: VectorTable.TIME_WIDTH, height: tableFrame.height)
+        let tripCollectionFrame = CGRect(x: stopListWidth, y: 0.0, width: VectorTable.TIME_WIDTH, height: tableFrame.height)
         let effectiveDate = (UIApplication.sharedApplication().delegate as AppDelegate).effectiveDate
         let effectiveTrips = AppDelegate.theScheduleManager.filterTripsForDate(effectiveDate, trips: route.vectors[vectorIndex].trips, inSchedule: schedule)
         tripCollection = TripCollection(stopSequence: stopSequence, rowHeights: rowHeights, tripArray: effectiveTrips, frame: tripCollectionFrame)
@@ -131,7 +134,6 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
         
         tripCollection.didScrollToTrip(0)
     }
-    
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -168,8 +170,8 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
     var totalHeight: Double {
         var result: Double = 0.0
         for stop in stopSequence {
-            let h: Double = Double(getLabelHeight(stop.name, VectorTable.cellFont, stopListWidth - VectorTable.PADDING_PX))
-            result += h + Double(VectorTable.CELL_HEIGHT_PADDING)
+            let h: Double = Double(getLabelHeight(stop.name, VectorTable.cellFont, stopListWidth - PADDING_PX))
+            result += h + Double(CELL_HEIGHT_PADDING)
         }
         return result
     }
@@ -213,4 +215,13 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
         }
     }
     
+    // MARK - TripPagerDelegate
+    func tripPagerDelegate(didPressEarlier: Bool) {
+        if didPressEarlier {
+            tripCollection.scrollToPrev()
+        }
+        else {
+            tripCollection.scrollToNext()
+        }
+    }
 }
