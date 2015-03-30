@@ -28,6 +28,7 @@
 		B6388BB61AC0AA3E00D16058 /* VectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6388BB51AC0AA3E00D16058 /* VectorViewController.swift */; };
 		B6CCEE8C1ABBA8E90051E567 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CCEE8B1ABBA8E90051E567 /* SettingsManager.swift */; };
 		B6E067121AC575F0002705AB /* DaySelectionControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E067111AC575F0002705AB /* DaySelectionControl.swift */; };
+		B6E067141AC7419D002705AB /* ConnectionTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E067131AC7419D002705AB /* ConnectionTable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		B6388BB51AC0AA3E00D16058 /* VectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorViewController.swift; sourceTree = "<group>"; };
 		B6CCEE8B1ABBA8E90051E567 /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		B6E067111AC575F0002705AB /* DaySelectionControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaySelectionControl.swift; sourceTree = "<group>"; };
+		B6E067131AC7419D002705AB /* ConnectionTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionTable.swift; path = ../ConnectionTable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				B6388B511ABD993600D16058 /* RouteListCell.swift */,
 				B6388BB51AC0AA3E00D16058 /* VectorViewController.swift */,
 				B607FD971AC2E27E004761BE /* VectorTable.swift */,
+				B6E067131AC7419D002705AB /* ConnectionTable.swift */,
 				B6E067111AC575F0002705AB /* DaySelectionControl.swift */,
 				B607FD991AC315E5004761BE /* TripCollection.swift */,
 				B607FD9D1AC31F70004761BE /* StopTimeTable.swift */,
@@ -273,6 +276,7 @@
 				B6CCEE8C1ABBA8E90051E567 /* SettingsManager.swift in Sources */,
 				B6388B501ABD97B300D16058 /* RouteListViewController.swift in Sources */,
 				B603147D1ABA14B0001D4788 /* DestinationViewController.swift in Sources */,
+				B6E067141AC7419D002705AB /* ConnectionTable.swift in Sources */,
 				B6388BB61AC0AA3E00D16058 /* VectorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

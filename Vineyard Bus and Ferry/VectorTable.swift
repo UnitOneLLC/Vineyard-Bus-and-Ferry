@@ -22,9 +22,9 @@ class VectorTableStopCell : UITableViewCell {
 }
 
 
-class VectorTable : UIScrollView, UITableViewDataSource, UITableViewDelegate, TripCollectionDelegate {
+class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripCollectionDelegate, ConnectionTableDelegate {
     class var REUSE_ID: String { return "vectorTableStopCell" }
-    class var CELL_FONT_SIZE: CGFloat { return 15.0 }
+    class var CELL_FONT_SIZE: CGFloat { return 17.0 }
     class var CELL_HEIGHT_PADDING: CGFloat { return 10.0 }
     class var PADDING_PX: CGFloat { return 15.0 }
     class var TIME_WIDTH: CGFloat { return 124.0 }
@@ -34,9 +34,9 @@ class VectorTable : UIScrollView, UITableViewDataSource, UITableViewDelegate, Tr
     }
     
     var stopTable: UITableView!
-    let schedule: Schedule!
-    let vectorIndex: Int!
-    let route: Route!
+    var schedule: Schedule!
+    var vectorIndex: Int!
+    var route: Route!
     var stopSequence: [Stop]!
     var cellText: [String]!
     var stopListWidth: CGFloat!
@@ -44,22 +44,15 @@ class VectorTable : UIScrollView, UITableViewDataSource, UITableViewDelegate, Tr
     var rowHeights: [Double]!
     var stopInTrip: [Bool]!
     var tableFrame: CGRect!
+    var connectionTable: ConnectionTable!
+    var scroller: UIScrollView?
     
     init(frame: CGRect, route: Route, vectorIndex: Int) {
         super.init(frame: frame)
-        
-        self.vectorIndex = vectorIndex
-        self.schedule = AppDelegate.theScheduleManager.scheduleForAgency(route.agency)!
-        self.route = route
-        
-        if route.vectors.count <= vectorIndex {
-            Logger.log(fromSource: self, level: .ERROR, message: "Bad vector index \(vectorIndex) for route \(route.id)")
-            return
-        }
-        
-        stopSequence = AppDelegate.theScheduleManager.stopSequenceForVector(route.vectors[vectorIndex], inSchedule: self.schedule)
-        
         stopListWidth = frame.width * 0.70
+        
+        setVector(forRoute: route, vectorIndex: vectorIndex)
+        
         tableFrame = CGRect(x: 0.0, y: 0.0, width: stopListWidth, height: CGFloat(totalHeight))
         stopTable = UITableView(frame: tableFrame)
         stopTable.separatorStyle = UITableViewCellSeparatorStyle.None
@@ -69,14 +62,37 @@ class VectorTable : UIScrollView, UITableViewDataSource, UITableViewDelegate, Tr
         stopTable.delegate = self
         addSubview(stopTable)
         
+        connectionTable = ConnectionTable(schedule: schedule)
+        connectionTable.delegate = self
+        addSubview(connectionTable.connectionRouteTable)
+        addSubview(connectionTable.connectionTimeTable)
+    }
+    
+    func setVector(forRoute route: Route, vectorIndex: Int) {
+        let isInitial = self.route == nil
+        
+        if route.vectors.count <= vectorIndex {
+            Logger.log(fromSource: self, level: .ERROR, message: "Bad vector index \(vectorIndex) for route \(route.id)")
+            return
+        }
+        self.vectorIndex = vectorIndex
+        self.schedule = AppDelegate.theScheduleManager.scheduleForAgency(route.agency)!
+        self.route = route
+        self.stopSequence = AppDelegate.theScheduleManager.stopSequenceForVector(route.vectors[vectorIndex], inSchedule: self.schedule)
         rowHeights = [Double]()
         for stop in stopSequence {
             let h: Double = Double(getLabelHeight(stop.name, UIFont.systemFontOfSize(VectorTable.CELL_FONT_SIZE), stopListWidth - VectorTable.PADDING_PX)) + Double(VectorTable.CELL_HEIGHT_PADDING)
             rowHeights.append(h)
         }
         
-        resetTripCollection()
+        if !isInitial {
+            tableFrame = CGRect(x: 0.0, y: 0.0, width: stopListWidth, height: CGFloat(totalHeight))
+            stopTable.frame = tableFrame
+            resetTripCollection()
+            stopTable.reloadData()
+        }
     }
+    
     
     func resetTripCollection() {
         if tripCollection != nil && tripCollection.collectionView != nil {
@@ -88,8 +104,22 @@ class VectorTable : UIScrollView, UITableViewDataSource, UITableViewDelegate, Tr
         tripCollection = TripCollection(stopSequence: stopSequence, rowHeights: rowHeights, tripArray: effectiveTrips, frame: tripCollectionFrame)
         tripCollection.delegate = self
         addSubview(tripCollection.collectionView)
+
+        var vecFrame = tableFrame
+        vecFrame.origin.y = vecFrame.origin.y + vecFrame.size.height + 10.0
+        connectionTable.connectionRouteTable.frame = vecFrame
+        
+        var cvFrame = tripCollection.collectionView.frame
+        cvFrame.origin.y = cvFrame.origin.y + cvFrame.size.height + 10.0
+        connectionTable.connectionTimeTable.frame = cvFrame
         
         tripCollection.collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: UICollectionViewScrollPosition.None, animated: true)
+        
+        var selfSize = frame.size
+        selfSize.height = stopTable!.frame.height + connectionTable.connectionRouteTable.frame.height
+        println("vector table height = \(selfSize.height)")
+        frame.size = selfSize
+        
         tripCollection.didScrollToTrip(0)
     }
     
@@ -138,11 +168,11 @@ class VectorTable : UIScrollView, UITableViewDataSource, UITableViewDelegate, Tr
     
     // MARK - TripCollectionDelegate
     
-    func didScrollToTrip(t: Trip)  {
+    func tripCollection(didScrollToTrip: Trip) {
         stopInTrip = [Bool](count: stopSequence.count, repeatedValue: false)
         for (var i=0; i < stopSequence.count; ++i) {
             let id = stopSequence[i].id
-            for stopTime in t.stops {
+            for stopTime in didScrollToTrip.stops {
                 if stopTime.id == id {
                     stopInTrip[i] = true
                     break
@@ -150,5 +180,28 @@ class VectorTable : UIScrollView, UITableViewDataSource, UITableViewDelegate, Tr
             }
         }
         stopTable.reloadData()
+        connectionTable.currentTrip = didScrollToTrip
+        
+        
+        if scroller != nil {
+            var h = self.frame.height + connectionTable.connectionRouteTable.frame.height
+            println("set content size to \(h)")
+            scroller!.contentSize = CGSize(width: scroller!.frame.width, height: h)
+        }
+        
     }
+    
+    // MARK - ConnectionTableDelegate
+    
+    func connectionTable(didSelectConnection c: Connection) {
+        if let r = AppDelegate.theScheduleManager.getRoute(fromSchedule: schedule, withId: c.routeId) {
+            for (var index=0; index < r.vectors.count; ++index) {
+                if r.vectors[index].destination == c.headSign {
+                    setVector(forRoute: r, vectorIndex: index)
+                    break
+                }
+            }
+        }
+    }
+    
 }

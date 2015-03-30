@@ -11,7 +11,7 @@ import MapKit
 
 class VectorViewController: UIViewController, DaySelectionControlDelegate {
     
-    let SCHED_FRACTION: Double = 0.66
+    let SCHED_FRACTION: Double = 0.5
     let VERT_OFFSET_FOR_NAV: CGFloat = 80.0
     let DAY_SELECT_WIDTH: CGFloat = 230.0
     
@@ -32,8 +32,8 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate {
     
     override func viewDidAppear(animated: Bool) {
         dispatch_after(DISPATCH_TIME_NOW, dispatch_get_main_queue() ) {
-            self.vectorTable.tripCollection.collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: 3, inSection: 0), atScrollPosition: UICollectionViewScrollPosition.None, animated: true)
-            self.vectorTable.tripCollection.didScrollToTrip(3)
+//            self.vectorTable.tripCollection.collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: 3, inSection: 0), atScrollPosition: UICollectionViewScrollPosition.None, animated: true)
+//            self.vectorTable.tripCollection.didScrollToTrip(3)
         }
     }
     
@@ -52,8 +52,8 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate {
     
     func createSubViews() {
         let w: Double = Double(frameView.frame.size.width),
-            h: Double = SCHED_FRACTION * Double(frameView.frame.size.height)
-
+            h: Double = SCHED_FRACTION * (Double(frameView.frame.size.height) - 112.0)
+println("HEIGHT of SCHEDBOX=\(h)")
         let daySelect = DaySelectionControl(width: DAY_SELECT_WIDTH)
         var dayFrame = daySelect.frame
         dayFrame.origin.y = VERT_OFFSET_FOR_NAV
@@ -72,11 +72,12 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate {
         frameView.addSubview(schedBox)
         
         mapView.autoresizingMask = UIViewAutoresizing.FlexibleHeight
-//TODO constant
-        let vtFrame = CGRect(x: 0.0, y: 0.0, width: schedBox.frame.width - 20.0, height: /*schedBox.frame.height - 20.0*/ 1200.0)
+
+        let vtFrame = CGRect(x: 0.0, y: 0.0, width: schedBox.frame.width, height: 0.0)
         vectorTable = VectorTable(frame: vtFrame, route: route, vectorIndex: vectorIndex)
         schedBox.addSubview(vectorTable)
-        schedBox.contentSize = vtFrame.size
+        vectorTable.scroller = schedBox
+        vectorTable.resetTripCollection()
     }
     
     func daySelection(selectedDayIndex index: Int) {
@@ -102,7 +103,6 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate {
             let offsetInterval = NSTimeInterval(offset * SECONDS_PER_DAY)
             
             appDel.effectiveDate = NSDate(timeInterval: offsetInterval, sinceDate: today)
-            println("the new effective date is \(appDel.effectiveDate)")
             vectorTable.resetTripCollection()
         }
     }

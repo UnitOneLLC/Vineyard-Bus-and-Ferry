@@ -51,10 +51,27 @@ class StopTime {
     }
 }
 
+class Connection {
+    let routeId: String!
+    let headSign: String!
+    let tripId: String!
+    let time: TimeOfDay!
+    let shortName: String!
+    
+    init(fromDictionary dico: NSDictionary) {
+        routeId = dico["routeId"] as String
+        headSign = dico["headsign"] as String
+        tripId = dico["tripId"] as String
+        time = TimeOfDay(fromString: dico["time"] as String)
+        shortName = dico["shortName"] as String
+    }
+}
+
 class Trip {
     let id: String!
     let serviceId: String!
     let stops: [StopTime]!
+    let connections: [Connection]!
     
     init(fromDictionary dico: NSDictionary) {
         id = dico["tripId"] as String
@@ -64,6 +81,12 @@ class Trip {
         stops = [StopTime]()
         for item in stopTimeArr {
             stops.append(StopTime(fromDictionary: item))
+        }
+        
+        let connectArr = dico["connections"] as [NSDictionary]
+        connections = [Connection]()
+        for item in connectArr {
+            connections.append(Connection(fromDictionary: item))
         }
     }
 }

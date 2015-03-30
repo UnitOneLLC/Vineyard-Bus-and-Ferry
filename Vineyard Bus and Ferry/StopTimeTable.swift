@@ -25,11 +25,11 @@ class StopTimeTable: NSObject, UITableViewDataSource, UITableViewDelegate {
         var cell = tableView.dequeueReusableCellWithIdentifier(StopTimeTable.REUSE_ID, forIndexPath: indexPath) as UITableViewCell
         
         let stopId = stopSequence[indexPath.row].id
-    println("Stop Table Cell request: row=\(indexPath.row), id=\(stopId)")
         var found: Bool = false
         for stopTime in trip.stops {
             if stopTime.id == stopId {
-                cell.textLabel!.text = AppDelegate.theScheduleManager.formatTimeOfDay(stopTime.time)
+                let labelText = AppDelegate.theScheduleManager.formatTimeOfDay(stopTime.time)
+                cell.textLabel!.attributedText = getAttributedString(labelText, withFont: VectorTable.cellFont)
                 found = true
                 break
             }
@@ -43,7 +43,6 @@ class StopTimeTable: NSObject, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      println("Stop Table Cell count = \(trip.stops.count)")
         return stopSequence.count
     }
     
