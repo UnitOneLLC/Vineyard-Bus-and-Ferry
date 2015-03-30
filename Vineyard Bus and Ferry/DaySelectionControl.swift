@@ -17,6 +17,8 @@ class DaySelectionControl : UIView {
     let FONT_SIZE: CGFloat = 16.0
     let HMARGIN: CGFloat = 5.0
     let VMARGIN: CGFloat = 5.0
+    let TEXT_COLOR: UIColor = UIColor.whiteColor()
+    let TEXT_COLOR_SELECTED: UIColor = UIColor.yellowColor()
     
     var delegate: DaySelectionControlDelegate?
     var buttons: [UIButton]
@@ -44,11 +46,11 @@ class DaySelectionControl : UIView {
             
             var attrs = [NSObject : AnyObject]()
             
-            attrs[NSForegroundColorAttributeName] = UIColor.blackColor()
+            attrs[NSForegroundColorAttributeName] = TEXT_COLOR
             let normal = NSMutableAttributedString(string: abbrev, attributes: attrs)
             button.setAttributedTitle(normal, forState: UIControlState.Normal)
             
-            attrs[NSForegroundColorAttributeName] = UIColor.blueColor()
+            attrs[NSForegroundColorAttributeName] = TEXT_COLOR_SELECTED
             attrs[NSFontAttributeName] = UIFont.boldSystemFontOfSize(FONT_SIZE)
             
             let selected = NSMutableAttributedString(string: abbrev, attributes: attrs)

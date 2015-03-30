@@ -14,7 +14,7 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate, Vecto
     let SCHED_FRACTION: Double = 0.5
     let VERT_OFFSET_FOR_NAV: CGFloat = 80.0
     let DAY_SELECT_WIDTH: CGFloat = 230.0
-    let SMALL_PAD: CGFloat = 15.0
+    let SMALL_PAD: CGFloat = 10.0
     let TITLE_FONT_SIZE: CGFloat = 19.0
     
     // set from segue
@@ -25,6 +25,8 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate, Vecto
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var routeTitleVConstraint: NSLayoutConstraint!
     @IBOutlet weak var routeTitleLabel: UILabel!
+    @IBOutlet weak var reverseRouteButton: UIButton!
+    @IBOutlet weak var betweenLabelAndReverseButtonConstraint: NSLayoutConstraint!
     
     var schedBox: UIScrollView!
     var vectorTable: VectorTable!
@@ -43,6 +45,8 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate, Vecto
     
     override func viewDidLayoutSubviews() {
 
+        adjustHeaderLabelAndButton()
+        
         var sizeMap = schedBox.frame.size
         sizeMap.height = frameView.frame.height - schedBox.frame.size.height
 
@@ -84,9 +88,43 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate, Vecto
         schedBox.addSubview(vectorTable)
         vectorTable.scroller = schedBox
         vectorTable.resetTripCollection()
+        setRouteReverseButton()
     }
     
+    @IBAction func didPressReverseRoute(sender: AnyObject) {
+        if route.vectors.count > 0 {
+            if vectorIndex == 0 {
+                vectorTable.setVector(forRoute: route, vectorIndex: 1)
+            }
+            else if vectorIndex == 1 {
+                vectorTable.setVector(forRoute: route, vectorIndex: 0)
+            }
+        }
+    }
+    
+    func adjustHeaderLabelAndButton() {
+        let w = routeTitleLabel.frame.width +
+                betweenLabelAndReverseButtonConstraint.constant +
+                reverseRouteButton.frame.width
+        
+        let margin = (frameView.frame.width - w)/2.0
+        
+        var rect = routeTitleLabel.frame
+        rect.origin.x = margin
+        routeTitleLabel.frame = rect
+        
+        rect = reverseRouteButton.frame
+        rect.origin.x = routeTitleLabel.frame.origin.x +
+                        routeTitleLabel.frame.width +
+                        betweenLabelAndReverseButtonConstraint.constant
+        reverseRouteButton.frame = rect
+    }
+
+    
     func vectorTable(routeSelected: Route, vectorIndex: Int) {
+        self.route = routeSelected
+        self.vectorIndex = vectorIndex
+        
         var labelText: String
         if routeSelected.shortName != nil && !routeSelected.shortName!.isEmpty {
             labelText = "Route " + routeSelected.shortName! + " to " + routeSelected.vectors[vectorIndex].destination
@@ -94,7 +132,21 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate, Vecto
         else {
             labelText = "To " + routeSelected.vectors[vectorIndex].destination
         }
+        
         routeTitleLabel.attributedText = getAttributedString(labelText, withFont: UIFont.boldSystemFontOfSize(TITLE_FONT_SIZE))
+        
+        setRouteReverseButton()
+        
+        schedBox.scrollRectToVisible(CGRect(x:0.0, y:0.0, width: schedBox.frame.width, height: 1.0), animated: true)
+    }
+    
+    func setRouteReverseButton() {
+        if route.vectors.count > 1 {
+            reverseRouteButton.hidden = false
+        }
+        else {
+            reverseRouteButton.hidden = true
+        }
     }
     
     func daySelection(selectedDayIndex index: Int) {

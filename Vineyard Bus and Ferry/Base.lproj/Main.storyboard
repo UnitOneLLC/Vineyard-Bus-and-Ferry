@@ -169,25 +169,37 @@
                                 </constraints>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Route Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rBE-C2-sp7">
-                                <rect key="frame" x="0.0" y="84" width="600" height="24"/>
+                                <rect key="frame" x="253" y="78" width="95" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HoW-mD-X5q">
+                                <rect key="frame" x="355" y="77" width="29" height="30"/>
+                                <state key="normal" image="connect-arrow-left-right-7-white">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didPressReverseRoute:" destination="cKb-Lj-34m" eventType="touchUpInside" id="2A8-rq-qB2"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.14509804549999999" green="0.36078432199999999" blue="0.99607849120000003" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
+                            <constraint firstItem="rBE-C2-sp7" firstAttribute="baseline" secondItem="HoW-mD-X5q" secondAttribute="baseline" constant="-10" id="4R7-TV-A84"/>
                             <constraint firstItem="mrp-M3-qJn" firstAttribute="leading" secondItem="xrW-uT-M1i" secondAttribute="leading" id="V1o-8Y-vsQ"/>
                             <constraint firstItem="rBE-C2-sp7" firstAttribute="centerX" secondItem="xrW-uT-M1i" secondAttribute="centerX" id="YT9-4b-Pwj"/>
-                            <constraint firstItem="rBE-C2-sp7" firstAttribute="width" secondItem="xrW-uT-M1i" secondAttribute="width" id="alJ-Ui-NEq"/>
                             <constraint firstItem="mrp-M3-qJn" firstAttribute="top" secondItem="xrW-uT-M1i" secondAttribute="top" id="geG-m5-oty"/>
-                            <constraint firstItem="rBE-C2-sp7" firstAttribute="top" secondItem="61H-xD-lyC" secondAttribute="bottom" constant="20" id="kDh-et-D61"/>
+                            <constraint firstItem="rBE-C2-sp7" firstAttribute="top" secondItem="61H-xD-lyC" secondAttribute="bottom" constant="14" id="kDh-et-D61"/>
+                            <constraint firstItem="HoW-mD-X5q" firstAttribute="leading" secondItem="rBE-C2-sp7" secondAttribute="trailing" constant="7" id="p2T-go-Srk"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="GYD-aL-b4N"/>
                     <connections>
+                        <outlet property="betweenLabelAndReverseButtonConstraint" destination="p2T-go-Srk" id="MH8-HW-dDa"/>
                         <outlet property="frameView" destination="xrW-uT-M1i" id="DIN-IJ-veV"/>
                         <outlet property="mapView" destination="mrp-M3-qJn" id="WYU-uP-qoK"/>
+                        <outlet property="reverseRouteButton" destination="HoW-mD-X5q" id="bni-9J-z3V"/>
                         <outlet property="routeTitleLabel" destination="rBE-C2-sp7" id="JFX-e4-28C"/>
                         <outlet property="routeTitleVConstraint" destination="kDh-et-D61" id="DfB-39-piY"/>
                     </connections>
@@ -291,6 +303,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="connect-arrow-left-right-7-white" width="29" height="30"/>
         <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
     </resources>
