@@ -93,7 +93,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="T4h-bX-z46">
                                 <rect key="frame" x="0.0" y="64" width="600" height="600"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="routeCell" id="Bg0-pv-Md7" customClass="RouteListCell" customModule="Vineyard_Bus_and_Ferry" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -162,14 +162,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mrp-M3-qJn"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mrp-M3-qJn">
+                                <constraints>
+                                    <constraint firstAttribute="width" id="hqO-Ki-BeN"/>
+                                    <constraint firstAttribute="height" id="rft-4f-GHX"/>
+                                </constraints>
+                            </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Route Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rBE-C2-sp7">
+                                <rect key="frame" x="0.0" y="84" width="600" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mrp-M3-qJn" firstAttribute="leading" secondItem="xrW-uT-M1i" secondAttribute="leading" id="V1o-8Y-vsQ"/>
+                            <constraint firstItem="rBE-C2-sp7" firstAttribute="centerX" secondItem="xrW-uT-M1i" secondAttribute="centerX" id="YT9-4b-Pwj"/>
+                            <constraint firstItem="rBE-C2-sp7" firstAttribute="width" secondItem="xrW-uT-M1i" secondAttribute="width" id="alJ-Ui-NEq"/>
+                            <constraint firstItem="mrp-M3-qJn" firstAttribute="top" secondItem="xrW-uT-M1i" secondAttribute="top" id="geG-m5-oty"/>
+                            <constraint firstItem="rBE-C2-sp7" firstAttribute="top" secondItem="61H-xD-lyC" secondAttribute="bottom" constant="20" id="kDh-et-D61"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="GYD-aL-b4N"/>
                     <connections>
                         <outlet property="frameView" destination="xrW-uT-M1i" id="DIN-IJ-veV"/>
                         <outlet property="mapView" destination="mrp-M3-qJn" id="WYU-uP-qoK"/>
+                        <outlet property="routeTitleLabel" destination="rBE-C2-sp7" id="JFX-e4-28C"/>
+                        <outlet property="routeTitleVConstraint" destination="kDh-et-D61" id="DfB-39-piY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O3b-k2-wTW" userLabel="First Responder" sceneMemberID="firstResponder"/>

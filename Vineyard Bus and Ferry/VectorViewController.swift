@@ -9,11 +9,13 @@
 import UIKit
 import MapKit
 
-class VectorViewController: UIViewController, DaySelectionControlDelegate {
+class VectorViewController: UIViewController, DaySelectionControlDelegate, VectorTableDelegate {
     
     let SCHED_FRACTION: Double = 0.5
     let VERT_OFFSET_FOR_NAV: CGFloat = 80.0
     let DAY_SELECT_WIDTH: CGFloat = 230.0
+    let SMALL_PAD: CGFloat = 15.0
+    let TITLE_FONT_SIZE: CGFloat = 19.0
     
     // set from segue
     var route: Route!
@@ -21,6 +23,8 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate {
     
     @IBOutlet var frameView: UIView!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var routeTitleVConstraint: NSLayoutConstraint!
+    @IBOutlet weak var routeTitleLabel: UILabel!
     
     var schedBox: UIScrollView!
     var vectorTable: VectorTable!
@@ -53,10 +57,10 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate {
     func createSubViews() {
         let w: Double = Double(frameView.frame.size.width),
             h: Double = SCHED_FRACTION * (Double(frameView.frame.size.height) - 112.0)
-println("HEIGHT of SCHEDBOX=\(h)")
+        
         let daySelect = DaySelectionControl(width: DAY_SELECT_WIDTH)
         var dayFrame = daySelect.frame
-        dayFrame.origin.y = VERT_OFFSET_FOR_NAV
+        dayFrame.origin.y = VERT_OFFSET_FOR_NAV + routeTitleVConstraint.constant + SMALL_PAD
         dayFrame = hCenterInFrame(frameToCenter: dayFrame, container: frameView.frame)
         daySelect.frame = dayFrame
         daySelect.delegate = self
@@ -65,7 +69,7 @@ println("HEIGHT of SCHEDBOX=\(h)")
         
         let sizeSched = CGSize(width: w, height: h)
 
-        let schedOffsetY = VERT_OFFSET_FOR_NAV + dayFrame.height
+        let schedOffsetY = dayFrame.origin.y + dayFrame.height
         schedBox = UIScrollView(frame: CGRect(origin: CGPoint(x: 0.0, y: schedOffsetY), size:sizeSched))
         schedBox.scrollEnabled = true
 
@@ -75,9 +79,22 @@ println("HEIGHT of SCHEDBOX=\(h)")
 
         let vtFrame = CGRect(x: 0.0, y: 0.0, width: schedBox.frame.width, height: 0.0)
         vectorTable = VectorTable(frame: vtFrame, route: route, vectorIndex: vectorIndex)
+        vectorTable.delegate = self
+        vectorTable(route, vectorIndex: vectorIndex)
         schedBox.addSubview(vectorTable)
         vectorTable.scroller = schedBox
         vectorTable.resetTripCollection()
+    }
+    
+    func vectorTable(routeSelected: Route, vectorIndex: Int) {
+        var labelText: String
+        if routeSelected.shortName != nil && !routeSelected.shortName!.isEmpty {
+            labelText = "Route " + routeSelected.shortName! + " to " + routeSelected.vectors[vectorIndex].destination
+        }
+        else {
+            labelText = "To " + routeSelected.vectors[vectorIndex].destination
+        }
+        routeTitleLabel.attributedText = getAttributedString(labelText, withFont: UIFont.boldSystemFontOfSize(TITLE_FONT_SIZE))
     }
     
     func daySelection(selectedDayIndex index: Int) {

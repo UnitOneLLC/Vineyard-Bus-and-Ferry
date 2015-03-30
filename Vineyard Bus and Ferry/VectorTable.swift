@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol VectorTableDelegate {
+    func vectorTable(routeSelected: Route, vectorIndex: Int)
+}
+
+
 class VectorTableStopCell : UITableViewCell {
 
     override func layoutSubviews() {
@@ -46,6 +51,7 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
     var tableFrame: CGRect!
     var connectionTable: ConnectionTable!
     var scroller: UIScrollView?
+    var delegate: VectorTableDelegate?
     
     init(frame: CGRect, route: Route, vectorIndex: Int) {
         super.init(frame: frame)
@@ -90,6 +96,9 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
             stopTable.frame = tableFrame
             resetTripCollection()
             stopTable.reloadData()
+        }
+        if delegate != nil {
+            delegate!.vectorTable(route, vectorIndex: vectorIndex)
         }
     }
     
