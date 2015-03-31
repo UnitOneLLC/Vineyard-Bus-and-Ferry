@@ -35,7 +35,7 @@ class TripPager : UIView {
         earlierButton.addTarget(self, action: "didPressEarlierTrip", forControlEvents: UIControlEvents.TouchUpInside)
         addSubview(earlierButton)
         
-        let rightArrowFrame = CGRect(x: leftArrowFrame.origin.x + 1.5*BUTTON_WIDTH, y: buttonVOffset,
+        let rightArrowFrame = CGRect(x: leftArrowFrame.origin.x + BUTTON_WIDTH, y: buttonVOffset,
             width: BUTTON_WIDTH, height: TripPager.PAGER_HEIGHT)
         laterButton = UIButton(frame: rightArrowFrame)
         let rightArrow = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("blue-arrow-right", ofType: "png")!)

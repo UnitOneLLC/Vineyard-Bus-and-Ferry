@@ -141,7 +141,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             maxLng = max(maxLng, coord.longitude)
         }
         
-        let span = makeSpan(maxLat-minLat, maxLng-minLng, mapView.superview!)
+        let span = makeSpan(maxLat-minLat, maxLng-minLng, mapView!)
         let center = CLLocationCoordinate2D(latitude: (minLat+maxLat)/2, longitude: (minLng+maxLng)/2)
         let region = MKCoordinateRegionMake(center, span)
         mapView.setRegion(region, animated: true)

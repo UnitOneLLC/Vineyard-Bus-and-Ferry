@@ -91,7 +91,7 @@ extension NSDate {
 func makeSpan(latDelta: Double, lngDelta: Double, view: UIView) -> MKCoordinateSpan {
     let frameHeight = view.frame.size.height
     let frameWidth = view.frame.size.width
-    let MARGIN: Double = 0.01
+    let MARGIN: Double = 0.05
     
     if frameHeight >= frameWidth {
         let aspect = Double(frameHeight/frameWidth)
