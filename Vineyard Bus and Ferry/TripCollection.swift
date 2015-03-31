@@ -98,6 +98,14 @@ class TripCollection: NSObject {
             didScrollToTrip(currentIndex)
         }
     }
+    
+    func scrollToTripAtIndex(index: Int) {
+        let w = collectionView.frame.width
+        let newOffset = CGFloat(index) * w
+        let targetRect = CGRect(x: newOffset, y: CGFloat(0.0), width: w, height: CGFloat(1.0))
+        collectionView.scrollRectToVisible(targetRect, animated: true)
+        didScrollToTrip(index)
+    }
 }
 
 extension TripCollection:  UICollectionViewDataSource, UICollectionViewDelegate {

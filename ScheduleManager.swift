@@ -284,7 +284,6 @@ class ScheduleManager : Printable {
     
     class func getDayOfWeekIndex(forDate date: NSDate) -> Int { // Monday=0, Sunday=6
         let calendar = NSCalendar.currentCalendar()
-        calendar.component(NSCalendarUnit.CalendarUnitWeekday, fromDate: date)
         let dateComponents = calendar.components(NSCalendarUnit.CalendarUnitWeekday, fromDate: date)
         
         let ord = dateComponents.weekday - 2
@@ -369,6 +368,52 @@ class ScheduleManager : Printable {
         
         return filtered
     }
+    
+    func getTripIndex(inVector vector: Vector, forTripId tripId: String) -> Int {
+
+        for (var i = 0; i < vector.trips.count; ++i) {
+            if vector.trips[i].id == tripId {
+                return i
+            }
+        }
+        
+        return -1
+    }
+    
+    func getStopTimes(forStop stop: String, inVector vector: Vector, inSchedule schedule: Schedule, forDate effDate: NSDate) -> (beforeNow: [TimeOfDay], afterNow: [TimeOfDay]) {
+        let now = NSDate()
+        
+        let calendar = NSCalendar.currentCalendar()
+        let dateComponents = calendar.components(NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitMinute, fromDate: now)
+
+        let nowTod = TimeOfDay(fromString: String(dateComponents.hour) + ":" + String(dateComponents.minute))
+        
+        var beforeTimes = [TimeOfDay]()
+        var afterTimes = [TimeOfDay]()
+
+        for trip in vector.trips {
+            let cal = getServiceCalendar(forId: trip.serviceId, inSchedule: schedule)
+            if !isDateValidForCalendar(effDate, serviceCalendar: cal!) {
+                continue
+            }
+            for stopTime in trip.stops {
+                if stopTime.id == stop {
+                    if stopTime.time.hour > nowTod.hour || (stopTime.time.hour == nowTod.hour && stopTime.time.minute > nowTod.minute) {
+                        afterTimes.append(stopTime.time)
+                    }
+                    else {
+                        beforeTimes.append(stopTime.time)
+                    }
+                }
+            }
+        }
+        
+        return (beforeNow: beforeTimes, afterNow: afterTimes)
+    }
+    
+    
+    
+    
     
     
 }

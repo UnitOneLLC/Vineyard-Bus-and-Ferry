@@ -9,9 +9,8 @@
 import UIKit
 
 protocol VectorTableDelegate {
-    func vectorTable(routeSelected: Route, vectorIndex: Int)
+    func vectorTable(routeSelected: Route, vectorIndex: Int, stop: Stop?)
 }
-
 
 class VectorTableStopCell : UITableViewCell {
 
@@ -34,6 +33,8 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
     class var TIME_WIDTH: CGFloat { return 124.0 }
     class var STOPLIST_RATIO: CGFloat { return 0.70 }
     
+    let CONN_LABEL_HEIGHT: CGFloat = 28.0
+    let CONN_LABEL_FONT_SIZE: CGFloat = 17.0
     let CELL_HEIGHT_PADDING: CGFloat = 10.0
     let PADDING_PX: CGFloat = 15.0
     
@@ -55,6 +56,7 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
     var connectionTable: ConnectionTable!
     var scroller: UIScrollView?
     var delegate: VectorTableDelegate?
+    var connectionsLabel: UILabel!
     
     init(frame: CGRect, route: Route, vectorIndex: Int) {
         super.init(frame: frame)
@@ -70,6 +72,12 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
         stopTable.dataSource = self
         stopTable.delegate = self
         addSubview(stopTable)
+
+        connectionsLabel = UILabel(frame: CGRect(x: 0.0, y: tableFrame.height, width: frame.width, height: CONN_LABEL_HEIGHT))
+        connectionsLabel.attributedText = getAttributedString("Connections", withFont: UIFont.boldSystemFontOfSize(CONN_LABEL_FONT_SIZE))
+        connectionsLabel.textAlignment = NSTextAlignment.Center
+        connectionsLabel.textColor = UIColor.whiteColor()
+        addSubview(connectionsLabel)
         
         connectionTable = ConnectionTable(schedule: schedule)
         connectionTable.delegate = self
@@ -77,7 +85,7 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
         addSubview(connectionTable.connectionTimeTable)
     }
     
-    func setVector(forRoute route: Route, vectorIndex: Int) {
+    func setVector(forRoute route: Route, vectorIndex: Int, tripIndex: Int? = nil) {
         let isInitial = self.route == nil
         
         if route.vectors.count <= vectorIndex {
@@ -101,7 +109,12 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
             stopTable.reloadData()
         }
         if delegate != nil {
-            delegate!.vectorTable(route, vectorIndex: vectorIndex)
+            delegate!.vectorTable(route, vectorIndex: vectorIndex, stop: nil)
+        }
+        if tripIndex != nil && tripIndex < route.vectors[vectorIndex].trips.count {
+            dispatch_async(dispatch_get_main_queue()) {
+                self.tripCollection.scrollToTripAtIndex(tripIndex!)
+            }
         }
     }
     
@@ -116,14 +129,13 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
         tripCollection = TripCollection(stopSequence: stopSequence, rowHeights: rowHeights, tripArray: effectiveTrips, frame: tripCollectionFrame)
         tripCollection.delegate = self
         addSubview(tripCollection.collectionView)
-
-        var vecFrame = tableFrame
-        vecFrame.origin.y = vecFrame.origin.y + vecFrame.size.height + 10.0
-        connectionTable.connectionRouteTable.frame = vecFrame
         
-        var cvFrame = tripCollection.collectionView.frame
-        cvFrame.origin.y = cvFrame.origin.y + cvFrame.size.height + 10.0
-        connectionTable.connectionTimeTable.frame = cvFrame
+        connectionTable.connectionTimeTable.frame = tripCollection.collectionView.frame
+        connectionTable.connectionRouteTable.frame = stopTable.frame
+        
+        stackView(connectionsLabel, positionBelow: stopTable)
+        stackView(connectionTable.connectionRouteTable, positionBelow: connectionsLabel)
+        stackView(connectionTable.connectionTimeTable, positionBelow: connectionsLabel)
         
         tripCollection.collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: UICollectionViewScrollPosition.None, animated: true)
         
@@ -138,6 +150,9 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
+    
+    // MARK -- UITableViewDataSource
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: VectorTableStopCell! = tableView.dequeueReusableCellWithIdentifier(VectorTable.REUSE_ID) as? VectorTableStopCell
@@ -163,19 +178,18 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
         return stopSequence.count
     }
     
+    // MARK -- UITableViewDelegate
+    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return CGFloat(rowHeights[indexPath.row])
     }
     
-    var totalHeight: Double {
-        var result: Double = 0.0
-        for stop in stopSequence {
-            let h: Double = Double(getLabelHeight(stop.name, VectorTable.cellFont, stopListWidth - PADDING_PX))
-            result += h + Double(CELL_HEIGHT_PADDING)
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if delegate != nil {
+            delegate!.vectorTable(route, vectorIndex: vectorIndex, stop: stopSequence[indexPath.row])
         }
-        return result
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
-    
     
     // MARK - TripCollectionDelegate
     
@@ -191,6 +205,9 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
             }
         }
         stopTable.reloadData()
+        
+        connectionsLabel.hidden = didScrollToTrip.connections.count == 0
+
         connectionTable.currentTrip = didScrollToTrip
         
         
@@ -199,7 +216,6 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
             println("set content size to \(h)")
             scroller!.contentSize = CGSize(width: scroller!.frame.width, height: h)
         }
-        
     }
     
     // MARK - ConnectionTableDelegate
@@ -208,7 +224,8 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
         if let r = AppDelegate.theScheduleManager.getRoute(fromSchedule: schedule, withId: c.routeId) {
             for (var index=0; index < r.vectors.count; ++index) {
                 if r.vectors[index].destination == c.headSign {
-                    setVector(forRoute: r, vectorIndex: index)
+                    setVector(forRoute: r, vectorIndex: index, tripIndex: AppDelegate.theScheduleManager.getTripIndex(inVector: r.vectors[index],
+                                forTripId: c.tripId))
                     break
                 }
             }
@@ -224,4 +241,18 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
             tripCollection.scrollToNext()
         }
     }
+    
+    
+    // MARK -- utilities
+    
+    var totalHeight: Double {
+        var result: Double = 0.0
+        for stop in stopSequence {
+            let h: Double = Double(getLabelHeight(stop.name, VectorTable.cellFont, stopListWidth - PADDING_PX))
+            result += h + Double(CELL_HEIGHT_PADDING)
+        }
+        return result
+    }
+    
+    
 }

@@ -4,6 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--BusDestinations-->
@@ -162,12 +163,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mrp-M3-qJn">
-                                <constraints>
-                                    <constraint firstAttribute="width" id="hqO-Ki-BeN"/>
-                                    <constraint firstAttribute="height" id="rft-4f-GHX"/>
-                                </constraints>
-                            </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Route Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rBE-C2-sp7">
                                 <rect key="frame" x="253" y="78" width="95" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -184,29 +179,75 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.14509804549999999" green="0.36078432199999999" blue="0.99607849120000003" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="backgroundColor" red="0.39607846736907959" green="0.67450982332229614" blue="0.90980398654937744" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="rBE-C2-sp7" firstAttribute="baseline" secondItem="HoW-mD-X5q" secondAttribute="baseline" constant="-10" id="4R7-TV-A84"/>
-                            <constraint firstItem="mrp-M3-qJn" firstAttribute="leading" secondItem="xrW-uT-M1i" secondAttribute="leading" id="V1o-8Y-vsQ"/>
                             <constraint firstItem="rBE-C2-sp7" firstAttribute="centerX" secondItem="xrW-uT-M1i" secondAttribute="centerX" id="YT9-4b-Pwj"/>
-                            <constraint firstItem="mrp-M3-qJn" firstAttribute="top" secondItem="xrW-uT-M1i" secondAttribute="top" id="geG-m5-oty"/>
                             <constraint firstItem="rBE-C2-sp7" firstAttribute="top" secondItem="61H-xD-lyC" secondAttribute="bottom" constant="14" id="kDh-et-D61"/>
                             <constraint firstItem="HoW-mD-X5q" firstAttribute="leading" secondItem="rBE-C2-sp7" secondAttribute="trailing" constant="7" id="p2T-go-Srk"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="GYD-aL-b4N"/>
+                    <navigationItem key="navigationItem" id="GYD-aL-b4N">
+                        <barButtonItem key="rightBarButtonItem" title="Map" id="BtY-DS-u1Q">
+                            <connections>
+                                <action selector="showMap:" destination="cKb-Lj-34m" id="ybC-NS-TBa"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="betweenLabelAndReverseButtonConstraint" destination="p2T-go-Srk" id="MH8-HW-dDa"/>
                         <outlet property="frameView" destination="xrW-uT-M1i" id="DIN-IJ-veV"/>
-                        <outlet property="mapView" destination="mrp-M3-qJn" id="WYU-uP-qoK"/>
                         <outlet property="reverseRouteButton" destination="HoW-mD-X5q" id="bni-9J-z3V"/>
                         <outlet property="routeTitleLabel" destination="rBE-C2-sp7" id="JFX-e4-28C"/>
                         <outlet property="routeTitleVConstraint" destination="kDh-et-D61" id="DfB-39-piY"/>
+                        <segue destination="Yyl-zc-2RY" kind="show" identifier="showMap" id="PnP-oF-Mrc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O3b-k2-wTW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4840" y="0.0"/>
+        </scene>
+        <!--Vector Map-->
+        <scene sceneID="b78-Cf-2Zk">
+            <objects>
+                <viewController title="Vector Map" id="TMe-uG-rjF" customClass="MapViewController" customModule="Vineyard_Bus_and_Ferry" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bXn-yv-KgK"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qjs-jq-Xht"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1ah-Y6-Kqg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="E1U-yE-1Kb">
+                                <rect key="frame" x="0.0" y="115" width="600" height="436"/>
+                            </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MnF-EA-xSx">
+                                <rect key="frame" x="279" y="84" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="E1U-yE-1Kb" firstAttribute="leading" secondItem="1ah-Y6-Kqg" secondAttribute="leading" id="3c6-67-vdN"/>
+                            <constraint firstAttribute="centerX" secondItem="MnF-EA-xSx" secondAttribute="centerX" id="4d1-AA-Ank"/>
+                            <constraint firstItem="E1U-yE-1Kb" firstAttribute="width" secondItem="1ah-Y6-Kqg" secondAttribute="width" id="93S-Xa-jeg"/>
+                            <constraint firstItem="MnF-EA-xSx" firstAttribute="top" secondItem="bXn-yv-KgK" secondAttribute="bottom" constant="20" id="Gfv-Qf-lMZ"/>
+                            <constraint firstItem="Qjs-jq-Xht" firstAttribute="top" secondItem="E1U-yE-1Kb" secondAttribute="bottom" id="Nfl-kz-zax"/>
+                            <constraint firstItem="E1U-yE-1Kb" firstAttribute="height" secondItem="1ah-Y6-Kqg" secondAttribute="height" multiplier="1:1.375" id="rZ2-Ff-1GF"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="YA0-FT-RF9"/>
+                    <connections>
+                        <outlet property="mapView" destination="E1U-yE-1Kb" id="dae-en-N8l"/>
+                        <outlet property="routeTitleLabel" destination="MnF-EA-xSx" id="mJt-0L-ZYh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L3k-G0-eba" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6542" y="0.0"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -300,6 +341,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iOa-uA-fm9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4028" y="0.0"/>
+        </scene>
+        <!--Map View Nav-->
+        <scene sceneID="w26-e6-bgU">
+            <objects>
+                <navigationController title="Map View Nav" automaticallyAdjustsScrollViewInsets="NO" id="Yyl-zc-2RY" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cdn-wm-sOg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="TMe-uG-rjF" kind="relationship" relationship="rootViewController" id="WSO-6S-2V9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BbO-JG-4JY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5730" y="0.0"/>
         </scene>
     </scenes>
     <resources>

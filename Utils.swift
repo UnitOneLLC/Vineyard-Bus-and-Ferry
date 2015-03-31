@@ -8,6 +8,7 @@
 
 import UIKit
 import SystemConfiguration
+import MapKit
 
 func hCenterInFrame(#frameToCenter: CGRect, #container: CGRect) -> CGRect {
     var origin = CGPoint(x: CGFloat(container.width - frameToCenter.width)/CGFloat(2.0), y: frameToCenter.origin.y)
@@ -18,6 +19,14 @@ func getAttributedString(text: String, withFont font: UIFont) -> NSAttributedStr
     var dico: [NSObject: AnyObject] = [NSObject: AnyObject]()
     dico[NSFontAttributeName] = font
     let attrString = NSAttributedString(string: text, attributes: dico)
+    
+    return attrString
+}
+
+func getMutableAttributedString(text: String, withFont font: UIFont) -> NSMutableAttributedString {
+    var dico: [NSObject: AnyObject] = [NSObject: AnyObject]()
+    dico[NSFontAttributeName] = font
+    let attrString = NSMutableAttributedString(string: text, attributes: dico)
     
     return attrString
 }
@@ -61,7 +70,11 @@ func normalizedDate(date: NSDate) -> NSDate {
     return result!
 }
 
-
+func stackView(view: UIView, positionBelow refView: UIView) {
+    var f = view.frame
+    f.origin.y = refView.frame.origin.y + refView.frame.height
+    view.frame = f
+}
 
 extension NSDate {
     
@@ -75,6 +88,53 @@ extension NSDate {
     
 }
 
+func makeSpan(latDelta: Double, lngDelta: Double, view: UIView) -> MKCoordinateSpan {
+    let frameHeight = view.frame.size.height
+    let frameWidth = view.frame.size.width
+    let MARGIN: Double = 0.01
+    
+    if frameHeight >= frameWidth {
+        let aspect = Double(frameHeight/frameWidth)
+        
+        let latDelta2 = latDelta + MARGIN
+        let lngDelta2 = (lngDelta + MARGIN) * aspect
+        let span = MKCoordinateSpan(latitudeDelta: CLLocationDegrees(latDelta2), longitudeDelta: CLLocationDegrees(lngDelta2))
+        return span
+    }
+    else {
+        let aspect = Double(frameWidth/frameHeight)
+        
+        let latDelta2 = (latDelta + MARGIN) * aspect
+        let lngDelta2 = lngDelta + MARGIN
+        let span = MKCoordinateSpan(latitudeDelta: CLLocationDegrees(latDelta2), longitudeDelta: CLLocationDegrees(lngDelta2))
+        return span
+    }
+}
+
+// Creates a UIColor from a Hex string.
+// https://gist.github.com/arshad/de147c42d7b3063ef7bc
+
+func colorWithHexString (hex:String) -> UIColor {
+    var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
+    if (cString.hasPrefix("#")) {
+        cString = cString.substringFromIndex(hex.startIndex)
+    }
+    if (countElements(cString) != 6) {
+        return UIColor.grayColor()
+    }
+    var rString = cString.substringToIndex(advance(hex.startIndex, 2))
+    var gString = cString.substringFromIndex(advance(hex.startIndex, 2))
+        gString = gString.substringToIndex(advance(gString.startIndex, 2))
+    var bString = cString.substringFromIndex(advance(hex.startIndex, 4))
+        bString = bString.substringToIndex(advance(bString.startIndex, 2))
+    
+    var r:CUnsignedInt = 0, g:CUnsignedInt = 0, b:CUnsignedInt = 0;
+    NSScanner(string: rString).scanHexInt(&r)
+    NSScanner(string: gString).scanHexInt(&g)
+    NSScanner(string: bString).scanHexInt(&b)
+
+    return UIColor(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: CGFloat(1))
+}
 
 //
 //  Logger.swift

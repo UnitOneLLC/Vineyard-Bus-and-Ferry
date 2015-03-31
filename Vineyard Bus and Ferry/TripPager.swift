@@ -13,9 +13,9 @@ protocol TripPagerDelegate {
 }
 
 class TripPager : UIView {
-    class var PAGER_HEIGHT: CGFloat {return 50.0 }
+    class var PAGER_HEIGHT: CGFloat {return 45.0 }
     let BUTTON_HEIGHT: CGFloat = 40.0
-    let BUTTON_WIDTH: CGFloat = 40.0
+    let BUTTON_WIDTH: CGFloat = 30.0
 
     // need offsetLeft
     var earlierButton: UIButton!
@@ -24,11 +24,11 @@ class TripPager : UIView {
     
     init(frame: CGRect, xOffset: CGFloat) {
         super.init(frame: frame)
-        let buttonVOffset = (TripPager.PAGER_HEIGHT - BUTTON_HEIGHT)/2.0
+        let buttonVOffset = (TripPager.PAGER_HEIGHT - BUTTON_HEIGHT)/4.0
         
         self.backgroundColor = UIColor.whiteColor()
         
-        let leftArrowFrame = CGRect(x: xOffset, y: buttonVOffset, width: BUTTON_WIDTH, height: TripPager.PAGER_HEIGHT)
+        let leftArrowFrame = CGRect(x: xOffset + BUTTON_WIDTH/2, y: buttonVOffset, width: BUTTON_WIDTH, height: TripPager.PAGER_HEIGHT)
         earlierButton = UIButton(frame: leftArrowFrame)
         let leftArrow = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("blue-arrow-left", ofType: "png")!)
         earlierButton.setImage(leftArrow, forState: UIControlState.Normal)

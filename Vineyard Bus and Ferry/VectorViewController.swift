@@ -7,11 +7,10 @@
 //
 
 import UIKit
-import MapKit
 
 class VectorViewController: UIViewController, DaySelectionControlDelegate, VectorTableDelegate {
     
-    let SCHED_FRACTION: Double = 0.5
+    let SCHED_FRACTION: Double = 0.98
     let VERT_OFFSET_FOR_NAV: CGFloat = 80.0
     let DAY_SELECT_WIDTH: CGFloat = 230.0
     let SMALL_PAD: CGFloat = 10.0
@@ -22,7 +21,6 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate, Vecto
     var vectorIndex: Int!
     
     @IBOutlet var frameView: UIView!
-    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var routeTitleVConstraint: NSLayoutConstraint!
     @IBOutlet weak var routeTitleLabel: UILabel!
     @IBOutlet weak var reverseRouteButton: UIButton!
@@ -30,33 +28,16 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate, Vecto
     
     var schedBox: UIScrollView!
     var vectorTable: VectorTable!
+    var stopSelected: Stop?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         createSubViews()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        dispatch_after(DISPATCH_TIME_NOW, dispatch_get_main_queue() ) {
-//            self.vectorTable.tripCollection.collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: 3, inSection: 0), atScrollPosition: UICollectionViewScrollPosition.None, animated: true)
-//            self.vectorTable.tripCollection.didScrollToTrip(3)
-        }
-    }
-    
     override func viewDidLayoutSubviews() {
-
         adjustHeaderLabelAndButton()
-        
-        var sizeMap = schedBox.frame.size
-        sizeMap.height = frameView.frame.height - schedBox.frame.size.height
-
-        let initialPoint = CLLocationCoordinate2D(latitude: 41.38764, longitude: -70.6)
-        var span  = MKCoordinateSpanMake(0.1, 0.1);
-        var region = MKCoordinateRegion(center: initialPoint, span: span)
-        mapView.setRegion(region, animated: true)
-        mapView.frame = CGRect(origin: CGPoint(x: 0.0, y: schedBox.frame.size.height), size: sizeMap)
     }
-    
     
     func createSubViews() {
         let w: Double = Double(frameView.frame.size.width),
@@ -84,12 +65,11 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate, Vecto
 
         frameView.addSubview(schedBox)
         
-        mapView.autoresizingMask = UIViewAutoresizing.FlexibleHeight
 
         let vtFrame = CGRect(x: 0.0, y: 0.0, width: schedBox.frame.width, height: 0.0)
         vectorTable = VectorTable(frame: vtFrame, route: route, vectorIndex: vectorIndex)
         vectorTable.delegate = self
-        vectorTable(route, vectorIndex: vectorIndex)
+        vectorTable(route, vectorIndex: vectorIndex, stop: nil)
         tripPager.delegate = vectorTable
         schedBox.addSubview(vectorTable)
         vectorTable.scroller = schedBox
@@ -108,43 +88,36 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate, Vecto
         }
     }
     
-    func adjustHeaderLabelAndButton() {
-        let w = routeTitleLabel.frame.width +
-                betweenLabelAndReverseButtonConstraint.constant +
-                reverseRouteButton.frame.width
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == nil {
+            Logger.log(fromSource: self, level: .ERROR, message: "missing segue id")
+            return
+        }
+        let segId = segue.identifier!
         
-        let margin = (frameView.frame.width - w)/2.0
-        
-        var rect = routeTitleLabel.frame
-        rect.origin.x = margin
-        routeTitleLabel.frame = rect
-        
-        rect = reverseRouteButton.frame
-        rect.origin.x = routeTitleLabel.frame.origin.x +
-                        routeTitleLabel.frame.width +
-                        betweenLabelAndReverseButtonConstraint.constant
-        reverseRouteButton.frame = rect
+        if segId == "showMap" {
+            if vectorIndex == nil || route == nil {
+                Logger.log(fromSource: self, level: .ERROR, message: "No route selection in segue")
+                return
+            }
+            
+            if let mapVC = (segue.destinationViewController as? UINavigationController)?.viewControllers[0] as? MapViewController? {
+                mapVC!.schedule = AppDelegate.theScheduleManager.scheduleForAgency(route.agency)!
+                mapVC!.route = self.route
+                mapVC!.vectorIndex = self.vectorIndex
+                mapVC!.targetStop = self.stopSelected
+                self.stopSelected = nil
+            }
+        }
     }
-
     
-    func vectorTable(routeSelected: Route, vectorIndex: Int) {
-        self.route = routeSelected
-        self.vectorIndex = vectorIndex
+    
+    @IBAction func showMap(sender: AnyObject) {
         
-        var labelText: String
-        if routeSelected.shortName != nil && !routeSelected.shortName!.isEmpty {
-            labelText = "Route " + routeSelected.shortName! + " to " + routeSelected.vectors[vectorIndex].destination
-        }
-        else {
-            labelText = "To " + routeSelected.vectors[vectorIndex].destination
-        }
+        performSegueWithIdentifier("showMap", sender: self)
         
-        routeTitleLabel.attributedText = getAttributedString(labelText, withFont: UIFont.boldSystemFontOfSize(TITLE_FONT_SIZE))
-        
-        setRouteReverseButton()
-        
-        schedBox.scrollRectToVisible(CGRect(x:0.0, y:0.0, width: schedBox.frame.width, height: 1.0), animated: true)
     }
+    
     
     func setRouteReverseButton() {
         if route.vectors.count > 1 {
@@ -154,6 +127,8 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate, Vecto
             reverseRouteButton.hidden = true
         }
     }
+    
+    // MARK -- DaySelectionControlDelegate
     
     func daySelection(selectedDayIndex index: Int) {
         let SECONDS_PER_DAY = 86400
@@ -180,5 +155,50 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate, Vecto
             appDel.effectiveDate = NSDate(timeInterval: offsetInterval, sinceDate: today)
             vectorTable.resetTripCollection()
         }
+    }
+    
+    // MARK -- VectorTableDelegate
+    
+    func vectorTable(routeSelected: Route, vectorIndex: Int, stop: Stop?) {
+        if stop != nil {
+            stopSelected = stop
+            performSegueWithIdentifier("showMap", sender: self)
+        }
+        else {
+            self.route = routeSelected
+            self.vectorIndex = vectorIndex
+            
+            var labelText: String
+            if routeSelected.shortName != nil && !routeSelected.shortName!.isEmpty {
+                labelText = "Route " + routeSelected.shortName! + " to " + routeSelected.vectors[vectorIndex].destination
+            }
+            else {
+                labelText = "To " + routeSelected.vectors[vectorIndex].destination
+            }
+            
+            routeTitleLabel.attributedText = getAttributedString(labelText, withFont: UIFont.boldSystemFontOfSize(TITLE_FONT_SIZE))
+            setRouteReverseButton()
+            schedBox.scrollRectToVisible(CGRect(x:0.0, y:0.0, width: schedBox.frame.width, height: 1.0), animated: true)
+        }
+    }
+    
+    // MARK - utilities
+    
+    func adjustHeaderLabelAndButton() {
+        let w = routeTitleLabel.frame.width +
+            betweenLabelAndReverseButtonConstraint.constant +
+            reverseRouteButton.frame.width
+        
+        let margin = (frameView.frame.width - w)/2.0
+        
+        var rect = routeTitleLabel.frame
+        rect.origin.x = margin
+        routeTitleLabel.frame = rect
+        
+        rect = reverseRouteButton.frame
+        rect.origin.x = routeTitleLabel.frame.origin.x +
+            routeTitleLabel.frame.width +
+            betweenLabelAndReverseButtonConstraint.constant
+        reverseRouteButton.frame = rect
     }
 }
