@@ -29,6 +29,7 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate, Vecto
     var schedBox: UIScrollView!
     var vectorTable: VectorTable!
     var stopSelected: Stop?
+    var tripPager: TripPager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +55,7 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate, Vecto
         
         let tripPagerFrame =
             CGRect(x: 0.0, y: dayFrame.origin.y + dayFrame.height, width: frameView.frame.width, height: TripPager.PAGER_HEIGHT)
-        var tripPager = TripPager(frame: tripPagerFrame, xOffset: tripPagerFrame.width * VectorTable.STOPLIST_RATIO)
+        tripPager = TripPager(frame: tripPagerFrame, count: route.vectors[vectorIndex].trips.count)
         frameView.addSubview(tripPager)
         
         let sizeSched = CGSize(width: w, height: h)
@@ -175,12 +176,18 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate, Vecto
             else {
                 labelText = "To " + routeSelected.vectors[vectorIndex].destination
             }
+            tripPager.slider.maximumValue = Float(routeSelected.vectors[vectorIndex].trips.count - 1)
             
             routeTitleLabel.attributedText = getAttributedString(labelText, withFont: UIFont.boldSystemFontOfSize(TITLE_FONT_SIZE))
             setRouteReverseButton()
             schedBox.scrollRectToVisible(CGRect(x:0.0, y:0.0, width: schedBox.frame.width, height: 1.0), animated: true)
         }
     }
+    
+    func vectorTable(scrolledToTripIndex index: Int) {
+        tripPager.slider.setValue(Float(index), animated: true)
+    }
+
     
     // MARK - utilities
     

@@ -10,6 +10,7 @@ import UIKit
 
 protocol VectorTableDelegate {
     func vectorTable(routeSelected: Route, vectorIndex: Int, stop: Stop?)
+    func vectorTable(scrolledToTripIndex index: Int)
 }
 
 class VectorTableStopCell : UITableViewCell {
@@ -209,6 +210,15 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
         connectionsLabel.hidden = didScrollToTrip.connections.count == 0
 
         connectionTable.currentTrip = didScrollToTrip
+
+        if delegate != nil {
+            let trips = route.vectors[vectorIndex].trips
+            for (var index=0; index < trips.count; ++index) {
+                if trips[index].id == didScrollToTrip.id {
+                    delegate?.vectorTable(scrolledToTripIndex: index)
+                }
+            }
+        }
         
         
         if scroller != nil {
@@ -233,13 +243,8 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
     }
     
     // MARK - TripPagerDelegate
-    func tripPagerDelegate(didPressEarlier: Bool) {
-        if didPressEarlier {
-            tripCollection.scrollToPrev()
-        }
-        else {
-            tripCollection.scrollToNext()
-        }
+    func tripPagerDelegate(#didSelectPage: Int) {
+        tripCollection.scrollToTripAtIndex(didSelectPage)
     }
     
     
