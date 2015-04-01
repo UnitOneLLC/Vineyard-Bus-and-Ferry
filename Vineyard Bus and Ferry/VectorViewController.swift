@@ -29,11 +29,14 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate, Vecto
     var schedBox: UIScrollView!
     var vectorTable: VectorTable!
     var stopSelected: Stop?
-    var tripPager: TripPager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         createSubViews()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        vectorTable.tripCollection.scrollToCurrent()
     }
     
     override func viewDidLayoutSubviews() {
@@ -53,14 +56,9 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate, Vecto
         frameView.addSubview(daySelect)
         daySelect.selectDayAtIndex(ScheduleManager.getDayOfWeekIndex(forDate: NSDate()))
         
-        let tripPagerFrame =
-            CGRect(x: 0.0, y: dayFrame.origin.y + dayFrame.height, width: frameView.frame.width, height: TripPager.PAGER_HEIGHT)
-        tripPager = TripPager(frame: tripPagerFrame, count: route.vectors[vectorIndex].trips.count)
-        frameView.addSubview(tripPager)
-        
         let sizeSched = CGSize(width: w, height: h)
 
-        let schedOffsetY = tripPagerFrame.origin.y + tripPagerFrame.height
+        let schedOffsetY = dayFrame.origin.y + dayFrame.height
         schedBox = UIScrollView(frame: CGRect(origin: CGPoint(x: 0.0, y: schedOffsetY), size:sizeSched))
         schedBox.scrollEnabled = true
 
@@ -71,7 +69,6 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate, Vecto
         vectorTable = VectorTable(frame: vtFrame, route: route, vectorIndex: vectorIndex)
         vectorTable.delegate = self
         vectorTable(route, vectorIndex: vectorIndex, stop: nil)
-        tripPager.delegate = vectorTable
         schedBox.addSubview(vectorTable)
         vectorTable.scroller = schedBox
         vectorTable.resetTripCollection()
@@ -114,9 +111,7 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate, Vecto
     
     
     @IBAction func showMap(sender: AnyObject) {
-        
         performSegueWithIdentifier("showMap", sender: self)
-        
     }
     
     
@@ -176,7 +171,6 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate, Vecto
             else {
                 labelText = "To " + routeSelected.vectors[vectorIndex].destination
             }
-            tripPager.slider.maximumValue = Float(routeSelected.vectors[vectorIndex].trips.count - 1)
             
             routeTitleLabel.attributedText = getAttributedString(labelText, withFont: UIFont.boldSystemFontOfSize(TITLE_FONT_SIZE))
             setRouteReverseButton()
@@ -185,7 +179,6 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate, Vecto
     }
     
     func vectorTable(scrolledToTripIndex index: Int) {
-        tripPager.slider.setValue(Float(index), animated: true)
     }
 
     

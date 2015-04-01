@@ -106,6 +106,31 @@ class TripCollection: NSObject {
         collectionView.scrollRectToVisible(targetRect, animated: true)
         didScrollToTrip(index)
     }
+    
+    func scrollToCurrent() {
+        let now = NSDate()
+        let dateCompos = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitHour|NSCalendarUnit.CalendarUnitMinute, fromDate: now)
+        let nowScalar = dateCompos.hour * 60 + dateCompos.minute
+        
+        var index = 0;
+        for (; index < trips.count; ++index) {
+            if trips[index].stops.count == 0 {
+                continue
+            }
+            let thisTime = trips[index].stops[0].time
+            let tScalar = thisTime.hour * 60 + thisTime.minute
+            if tScalar > nowScalar {
+                break
+            }
+        }
+        
+        if index == trips.count {
+            index = trips.count - 1
+        }
+        scrollToTripAtIndex(index-1)
+    }
+    
+    
 }
 
 extension TripCollection:  UICollectionViewDataSource, UICollectionViewDelegate {
@@ -128,6 +153,7 @@ extension TripCollection:  UICollectionViewDataSource, UICollectionViewDelegate 
         tvForCell.allowsSelection = false
         tvForCell.dataSource = stopTimeTable
         tvForCell.delegate = stopTimeTable
+        tvForCell.bounces = false
         
         cell.addSubview(tvForCell)
         return cell
@@ -148,7 +174,16 @@ extension TripCollection:  UICollectionViewDataSource, UICollectionViewDelegate 
         return index
     }
 
+    func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        var raw = targetContentOffset.memory.x
+        var paged = round((raw/frame.width) * frame.width)
+        paged = min(paged, frame.width * CGFloat(trips.count - 1))
+        targetContentOffset.memory.x = paged
+    }
+    
+    
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        println("end drag with contentOffset.x = \(scrollView.contentOffset.x), frame width=\(frame.width)")
         if delegate != nil {
             didScrollToTrip(getIndexFromOffset(scrollView.contentOffset.x))
         }

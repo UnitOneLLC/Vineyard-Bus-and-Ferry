@@ -28,11 +28,11 @@ class VectorTableStopCell : UITableViewCell {
 
 
 class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripCollectionDelegate,
-                    ConnectionTableDelegate, TripPagerDelegate {
+                    ConnectionTableDelegate {
     class var REUSE_ID: String { return "vectorTableStopCell" }
     class var CELL_FONT_SIZE: CGFloat { return 17.0 }
-    class var TIME_WIDTH: CGFloat { return 124.0 }
-    class var STOPLIST_RATIO: CGFloat { return 0.70 }
+    class var TIME_WIDTH: CGFloat { return 140.0 }
+    class var STOPLIST_RATIO: CGFloat { return 0.625 }
     
     let CONN_LABEL_HEIGHT: CGFloat = 28.0
     let CONN_LABEL_FONT_SIZE: CGFloat = 17.0
@@ -205,7 +205,9 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
                 }
             }
         }
-        stopTable.reloadData()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.stopTable.reloadData()
+        }
         
         connectionsLabel.hidden = didScrollToTrip.connections.count == 0
 
@@ -241,12 +243,6 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
             }
         }
     }
-    
-    // MARK - TripPagerDelegate
-    func tripPagerDelegate(#didSelectPage: Int) {
-        tripCollection.scrollToTripAtIndex(didSelectPage)
-    }
-    
     
     // MARK -- utilities
     
