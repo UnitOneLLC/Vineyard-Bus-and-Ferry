@@ -27,43 +27,41 @@ class StopAnnotation : NSObject, MKAnnotation {
     var title: String! {
         return stop.name
     }
-//    var subtitle: String! {
-//        println("subtitle requested")
-//        return "stop subtitle"
-//    }
     
 }
 
 class MapViewController: UIViewController, MKMapViewDelegate {
     let STOP_ANNO_REUSE_ID = "map_stop_anno"
+    let STOP_TABLE_REUSE_ID = "map_stop_table"
+    let STOP_TABLE_FONT_SIZE: CGFloat = 13.0
     let STOP_ANNOTATION_WIDTH: CGFloat = 10.0
     let STOP_ANNOTATION_HEIGHT: CGFloat = 10.0
     let STOP_COLOR: UIColor = UIColor.darkGrayColor()
     let TIME_LABEL_FONT_SIZE: CGFloat = 14.0
     let TITLE_FONT_SIZE: CGFloat = 17.0
     let VPADDING: CGFloat = 10.0
+    let FULL_ALPHA: CGFloat = 0.7
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var routeTitleLabel: UILabel!
+    @IBOutlet weak var stopTimeTableView: UITableView!
     
     // set at segue
     var schedule: Schedule!
     var route: Route!
     var vectorIndex: Int!
     var targetStop: Stop?
-    var activeStopLabel: UILabel!
-    var timeScroller: UIScrollView!
+    var stopTimes: (beforeNow: [TimeOfDay], afterNow: [TimeOfDay])!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.autoresizingMask = UIViewAutoresizing.FlexibleHeight
         mapView.delegate = self
         
-        activeStopLabel = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: view.frame.width, height: 0.0))
-        
-        timeScroller = UIScrollView(frame: CGRect(x: 0.0, y: 0.0, width: view.frame.width, height: 0.0))
-        timeScroller.addSubview(activeStopLabel)
-        view.addSubview(timeScroller)
+        stopTimeTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: STOP_TABLE_REUSE_ID)
+        stopTimeTableView.alpha = (targetStop == nil) ? 0.0 : FULL_ALPHA
+        stopTimeTableView.dataSource = self
+        stopTimeTableView.delegate = self
 
         drawVector()
         annotateStops()
@@ -71,14 +69,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLayoutSubviews() {
         setRouteLabel()
-        stackView(timeScroller, positionBelow: routeTitleLabel)
-        stackView(mapView, positionBelow: timeScroller)
+        stackView(stopTimeTableView, positionBelow: routeTitleLabel)
+        stackView(mapView, positionBelow: routeTitleLabel)
     }
     
     override func viewDidAppear(animated: Bool) {
         if targetStop != nil {
             let s = targetStop
-            targetStop = nil
             selectStop(s!)
             for a in mapView.annotations {
                 if let stopAnno = a as? StopAnnotation {
@@ -88,6 +85,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 }
             }
         }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        targetStop = nil
     }
     
     func setRouteLabel() {
@@ -178,28 +179,23 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func selectStop(stop: Stop) {
-        let font = UIFont.systemFontOfSize(TIME_LABEL_FONT_SIZE)
-        let stopTimeLabelText = getStopTimesForDisplay(stop)
-        let stringSize = (stopTimeLabelText.string as NSString).sizeWithAttributes([NSFontAttributeName: font])
-        var lblFrame = activeStopLabel.frame
-        lblFrame.size = stringSize
-        activeStopLabel.frame = lblFrame
-        activeStopLabel.attributedText = stopTimeLabelText
+        targetStop = stop
+        UIView.animateWithDuration(0.25) {
+            self.stopTimeTableView!.alpha = self.FULL_ALPHA
+        }
+        stopTimes = nil
+        stopTimeTableView.reloadData()
         
-        let deltaY = getLabelHeight(stopTimeLabelText.string, UIFont.systemFontOfSize(TIME_LABEL_FONT_SIZE), stringSize.width) + VPADDING
-        var mapFrame = mapView.frame
-        var scrollerFrame = timeScroller.frame
         
-        lblFrame.size.height = deltaY
-        scrollerFrame.size.height = deltaY
-        timeScroller.contentSize = stringSize
-        mapFrame.size.height -= deltaY
-        mapFrame.origin.y += deltaY
-        
-        UIView.animateWithDuration(0.2) {
-            self.mapView.frame = mapFrame
-            self.timeScroller.frame = scrollerFrame
-            self.activeStopLabel.frame = lblFrame
+        if stopTimes != nil {
+            var targetRow: Int
+            if stopTimes!.afterNow.count > 0 {
+                targetRow = stopTimes!.beforeNow.count
+            }
+            else {
+                targetRow = stopTimes!.beforeNow.count + stopTimes!.afterNow.count - 1
+            }
+            stopTimeTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: targetRow, inSection: 0), atScrollPosition: UITableViewScrollPosition.None, animated: true)
         }
     }
     
@@ -213,16 +209,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func mapView(mapView: MKMapView!, didDeselectAnnotationView view: MKAnnotationView!) {
-        let deltaY = timeScroller.frame.height
-        var mapFrame = mapView.frame
-        var scrollerFrame = timeScroller.frame
-        scrollerFrame.size.height = 0.0
-        mapFrame.size.height += deltaY
-        mapFrame.origin.y -= deltaY
-        
-        UIView.animateWithDuration(0.2) {
-            mapView.frame = mapFrame
-            self.timeScroller.frame = scrollerFrame
+        UIView.animateWithDuration(0.25) {
+            self.stopTimeTableView.alpha = 0.0
         }
     }
     
@@ -248,12 +236,18 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         return true
     }
     
+    func initStopTimes() {
+        if stopTimes == nil && targetStop != nil {
+            let effDate = (UIApplication.sharedApplication().delegate as AppDelegate).effectiveDate
+            stopTimes = AppDelegate.theScheduleManager.getStopTimes(forStop: targetStop!.id,
+                inVector: route.vectors[vectorIndex], inSchedule: schedule, forDate: effDate)
+        }
+    }
+    
+    
     
     func getStopTimesForDisplay(stop: Stop) -> NSMutableAttributedString {
-        let effDate = (UIApplication.sharedApplication().delegate as AppDelegate).effectiveDate
-        let stopTimes = AppDelegate.theScheduleManager.getStopTimes(forStop: stop.id,
-            inVector: route.vectors[vectorIndex], inSchedule: schedule, forDate: effDate)
-
+        initStopTimes()
         var prefix = " Stop times: "
         var beforeStr = ""
         for (var i = 0; i < stopTimes.beforeNow.count; ++i) {
@@ -289,4 +283,55 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         return attrStr
     }
 }
+
+
+extension MapViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        println("CFRAIP \(targetStop)")
+        if targetStop != nil {
+            initStopTimes()
+            var cell = tableView.dequeueReusableCellWithIdentifier(STOP_TABLE_REUSE_ID, forIndexPath: indexPath) as UITableViewCell
+            if stopTimes != nil {
+                var row = indexPath.row
+                println("stop table request row=\(row)")
+                if row < stopTimes!.beforeNow.count {
+                    cell.textLabel!.text = AppDelegate.theScheduleManager.formatTimeOfDay(stopTimes!.beforeNow[row])
+                    cell.textLabel!.textColor = UIColor.lightGrayColor()
+                    
+                    println("row is before, text=\(cell.textLabel!.text)")
+                }
+                else {
+                    row = row - stopTimes!.beforeNow.count
+                    cell.textLabel!.text = AppDelegate.theScheduleManager.formatTimeOfDay(stopTimes!.afterNow[row])
+                    cell.textLabel!.textColor = UIColor.blackColor()
+                    
+                    println("row is after, text=\(cell.textLabel!.text)")
+                }
+                cell.textLabel!.font = UIFont.boldSystemFontOfSize(STOP_TABLE_FONT_SIZE)
+            }
+            return cell
+        }
+        
+        return UITableViewCell()
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if targetStop != nil {
+            initStopTimes()
+        }
+        if stopTimes != nil {
+            println("stop table the row count is \(stopTimes!.beforeNow.count + stopTimes!.afterNow.count)")
+            return stopTimes!.beforeNow.count + stopTimes!.afterNow.count
+        }
+        else {
+            return 0
+        }
+    }
+    
+}
+
+
+
+
+
 

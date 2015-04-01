@@ -21,7 +21,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="SXX-0W-7Vu">
                                 <rect key="frame" x="0.0" y="94" width="600" height="457"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.39607846740000002" green="0.67450982329999998" blue="0.90980398650000005" alpha="1" colorSpace="deviceRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="destinationCell" id="Zpy-Xs-kZG">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -32,7 +32,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.39607846740000002" green="0.67450982329999998" blue="0.90980398650000005" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="SXX-0W-7Vu" secondAttribute="bottom" id="EvJ-f1-XHf"/>
                             <constraint firstItem="SXX-0W-7Vu" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="top" id="Qzm-r0-eL8"/>
@@ -94,7 +94,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="T4h-bX-z46">
                                 <rect key="frame" x="0.0" y="64" width="600" height="600"/>
-                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.39607846740000002" green="0.67450982329999998" blue="0.90980398650000005" alpha="1" colorSpace="deviceRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="routeCell" id="Bg0-pv-Md7" customClass="RouteListCell" customModule="Vineyard_Bus_and_Ferry" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -133,7 +133,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.39607846740000002" green="0.67450982329999998" blue="0.90980398650000005" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="T4h-bX-z46" firstAttribute="top" secondItem="zaN-QN-B3U" secondAttribute="top" id="ODQ-6c-18N"/>
                             <constraint firstItem="T4h-bX-z46" firstAttribute="leading" secondItem="ebc-tL-lWp" secondAttribute="leading" id="hlw-DV-WNd"/>
@@ -228,21 +228,40 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="24" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="exn-4X-fiQ">
+                                <rect key="frame" x="510" y="84" width="90" height="171"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="vQA-9f-FAV"/>
+                                </constraints>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="exn-4X-fiQ" firstAttribute="trailing" secondItem="1ah-Y6-Kqg" secondAttribute="trailing" id="1vG-jo-SHj"/>
                             <constraint firstItem="E1U-yE-1Kb" firstAttribute="leading" secondItem="1ah-Y6-Kqg" secondAttribute="leading" id="3c6-67-vdN"/>
                             <constraint firstAttribute="centerX" secondItem="MnF-EA-xSx" secondAttribute="centerX" id="4d1-AA-Ank"/>
                             <constraint firstItem="E1U-yE-1Kb" firstAttribute="width" secondItem="1ah-Y6-Kqg" secondAttribute="width" id="93S-Xa-jeg"/>
                             <constraint firstItem="MnF-EA-xSx" firstAttribute="top" secondItem="bXn-yv-KgK" secondAttribute="bottom" constant="20" id="Gfv-Qf-lMZ"/>
+                            <constraint firstAttribute="trailing" secondItem="exn-4X-fiQ" secondAttribute="trailing" id="L2c-cY-d4U"/>
                             <constraint firstItem="Qjs-jq-Xht" firstAttribute="top" secondItem="E1U-yE-1Kb" secondAttribute="bottom" id="Nfl-kz-zax"/>
+                            <constraint firstItem="MnF-EA-xSx" firstAttribute="top" secondItem="exn-4X-fiQ" secondAttribute="top" id="T8B-R2-Ewp"/>
+                            <constraint firstAttribute="height" secondItem="exn-4X-fiQ" secondAttribute="height" multiplier="3.5:1" constant="1.5" id="Uee-4V-qni"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="exn-4X-fiQ" secondAttribute="leading" constant="-90" id="blo-cf-Y1W"/>
                             <constraint firstItem="E1U-yE-1Kb" firstAttribute="height" secondItem="1ah-Y6-Kqg" secondAttribute="height" multiplier="1:1.375" id="rZ2-Ff-1GF"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="L2c-cY-d4U"/>
+                                <exclude reference="blo-cf-Y1W"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="YA0-FT-RF9"/>
                     <connections>
                         <outlet property="mapView" destination="E1U-yE-1Kb" id="dae-en-N8l"/>
                         <outlet property="routeTitleLabel" destination="MnF-EA-xSx" id="mJt-0L-ZYh"/>
+                        <outlet property="stopTimeTableView" destination="exn-4X-fiQ" id="Kcc-78-Tiw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L3k-G0-eba" userLabel="First Responder" sceneMemberID="firstResponder"/>
