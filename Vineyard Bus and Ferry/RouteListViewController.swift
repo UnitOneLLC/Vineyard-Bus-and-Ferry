@@ -9,6 +9,11 @@
 import UIKit
 
 class RouteListViewController: UIViewController {
+    
+    let SECTION_FONT_SIZE: CGFloat = 15.0
+    let SECTION_VPAD: CGFloat = 6.0
+    let HMARGIN: CGFloat = 10.0
+    
     var routes: [Route]?
     var groups: [String: [Route]]!
     var sortedKeys: [String]!
@@ -95,6 +100,40 @@ extension RouteListViewController: UITableViewDataSource {
         else {
             return 0
         }
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if let agency = AppDelegate.theScheduleManager.getAgencyById(sortedKeys[section]) {
+            let text = agency.name
+            let font = UIFont.boldSystemFontOfSize(SECTION_FONT_SIZE)
+            let height = getLabelHeight(text, font, tableView.frame.width-HMARGIN) + 2*SECTION_VPAD
+            return height
+        }
+        else {
+            return 0
+        }
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if let agency = AppDelegate.theScheduleManager.getAgencyById(sortedKeys[section]) {
+            let text = agency.name
+            let font = UIFont.boldSystemFontOfSize(SECTION_FONT_SIZE)
+            var headframe = tableView.frame
+            let height = getLabelHeight(text, font, headframe.width-HMARGIN)
+            headframe.size.height = height
+            let headerView = UIView(frame: headframe)
+            headframe.origin.y += SECTION_VPAD
+            //headframe.size.height -= SECTION_VPAD
+            var headerLbl = UILabel(frame: headframe)
+            headerLbl.textAlignment = NSTextAlignment.Center
+            headerLbl.numberOfLines = 0
+            headerLbl.lineBreakMode = .ByWordWrapping
+            headerLbl.textColor = UIColor.whiteColor()
+            headerLbl.attributedText = getAttributedString(text, withFont: font)
+            headerView.addSubview(headerLbl)
+            return headerView
+        }
+        return nil
     }
 }
 
