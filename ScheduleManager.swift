@@ -10,7 +10,9 @@ import Foundation
 import CoreData
 
 let agencyURLMap: [String: String] = [
-    "VTA": "http://frederickhewett.com/vta_sched_current.json"
+    "VTA": "http://frederickhewett.com/vta_sched_current.json",
+    "SSA": "http://frederickhewett.com/ssa_sched_current.json",
+    "NEFAST": "http://frederickhewett.com/ssa_sched_current.json"
 ]
 
 class ScheduleManager : Printable {
@@ -102,7 +104,9 @@ class ScheduleManager : Printable {
             if (data != nil) {
                 self.saveScheduleToFile(data!, name: agencyId)
                 let s = Schedule(fromJson: data!)
-                self.addSchedule(agencyId, sched: s)
+                for agency in s.agencies {
+                    self.addSchedule(agency.id, sched: s)
+                }
                 completionHandler(s: s)
             }
         }

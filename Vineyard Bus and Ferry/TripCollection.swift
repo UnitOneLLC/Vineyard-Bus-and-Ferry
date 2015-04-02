@@ -70,9 +70,11 @@ class TripCollection: NSObject {
     }
     
     func didScrollToTrip(index: Int) {
-        println("did scroll to trip index=\(index)")
-        selectedTrip = trips[index]
-        delegate.tripCollection(selectedTrip)
+        if index >= 0 && index < trips.count {
+            println("did scroll to trip index=\(index)")
+            selectedTrip = trips[index]
+            delegate.tripCollection(selectedTrip)
+        }
     }
     
     func scrollToNext() {

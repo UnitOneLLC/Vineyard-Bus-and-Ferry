@@ -128,24 +128,26 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
         let effectiveDate = (UIApplication.sharedApplication().delegate as AppDelegate).effectiveDate
         let effectiveTrips = AppDelegate.theScheduleManager.filterTripsForDate(effectiveDate, trips: route.vectors[vectorIndex].trips, inSchedule: schedule)
         tripCollection = TripCollection(stopSequence: stopSequence, rowHeights: rowHeights, tripArray: effectiveTrips, frame: tripCollectionFrame)
-        tripCollection.delegate = self
-        addSubview(tripCollection.collectionView)
-        
-        connectionTable.connectionTimeTable.frame = tripCollection.collectionView.frame
-        connectionTable.connectionRouteTable.frame = stopTable.frame
-        
-        stackView(connectionsLabel, positionBelow: stopTable)
-        stackView(connectionTable.connectionRouteTable, positionBelow: connectionsLabel)
-        stackView(connectionTable.connectionTimeTable, positionBelow: connectionsLabel)
-        
-        tripCollection.collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: UICollectionViewScrollPosition.None, animated: true)
-        
-        var selfSize = frame.size
-        selfSize.height = stopTable!.frame.height + connectionTable.connectionRouteTable.frame.height
-        println("vector table height = \(selfSize.height)")
-        frame.size = selfSize
-        
-        tripCollection.didScrollToTrip(0)
+        if tripCollection != nil {
+            tripCollection.delegate = self
+            addSubview(tripCollection.collectionView)
+            
+            connectionTable.connectionTimeTable.frame = tripCollection.collectionView.frame
+            connectionTable.connectionRouteTable.frame = stopTable.frame
+            
+            stackView(connectionsLabel, positionBelow: stopTable)
+            stackView(connectionTable.connectionRouteTable, positionBelow: connectionsLabel)
+            stackView(connectionTable.connectionTimeTable, positionBelow: connectionsLabel)
+            
+            tripCollection.collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: UICollectionViewScrollPosition.None, animated: true)
+            
+            var selfSize = frame.size
+            selfSize.height = stopTable!.frame.height + connectionTable.connectionRouteTable.frame.height
+            println("vector table height = \(selfSize.height)")
+            frame.size = selfSize
+            
+            tripCollection.didScrollToTrip(0)
+        }
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -165,7 +167,7 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
         cell.textLabel!.numberOfLines = 0
         cell.textLabel!.lineBreakMode = .ByWordWrapping
         cell.textLabel!.attributedText = getAttributedString(stopSequence[indexPath.row].name, withFont: VectorTable.cellFont)
-        if !stopInTrip[indexPath.row] {
+        if (stopInTrip != nil) &&  (!stopInTrip[indexPath.row]) {
             cell.textLabel!.textColor = UIColor.lightGrayColor()
         }
         else {

@@ -34,10 +34,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.39607846740000002" green="0.67450982329999998" blue="0.90980398650000005" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="SXX-0W-7Vu" secondAttribute="bottom" id="EvJ-f1-XHf"/>
-                            <constraint firstItem="SXX-0W-7Vu" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="top" id="Qzm-r0-eL8"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="SXX-0W-7Vu" secondAttribute="bottom" id="Zy0-7j-DG0"/>
                             <constraint firstAttribute="centerX" secondItem="SXX-0W-7Vu" secondAttribute="centerX" id="uHu-BI-haE"/>
                             <constraint firstItem="SXX-0W-7Vu" firstAttribute="width" secondItem="tsR-hK-woN" secondAttribute="width" id="vO2-3l-cuZ"/>
+                            <constraint firstItem="SXX-0W-7Vu" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="top" id="wdO-UM-0fB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Bus Routes" prompt="Martha's Vineyard Transit Authority" id="L5Q-dD-MA2"/>
@@ -68,13 +68,41 @@
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="yVg-QA-g4Y">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" red="0.39607846740000002" green="0.67450982329999998" blue="0.90980398650000005" alpha="1" colorSpace="deviceRGB"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="destinationCell" id="A5R-Wf-J2v">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A5R-Wf-J2v" id="Bh8-Qe-oLi">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="yVg-QA-g4Y" secondAttribute="centerX" id="QX5-CS-aMu"/>
+                            <constraint firstItem="yVg-QA-g4Y" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" id="VV2-BA-Ek0"/>
+                            <constraint firstItem="yVg-QA-g4Y" firstAttribute="width" secondItem="QS5-Rx-YEW" secondAttribute="width" id="oVX-Ca-lsh"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="yVg-QA-g4Y" secondAttribute="bottom" id="ot5-dp-4zF"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="YVL-qD-cA2"/>
+                    <navigationItem key="navigationItem" title="Ferry Routes" id="YVL-qD-cA2"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="responsibleForInit" value="NO"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="agencyId" value="SSA"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="responsibleForInit" value="YES"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="agencyId" value="NEFAST"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="mode" value="Ferry"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="itemName" value="Ferries"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="listSegue" value="ferryShowRouteList"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="tableView" destination="yVg-QA-g4Y" id="aLP-gf-xHA"/>
+                        <outlet property="view" destination="yVg-QA-g4Y" id="lSX-1h-xty"/>
+                        <segue destination="gey-TR-qpp" kind="show" identifier="ferryShowRouteList" id="0sg-2i-LAl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -385,4 +413,7 @@
         <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="0sg-2i-LAl"/>
+    </inferredMetricsTieBreakers>
 </document>

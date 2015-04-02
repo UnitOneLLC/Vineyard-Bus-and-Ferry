@@ -123,19 +123,32 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         mapView.addOverlay(mkPoly)
     }
     
-    func annotateStops() {
+    func getStopSequence() -> [Stop] {
+        var result = [Stop]()
         if let schedule = AppDelegate.theScheduleManager.scheduleForAgency(route.agency) {
-            let stops = AppDelegate.theScheduleManager.stopSequenceForVector(route.vectors[vectorIndex], inSchedule: schedule)
-            
-            for stop in stops {
-                mapView.addAnnotation(StopAnnotation(stop: stop))
-            }
+            result = AppDelegate.theScheduleManager.stopSequenceForVector(route.vectors[vectorIndex], inSchedule: schedule)
+        }
+        return result
+    }
+    
+    func annotateStops() {
+        let stops = getStopSequence()
+        for stop in stops {
+            mapView.addAnnotation(StopAnnotation(stop: stop))
         }
     }
     
     func setRegion(poly: Polyline) {
         var minLat: Double = 180.0, minLng: Double = 180.0, maxLat: Double = -180.0, maxLng = -180.0
-        for coord in poly.coordinates {
+        
+        var coordList = poly.coordinates
+        if poly.coordinates.count == 0 {
+            let stops = getStopSequence()
+            for s in stops {
+                coordList.append(s.coord)
+            }
+        }
+        for coord in coordList {
             minLat = min(minLat, coord.latitude)
             minLng = min(minLng, coord.longitude)
             maxLat = max(maxLat, coord.latitude)

@@ -84,22 +84,24 @@ extension RouteListViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("routeCell", forIndexPath: indexPath) as RouteListCell
-
-        if routes != nil {
-            let r = routes![indexPath.row]
-            cell.initialize(route: r, width: tableView.frame.size.width)
+        if indexPath.section < sortedKeys.count {
+            if let routeSet = groups[sortedKeys[indexPath.section]] {
+                let r = routeSet[indexPath.row]
+                cell.initialize(route: r, width: tableView.frame.size.width)
+            }
         }
 
         return cell
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if routes != nil {
-            return routes!.count
+        if section < sortedKeys.count {
+            if let group = groups[sortedKeys[section]] {
+                return group.count
+            }
         }
-        else {
-            return 0
-        }
+
+        return 0
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

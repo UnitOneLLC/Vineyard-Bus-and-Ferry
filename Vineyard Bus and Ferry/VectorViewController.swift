@@ -36,7 +36,9 @@ class VectorViewController: UIViewController, DaySelectionControlDelegate, Vecto
     }
     
     override func viewDidAppear(animated: Bool) {
-        vectorTable.tripCollection.scrollToCurrent()
+        if vectorTable.tripCollection != nil {
+            vectorTable.tripCollection.scrollToCurrent()
+        }
     }
     
     override func viewDidLayoutSubviews() {
