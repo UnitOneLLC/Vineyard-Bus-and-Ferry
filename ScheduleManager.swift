@@ -98,13 +98,14 @@ class ScheduleManager : Printable {
     
     
     func acquireSchedule(forAgency agencyId: String, moc: NSManagedObjectContext, completionHandler: ((s: Schedule?)->Void)) {
-        
+Logger.log(fromSource: self, level: .INFO, message: "enter acquireSchedule for agency \(agencyId)")
         let loadHandler: (data: NSData?) -> (Void) = { (data: NSData?) -> (Void) in
         
             if (data != nil) {
                 self.saveScheduleToFile(data!, name: agencyId)
                 let s = Schedule(fromJson: data!)
                 for agency in s.agencies {
+                    println("adding schedule \(agency.id)")
                     self.addSchedule(agency.id, sched: s)
                 }
                 completionHandler(s: s)
@@ -114,18 +115,23 @@ class ScheduleManager : Printable {
         if isScheduleFileStored(agencyId) {
             
             if let lastDownload: NSDate? = AppDelegate.theSettingsManager.getSetting(parameter: "lastDownloadTime", moc: moc) {
-                if lastDownload!.isBefore(NSDate()) {
-  Logger.log(fromSource: self, level: .ERROR, message: "This logic is not correct")
+                if normalizedDate(lastDownload!).isBefore(normalizedDate(NSDate())) {
                     downloadSchedule(forAgency: agencyId, moc: moc, loadHandler)
+                    return
                 }
             }
 
             if let s = readScheduleFromFile(agencyId) {
                 if isScheduleCurrent(s) {
-                    self.addSchedule(agencyId, sched: s)
+                    for agency in s.agencies {
+                        println("adding schedule \(agency.id)")
+                        self.addSchedule(agency.id, sched: s)
+                    }
+  Logger.log(fromSource: self, level: .INFO, message: "calling completion after file read")
                     completionHandler(s: s)
                 }
                 else if isInternetConnected() {
+                    Logger.log(fromSource: self, level: .INFO, message: "loading schedule from internet 1")
                     downloadSchedule(forAgency: agencyId, moc: moc, loadHandler)
                 }
                 else {
@@ -134,6 +140,7 @@ class ScheduleManager : Printable {
             }
         }
         else if isInternetConnected() {
+            Logger.log(fromSource: self, level: .INFO, message: "loading schedule from internet 2")
             downloadSchedule(forAgency: agencyId, moc: moc, loadHandler)
         }
         else {

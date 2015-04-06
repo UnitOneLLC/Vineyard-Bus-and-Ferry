@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VectorViewController: UIViewController, DaySelectionControlDelegate, VectorTableDelegate {
+class VectorViewController: IAdBannerViewController, DaySelectionControlDelegate, VectorTableDelegate {
     
     let SCHED_FRACTION: Double = 0.98
     let VERT_OFFSET_FOR_NAV: CGFloat = 80.0

@@ -26,6 +26,8 @@
 		B6388B501ABD97B300D16058 /* RouteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6388B4F1ABD97B300D16058 /* RouteListViewController.swift */; };
 		B6388B521ABD993600D16058 /* RouteListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6388B511ABD993600D16058 /* RouteListCell.swift */; };
 		B6388BB61AC0AA3E00D16058 /* VectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6388BB51AC0AA3E00D16058 /* VectorViewController.swift */; };
+		B687F65F1ACDE9E70042962E /* IAdBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B687F65E1ACDE9E70042962E /* IAdBannerViewController.swift */; };
+		B687F6611ACDEADA0042962E /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B687F6601ACDEADA0042962E /* iAd.framework */; };
 		B6CCEE8C1ABBA8E90051E567 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CCEE8B1ABBA8E90051E567 /* SettingsManager.swift */; };
 		B6E067121AC575F0002705AB /* DaySelectionControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E067111AC575F0002705AB /* DaySelectionControl.swift */; };
 		B6E067141AC7419D002705AB /* ConnectionTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E067131AC7419D002705AB /* ConnectionTable.swift */; };
@@ -69,6 +71,8 @@
 		B6388B4F1ABD97B300D16058 /* RouteListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteListViewController.swift; sourceTree = "<group>"; };
 		B6388B511ABD993600D16058 /* RouteListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteListCell.swift; sourceTree = "<group>"; };
 		B6388BB51AC0AA3E00D16058 /* VectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorViewController.swift; sourceTree = "<group>"; };
+		B687F65E1ACDE9E70042962E /* IAdBannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAdBannerViewController.swift; sourceTree = "<group>"; };
+		B687F6601ACDEADA0042962E /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		B6CCEE8B1ABBA8E90051E567 /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		B6E067111AC575F0002705AB /* DaySelectionControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaySelectionControl.swift; sourceTree = "<group>"; };
 		B6E067131AC7419D002705AB /* ConnectionTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionTable.swift; path = ../ConnectionTable.swift; sourceTree = "<group>"; };
@@ -83,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B687F6611ACDEADA0042962E /* iAd.framework in Frameworks */,
 				B60314A51ABAFCC0001D4788 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -100,6 +105,8 @@
 		B603146C1ABA14B0001D4788 = {
 			isa = PBXGroup;
 			children = (
+				B687F6601ACDEADA0042962E /* iAd.framework */,
+				B687F65E1ACDE9E70042962E /* IAdBannerViewController.swift */,
 				B6CCEE8B1ABBA8E90051E567 /* SettingsManager.swift */,
 				B60314A41ABAFCC0001D4788 /* CoreData.framework */,
 				B60314A21ABA59C4001D4788 /* Utils.swift */,
@@ -278,6 +285,7 @@
 				B603149D1ABA1581001D4788 /* Polyline.swift in Sources */,
 				B60314A11ABA55BD001D4788 /* ScheduleManager.swift in Sources */,
 				B607FD9E1AC31F70004761BE /* StopTimeTable.swift in Sources */,
+				B687F65F1ACDE9E70042962E /* IAdBannerViewController.swift in Sources */,
 				B6388B521ABD993600D16058 /* RouteListCell.swift in Sources */,
 				B60314D91ABB1AEC001D4788 /* Model.xcdatamodeld in Sources */,
 				B607FD9A1AC315E5004761BE /* TripCollection.swift in Sources */,

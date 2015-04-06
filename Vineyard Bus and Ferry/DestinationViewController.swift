@@ -16,23 +16,42 @@ class DestinationViewController: UIViewController {
     var mode: String!
     var itemName: String!
     var listSegue: String!
+    var scheduleLoaded: Bool = false
 
     var destinations: [String]!
     var destinationToDisplay: Int?
+    var scheduleIsReady: Bool = false
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        scheduleIsReady = false
 
-        if responsibleForInit  {
-            appInit()
+        loadScheduleForView() { (success: Bool) in
+            if (success) {
+                self.scheduleIsReady = true
+                var destSet = [String: Bool]()
+                
+                if let sched = AppDelegate.theScheduleManager.scheduleForAgency(self.agencyId) {
+                    for a in sched.agencies {
+                        var theseDests = AppDelegate.theScheduleManager.getRouteDestinationsForAgency(a.id)
+                        for d in theseDests {
+                            destSet[d] = true
+                        }
+                    }
+                    
+                    self.destinations = [String]()
+                    for k in destSet.keys {
+                        self.destinations.append(k)
+                    }
+                    self.destinations.sort() {$0 < $1}
+                }
+                self.tableView.dataSource = self
+                self.tableView.delegate = self
+                self.tableView.reloadData()
+            }
         }
-        
-        destinations = AppDelegate.theScheduleManager.getRouteDestinationsForAgency(agencyId)
-        destinations.sort() {$0 < $1}
-        tableView.dataSource = self
-        tableView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,27 +59,33 @@ class DestinationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func appInit() {
+    func loadScheduleForView(completionHandler: (success: Bool) -> Void) {
         
         let moc = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
 
         AppDelegate.theScheduleManager.acquireSchedule(forAgency: agencyId, moc: moc) { (s: Schedule?) in
             if s != nil {
-                
                 if AppDelegate.theScheduleManager.isScheduleCurrent(s!) {
+                    completionHandler(success: true)
+                    
                     Logger.log(fromSource: self, level: .INFO, message: "schedule load: \(s!.agencies[0].name)")
                 }
                 else {
                     Logger.log(fromSource: self, level: .ERROR, message: "error: no current service in schedule")
+                    completionHandler(success: false)
+                    return
                 }
             }
             else {
                 Logger.log(fromSource: self, level: .ERROR, message: "failed to load")
+                completionHandler(success: false)
+                return
             }
         }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        Logger.log(fromSource: self, level: .INFO, message: "Prepare for segue")
         if let segId = segue.identifier {
             if segId == listSegue && destinationToDisplay != nil {
                 
@@ -84,6 +109,10 @@ class DestinationViewController: UIViewController {
 
 extension DestinationViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if !scheduleIsReady {
+            return 0
+        }
+        println("the destination count is \(destinations.count) frame=\(tableView.frame)")
         return destinations.count + 1
     }
     
@@ -109,6 +138,7 @@ extension DestinationViewController: UITableViewDelegate {
     func  tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         destinationToDisplay = indexPath.row
         dispatch_async(dispatch_get_main_queue(), {
+            Logger.log(fromSource: self, level: .INFO, message: "Call performSegueWithIdentifier")
             self.performSegueWithIdentifier(self.listSegue, sender: self.tableView);
         })
 
