@@ -25,7 +25,6 @@ class RouteListViewController: IAdBannerViewController {
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
-        Logger.log(fromSource: self, level: .INFO, message: "viewDidLoad")
         super.viewDidLoad()
         
         tableView.dataSource = self
@@ -73,12 +72,10 @@ class RouteListViewController: IAdBannerViewController {
 
 extension RouteListViewController: UITableViewDataSource {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        Logger.log(fromSource: self, level: .INFO, message: "numberOfsectionsInTableview")
         return sortedKeys.count
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        Logger.log(fromSource: self, level: .INFO, message: "titleForHeaderInSection")
         if let agency = AppDelegate.theScheduleManager.getAgencyById(sortedKeys[section]) {
             return agency.name
         }
@@ -86,7 +83,6 @@ extension RouteListViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        Logger.log(fromSource: self, level: .INFO, message: "cellForRowAtIndexPath")
         var cell = tableView.dequeueReusableCellWithIdentifier("routeCell", forIndexPath: indexPath) as RouteListCell
         if indexPath.section < sortedKeys.count {
             if let routeSet = groups[sortedKeys[indexPath.section]] {
@@ -99,7 +95,6 @@ extension RouteListViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        Logger.log(fromSource: self, level: .INFO, message: "numberOfRowsInSection")
         if section < sortedKeys.count {
             if let group = groups[sortedKeys[section]] {
                 return group.count
@@ -110,7 +105,6 @@ extension RouteListViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        Logger.log(fromSource: self, level: .INFO, message: "heightForHeaderInSection")
         if let agency = AppDelegate.theScheduleManager.getAgencyById(sortedKeys[section]) {
             let text = agency.name
             let font = UIFont.boldSystemFontOfSize(SECTION_FONT_SIZE)
@@ -124,13 +118,11 @@ extension RouteListViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        Logger.log(fromSource: self, level: .INFO, message: "heightForFooterInSection")
         return 0.1
     }
     
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        Logger.log(fromSource: self, level: .INFO, message: "viewForHeaderInSection")
         if let agency = AppDelegate.theScheduleManager.getAgencyById(sortedKeys[section]) {
             let text = agency.name
             let font = UIFont.boldSystemFontOfSize(SECTION_FONT_SIZE)
@@ -153,14 +145,12 @@ extension RouteListViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        Logger.log(fromSource: self, level: .INFO, message: "viewForFooterInSection")
         return UIView(frame: CGRect(x:0, y:0, width: 0, height: 0))
     }
 }
 
 extension RouteListViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        Logger.log(fromSource: self, level: .INFO, message: "heightForRowAtIndexPath")
         let h = RouteListCell.getHeight(routes![indexPath.row], width: tableView.frame.size.width)
         return h
     }

@@ -13,9 +13,7 @@ class IAdBannerViewController: UIViewController, ADBannerViewDelegate {
     let BANNER_HEIGHT: CGFloat = 50
     let BOTTOM_BAR_HEIGHT: CGFloat = 50
     
-    
     var adBannerView: ADBannerView!
-    
     
     override func viewDidLoad() {
         println("enter IAdBannerViewController.iewDidLoad")
@@ -31,7 +29,7 @@ class IAdBannerViewController: UIViewController, ADBannerViewDelegate {
     
     
     override func viewWillAppear(animated: Bool) {
-        adBannerView.hidden = true
+//        adBannerView.hidden = true
     }
     
     func bannerViewWillLoadAd(banner: ADBannerView!) {
@@ -39,11 +37,11 @@ class IAdBannerViewController: UIViewController, ADBannerViewDelegate {
     }
     
     func bannerViewDidLoadAd(banner: ADBannerView!) {
-        adBannerView.hidden = false
-        adBannerView.alpha = 1.0
+        banner.hidden = false
+        banner.alpha = 1.0
         view.bringSubviewToFront(adBannerView)
         let f = CGRect(x: 0, y: view.frame.height - BOTTOM_BAR_HEIGHT - BANNER_HEIGHT, width: view.frame.width, height: BANNER_HEIGHT)
-        adBannerView.frame = f
+        banner.frame = f
         Logger.log(fromSource: self, level: .INFO, message: "BannerView did load ad frame=\(adBannerView.frame)")
     }
     
@@ -58,7 +56,8 @@ class IAdBannerViewController: UIViewController, ADBannerViewDelegate {
     
     func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
         Logger.log(fromSource: self, level: .INFO, message: "BannerView failed to receive add")
-        adBannerView.hidden = true
+        banner.hidden = true
+        banner.removeFromSuperview()
     }
 }
 

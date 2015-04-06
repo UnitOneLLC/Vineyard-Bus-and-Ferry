@@ -84,10 +84,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="yVg-QA-g4Y" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="boy-5I-ecr"/>
-                            <constraint firstItem="yVg-QA-g4Y" firstAttribute="height" secondItem="QS5-Rx-YEW" secondAttribute="height" id="cgF-lk-3UI"/>
-                            <constraint firstItem="yVg-QA-g4Y" firstAttribute="width" secondItem="QS5-Rx-YEW" secondAttribute="width" id="oKr-iq-cLP"/>
-                            <constraint firstItem="yVg-QA-g4Y" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" id="toR-DT-QuW"/>
+                            <constraint firstItem="yVg-QA-g4Y" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" id="7ju-Z0-bqA"/>
+                            <constraint firstItem="yVg-QA-g4Y" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="YQ0-hQ-vYz"/>
+                            <constraint firstAttribute="height" secondItem="yVg-QA-g4Y" secondAttribute="height" id="frm-lk-R98"/>
+                            <constraint firstAttribute="width" secondItem="yVg-QA-g4Y" secondAttribute="width" id="lMX-m2-j4g"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Ferry Routes" id="YVL-qD-cA2"/>
@@ -121,7 +121,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="T4h-bX-z46">
-                                <rect key="frame" x="0.0" y="64" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="4" width="600" height="547"/>
                                 <color key="backgroundColor" red="0.39607846740000002" green="0.67450982329999998" blue="0.90980398650000005" alpha="1" colorSpace="deviceRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="routeCell" id="Bg0-pv-Md7" customClass="RouteListCell" customModule="Vineyard_Bus_and_Ferry" customModuleProvider="target">
@@ -163,10 +163,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.39607846740000002" green="0.67450982329999998" blue="0.90980398650000005" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstItem="T4h-bX-z46" firstAttribute="top" secondItem="zaN-QN-B3U" secondAttribute="top" id="ODQ-6c-18N"/>
+                            <constraint firstItem="3pT-gy-3zQ" firstAttribute="top" secondItem="T4h-bX-z46" secondAttribute="bottom" id="62g-4X-oYZ"/>
+                            <constraint firstItem="T4h-bX-z46" firstAttribute="top" secondItem="zaN-QN-B3U" secondAttribute="bottom" constant="-60" id="BtV-ew-sHp"/>
                             <constraint firstItem="T4h-bX-z46" firstAttribute="leading" secondItem="ebc-tL-lWp" secondAttribute="leading" id="hlw-DV-WNd"/>
                             <constraint firstItem="T4h-bX-z46" firstAttribute="width" secondItem="ebc-tL-lWp" secondAttribute="width" id="rgL-PL-czf"/>
-                            <constraint firstItem="T4h-bX-z46" firstAttribute="height" secondItem="ebc-tL-lWp" secondAttribute="height" id="uIb-Sn-TZ9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Dp0-iy-JZN"/>
@@ -319,7 +319,7 @@
         <scene sceneID="4Jo-7r-4Ih">
             <objects>
                 <navigationController title="BusDestinations Nav" automaticallyAdjustsScrollViewInsets="NO" id="3yH-e8-hT7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Bus" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Bus" image="bus" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aDy-fk-gq5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -338,7 +338,7 @@
         <scene sceneID="WUJ-H0-ign">
             <objects>
                 <navigationController storyboardIdentifier="FerryDestinationsNav" title="FerryDestinations Nav" automaticallyAdjustsScrollViewInsets="NO" id="JVT-1p-d8U" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Ferries" image="ferry" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1fN-YG-nrG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -409,11 +409,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bus" width="32" height="32"/>
         <image name="connect-arrow-left-right-7-white" width="29" height="30"/>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="ferry" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0sg-2i-LAl"/>
+        <segue reference="hGI-Zo-JaR"/>
     </inferredMetricsTieBreakers>
 </document>

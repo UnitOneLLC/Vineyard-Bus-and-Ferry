@@ -90,7 +90,6 @@ class ScheduleManager : Printable {
         let queue:NSOperationQueue = NSOperationQueue()
         NSURLConnection.sendAsynchronousRequest(request, queue: queue, completionHandler:{ (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
             var err: NSError
-
             AppDelegate.theSettingsManager.setAppParameter(parameter: "lastDownloadTime", value: NSDate(), moc: moc)
             completionHandler(data: data)
         })
@@ -98,7 +97,6 @@ class ScheduleManager : Printable {
     
     
     func acquireSchedule(forAgency agencyId: String, moc: NSManagedObjectContext, completionHandler: ((s: Schedule?)->Void)) {
-Logger.log(fromSource: self, level: .INFO, message: "enter acquireSchedule for agency \(agencyId)")
         let loadHandler: (data: NSData?) -> (Void) = { (data: NSData?) -> (Void) in
         
             if (data != nil) {
@@ -127,11 +125,9 @@ Logger.log(fromSource: self, level: .INFO, message: "enter acquireSchedule for a
                         println("adding schedule \(agency.id)")
                         self.addSchedule(agency.id, sched: s)
                     }
-  Logger.log(fromSource: self, level: .INFO, message: "calling completion after file read")
                     completionHandler(s: s)
                 }
                 else if isInternetConnected() {
-                    Logger.log(fromSource: self, level: .INFO, message: "loading schedule from internet 1")
                     downloadSchedule(forAgency: agencyId, moc: moc, loadHandler)
                 }
                 else {
@@ -140,7 +136,6 @@ Logger.log(fromSource: self, level: .INFO, message: "enter acquireSchedule for a
             }
         }
         else if isInternetConnected() {
-            Logger.log(fromSource: self, level: .INFO, message: "loading schedule from internet 2")
             downloadSchedule(forAgency: agencyId, moc: moc, loadHandler)
         }
         else {
