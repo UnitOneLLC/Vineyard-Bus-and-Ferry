@@ -236,11 +236,17 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
     
     func connectionTable(didSelectConnection c: Connection) {
         if let r = AppDelegate.theScheduleManager.getRoute(fromSchedule: schedule, withId: c.routeId) {
-            for (var index=0; index < r.vectors.count; ++index) {
-                if r.vectors[index].destination == c.headSign {
-                    setVector(forRoute: r, vectorIndex: index, tripIndex: AppDelegate.theScheduleManager.getTripIndex(inVector: r.vectors[index],
-                                forTripId: c.tripId))
-                    break
+            if r.vectors.count == 1 {
+                setVector(forRoute: r, vectorIndex: 0, tripIndex: AppDelegate.theScheduleManager.getTripIndex(inVector: r.vectors[0],
+                    forTripId: c.tripId))
+            }
+            else {
+                for (var index=0; index < r.vectors.count; ++index) {
+                    if r.vectors[index].destination == c.headSign {
+                        setVector(forRoute: r, vectorIndex: index, tripIndex: AppDelegate.theScheduleManager.getTripIndex(inVector: r.vectors[index],
+                                    forTripId: c.tripId))
+                        break
+                    }
                 }
             }
         }

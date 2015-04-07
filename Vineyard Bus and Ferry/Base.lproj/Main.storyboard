@@ -70,7 +70,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="yVg-QA-g4Y">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="584" height="551"/>
                                 <color key="backgroundColor" red="0.39607846740000002" green="0.67450982329999998" blue="0.90980398650000005" alpha="1" colorSpace="deviceRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="destinationCell" id="A5R-Wf-J2v">
@@ -84,10 +84,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="yVg-QA-g4Y" secondAttribute="trailing" id="26K-ES-6Kn"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="yVg-QA-g4Y" secondAttribute="bottom" id="5FK-A4-xDP"/>
                             <constraint firstItem="yVg-QA-g4Y" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" id="7ju-Z0-bqA"/>
                             <constraint firstItem="yVg-QA-g4Y" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="YQ0-hQ-vYz"/>
-                            <constraint firstAttribute="height" secondItem="yVg-QA-g4Y" secondAttribute="height" id="frm-lk-R98"/>
-                            <constraint firstAttribute="width" secondItem="yVg-QA-g4Y" secondAttribute="width" id="lMX-m2-j4g"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Ferry Routes" id="YVL-qD-cA2"/>
@@ -414,6 +414,6 @@
         <image name="ferry" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hGI-Zo-JaR"/>
+        <segue reference="0sg-2i-LAl"/>
     </inferredMetricsTieBreakers>
 </document>
