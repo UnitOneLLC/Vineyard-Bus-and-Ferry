@@ -9,21 +9,35 @@
 import Foundation
 import CoreData
 
-let agencyURLMap: [String: String] = [
-    "VTA": "http://frederickhewett.com/vta_sched_current.json",
-    "SSA": "http://frederickhewett.com/ssa_sched_current.json",
-    "NEFAST": "http://frederickhewett.com/ssa_sched_current.json"
+let EXTENSION = ".json"
+
+let DOMAIN_STEM = "http://frederickhewett.com/"
+
+let modeURLMap: [String: String] = [
+    "BUS":   DOMAIN_STEM + "transit/vbf/bus.json",
+    "FERRY": DOMAIN_STEM + "transit/vbf/ferry.json",
+]
+
+let modeVersionURLMap: [String: String] = [
+    "BUS":   DOMAIN_STEM + "transit/vbf/version-bus.json",
+    "FERRY": DOMAIN_STEM + "transit/vbf/version-ferry.json",
 ]
 
 class ScheduleManager : Printable {
-    var schedules: [String: Schedule]
+    var schedulesByAgency: [String: Schedule]
+    var schedulesByMode: [String: Schedule]
     
     init() {
-        schedules = [String: Schedule]()
+        schedulesByAgency = [String: Schedule]()
+        schedulesByMode   = [String: Schedule]()
     }
     
-    func addSchedule(agencyId: String, sched: Schedule) {
-        schedules[agencyId] = sched
+    func addScheduleForAgency(agencyId: String, sched: Schedule) {
+        schedulesByAgency[agencyId] = sched
+    }
+    
+    func addScheduleForMode(mode: String, sched: Schedule) {
+        schedulesByMode[mode] = sched
     }
     
     var description: String {
@@ -48,9 +62,9 @@ class ScheduleManager : Printable {
         return false
     }
     
-    func getNameOfStoredFile(agencyId: String) -> String {
+    func getNameOfStoredFile(mode: String) -> String {
         var docPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-        let filePath = docPath.stringByAppendingPathComponent(agencyId + ".json")
+        let filePath = docPath.stringByAppendingPathComponent(mode + EXTENSION)
         return filePath
     }
     
@@ -75,9 +89,9 @@ class ScheduleManager : Printable {
         NSFileManager.defaultManager().removeItemAtPath(getNameOfStoredFile(name), error: error)
     }
     
-    func downloadSchedule(forAgency agencyId: String, moc: NSManagedObjectContext, completionHandler: ((data: NSData?)->Void)) {
+    func downloadSchedule(forMode mode: String, moc: NSManagedObjectContext, completionHandler: ((data: NSData?)->Void)) {
         
-        let url = agencyURLMap[agencyId]
+        let url = modeURLMap[mode]
         if url == nil {
             completionHandler(data: nil)
             return
@@ -96,39 +110,42 @@ class ScheduleManager : Printable {
     }
     
     
-    func acquireSchedule(forAgency agencyId: String, moc: NSManagedObjectContext, completionHandler: ((s: Schedule?)->Void)) {
+    func acquireSchedule(forMode mode: String, moc: NSManagedObjectContext, completionHandler: ((s: Schedule?)->Void)) {
         let loadHandler: (data: NSData?) -> (Void) = { (data: NSData?) -> (Void) in
         
             if (data != nil) {
-                self.saveScheduleToFile(data!, name: agencyId)
+                self.saveScheduleToFile(data!, name: mode + EXTENSION)
+                
                 let s = Schedule(fromJson: data!)
+                self.addScheduleForMode(mode, sched: s)
                 for agency in s.agencies {
                     println("adding schedule \(agency.id)")
-                    self.addSchedule(agency.id, sched: s)
+                    self.addScheduleForAgency(agency.id, sched: s)
                 }
                 completionHandler(s: s)
             }
         }
         
-        if isScheduleFileStored(agencyId) {
+        if isScheduleFileStored(mode + EXTENSION) {
             
             if let lastDownload: NSDate? = AppDelegate.theSettingsManager.getSetting(parameter: "lastDownloadTime", moc: moc) {
                 if normalizedDate(lastDownload!).isBefore(normalizedDate(NSDate())) {
-                    downloadSchedule(forAgency: agencyId, moc: moc, loadHandler)
+                    downloadSchedule(forMode: mode, moc: moc, loadHandler)
                     return
                 }
             }
 
-            if let s = readScheduleFromFile(agencyId) {
+            if let s = readScheduleFromFile(mode + EXTENSION) {
+                self.addScheduleForMode(mode, sched: s)
                 if isScheduleCurrent(s) {
                     for agency in s.agencies {
                         println("adding schedule \(agency.id)")
-                        self.addSchedule(agency.id, sched: s)
+                        self.addScheduleForAgency(agency.id, sched: s)
                     }
                     completionHandler(s: s)
                 }
                 else if isInternetConnected() {
-                    downloadSchedule(forAgency: agencyId, moc: moc, loadHandler)
+                    downloadSchedule(forMode: mode, moc: moc, loadHandler)
                 }
                 else {
                     Logger.log(fromSource: self, level: .ERROR, message: "Error: out of date and no internet")
@@ -136,17 +153,20 @@ class ScheduleManager : Printable {
             }
         }
         else if isInternetConnected() {
-            downloadSchedule(forAgency: agencyId, moc: moc, loadHandler)
+            downloadSchedule(forMode: mode, moc: moc, loadHandler)
         }
         else {
             Logger.log(fromSource: self, level: .ERROR, message: "error: schedule not stored and not connected")
         }
     }
     
-    func scheduleForAgency(agencyId: String) -> Schedule? {
-        return schedules[agencyId]
+    func scheduleForMode(mode: String) -> Schedule? {
+        return schedulesByMode[mode]
     }
     
+    func scheduleForAgency(agencyId: String) -> Schedule? {
+        return schedulesByAgency[agencyId]
+    }
     
     func getRouteDestinations(s: Schedule) -> [String] {
         var result = [String]()
@@ -164,7 +184,7 @@ class ScheduleManager : Printable {
     
     func getRouteDestinationsForAgency(agencyId: String) -> [String] {
         var result = [String]()
-        if let s = schedules[agencyId] {
+        if let s = schedulesByAgency[agencyId] {
             for r in s.routes {
                 if r.agency == agencyId {
                     for v in r.vectors {
@@ -200,7 +220,7 @@ class ScheduleManager : Printable {
     }
     
     func getAgencyById(agencyId: String) -> Agency? {
-        if let s = scheduleForAgency(agencyId) {
+        if let s = scheduleForMode(agencyId) {
             for a in s.agencies {
                 if a.id == agencyId {
                     return a

@@ -12,8 +12,7 @@ class DestinationViewController: UIViewController {
     
     // values set in IB
     var responsibleForInit: Bool = false
-    var agencyId: String!
-    var mode: String!
+    var transitMode: String!
     var itemName: String!
     var listSegue: String!
     var scheduleLoaded: Bool = false
@@ -33,7 +32,7 @@ class DestinationViewController: UIViewController {
                 self.scheduleIsReady = true
                 var destSet = [String: Bool]()
                 
-                if let sched = AppDelegate.theScheduleManager.scheduleForAgency(self.agencyId) {
+                if let sched = AppDelegate.theScheduleManager.scheduleForMode(self.transitMode) {
                     for a in sched.agencies {
                         var theseDests = AppDelegate.theScheduleManager.getRouteDestinationsForAgency(a.id)
                         for d in theseDests {
@@ -65,7 +64,7 @@ class DestinationViewController: UIViewController {
         
         let moc = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
 
-        AppDelegate.theScheduleManager.acquireSchedule(forAgency: agencyId, moc: moc) { (s: Schedule?) in
+        AppDelegate.theScheduleManager.acquireSchedule(forMode: transitMode, moc: moc) { (s: Schedule?) in
             if s != nil {
                 if AppDelegate.theScheduleManager.isScheduleCurrent(s!) {
                     completionHandler(success: true)
@@ -89,7 +88,7 @@ class DestinationViewController: UIViewController {
             if segId == listSegue && destinationToDisplay != nil {
                 
                 if let listVC = (segue.destinationViewController as? UINavigationController)?.viewControllers[0] as? RouteListViewController? {
-                    let s = AppDelegate.theScheduleManager.scheduleForAgency(agencyId)
+                    let s = AppDelegate.theScheduleManager.scheduleForMode(transitMode)
                     if destinationToDisplay == 0 {
                         // all routes
                         listVC!.routes = s!.routes
@@ -106,7 +105,7 @@ class DestinationViewController: UIViewController {
 }
 
 
-extension DestinationViewController: UITableViewDataSource {
+extension DestinationViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if !scheduleIsReady {
             Logger.log(fromSource: self, level: .INFO, message: "Called for row count, but data is not ready")
@@ -129,18 +128,12 @@ extension DestinationViewController: UITableViewDataSource {
         
         cell.textLabel!.text = labelText
         
-        
         return cell
     }
-}
-
-extension DestinationViewController: UITableViewDelegate {
+    
     func  tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         destinationToDisplay = indexPath.row
-        dispatch_async(dispatch_get_main_queue(), {
-            self.performSegueWithIdentifier(self.listSegue, sender: self.tableView);
-        })
-
+        performSegueWithIdentifier(self.listSegue, sender: self.tableView);
     }
 }
 

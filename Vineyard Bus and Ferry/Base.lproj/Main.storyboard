@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="SXX-0W-7Vu">
-                                <rect key="frame" x="0.0" y="94" width="600" height="457"/>
+                                <rect key="frame" x="-15" y="64" width="599" height="487"/>
                                 <color key="backgroundColor" red="0.39607846740000002" green="0.67450982329999998" blue="0.90980398650000005" alpha="1" colorSpace="deviceRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="destinationCell" id="Zpy-Xs-kZG">
@@ -34,17 +34,16 @@
                         </subviews>
                         <color key="backgroundColor" red="0.39607846740000002" green="0.67450982329999998" blue="0.90980398650000005" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
+                            <constraint firstItem="SXX-0W-7Vu" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="IHK-Jf-mVB"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="SXX-0W-7Vu" secondAttribute="bottom" id="Zy0-7j-DG0"/>
-                            <constraint firstAttribute="centerX" secondItem="SXX-0W-7Vu" secondAttribute="centerX" id="uHu-BI-haE"/>
-                            <constraint firstItem="SXX-0W-7Vu" firstAttribute="width" secondItem="tsR-hK-woN" secondAttribute="width" id="vO2-3l-cuZ"/>
-                            <constraint firstItem="SXX-0W-7Vu" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="top" id="wdO-UM-0fB"/>
+                            <constraint firstItem="SXX-0W-7Vu" firstAttribute="leadingMargin" secondItem="tsR-hK-woN" secondAttribute="leading" id="riC-hI-ggb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="SXX-0W-7Vu" secondAttribute="trailing" id="w3r-GY-H5Z"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Bus Routes" prompt="Martha's Vineyard Transit Authority" id="L5Q-dD-MA2"/>
+                    <navigationItem key="navigationItem" title="Bus Routes" id="L5Q-dD-MA2"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="agencyId" value="VTA"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="transitMode" value="BUS"/>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="responsibleForInit" value="YES"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="mode" value="Bus"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="itemName" value="Routes"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="listSegue" value="busShowRouteList"/>
                     </userDefinedRuntimeAttributes>
@@ -70,7 +69,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="yVg-QA-g4Y">
-                                <rect key="frame" x="0.0" y="0.0" width="584" height="551"/>
+                                <rect key="frame" x="-15" y="0.0" width="599" height="551"/>
                                 <color key="backgroundColor" red="0.39607846740000002" green="0.67450982329999998" blue="0.90980398650000005" alpha="1" colorSpace="deviceRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="destinationCell" id="A5R-Wf-J2v">
@@ -87,14 +86,13 @@
                             <constraint firstAttribute="trailingMargin" secondItem="yVg-QA-g4Y" secondAttribute="trailing" id="26K-ES-6Kn"/>
                             <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="yVg-QA-g4Y" secondAttribute="bottom" id="5FK-A4-xDP"/>
                             <constraint firstItem="yVg-QA-g4Y" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" id="7ju-Z0-bqA"/>
-                            <constraint firstItem="yVg-QA-g4Y" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="YQ0-hQ-vYz"/>
+                            <constraint firstItem="yVg-QA-g4Y" firstAttribute="leadingMargin" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="YQ0-hQ-vYz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Ferry Routes" id="YVL-qD-cA2"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="responsibleForInit" value="YES"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="agencyId" value="NEFAST"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="mode" value="Ferry"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="transitMode" value="FERRY"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="itemName" value="Ferries"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="listSegue" value="ferryShowRouteList"/>
                     </userDefinedRuntimeAttributes>

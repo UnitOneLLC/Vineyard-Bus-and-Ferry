@@ -12,17 +12,18 @@ protocol ConnectionTableDelegate {
     func connectionTable(didSelectConnection c: Connection)
 }
 
-
 class ConnectionTable: NSObject, UITableViewDelegate, UITableViewDataSource {
 
     let ROUTE_TABLE_CELL_ID = "tripRouteCell"
     let TIME_TABLE_CELL_ID  = "tripTimeCell"
-    let ROW_HEIGHT: CGFloat = 32.0
+    let PADDING_PX: CGFloat = 20.0
+    let CELL_HEIGHT_PADDING: CGFloat = 10.0
+    
     let schedule: Schedule!
     var connectionRouteTable: UITableView!
     var connectionTimeTable: UITableView!
     var delegate: ConnectionTableDelegate?
-    
+    var rowHeights: [Double]!
     var _currentTrip: Trip?
     
     init(schedule: Schedule) {
@@ -33,7 +34,6 @@ class ConnectionTable: NSObject, UITableViewDelegate, UITableViewDataSource {
         connectionRouteTable.separatorStyle = UITableViewCellSeparatorStyle.None
         connectionRouteTable.registerClass(VectorTableStopCell.self, forCellReuseIdentifier: ROUTE_TABLE_CELL_ID)
         connectionRouteTable.scrollEnabled = false
-        connectionRouteTable.rowHeight = ROW_HEIGHT
         connectionRouteTable.dataSource = self
         connectionRouteTable.delegate = self
         
@@ -41,7 +41,6 @@ class ConnectionTable: NSObject, UITableViewDelegate, UITableViewDataSource {
         connectionTimeTable.separatorStyle = UITableViewCellSeparatorStyle.None
         connectionTimeTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: TIME_TABLE_CELL_ID)
         connectionTimeTable.scrollEnabled = false
-        connectionTimeTable.rowHeight = ROW_HEIGHT
         connectionTimeTable.dataSource = self
         connectionTimeTable.delegate = self
     }
@@ -61,8 +60,18 @@ class ConnectionTable: NSObject, UITableViewDelegate, UITableViewDataSource {
     
     func adjustTableHeights() {
         if currentTrip != nil {
+            
+            var totalHeight: Double = 0.0
+            rowHeights = [Double]()
+            for c in _currentTrip!.connections {
+                let labelText = getTextForConnection(c)
+                let h: Double = Double(getLabelHeight(labelText, UIFont.systemFontOfSize(VectorTable.CELL_FONT_SIZE), connectionRouteTable.frame.width - PADDING_PX)) + Double(CELL_HEIGHT_PADDING)
+                rowHeights.append(h)
+                totalHeight += h
+            }
+            
             var frame: CGRect
-            var height = ROW_HEIGHT * CGFloat(currentTrip!.connections.count)
+            var height = CGFloat(totalHeight)
 
             frame = connectionTimeTable.frame
             frame.size.height = height
@@ -84,6 +93,18 @@ class ConnectionTable: NSObject, UITableViewDelegate, UITableViewDataSource {
             return 0
         }
     }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return CGFloat(rowHeights[indexPath.row])
+    }
+    
+    func getTextForConnection(connection: Connection) -> String {
+        var labelText = "Route " + connection.shortName
+        if !connection.headSign.isEmpty {
+            labelText += " to " + connection.headSign
+        }
+        return labelText
+    }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var connection: Connection?
@@ -102,10 +123,9 @@ class ConnectionTable: NSObject, UITableViewDelegate, UITableViewDataSource {
         else {
             var cell = tableView.dequeueReusableCellWithIdentifier(ROUTE_TABLE_CELL_ID, forIndexPath: indexPath) as VectorTableStopCell
             if connection != nil  {
-                var labelText = "Route " + connection!.shortName
-                if !connection!.headSign.isEmpty {
-                    labelText += " to " + connection!.headSign
-                }
+                let labelText = getTextForConnection(connection!)
+                cell.textLabel!.numberOfLines = 0
+                cell.textLabel!.lineBreakMode = .ByWordWrapping
                 cell.textLabel!.attributedText = getAttributedString(labelText, withFont: VectorTable.cellFont)
             }
             return cell

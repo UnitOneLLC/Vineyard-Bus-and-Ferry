@@ -37,7 +37,7 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
     let CONN_LABEL_HEIGHT: CGFloat = 28.0
     let CONN_LABEL_FONT_SIZE: CGFloat = 17.0
     let CELL_HEIGHT_PADDING: CGFloat = 10.0
-    let PADDING_PX: CGFloat = 15.0
+    let PADDING_PX: CGFloat = 20.0
     
     class var cellFont: UIFont {
         return UIFont.systemFontOfSize(CELL_FONT_SIZE)
