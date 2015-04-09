@@ -44,49 +44,31 @@ class ScheduleManager : Printable {
         return "Schedule Manager"
     }
     
-    func isScheduleCurrent(s: Schedule) -> Bool {
-        let calendar = NSCalendar.currentCalendar()
-        if s.services.count > 0 {
-            let firstSvc = s.services[0]
-            let today = NSDate()
-            
-            if today.isBefore(firstSvc.startDate) || today.isAfter(firstSvc.endDate) {
-                return false
-            }
-            else {
-                return true
-            }
-            
-        }
-        
-        return false
-    }
-    
     func getNameOfStoredFile(mode: String) -> String {
         var docPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
         let filePath = docPath.stringByAppendingPathComponent(mode + EXTENSION)
         return filePath
     }
     
-    func isScheduleFileStored(name: String) -> Bool {
-        return NSFileManager.defaultManager().fileExistsAtPath(getNameOfStoredFile(name))
+    func isScheduleFileStored(mode: String) -> Bool {
+        return NSFileManager.defaultManager().fileExistsAtPath(getNameOfStoredFile(mode))
     }
     
-    func saveScheduleToFile(data: NSData, name: String) {
-        data.writeToFile(getNameOfStoredFile(name), atomically: true)
+    func saveScheduleToFile(data: NSData, mode: String) {
+        data.writeToFile(getNameOfStoredFile(mode), atomically: true)
     }
     
-    func readScheduleFromFile(name: String) -> Schedule? {
-        let filePath = getNameOfStoredFile(name)
+    func readScheduleFromFile(mode: String) -> Schedule? {
+        let filePath = getNameOfStoredFile(mode)
         if let data = NSData(contentsOfFile: filePath) {
             return Schedule(fromJson: data)
         }
         return nil
     }
     
-    func deleteStoredFile(name: String) {
+    func deleteStoredFile(mode: String) {
         var error = NSErrorPointer()
-        NSFileManager.defaultManager().removeItemAtPath(getNameOfStoredFile(name), error: error)
+        NSFileManager.defaultManager().removeItemAtPath(getNameOfStoredFile(mode), error: error)
     }
     
     func downloadSchedule(forMode mode: String, moc: NSManagedObjectContext, completionHandler: ((data: NSData?)->Void)) {
@@ -96,6 +78,7 @@ class ScheduleManager : Printable {
             completionHandler(data: nil)
             return
         }
+        Logger.log(fromSource: self, level: .INFO, message: "Downloading new schedule for mode \(mode)")
         
         var request = NSMutableURLRequest(URL: NSURL(string: url!)!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 60.0)
         
@@ -103,18 +86,137 @@ class ScheduleManager : Printable {
         
         let queue:NSOperationQueue = NSOperationQueue()
         NSURLConnection.sendAsynchronousRequest(request, queue: queue, completionHandler:{ (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
-            var err: NSError
-            AppDelegate.theSettingsManager.setAppParameter(parameter: "lastDownloadTime", value: NSDate(), moc: moc)
             completionHandler(data: data)
         })
     }
     
     
+    func downloadCurrentVersion(forMode mode: String, completionHandler: ((version: Int) -> Void)) {
+        let url = modeVersionURLMap[mode]
+        if url == nil {
+            completionHandler(version: -1)
+            return
+        }
+        
+        var request = NSMutableURLRequest(URL: NSURL(string: url!)!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 60.0)
+        
+        let queue:NSOperationQueue = NSOperationQueue()
+        NSURLConnection.sendAsynchronousRequest(request, queue: queue, completionHandler:{ (response: NSURLResponse!, json: NSData!, error: NSError!) -> Void in
+            var err: NSError?
+
+            var version: Int
+            var dico = NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions.MutableContainers, error: &err) as NSDictionary
+            if err == nil {
+                version = dico["version"] as Int
+                Logger.log(fromSource: self, level: .INFO, message: "Current version for mode \(mode) is \(version)")
+            }
+            else {
+                Logger.log(fromSource: self, level: .ERROR, message: "Did not retrieve version: \(err)")
+                version = -1
+            }
+
+            completionHandler(version: version as Int)
+        })
+        
+    }
+    
+    func getVersionParameterName(forMode mode: String) -> String? {
+        if mode == "BUS" {
+            return "busVersion"
+        }
+        else if mode == "FERRY" {
+            return "ferryVersion"
+        }
+        else {
+            return nil
+        }
+    }
+    
+    func getStoredVersion(forMode mode: String, moc: NSManagedObjectContext) -> Int {
+        if let parameterName = getVersionParameterName(forMode: mode) {
+            if let version: NSNumber? = AppDelegate.theSettingsManager.getSetting(parameter: parameterName, moc: moc) {
+                return version as Int
+            }
+            else {
+                return -1
+            }
+        }
+        else {
+            Logger.log(fromSource: self, level: .ERROR, message: "Unknown mode: \(mode)")
+            return -1
+        }
+    }
+    
+    func processSchedule(forMode mode: String, sched: Schedule) {
+        addScheduleForMode(mode, sched: sched)
+        for agency in sched.agencies {
+            println("adding schedule \(agency.id)")
+            addScheduleForAgency(agency.id, sched: sched)
+        }
+    }
+    
     func acquireSchedule(forMode mode: String, moc: NSManagedObjectContext, completionHandler: ((s: Schedule?)->Void)) {
+        let storedVersion = getStoredVersion(forMode: mode, moc: moc)
+        Logger.log(fromSource: self, level: .INFO, message: "Stored version for mode \(mode) is \(storedVersion)")
+        
+        if isInternetConnected() {
+            
+            downloadCurrentVersion(forMode: mode) { (version: Int) in
+                
+                if storedVersion < version {
+                    self.downloadSchedule(forMode: mode, moc: moc) { (data: NSData?) -> Void in
+                        if data != nil {
+                            self.saveScheduleToFile(data!, mode: mode)
+                            let number: NSNumber = version as NSNumber
+                            AppDelegate.theSettingsManager.setAppParameter(parameter: self.getVersionParameterName(forMode: mode)!, value: number, moc: moc)
+                            let s = Schedule(fromJson: data!)
+                            self.processSchedule(forMode: mode, sched: s)
+                            completionHandler(s: s)
+                        }
+                    } // schedule closure
+                }
+                else { // stored version is current
+                    Logger.log(fromSource: self, level: .INFO, message: "Stored schedule version for mode \(mode) is current")
+                    if let sched = self.readScheduleFromFile(mode) {
+                        self.processSchedule(forMode: mode, sched: sched)
+                        completionHandler(s: sched)
+                    }
+                    else {
+                        Logger.log(fromSource: self, level: .ERROR, message: "Fatal: no schedule for mode \(mode)")
+                        completionHandler(s: nil)
+                        // need an alert here
+                    }
+                }
+            } // version closure
+        }
+        else { // no network
+            if storedVersion > 0 { // assume stored version is OK when no network
+                Logger.log(fromSource: self, level: .INFO, message: "No network -- asuming stored schedule for mode \(mode) is current")
+                if let sched = self.readScheduleFromFile(mode) {
+                    self.processSchedule(forMode: mode, sched: sched)
+                    completionHandler(s: sched)
+                }
+                else {
+                    Logger.log(fromSource: self, level: .ERROR, message: "Fatal: no schedule for mode \(mode)")
+                    completionHandler(s: nil)
+                    // need an alert here
+                }
+            }
+            else {
+                Logger.log(fromSource: self, level: .ERROR, message: "Fatal: no schedule for mode \(mode)")
+                completionHandler(s: nil)
+                // need an alert here
+            }
+        }
+    }
+    
+    
+    
+    func oldAcquireSchedule(forMode mode: String, moc: NSManagedObjectContext, completionHandler: ((s: Schedule?)->Void)) {
         let loadHandler: (data: NSData?) -> (Void) = { (data: NSData?) -> (Void) in
         
             if (data != nil) {
-                self.saveScheduleToFile(data!, name: mode + EXTENSION)
+                self.saveScheduleToFile(data!, mode: mode)
                 
                 let s = Schedule(fromJson: data!)
                 self.addScheduleForMode(mode, sched: s)
@@ -126,7 +228,7 @@ class ScheduleManager : Printable {
             }
         }
         
-        if isScheduleFileStored(mode + EXTENSION) {
+        if isScheduleFileStored(mode) {
             
             if let lastDownload: NSDate? = AppDelegate.theSettingsManager.getSetting(parameter: "lastDownloadTime", moc: moc) {
                 if normalizedDate(lastDownload!).isBefore(normalizedDate(NSDate())) {
@@ -135,16 +237,16 @@ class ScheduleManager : Printable {
                 }
             }
 
-            if let s = readScheduleFromFile(mode + EXTENSION) {
+            if let s = readScheduleFromFile(mode) {
                 self.addScheduleForMode(mode, sched: s)
-                if isScheduleCurrent(s) {
-                    for agency in s.agencies {
-                        println("adding schedule \(agency.id)")
-                        self.addScheduleForAgency(agency.id, sched: s)
-                    }
-                    completionHandler(s: s)
+
+                for agency in s.agencies {
+                    println("adding schedule \(agency.id)")
+                    self.addScheduleForAgency(agency.id, sched: s)
                 }
-                else if isInternetConnected() {
+                completionHandler(s: s)
+
+                if isInternetConnected() {
                     downloadSchedule(forMode: mode, moc: moc, loadHandler)
                 }
                 else {
@@ -220,7 +322,7 @@ class ScheduleManager : Printable {
     }
     
     func getAgencyById(agencyId: String) -> Agency? {
-        if let s = scheduleForMode(agencyId) {
+        if let s = scheduleForAgency(agencyId) {
             for a in s.agencies {
                 if a.id == agencyId {
                     return a
@@ -290,7 +392,7 @@ class ScheduleManager : Printable {
         return result
     }
     
-    func formatTimeOfDay(tod: TimeOfDay) -> String {
+    class func formatTimeOfDay(tod: TimeOfDay) -> String {
         let minutes = tod.minute < 10 ? "0" + String(tod.minute) : String(tod.minute)
         let mod12 = tod.hour == 12 ? 12 : tod.hour % 12
         let hour = (mod12) < 10 ? " " + String(mod12) : String(mod12)

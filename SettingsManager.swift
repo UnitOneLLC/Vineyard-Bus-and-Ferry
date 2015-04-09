@@ -33,12 +33,12 @@ class SettingsManager : Printable {
     
     func createInitialAppParametersObject(#moc: NSManagedObjectContext) -> Bool {
         let newSettings = NSEntityDescription.insertNewObjectForEntityForName(ENTITY_SETTINGS, inManagedObjectContext: moc) as Settings;
-        newSettings.lastDownloadTime = NSDate(timeIntervalSinceNow: -1000000000.0)
+        newSettings.busVersion = -1
+        newSettings.ferryVersion = -1
         var error: NSError?
         moc.save(&error)
         return error == nil
     }
-    
     
     func getSetting<T: AnyObject>(#parameter: String, moc: NSManagedObjectContext) -> T? {
         

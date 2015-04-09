@@ -2,7 +2,7 @@
 //  Settings.swift
 //  Vineyard Bus and Ferry
 //
-//  Created by Fred Hewett on 3/19/15.
+//  Created by Fred Hewett on 4/8/15.
 //  Copyright (c) 2015 Frederick Hewett. All rights reserved.
 //
 
@@ -12,6 +12,7 @@ import CoreData
 @objc(Settings)
 class Settings: NSManagedObject {
 
-    @NSManaged var lastDownloadTime: NSDate
+    @NSManaged var busVersion: NSNumber
+    @NSManaged var ferryVersion: NSNumber
 
 }

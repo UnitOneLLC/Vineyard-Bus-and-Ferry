@@ -19,7 +19,6 @@
 		B60314A31ABA59C4001D4788 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60314A21ABA59C4001D4788 /* Utils.swift */; };
 		B60314A51ABAFCC0001D4788 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B60314A41ABAFCC0001D4788 /* CoreData.framework */; };
 		B60314D91ABB1AEC001D4788 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B60314D71ABB1AEC001D4788 /* Model.xcdatamodeld */; };
-		B60314DB1ABB1C7D001D4788 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60314DA1ABB1C7D001D4788 /* Settings.swift */; };
 		B607FD981AC2E27E004761BE /* VectorTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B607FD971AC2E27E004761BE /* VectorTable.swift */; };
 		B607FD9A1AC315E5004761BE /* TripCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B607FD991AC315E5004761BE /* TripCollection.swift */; };
 		B607FD9E1AC31F70004761BE /* StopTimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B607FD9D1AC31F70004761BE /* StopTimeTable.swift */; };
@@ -35,6 +34,7 @@
 		B6E0671C1AC9C0D9002705AB /* blue-arrow-right.png in Resources */ = {isa = PBXBuildFile; fileRef = B6E0671B1AC9C0D9002705AB /* blue-arrow-right.png */; };
 		B6E0671E1AC9DB67002705AB /* TripPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E0671D1AC9DB67002705AB /* TripPager.swift */; };
 		B6E067201AC9F8CB002705AB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E0671F1AC9F8CB002705AB /* MapViewController.swift */; };
+		B6FCADEE1AD59CCF00092EA5 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCADED1AD59CCF00092EA5 /* Settings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +64,6 @@
 		B60314A21ABA59C4001D4788 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		B60314A41ABAFCC0001D4788 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B60314D81ABB1AEC001D4788 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		B60314DA1ABB1C7D001D4788 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		B607FD971AC2E27E004761BE /* VectorTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorTable.swift; sourceTree = "<group>"; };
 		B607FD991AC315E5004761BE /* TripCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCollection.swift; sourceTree = "<group>"; };
 		B607FD9D1AC31F70004761BE /* StopTimeTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopTimeTable.swift; sourceTree = "<group>"; };
@@ -80,6 +79,7 @@
 		B6E0671B1AC9C0D9002705AB /* blue-arrow-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue-arrow-right.png"; sourceTree = "<group>"; };
 		B6E0671D1AC9DB67002705AB /* TripPager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripPager.swift; sourceTree = "<group>"; };
 		B6E0671F1AC9F8CB002705AB /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		B6FCADED1AD59CCF00092EA5 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Settings.swift; path = ../Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,10 +145,10 @@
 				B607FD9D1AC31F70004761BE /* StopTimeTable.swift */,
 				B6E0671F1AC9F8CB002705AB /* MapViewController.swift */,
 				B60314831ABA14B0001D4788 /* Images.xcassets */,
+				B60314D71ABB1AEC001D4788 /* Model.xcdatamodeld */,
+				B6FCADED1AD59CCF00092EA5 /* Settings.swift */,
 				B60314851ABA14B0001D4788 /* LaunchScreen.xib */,
 				B60314781ABA14B0001D4788 /* Supporting Files */,
-				B60314D71ABB1AEC001D4788 /* Model.xcdatamodeld */,
-				B60314DA1ABB1C7D001D4788 /* Settings.swift */,
 			);
 			path = "Vineyard Bus and Ferry";
 			sourceTree = "<group>";
@@ -293,10 +293,10 @@
 				B6E067201AC9F8CB002705AB /* MapViewController.swift in Sources */,
 				B60314A31ABA59C4001D4788 /* Utils.swift in Sources */,
 				B603147B1ABA14B0001D4788 /* AppDelegate.swift in Sources */,
-				B60314DB1ABB1C7D001D4788 /* Settings.swift in Sources */,
 				B6E067121AC575F0002705AB /* DaySelectionControl.swift in Sources */,
 				B607FD981AC2E27E004761BE /* VectorTable.swift in Sources */,
 				B603149F1ABA1603001D4788 /* Schedule.swift in Sources */,
+				B6FCADEE1AD59CCF00092EA5 /* Settings.swift in Sources */,
 				B6CCEE8C1ABBA8E90051E567 /* SettingsManager.swift in Sources */,
 				B6388B501ABD97B300D16058 /* RouteListViewController.swift in Sources */,
 				B603147D1ABA14B0001D4788 /* DestinationViewController.swift in Sources */,

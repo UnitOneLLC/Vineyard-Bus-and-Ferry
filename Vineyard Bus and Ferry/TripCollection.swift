@@ -71,7 +71,6 @@ class TripCollection: NSObject {
     
     func didScrollToTrip(index: Int) {
         if index >= 0 && index < trips.count {
-            println("did scroll to trip index=\(index)")
             selectedTrip = trips[index]
             delegate.tripCollection(selectedTrip)
         }
@@ -185,7 +184,6 @@ extension TripCollection:  UICollectionViewDataSource, UICollectionViewDelegate 
     
     
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        println("end drag with contentOffset.x = \(scrollView.contentOffset.x), frame width=\(frame.width)")
         if delegate != nil {
             didScrollToTrip(getIndexFromOffset(scrollView.contentOffset.x))
         }

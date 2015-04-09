@@ -17,7 +17,7 @@ class ConnectionTable: NSObject, UITableViewDelegate, UITableViewDataSource {
     let ROUTE_TABLE_CELL_ID = "tripRouteCell"
     let TIME_TABLE_CELL_ID  = "tripTimeCell"
     let PADDING_PX: CGFloat = 20.0
-    let CELL_HEIGHT_PADDING: CGFloat = 10.0
+    let CELL_HEIGHT_PADDING: Double = 10.0
     
     let schedule: Schedule!
     var connectionRouteTable: UITableView!
@@ -65,7 +65,8 @@ class ConnectionTable: NSObject, UITableViewDelegate, UITableViewDataSource {
             rowHeights = [Double]()
             for c in _currentTrip!.connections {
                 let labelText = getTextForConnection(c)
-                let h: Double = Double(getLabelHeight(labelText, UIFont.systemFontOfSize(VectorTable.CELL_FONT_SIZE), connectionRouteTable.frame.width - PADDING_PX)) + Double(CELL_HEIGHT_PADDING)
+                let font = UIFont.systemFontOfSize(VectorTable.CELL_FONT_SIZE)
+                let h = Double(getLabelHeight(labelText, font, connectionRouteTable.frame.width - PADDING_PX)) + CELL_HEIGHT_PADDING
                 rowHeights.append(h)
                 totalHeight += h
             }
@@ -115,7 +116,7 @@ class ConnectionTable: NSObject, UITableViewDelegate, UITableViewDataSource {
         if tableView === connectionTimeTable {
             var cell = tableView.dequeueReusableCellWithIdentifier(TIME_TABLE_CELL_ID, forIndexPath: indexPath) as UITableViewCell
             if connection != nil {
-                let labelText = AppDelegate.theScheduleManager.formatTimeOfDay(connection!.time)
+                let labelText = ScheduleManager.formatTimeOfDay(connection!.time)
                 cell.textLabel!.attributedText = getAttributedString(labelText, withFont: VectorTable.cellFont)
             }
             return cell

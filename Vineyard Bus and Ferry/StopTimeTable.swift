@@ -28,7 +28,7 @@ class StopTimeTable: NSObject, UITableViewDataSource, UITableViewDelegate {
         var found: Bool = false
         for stopTime in trip.stops {
             if stopTime.id == stopId {
-                let labelText = AppDelegate.theScheduleManager.formatTimeOfDay(stopTime.time)
+                let labelText = ScheduleManager.formatTimeOfDay(stopTime.time)
                 cell.textLabel!.attributedText = getAttributedString(labelText, withFont: VectorTable.cellFont)
                 found = true
                 break

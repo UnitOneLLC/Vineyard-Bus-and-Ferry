@@ -60,23 +60,26 @@ class DestinationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setupTableFrame()
+    }
+    
+    func setupTableFrame() {
+        var frame = CGRect(x: CGFloat(0.0), y: 0.0, width: view.frame.width, height: view.frame.height)
+        tableView.frame = frame
+    }
+
     func loadScheduleForView(completionHandler: (success: Bool) -> Void) {
         
         let moc = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
 
         AppDelegate.theScheduleManager.acquireSchedule(forMode: transitMode, moc: moc) { (s: Schedule?) in
             if s != nil {
-                if AppDelegate.theScheduleManager.isScheduleCurrent(s!) {
-                    completionHandler(success: true)
-                }
-                else {
-                    Logger.log(fromSource: self, level: .ERROR, message: "error: no current service in schedule")
-                    completionHandler(success: false)
-                    return
-                }
+                completionHandler(success: true)
             }
             else {
-                Logger.log(fromSource: self, level: .ERROR, message: "failed to load")
+                Logger.log(fromSource: self, level: .ERROR, message: "Failed to load schedule for mode \(self.transitMode)")
                 completionHandler(success: false)
                 return
             }

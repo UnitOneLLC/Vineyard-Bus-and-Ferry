@@ -264,7 +264,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         var prefix = " Stop times: "
         var beforeStr = ""
         for (var i = 0; i < stopTimes.beforeNow.count; ++i) {
-            beforeStr += AppDelegate.theScheduleManager.formatTimeOfDay(stopTimes.beforeNow[i])
+            beforeStr += ScheduleManager.formatTimeOfDay(stopTimes.beforeNow[i])
             if i < stopTimes.beforeNow.count - 1 {
                 beforeStr += ","
             }
@@ -272,7 +272,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         var afterStr = ""
         for (var i = 0; i < stopTimes.afterNow.count; ++i) {
-            afterStr += AppDelegate.theScheduleManager.formatTimeOfDay(stopTimes.afterNow[i])
+            afterStr += ScheduleManager.formatTimeOfDay(stopTimes.afterNow[i])
             if i < stopTimes.afterNow.count - 1 {
                 afterStr += ","
             }
@@ -300,25 +300,20 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
 extension MapViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        println("CFRAIP \(targetStop)")
         if targetStop != nil {
             initStopTimes()
             var cell = tableView.dequeueReusableCellWithIdentifier(STOP_TABLE_REUSE_ID, forIndexPath: indexPath) as UITableViewCell
             if stopTimes != nil {
                 var row = indexPath.row
-                println("stop table request row=\(row)")
+
                 if row < stopTimes!.beforeNow.count {
-                    cell.textLabel!.text = AppDelegate.theScheduleManager.formatTimeOfDay(stopTimes!.beforeNow[row])
+                    cell.textLabel!.text = ScheduleManager.formatTimeOfDay(stopTimes!.beforeNow[row])
                     cell.textLabel!.textColor = UIColor.lightGrayColor()
-                    
-                    println("row is before, text=\(cell.textLabel!.text)")
                 }
                 else {
                     row = row - stopTimes!.beforeNow.count
-                    cell.textLabel!.text = AppDelegate.theScheduleManager.formatTimeOfDay(stopTimes!.afterNow[row])
+                    cell.textLabel!.text = ScheduleManager.formatTimeOfDay(stopTimes!.afterNow[row])
                     cell.textLabel!.textColor = UIColor.blackColor()
-                    
-                    println("row is after, text=\(cell.textLabel!.text)")
                 }
                 cell.textLabel!.font = UIFont.boldSystemFontOfSize(STOP_TABLE_FONT_SIZE)
             }
@@ -333,7 +328,6 @@ extension MapViewController: UITableViewDataSource, UITableViewDelegate {
             initStopTimes()
         }
         if stopTimes != nil {
-            println("stop table the row count is \(stopTimes!.beforeNow.count + stopTimes!.afterNow.count)")
             return stopTimes!.beforeNow.count + stopTimes!.afterNow.count
         }
         else {
