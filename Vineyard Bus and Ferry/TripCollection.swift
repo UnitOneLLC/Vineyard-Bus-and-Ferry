@@ -128,7 +128,7 @@ class TripCollection: NSObject {
         if index == trips.count {
             index = trips.count - 1
         }
-        scrollToTripAtIndex(index-1)
+        scrollToTripAtIndex(index)
     }
     
     

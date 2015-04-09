@@ -10,8 +10,8 @@ import UIKit
 
 let SMALL_FONT_SIZE: CGFloat = 12.0
 let LARGE_FONT_SIZE: CGFloat = 17.0
-let SUBCELL_FONT_SIZE: CGFloat = 15.0
-let SUBTABLE_ROW_HEIGHT: CGFloat = 27.0
+let SUBCELL_FONT_SIZE: CGFloat = 16.0
+let SUBTABLE_ROW_HEIGHT: CGFloat = 29.0
 let PADDING_SIZE: CGFloat = 15.0
 let LEFT_MARGIN: CGFloat = 10.0
 let RIGHT_MARGIN: CGFloat = 10.0
@@ -22,6 +22,7 @@ class RouteListCell: UITableViewCell {
     @IBOutlet weak var subTableView: UITableView!
     
     var route: Route!
+    var itemText: (single: String, plural: String)!
     
     class func getHeight(route: Route, width: CGFloat) -> CGFloat {
         var shortNameHeight: CGFloat
@@ -38,8 +39,9 @@ class RouteListCell: UITableViewCell {
         return total
     }
     
-    func initialize(#route: Route, width: CGFloat) {
+    func initialize(#route: Route, width: CGFloat, text: (single: String, plural: String)) {
         self.route = route
+        self.itemText = text
         
         if shortNameLabel == nil {
             shortNameLabel = UILabel()
@@ -57,7 +59,7 @@ class RouteListCell: UITableViewCell {
         shortNameLabel.font = UIFont.systemFontOfSize(SMALL_FONT_SIZE)
         shortNameLabel.numberOfLines = 0
         shortNameLabel.lineBreakMode = .ByWordWrapping
-        shortNameLabel.attributedText = getAttributedString("Route " + route.shortName!, withFont: UIFont.systemFontOfSize(SMALL_FONT_SIZE))
+        shortNameLabel.attributedText = getAttributedString(itemText.single + " " + route.shortName!, withFont: UIFont.systemFontOfSize(SMALL_FONT_SIZE))
         
         longNameLabel.font = UIFont.systemFontOfSize(LARGE_FONT_SIZE)
         longNameLabel.numberOfLines = 0
@@ -72,7 +74,7 @@ class RouteListCell: UITableViewCell {
         let width = self.contentView.frame.size.width
         var shortNameRect = CGRect()
         if route.shortName != nil && !route.shortName!.isEmpty {
-            shortNameRect = getBoundingRect(text: "Route " + route.shortName!, font: UIFont.systemFontOfSize(SMALL_FONT_SIZE), width: width)
+            shortNameRect = getBoundingRect(text: itemText.single + " " + route.shortName!, font: UIFont.systemFontOfSize(SMALL_FONT_SIZE), width: width)
             shortNameRect.origin.x = LEFT_MARGIN
             shortNameRect.origin.y = 5.0
             shortNameLabel.frame = shortNameRect
@@ -105,6 +107,7 @@ extension RouteListCell: UITableViewDelegate {
         var vc = (self.superview!.superview as UITableView).delegate as RouteListViewController
         vc.selectedRoute = route
         vc.selectedVectorIndex = indexPath.row
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
         vc.performSegueWithIdentifier("showVector", sender: self)
     }
     

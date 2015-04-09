@@ -44,8 +44,9 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="transitMode" value="BUS"/>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="responsibleForInit" value="YES"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="itemName" value="Routes"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="itemNamePlural" value="Routes"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="listSegue" value="busShowRouteList"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="itemNameSingular" value="Route"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="tableView" destination="SXX-0W-7Vu" id="9dn-x5-CHi"/>
@@ -93,8 +94,9 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="responsibleForInit" value="YES"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="transitMode" value="FERRY"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="itemName" value="Ferries"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="itemNamePlural" value="Ferries"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="listSegue" value="ferryShowRouteList"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="itemNameSingular" value="Ferry"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="tableView" destination="yVg-QA-g4Y" id="aLP-gf-xHA"/>

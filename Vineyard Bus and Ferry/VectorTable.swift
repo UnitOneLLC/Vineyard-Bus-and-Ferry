@@ -58,10 +58,12 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
     var scroller: UIScrollView?
     var delegate: VectorTableDelegate?
     var connectionsLabel: UILabel!
+    var itemText: (single: String, plural: String)!
     
-    init(frame: CGRect, route: Route, vectorIndex: Int) {
+    init(frame: CGRect, route: Route, vectorIndex: Int, text: (single: String, plural: String) ) {
         super.init(frame: frame)
         stopListWidth = frame.width * VectorTable.STOPLIST_RATIO
+        itemText = text
         
         setVector(forRoute: route, vectorIndex: vectorIndex)
         
@@ -80,7 +82,7 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
         connectionsLabel.textColor = UIColor.whiteColor()
         addSubview(connectionsLabel)
         
-        connectionTable = ConnectionTable(schedule: schedule)
+        connectionTable = ConnectionTable(schedule: schedule, text: itemText)
         connectionTable.delegate = self
         addSubview(connectionTable.connectionRouteTable)
         addSubview(connectionTable.connectionTimeTable)

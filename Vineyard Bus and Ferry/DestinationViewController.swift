@@ -13,19 +13,22 @@ class DestinationViewController: UIViewController {
     // values set in IB
     var responsibleForInit: Bool = false
     var transitMode: String!
-    var itemName: String!
+    var itemNameSingular: String!
+    var itemNamePlural: String!
     var listSegue: String!
     var scheduleLoaded: Bool = false
 
     var destinations: [String]!
     var destinationToDisplay: Int?
     var scheduleIsReady: Bool = false
+    var activity: UIActivityIndicatorView!
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         scheduleIsReady = false
+        startLoadingIndicator()
 
         loadScheduleForView() { (success: Bool) in
             if (success) {
@@ -50,6 +53,7 @@ class DestinationViewController: UIViewController {
                 self.tableView.delegate = self
                 dispatch_async(dispatch_get_main_queue()) {
                     self.tableView.reloadData()
+                    self.stopLoadingIndicator()
                 }
             }
         }
@@ -68,6 +72,22 @@ class DestinationViewController: UIViewController {
     func setupTableFrame() {
         var frame = CGRect(x: CGFloat(0.0), y: 0.0, width: view.frame.width, height: view.frame.height)
         tableView.frame = frame
+    }
+    
+    func startLoadingIndicator() {
+        let ACTIVITY_WIDTH: CGFloat = 50.0
+        if activity == nil {
+            let f = CGRect(x: (view.frame.width-ACTIVITY_WIDTH)/2, y: view.frame.height/3, width: ACTIVITY_WIDTH, height: ACTIVITY_WIDTH)
+            activity = UIActivityIndicatorView(frame: f)
+            view.addSubview(activity)
+        }
+        activity.startAnimating()
+    }
+    
+    func stopLoadingIndicator() {
+        if activity != nil {
+            activity.stopAnimating()
+        }
     }
 
     func loadScheduleForView(completionHandler: (success: Bool) -> Void) {
@@ -91,6 +111,7 @@ class DestinationViewController: UIViewController {
             if segId == listSegue && destinationToDisplay != nil {
                 
                 if let listVC = (segue.destinationViewController as? UINavigationController)?.viewControllers[0] as? RouteListViewController? {
+                    listVC!.itemText = (single: itemNameSingular, plural: itemNamePlural)
                     let s = AppDelegate.theScheduleManager.scheduleForMode(transitMode)
                     if destinationToDisplay == 0 {
                         // all routes
@@ -123,10 +144,10 @@ extension DestinationViewController: UITableViewDataSource, UITableViewDelegate 
         
         var labelText = ""
         if indexPath.row == 0 {
-            labelText = "All routes"
+            labelText = "All " + itemNamePlural
         }
         else {
-            labelText = itemName + " to " + destinations[indexPath.row - 1]
+            labelText = itemNamePlural + " to " + destinations[indexPath.row - 1]
         }
         
         cell.textLabel!.text = labelText

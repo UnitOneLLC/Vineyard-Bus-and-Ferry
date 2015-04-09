@@ -20,15 +20,17 @@ class ConnectionTable: NSObject, UITableViewDelegate, UITableViewDataSource {
     let CELL_HEIGHT_PADDING: Double = 10.0
     
     let schedule: Schedule!
+    var itemText: (single: String, plural: String)!
     var connectionRouteTable: UITableView!
     var connectionTimeTable: UITableView!
     var delegate: ConnectionTableDelegate?
     var rowHeights: [Double]!
     var _currentTrip: Trip?
     
-    init(schedule: Schedule) {
+    init(schedule: Schedule, text: (single: String, plural: String)) {
         super.init()
         self.schedule = schedule
+        itemText = text
     
         connectionRouteTable = UITableView()
         connectionRouteTable.separatorStyle = UITableViewCellSeparatorStyle.None
@@ -100,7 +102,7 @@ class ConnectionTable: NSObject, UITableViewDelegate, UITableViewDataSource {
     }
     
     func getTextForConnection(connection: Connection) -> String {
-        var labelText = "Route " + connection.shortName
+        var labelText = itemText.single + " " + connection.shortName
         if !connection.headSign.isEmpty {
             labelText += " to " + connection.headSign
         }

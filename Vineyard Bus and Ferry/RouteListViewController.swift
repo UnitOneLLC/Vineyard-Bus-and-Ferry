@@ -17,6 +17,7 @@ class RouteListViewController: IAdBannerViewController {
     var routes: [Route]?
     var groups: [String: [Route]]!
     var sortedKeys: [String]!
+    var itemText: (single: String, plural: String)!
     
     // set by cell on select
     var selectedRoute: Route!
@@ -65,6 +66,7 @@ class RouteListViewController: IAdBannerViewController {
             if let vectorVC = (segue.destinationViewController as? UINavigationController)?.viewControllers[0] as? VectorViewController? {
                 vectorVC!.route = selectedRoute
                 vectorVC!.vectorIndex = selectedVectorIndex
+                vectorVC!.itemText = itemText
             }
         }
     }
@@ -87,7 +89,7 @@ extension RouteListViewController: UITableViewDataSource {
         if indexPath.section < sortedKeys.count {
             if let routeSet = groups[sortedKeys[indexPath.section]] {
                 let r = routeSet[indexPath.row]
-                cell.initialize(route: r, width: tableView.frame.size.width)
+                cell.initialize(route: r, width: tableView.frame.size.width, text: itemText)
             }
         }
 

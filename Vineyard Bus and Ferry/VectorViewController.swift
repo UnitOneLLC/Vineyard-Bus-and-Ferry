@@ -19,6 +19,7 @@ class VectorViewController: IAdBannerViewController, DaySelectionControlDelegate
     // set from segue
     var route: Route!
     var vectorIndex: Int!
+    var itemText: (single: String, plural: String)!
     
     @IBOutlet var frameView: UIView!
     @IBOutlet weak var routeTitleVConstraint: NSLayoutConstraint!
@@ -68,7 +69,7 @@ class VectorViewController: IAdBannerViewController, DaySelectionControlDelegate
         
 
         let vtFrame = CGRect(x: 0.0, y: 0.0, width: schedBox.frame.width, height: 0.0)
-        vectorTable = VectorTable(frame: vtFrame, route: route, vectorIndex: vectorIndex)
+        vectorTable = VectorTable(frame: vtFrame, route: route, vectorIndex: vectorIndex, text: itemText)
         vectorTable.delegate = self
         vectorTable(route, vectorIndex: vectorIndex, stop: nil)
         schedBox.addSubview(vectorTable)
@@ -168,7 +169,7 @@ class VectorViewController: IAdBannerViewController, DaySelectionControlDelegate
             
             var labelText: String
             if routeSelected.shortName != nil && !routeSelected.shortName!.isEmpty {
-                labelText = "Route " + routeSelected.shortName! + " to " + routeSelected.vectors[vectorIndex].destination
+                labelText = itemText.single + " " + routeSelected.shortName! + " to " + routeSelected.vectors[vectorIndex].destination
             }
             else {
                 labelText = "To " + routeSelected.vectors[vectorIndex].destination
