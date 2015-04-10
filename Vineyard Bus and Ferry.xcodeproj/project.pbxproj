@@ -32,7 +32,6 @@
 		B6E067141AC7419D002705AB /* ConnectionTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E067131AC7419D002705AB /* ConnectionTable.swift */; };
 		B6E0671A1AC9C0C4002705AB /* blue-arrow-left.png in Resources */ = {isa = PBXBuildFile; fileRef = B6E067191AC9C0C4002705AB /* blue-arrow-left.png */; };
 		B6E0671C1AC9C0D9002705AB /* blue-arrow-right.png in Resources */ = {isa = PBXBuildFile; fileRef = B6E0671B1AC9C0D9002705AB /* blue-arrow-right.png */; };
-		B6E0671E1AC9DB67002705AB /* TripPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E0671D1AC9DB67002705AB /* TripPager.swift */; };
 		B6E067201AC9F8CB002705AB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E0671F1AC9F8CB002705AB /* MapViewController.swift */; };
 		B6FCADEE1AD59CCF00092EA5 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCADED1AD59CCF00092EA5 /* Settings.swift */; };
 /* End PBXBuildFile section */
@@ -77,7 +76,6 @@
 		B6E067131AC7419D002705AB /* ConnectionTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionTable.swift; path = ../ConnectionTable.swift; sourceTree = "<group>"; };
 		B6E067191AC9C0C4002705AB /* blue-arrow-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue-arrow-left.png"; sourceTree = "<group>"; };
 		B6E0671B1AC9C0D9002705AB /* blue-arrow-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue-arrow-right.png"; sourceTree = "<group>"; };
-		B6E0671D1AC9DB67002705AB /* TripPager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripPager.swift; sourceTree = "<group>"; };
 		B6E0671F1AC9F8CB002705AB /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B6FCADED1AD59CCF00092EA5 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Settings.swift; path = ../Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,7 +136,6 @@
 				B6388B511ABD993600D16058 /* RouteListCell.swift */,
 				B6388BB51AC0AA3E00D16058 /* VectorViewController.swift */,
 				B6E067111AC575F0002705AB /* DaySelectionControl.swift */,
-				B6E0671D1AC9DB67002705AB /* TripPager.swift */,
 				B607FD971AC2E27E004761BE /* VectorTable.swift */,
 				B607FD991AC315E5004761BE /* TripCollection.swift */,
 				B6E067131AC7419D002705AB /* ConnectionTable.swift */,
@@ -289,7 +286,6 @@
 				B6388B521ABD993600D16058 /* RouteListCell.swift in Sources */,
 				B60314D91ABB1AEC001D4788 /* Model.xcdatamodeld in Sources */,
 				B607FD9A1AC315E5004761BE /* TripCollection.swift in Sources */,
-				B6E0671E1AC9DB67002705AB /* TripPager.swift in Sources */,
 				B6E067201AC9F8CB002705AB /* MapViewController.swift in Sources */,
 				B60314A31ABA59C4001D4788 /* Utils.swift in Sources */,
 				B603147B1ABA14B0001D4788 /* AppDelegate.swift in Sources */,

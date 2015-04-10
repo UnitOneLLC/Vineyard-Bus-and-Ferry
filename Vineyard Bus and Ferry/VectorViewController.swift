@@ -10,7 +10,6 @@ import UIKit
 
 class VectorViewController: IAdBannerViewController, DaySelectionControlDelegate, VectorTableDelegate {
     
-    let SCHED_FRACTION: Double = 0.98
     let VERT_OFFSET_FOR_NAV: CGFloat = 80.0
     let DAY_SELECT_WIDTH: CGFloat = 230.0
     let SMALL_PAD: CGFloat = 10.0
@@ -48,7 +47,7 @@ class VectorViewController: IAdBannerViewController, DaySelectionControlDelegate
     
     func createSubViews() {
         let w: Double = Double(frameView.frame.size.width),
-            h: Double = SCHED_FRACTION * (Double(frameView.frame.size.height) - 112.0)
+            h: Double = Double(frameView.frame.size.height - 112.0)
         
         let daySelect = DaySelectionControl(width: DAY_SELECT_WIDTH)
         var dayFrame = daySelect.frame
@@ -85,6 +84,9 @@ class VectorViewController: IAdBannerViewController, DaySelectionControlDelegate
             }
             else if vectorIndex == 1 {
                 vectorTable.setVector(forRoute: route, vectorIndex: 0)
+            }
+            dispatch_async(dispatch_get_main_queue()) {
+                self.vectorTable.tripCollection.scrollToCurrent()
             }
         }
     }

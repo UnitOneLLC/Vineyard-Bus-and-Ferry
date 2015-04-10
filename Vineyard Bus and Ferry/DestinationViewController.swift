@@ -9,6 +9,8 @@
 import UIKit
 
 class DestinationViewController: UIViewController {
+    let ROW_HEIGHT: CGFloat = 44.0
+    let HEADER_HEIGHT: CGFloat = 22.0
     
     // values set in IB
     var responsibleForInit: Bool = false
@@ -49,11 +51,13 @@ class DestinationViewController: UIViewController {
                     }
                     self.destinations.sort() {$0 < $1}
                 }
+                self.tableView.rowHeight = self.ROW_HEIGHT
                 self.tableView.dataSource = self
                 self.tableView.delegate = self
                 dispatch_async(dispatch_get_main_queue()) {
                     self.tableView.reloadData()
                     self.stopLoadingIndicator()
+                    self.setupTableFrame()
                 }
             }
         }
@@ -70,7 +74,17 @@ class DestinationViewController: UIViewController {
     }
     
     func setupTableFrame() {
-        var frame = CGRect(x: CGFloat(0.0), y: 0.0, width: view.frame.width, height: view.frame.height)
+        var height: CGFloat
+        if destinations != nil && destinations.count > 0 {
+            height = CGFloat(destinations.count + 1) * ROW_HEIGHT + HEADER_HEIGHT + navigationController!.toolbar.frame.height
+        }
+        else {
+            height = view.frame.height
+        }
+        
+        
+        var frame = CGRect(x: CGFloat(0.0), y: CGFloat(0.0), width: view.frame.width, height: height)
+        println("set destination view frame to \(frame)")
         tableView.frame = frame
     }
     

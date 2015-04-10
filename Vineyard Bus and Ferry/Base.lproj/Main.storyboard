@@ -82,7 +82,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.39607846740000002" green="0.67450982329999998" blue="0.90980398650000005" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstAttribute="leadingMargin" secondItem="yVg-QA-g4Y" secondAttribute="leading" placeholder="YES" id="bKA-JG-KcJ"/>
                             <constraint firstAttribute="width" secondItem="yVg-QA-g4Y" secondAttribute="width" placeholder="YES" id="muU-4B-GQo"/>
