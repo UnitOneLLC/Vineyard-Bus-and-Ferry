@@ -171,7 +171,21 @@ class VectorViewController: IAdBannerViewController, DaySelectionControlDelegate
             
             var labelText: String
             if routeSelected.shortName != nil && !routeSelected.shortName!.isEmpty {
-                labelText = itemText.single + " " + routeSelected.shortName! + " to " + routeSelected.vectors[vectorIndex].destination
+                var dest = routeSelected.vectors[vectorIndex].destination
+                if dest == "Loop" {
+                    if routeSelected.waypoint != nil && !routeSelected.waypoint!.isEmpty {
+                        dest = routeSelected.waypoint!
+                    }
+                    else {
+                        dest = ""
+                    }
+                }
+                if !dest.isEmpty {
+                    labelText = itemText.single + " " + routeSelected.shortName! + " to " + dest
+                }
+                else {
+                    labelText = routeSelected.longName
+                }
             }
             else {
                 labelText = "To " + routeSelected.vectors[vectorIndex].destination

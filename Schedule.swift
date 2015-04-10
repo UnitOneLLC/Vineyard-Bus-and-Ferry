@@ -166,6 +166,7 @@ class Route {
     let shortName: String?
     let longName: String!
     let colorRGB: String?
+    let waypoint: String?
     let vectors: [Vector]!
     
     init(fromDictionary dico: NSDictionary) {
@@ -174,6 +175,7 @@ class Route {
         shortName = dico["shortName"] as? String
         longName = dico["longName"] as String
         colorRGB = dico["colorCode"] as? String
+        waypoint = dico["waypoint"] as? String
         
         let vectorArr = dico["vectors"] as [NSDictionary]
         vectors = [Vector]()

@@ -92,7 +92,11 @@ class RouteListCell: UITableViewCell {
 extension RouteListCell: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("routeSubCell", forIndexPath: indexPath) as UITableViewCell
-        let attrText = getAttributedString("   To " + route.vectors[indexPath.row].destination, withFont: UIFont.italicSystemFontOfSize(SUBCELL_FONT_SIZE))
+        var dest = route.vectors[indexPath.row].destination
+        if dest == "Loop" && route.waypoint != nil && !route.waypoint!.isEmpty {
+            dest = route.waypoint!
+        }
+        let attrText = getAttributedString("   To " + dest, withFont: UIFont.italicSystemFontOfSize(SUBCELL_FONT_SIZE))
         cell.textLabel!.attributedText = attrText
         
         return cell

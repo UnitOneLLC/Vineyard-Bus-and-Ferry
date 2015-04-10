@@ -270,26 +270,18 @@ class ScheduleManager : Printable {
         return schedulesByAgency[agencyId]
     }
     
-    func getRouteDestinations(s: Schedule) -> [String] {
-        var result = [String]()
-
-        for r in s.routes {
-            for v in r.vectors {
-                if !contains(result, v.destination) {
-                    result.append(v.destination)
-                }
-            }
-        }
-
-        return result
-    }
-    
     func getRouteDestinationsForAgency(agencyId: String) -> [String] {
         var result = [String]()
         if let s = schedulesByAgency[agencyId] {
             for r in s.routes {
                 if r.agency == agencyId {
+                    if r.waypoint != nil && !r.waypoint!.isEmpty {
+                        result.append(r.waypoint!)
+                    }
                     for v in r.vectors {
+                        if v.destination == "Loop" {
+                            continue
+                        }
                         if !contains(result, v.destination) {
                             result.append(v.destination)
                         }
@@ -310,10 +302,15 @@ class ScheduleManager : Printable {
             if agencyId != nil && r.agency != agencyId! {
                 continue
             }
-            for v in r.vectors {
-                if destination == v.destination {
-                    result.append(r)
-                    break
+            if r.waypoint != nil && r.waypoint! == destination {
+                result.append(r)
+            }
+            else {
+                for v in r.vectors {
+                    if destination == v.destination {
+                        result.append(r)
+                        break
+                    }
                 }
             }
         }
