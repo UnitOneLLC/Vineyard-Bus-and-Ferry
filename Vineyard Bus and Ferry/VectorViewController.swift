@@ -152,8 +152,8 @@ class VectorViewController: IAdBannerViewController, DaySelectionControlDelegate
             let offsetInterval = NSTimeInterval(offset * SECONDS_PER_DAY)
             
             appDel.effectiveDate = NSDate(timeInterval: offsetInterval, sinceDate: today)
-            vectorTable.resetTripCollection()
         }
+        vectorTable.resetTripCollection()
     }
     
     // MARK -- VectorTableDelegate

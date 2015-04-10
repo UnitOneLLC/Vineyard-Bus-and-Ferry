@@ -128,7 +128,8 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bg0-pv-Md7" id="1YQ-hN-tUc">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="25" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="606-kF-Klg">
+                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="25" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="606-kF-Klg">
+                                                    <rect key="frame" x="0.0" y="0.0" width="592" height="35"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <prototypes>
                                                         <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="routeSubCell" id="fjb-Iu-NFx">
@@ -140,18 +141,6 @@
                                                     </prototypes>
                                                 </tableView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="606-kF-Klg" firstAttribute="leading" secondItem="1YQ-hN-tUc" secondAttribute="leadingMargin" constant="-8" id="AiZ-Ea-FHf"/>
-                                                <constraint firstItem="606-kF-Klg" firstAttribute="top" secondItem="1YQ-hN-tUc" secondAttribute="bottomMargin" constant="-44" id="EUj-E0-UDj"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="606-kF-Klg" secondAttribute="bottom" constant="35" id="Mh1-gd-nWl"/>
-                                                <constraint firstItem="606-kF-Klg" firstAttribute="top" secondItem="1YQ-hN-tUc" secondAttribute="top" id="W9g-PM-lMW"/>
-                                                <constraint firstItem="606-kF-Klg" firstAttribute="trailing" secondItem="1YQ-hN-tUc" secondAttribute="trailingMargin" constant="-592" placeholder="YES" id="d8m-VZ-4ud"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="EUj-E0-UDj"/>
-                                                </mask>
-                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="subTableView" destination="606-kF-Klg" id="Lvo-oZ-IFI"/>
