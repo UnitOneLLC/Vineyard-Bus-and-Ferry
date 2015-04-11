@@ -11,17 +11,9 @@ import CoreData
 
 let EXTENSION = ".json"
 
-let DOMAIN_STEM = "http://frederickhewett.com/"
-
-let modeURLMap: [String: String] = [
-    "BUS":   DOMAIN_STEM + "transit/vbf/bus.json",
-    "FERRY": DOMAIN_STEM + "transit/vbf/ferry.json",
-]
-
-let modeVersionURLMap: [String: String] = [
-    "BUS":   DOMAIN_STEM + "transit/vbf/version-bus.json",
-    "FERRY": DOMAIN_STEM + "transit/vbf/version-ferry.json",
-]
+var DOMAIN_STEM : String!
+var modeURLMap: [String: String]!
+var modeVersionURLMap: [String: String]!
 
 class ScheduleManager : Printable {
     var schedulesByAgency: [String: Schedule]
@@ -30,6 +22,33 @@ class ScheduleManager : Printable {
     init() {
         schedulesByAgency = [String: Schedule]()
         schedulesByMode   = [String: Schedule]()
+        readUrlData()
+    }
+    
+    func readUrlData() {
+        let path = NSBundle.mainBundle().pathForResource("urlinfo", ofType: "json")
+        var err: NSError?
+        
+        modeURLMap = [String: String]()
+        modeVersionURLMap = [String: String]()
+
+        if let json = NSData(contentsOfFile: path!) {
+            var dico = NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions.MutableContainers, error: &err) as! NSDictionary
+            DOMAIN_STEM = dico["domainStem"] as! String
+            
+            var urlDico = dico["urlMap"] as! NSDictionary
+            for key in urlDico.keyEnumerator() {
+                let mode = key as! String
+                let url = urlDico[mode] as! String
+                modeURLMap[mode] = DOMAIN_STEM + url
+            }
+            var verDico = dico["versionUrlMap"] as! NSDictionary
+            for key in verDico.keyEnumerator() {
+                let mode = key as! String
+                let url = verDico[mode] as! String
+                modeVersionURLMap[mode] = DOMAIN_STEM + url
+            }
+        }
     }
     
     func addScheduleForAgency(agencyId: String, sched: Schedule) {

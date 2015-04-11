@@ -1,0 +1,11 @@
+{
+    "domainStem": "http://frederickhewett.com/",
+    "urlMap": {
+        "BUS": "transit/vbf/bus.json",
+        "FERRY": "transit/vbf/ferry.json"
+    },
+    "versionUrlMap": {
+        "BUS": "transit/vbf/version-bus.json",
+        "FERRY": "transit/vbf/version-ferry.json"
+    }
+}

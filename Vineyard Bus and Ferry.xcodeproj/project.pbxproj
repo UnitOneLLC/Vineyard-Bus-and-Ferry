@@ -25,13 +25,12 @@
 		B6388B501ABD97B300D16058 /* RouteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6388B4F1ABD97B300D16058 /* RouteListViewController.swift */; };
 		B6388B521ABD993600D16058 /* RouteListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6388B511ABD993600D16058 /* RouteListCell.swift */; };
 		B6388BB61AC0AA3E00D16058 /* VectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6388BB51AC0AA3E00D16058 /* VectorViewController.swift */; };
+		B64B72FF1AD942AA00143276 /* urlinfo.json in Resources */ = {isa = PBXBuildFile; fileRef = B64B72FE1AD942AA00143276 /* urlinfo.json */; };
 		B687F65F1ACDE9E70042962E /* IAdBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B687F65E1ACDE9E70042962E /* IAdBannerViewController.swift */; };
 		B687F6611ACDEADA0042962E /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B687F6601ACDEADA0042962E /* iAd.framework */; };
 		B6CCEE8C1ABBA8E90051E567 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CCEE8B1ABBA8E90051E567 /* SettingsManager.swift */; };
 		B6E067121AC575F0002705AB /* DaySelectionControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E067111AC575F0002705AB /* DaySelectionControl.swift */; };
 		B6E067141AC7419D002705AB /* ConnectionTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E067131AC7419D002705AB /* ConnectionTable.swift */; };
-		B6E0671A1AC9C0C4002705AB /* blue-arrow-left.png in Resources */ = {isa = PBXBuildFile; fileRef = B6E067191AC9C0C4002705AB /* blue-arrow-left.png */; };
-		B6E0671C1AC9C0D9002705AB /* blue-arrow-right.png in Resources */ = {isa = PBXBuildFile; fileRef = B6E0671B1AC9C0D9002705AB /* blue-arrow-right.png */; };
 		B6E067201AC9F8CB002705AB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E0671F1AC9F8CB002705AB /* MapViewController.swift */; };
 		B6FCADEE1AD59CCF00092EA5 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCADED1AD59CCF00092EA5 /* Settings.swift */; };
 /* End PBXBuildFile section */
@@ -69,13 +68,12 @@
 		B6388B4F1ABD97B300D16058 /* RouteListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteListViewController.swift; sourceTree = "<group>"; };
 		B6388B511ABD993600D16058 /* RouteListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteListCell.swift; sourceTree = "<group>"; };
 		B6388BB51AC0AA3E00D16058 /* VectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorViewController.swift; sourceTree = "<group>"; };
+		B64B72FE1AD942AA00143276 /* urlinfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = urlinfo.json; sourceTree = "<group>"; };
 		B687F65E1ACDE9E70042962E /* IAdBannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAdBannerViewController.swift; sourceTree = "<group>"; };
 		B687F6601ACDEADA0042962E /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		B6CCEE8B1ABBA8E90051E567 /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		B6E067111AC575F0002705AB /* DaySelectionControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaySelectionControl.swift; sourceTree = "<group>"; };
 		B6E067131AC7419D002705AB /* ConnectionTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionTable.swift; path = ../ConnectionTable.swift; sourceTree = "<group>"; };
-		B6E067191AC9C0C4002705AB /* blue-arrow-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue-arrow-left.png"; sourceTree = "<group>"; };
-		B6E0671B1AC9C0D9002705AB /* blue-arrow-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue-arrow-right.png"; sourceTree = "<group>"; };
 		B6E0671F1AC9F8CB002705AB /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B6FCADED1AD59CCF00092EA5 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Settings.swift; path = ../Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,9 +151,8 @@
 		B60314781ABA14B0001D4788 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B6E0671B1AC9C0D9002705AB /* blue-arrow-right.png */,
-				B6E067191AC9C0C4002705AB /* blue-arrow-left.png */,
 				B60314791ABA14B0001D4788 /* Info.plist */,
+				B64B72FE1AD942AA00143276 /* urlinfo.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -258,9 +255,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B60314821ABA14B0001D4788 /* Main.storyboard in Resources */,
+				B64B72FF1AD942AA00143276 /* urlinfo.json in Resources */,
 				B60314871ABA14B0001D4788 /* LaunchScreen.xib in Resources */,
-				B6E0671C1AC9C0D9002705AB /* blue-arrow-right.png in Resources */,
-				B6E0671A1AC9C0C4002705AB /* blue-arrow-left.png in Resources */,
 				B60314841ABA14B0001D4788 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
