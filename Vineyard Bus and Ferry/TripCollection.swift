@@ -20,8 +20,8 @@ class TripColllectionLayout : UICollectionViewFlowLayout {
             return nil
         }
         for (var i=1; i < result.count; ++i) {
-            var currentLayoutAttributes = result[i] as UICollectionViewLayoutAttributes
-            var prevLayoutAttributes = result[i-1] as UICollectionViewLayoutAttributes
+            var currentLayoutAttributes = result[i] as! UICollectionViewLayoutAttributes
+            var prevLayoutAttributes = result[i-1] as! UICollectionViewLayoutAttributes
             var currentFrame = currentLayoutAttributes.frame
             
             currentFrame.origin.x = CGFloat(currentLayoutAttributes.indexPath.row) * currentFrame.width
@@ -45,16 +45,16 @@ class TripCollection: NSObject {
     var stopSequence: [Stop]!
     
     init? (stopSequence: [Stop], rowHeights: [Double], tripArray: [Trip], frame: CGRect) {
-        super.init()
-        if tripArray.count == 0 {
-            return nil
-        }
-        
         self.trips = tripArray
         self.frame = frame
         self.stopSequence = stopSequence
         self.rowHeights = rowHeights
         self.stopTimeTables = [StopTimeTable]()
+        super.init()
+        if tripArray.count == 0 {
+            return nil
+        }
+        
         
         var layout = TripColllectionLayout()
         layout.scrollDirection = UICollectionViewScrollDirection.Horizontal
@@ -137,7 +137,7 @@ class TripCollection: NSObject {
 extension TripCollection:  UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier(TripCollection.COLL_REUSE_ID, forIndexPath: indexPath) as UICollectionViewCell
+        var cell = collectionView.dequeueReusableCellWithReuseIdentifier(TripCollection.COLL_REUSE_ID, forIndexPath: indexPath) as! UICollectionViewCell
 
         let stopTimeTable = StopTimeTable(stopSequence: stopSequence, trip: trips[indexPath.row], rowHeights: rowHeights)
         stopTimeTables.append(stopTimeTable)

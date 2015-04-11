@@ -38,7 +38,7 @@ class DaySelectionControl : UIView {
         
         var buttonFrame = CGRect(x: 0.0, y: VMARGIN, width: deltaX, height: HEIGHT - (2*VMARGIN))
         for abbrev in dayAbbrevs {
-            var button = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
+            var button = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
             button.frame = buttonFrame
             button.userInteractionEnabled = true
             buttonFrame.origin.x += deltaX
@@ -54,7 +54,8 @@ class DaySelectionControl : UIView {
             attrs[NSFontAttributeName] = UIFont.boldSystemFontOfSize(FONT_SIZE)
             
             let selected = NSMutableAttributedString(string: abbrev, attributes: attrs)
-            selected.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue, range: NSMakeRange(0, button.titleLabel!.text!.utf16Count))
+            selected.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue, range: NSMakeRange(0,
+                  count(button.titleLabel!.text!.utf16)))
 
             button.setAttributedTitle(selected, forState: UIControlState.Selected)
 

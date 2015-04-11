@@ -84,7 +84,6 @@ class DestinationViewController: UIViewController {
         
         
         var frame = CGRect(x: CGFloat(0.0), y: CGFloat(0.0), width: view.frame.width, height: height)
-        println("set destination view frame to \(frame)")
         tableView.frame = frame
     }
     
@@ -106,7 +105,7 @@ class DestinationViewController: UIViewController {
 
     func loadScheduleForView(completionHandler: (success: Bool) -> Void) {
         
-        let moc = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
+        let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
 
         AppDelegate.theScheduleManager.acquireSchedule(forMode: transitMode, moc: moc) { (s: Schedule?) in
             if s != nil {
@@ -154,7 +153,7 @@ extension DestinationViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("destinationCell", forIndexPath: indexPath) as UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("destinationCell", forIndexPath: indexPath) as! UITableViewCell
         
         var labelText = ""
         if indexPath.row == 0 {

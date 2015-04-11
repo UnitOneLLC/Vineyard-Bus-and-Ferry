@@ -30,8 +30,8 @@ class Agency {
     let lang: String?
 
     init(fromDictionary dico: NSDictionary) {
-        id = dico["id"] as String
-        name = dico["name"] as String
+        id = dico["id"] as! String
+        name = dico["name"] as! String
         url = dico["url"] as? String
         timezone = dico["timezone"] as? String
         phone = dico["phone"] as? String
@@ -45,9 +45,9 @@ class StopTime {
     let seq: Int!
     
     init(fromDictionary dico: NSDictionary) {
-        id = dico["id"] as String
-        time = TimeOfDay(fromString: dico["time"] as String)
-        seq = dico["seq"] as Int
+        id = dico["id"] as! String
+        time = TimeOfDay(fromString: dico["time"] as! String)
+        seq = dico["seq"] as! Int
     }
 }
 
@@ -59,11 +59,11 @@ class Connection {
     let shortName: String!
     
     init(fromDictionary dico: NSDictionary) {
-        routeId = dico["routeId"] as String
-        headSign = dico["headsign"] as String
-        tripId = dico["tripId"] as String
-        time = TimeOfDay(fromString: dico["time"] as String)
-        shortName = dico["shortName"] as String
+        routeId = dico["routeId"] as! String
+        headSign = dico["headsign"] as! String
+        tripId = dico["tripId"] as! String
+        time = TimeOfDay(fromString: dico["time"] as! String)
+        shortName = dico["shortName"] as! String
     }
 }
 
@@ -74,16 +74,16 @@ class Trip {
     let connections: [Connection]!
     
     init(fromDictionary dico: NSDictionary) {
-        id = dico["tripId"] as String
-        serviceId = dico["calId"] as String
+        id = dico["tripId"] as! String
+        serviceId = dico["calId"] as! String
         
-        let stopTimeArr = dico["stops"] as [NSDictionary]
+        let stopTimeArr = dico["stops"] as! [NSDictionary]
         stops = [StopTime]()
         for item in stopTimeArr {
             stops.append(StopTime(fromDictionary: item))
         }
         
-        let connectArr = dico["connections"] as [NSDictionary]
+        let connectArr = dico["connections"] as! [NSDictionary]
         connections = [Connection]()
         for item in connectArr {
             connections.append(Connection(fromDictionary: item))
@@ -99,14 +99,14 @@ class Vector {
     
     init(fromDictionary dico: NSDictionary) {
         origin = dico["origin"] as? String
-        destination = dico["destination"] as String
+        destination = dico["destination"] as! String
         
-        let tripArr = dico["trips"] as [NSDictionary]
+        let tripArr = dico["trips"] as! [NSDictionary]
         trips = [Trip]()
         for item in tripArr {
             trips.append(Trip(fromDictionary: item))
         }
-        let polyStr = dico["polyline"] as String
+        let polyStr = dico["polyline"] as! String
         polyline = Polyline(encodedPolyline: polyStr, encodedLevels: nil)
     }
 }
@@ -117,9 +117,9 @@ class Stop {
     let coord: CLLocationCoordinate2D!
     
     init(fromDictionary dico: NSDictionary) {
-        id = dico["id"] as String
-        name = dico["name"] as String
-        coord = CLLocationCoordinate2D(latitude: dico["lat"] as Double, longitude: dico["lng"] as Double)
+        id = dico["id"] as! String
+        name = dico["name"] as! String
+        coord = CLLocationCoordinate2D(latitude: dico["lat"] as! Double, longitude: dico["lng"] as! Double)
     }
 }
 
@@ -135,23 +135,23 @@ class ServiceCalendar {
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         
-        id = dico["serviceId"] as String
-        let intDays = dico["days"] as [Int]
+        id = dico["serviceId"] as! String
+        let intDays = dico["days"] as! [Int]
         daysActive = [Bool](count: 7, repeatedValue: false)
         for (var i=0; i < 7; ++i) {
             daysActive[i] = intDays[i] == 1
         }
         
-        startDate = formatter.dateFromString(dico["startDate"] as String)
-        endDate = formatter.dateFromString(dico["endDate"] as String)
+        startDate = formatter.dateFromString(dico["startDate"] as! String)
+        endDate = formatter.dateFromString(dico["endDate"] as! String)
         
-        let addExcs = dico["addExceptions"] as [String]
+        let addExcs = dico["addExceptions"] as! [String]
         activeExceptionDates = [NSDate]()
         for item in addExcs {
             activeExceptionDates.append(formatter.dateFromString(item)!)
         }
         
-        let removeExcs = dico["removeExceptions"] as [String]
+        let removeExcs = dico["removeExceptions"] as! [String]
         inactiveExceptionDates = [NSDate]()
         for item in removeExcs {
             inactiveExceptionDates.append(formatter.dateFromString(item)!)
@@ -170,14 +170,14 @@ class Route {
     let vectors: [Vector]!
     
     init(fromDictionary dico: NSDictionary) {
-        id = dico["id"] as String
-        agency = dico["agency"] as String
+        id = dico["id"] as! String
+        agency = dico["agency"] as! String
         shortName = dico["shortName"] as? String
-        longName = dico["longName"] as String
+        longName = dico["longName"] as! String
         colorRGB = dico["colorCode"] as? String
         waypoint = dico["waypoint"] as? String
         
-        let vectorArr = dico["vectors"] as [NSDictionary]
+        let vectorArr = dico["vectors"] as! [NSDictionary]
         vectors = [Vector]()
         for item in vectorArr {
             vectors.append(Vector(fromDictionary: item))
@@ -193,27 +193,27 @@ class Schedule {
     
     init(fromJson json: NSData) {
         var err: NSError?
-        var dico = NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions.MutableContainers, error: &err) as NSDictionary
+        var dico = NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions.MutableContainers, error: &err) as! NSDictionary
         
-        let agencyArr = dico["agencies"] as [NSDictionary]
+        let agencyArr = dico["agencies"] as! [NSDictionary]
         self.agencies = [Agency]()
         for item in agencyArr {
             self.agencies.append(Agency(fromDictionary: item))
         }
         
-        let routesArr = dico["routes"] as [NSDictionary]
+        let routesArr = dico["routes"] as! [NSDictionary]
         self.routes = [Route]()
         for item in routesArr {
             self.routes.append(Route(fromDictionary: item))
         }
         
-        let stopsArr = dico["stops"] as [NSDictionary]
+        let stopsArr = dico["stops"] as! [NSDictionary]
         self.stops = [Stop]()
         for item in stopsArr {
             self.stops.append(Stop(fromDictionary: item))
         }
         
-        let servicesArr = dico["calendars"] as [NSDictionary]
+        let servicesArr = dico["calendars"] as! [NSDictionary]
         self.services = [ServiceCalendar]()
         for item in servicesArr {
             self.services.append(ServiceCalendar(fromDictionary: item))

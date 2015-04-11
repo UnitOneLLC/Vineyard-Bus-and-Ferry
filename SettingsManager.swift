@@ -22,9 +22,9 @@ class SettingsManager : Printable {
     func isSettingsObjectCreated(moc: NSManagedObjectContext) -> Bool {
         var error: NSError?
         let fetchRequest = NSFetchRequest(entityName: ENTITY_SETTINGS)
-        let fetchedResults = moc.executeFetchRequest(fetchRequest, error: &error) as [Settings]?
+        let fetchedResults = moc.executeFetchRequest(fetchRequest, error: &error) as! [Settings]?
         
-        return fetchedResults? != nil && fetchedResults!.count > 0
+        return fetchedResults != nil && fetchedResults!.count > 0
     }
     
     func storeSettingsObject(moc: NSManagedObjectContext, s: Settings) {
@@ -32,7 +32,7 @@ class SettingsManager : Printable {
     }
     
     func createInitialAppParametersObject(#moc: NSManagedObjectContext) -> Bool {
-        let newSettings = NSEntityDescription.insertNewObjectForEntityForName(ENTITY_SETTINGS, inManagedObjectContext: moc) as Settings;
+        let newSettings = NSEntityDescription.insertNewObjectForEntityForName(ENTITY_SETTINGS, inManagedObjectContext: moc) as! Settings;
         newSettings.busVersion = -1
         newSettings.ferryVersion = -1
         var error: NSError?
@@ -44,7 +44,7 @@ class SettingsManager : Printable {
         
         let fetchRequest = NSFetchRequest(entityName: ENTITY_SETTINGS)
         var error: NSError?
-        let fetchedResults = moc.executeFetchRequest(fetchRequest, error: &error) as [Settings]?
+        let fetchedResults = moc.executeFetchRequest(fetchRequest, error: &error) as! [Settings]?
         if (error != nil || fetchedResults == nil) {
             Logger.log(fromSource: self, level: .ERROR, message: "failed to get app parameters")
         }
@@ -68,7 +68,7 @@ class SettingsManager : Printable {
         
         let fetchRequest = NSFetchRequest(entityName: ENTITY_SETTINGS)
         var error: NSError?
-        let fetchedResults = moc.executeFetchRequest(fetchRequest, error: &error) as [Settings]?
+        let fetchedResults = moc.executeFetchRequest(fetchRequest, error: &error) as! [Settings]?
         if (error != nil || fetchedResults == nil) {
             Logger.log(fromSource: self, level: .ERROR, message: "failed to get app parameters")
         }

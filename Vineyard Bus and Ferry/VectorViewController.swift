@@ -136,7 +136,7 @@ class VectorViewController: IAdBannerViewController, DaySelectionControlDelegate
         
         // reset the effective date
         let today = NSDate()
-        let appDel = UIApplication.sharedApplication().delegate as AppDelegate
+        let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
         
         let indexToday = ScheduleManager.getDayOfWeekIndex(forDate: today)
         if index == indexToday {

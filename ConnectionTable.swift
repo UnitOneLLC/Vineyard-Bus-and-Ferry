@@ -28,8 +28,8 @@ class ConnectionTable: NSObject, UITableViewDelegate, UITableViewDataSource {
     var _currentTrip: Trip?
     
     init(schedule: Schedule, text: (single: String, plural: String)) {
-        super.init()
         self.schedule = schedule
+        super.init()
         itemText = text
     
         connectionRouteTable = UITableView()
@@ -79,12 +79,10 @@ class ConnectionTable: NSObject, UITableViewDelegate, UITableViewDataSource {
             frame = connectionTimeTable.frame
             frame.size.height = height
             connectionTimeTable.frame = frame
-            println("time table frame \(connectionTimeTable.frame)")
             
             frame = connectionRouteTable.frame
             frame.size.height = height
             connectionRouteTable.frame = frame
-            println("route table frame \(connectionRouteTable.frame)")
         }
     }
 
@@ -116,7 +114,7 @@ class ConnectionTable: NSObject, UITableViewDelegate, UITableViewDataSource {
         }
         
         if tableView === connectionTimeTable {
-            var cell = tableView.dequeueReusableCellWithIdentifier(TIME_TABLE_CELL_ID, forIndexPath: indexPath) as UITableViewCell
+            var cell = tableView.dequeueReusableCellWithIdentifier(TIME_TABLE_CELL_ID, forIndexPath: indexPath) as! UITableViewCell
             if connection != nil {
                 let labelText = ScheduleManager.formatTimeOfDay(connection!.time)
                 cell.textLabel!.attributedText = getAttributedString(labelText, withFont: VectorTable.cellFont)
@@ -124,7 +122,7 @@ class ConnectionTable: NSObject, UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         else {
-            var cell = tableView.dequeueReusableCellWithIdentifier(ROUTE_TABLE_CELL_ID, forIndexPath: indexPath) as VectorTableStopCell
+            var cell = tableView.dequeueReusableCellWithIdentifier(ROUTE_TABLE_CELL_ID, forIndexPath: indexPath) as! VectorTableStopCell
             if connection != nil  {
                 let labelText = getTextForConnection(connection!)
                 cell.textLabel!.numberOfLines = 0

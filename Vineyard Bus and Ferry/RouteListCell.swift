@@ -52,10 +52,6 @@ class RouteListCell: UITableViewCell {
             addSubview(longNameLabel)
         }
         
-        subTableView.dataSource = self
-        subTableView.delegate = self
-        subTableView.reloadData()
-
         shortNameLabel.font = UIFont.systemFontOfSize(SMALL_FONT_SIZE)
         shortNameLabel.numberOfLines = 0
         shortNameLabel.lineBreakMode = .ByWordWrapping
@@ -65,6 +61,10 @@ class RouteListCell: UITableViewCell {
         longNameLabel.numberOfLines = 0
         longNameLabel.lineBreakMode = .ByWordWrapping
         longNameLabel.attributedText = getAttributedString(route.longName, withFont: UIFont.boldSystemFontOfSize(LARGE_FONT_SIZE))
+        
+        subTableView.dataSource = self
+        subTableView.delegate = self
+        subTableView.reloadData()
         
     }
     
@@ -91,7 +91,7 @@ class RouteListCell: UITableViewCell {
 
 extension RouteListCell: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("routeSubCell", forIndexPath: indexPath) as UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("routeSubCell", forIndexPath: indexPath) as! UITableViewCell
         var dest = route.vectors[indexPath.row].destination
         if dest == "Loop" && route.waypoint != nil && !route.waypoint!.isEmpty {
             dest = route.waypoint!
@@ -108,7 +108,7 @@ extension RouteListCell: UITableViewDataSource {
 
 extension RouteListCell: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var vc = (self.superview!.superview as UITableView).delegate as RouteListViewController
+        var vc = (self.superview!.superview as! UITableView).delegate as! RouteListViewController
         vc.selectedRoute = route
         vc.selectedVectorIndex = indexPath.row
         tableView.deselectRowAtIndexPath(indexPath, animated: false)

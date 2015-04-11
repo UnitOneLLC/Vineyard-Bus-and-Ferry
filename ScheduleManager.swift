@@ -45,7 +45,7 @@ class ScheduleManager : Printable {
     }
     
     func getNameOfStoredFile(mode: String) -> String {
-        var docPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        var docPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
         let filePath = docPath.stringByAppendingPathComponent(mode + EXTENSION)
         return filePath
     }
@@ -105,9 +105,9 @@ class ScheduleManager : Printable {
             var err: NSError?
 
             var version: Int
-            var dico = NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions.MutableContainers, error: &err) as NSDictionary
+            var dico = NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions.MutableContainers, error: &err) as! NSDictionary
             if err == nil {
-                version = dico["version"] as Int
+                version = dico["version"] as! Int
                 Logger.log(fromSource: self, level: .INFO, message: "Current version for mode \(mode) is \(version)")
             }
             else {
@@ -135,7 +135,7 @@ class ScheduleManager : Printable {
     func getStoredVersion(forMode mode: String, moc: NSManagedObjectContext) -> Int {
         if let parameterName = getVersionParameterName(forMode: mode) {
             if let version: NSNumber? = AppDelegate.theSettingsManager.getSetting(parameter: parameterName, moc: moc) {
-                return version as Int
+                return version as! Int
             }
             else {
                 return -1
@@ -150,7 +150,6 @@ class ScheduleManager : Printable {
     func processSchedule(forMode mode: String, sched: Schedule) {
         addScheduleForMode(mode, sched: sched)
         for agency in sched.agencies {
-            println("adding schedule \(agency.id)")
             addScheduleForAgency(agency.id, sched: sched)
         }
     }
@@ -207,58 +206,6 @@ class ScheduleManager : Printable {
                 completionHandler(s: nil)
                 // need an alert here
             }
-        }
-    }
-    
-    
-    
-    func oldAcquireSchedule(forMode mode: String, moc: NSManagedObjectContext, completionHandler: ((s: Schedule?)->Void)) {
-        let loadHandler: (data: NSData?) -> (Void) = { (data: NSData?) -> (Void) in
-        
-            if (data != nil) {
-                self.saveScheduleToFile(data!, mode: mode)
-                
-                let s = Schedule(fromJson: data!)
-                self.addScheduleForMode(mode, sched: s)
-                for agency in s.agencies {
-                    println("adding schedule \(agency.id)")
-                    self.addScheduleForAgency(agency.id, sched: s)
-                }
-                completionHandler(s: s)
-            }
-        }
-        
-        if isScheduleFileStored(mode) {
-            
-            if let lastDownload: NSDate? = AppDelegate.theSettingsManager.getSetting(parameter: "lastDownloadTime", moc: moc) {
-                if normalizedDate(lastDownload!).isBefore(normalizedDate(NSDate())) {
-                    downloadSchedule(forMode: mode, moc: moc, loadHandler)
-                    return
-                }
-            }
-
-            if let s = readScheduleFromFile(mode) {
-                self.addScheduleForMode(mode, sched: s)
-
-                for agency in s.agencies {
-                    println("adding schedule \(agency.id)")
-                    self.addScheduleForAgency(agency.id, sched: s)
-                }
-                completionHandler(s: s)
-
-                if isInternetConnected() {
-                    downloadSchedule(forMode: mode, moc: moc, loadHandler)
-                }
-                else {
-                    Logger.log(fromSource: self, level: .ERROR, message: "Error: out of date and no internet")
-                }
-            }
-        }
-        else if isInternetConnected() {
-            downloadSchedule(forMode: mode, moc: moc, loadHandler)
-        }
-        else {
-            Logger.log(fromSource: self, level: .ERROR, message: "error: schedule not stored and not connected")
         }
     }
     

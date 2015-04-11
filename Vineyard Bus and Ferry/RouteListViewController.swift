@@ -85,7 +85,7 @@ extension RouteListViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("routeCell", forIndexPath: indexPath) as RouteListCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("routeCell", forIndexPath: indexPath) as! RouteListCell
         if indexPath.section < sortedKeys.count {
             if let routeSet = groups[sortedKeys[indexPath.section]] {
                 let r = routeSet[indexPath.row]

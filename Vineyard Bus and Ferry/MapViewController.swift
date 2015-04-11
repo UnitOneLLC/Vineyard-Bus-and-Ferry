@@ -216,7 +216,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
         
         if view.annotation is StopAnnotation {
-            let stop = (view.annotation as StopAnnotation).stop
+            let stop = (view.annotation as! StopAnnotation).stop
             selectStop(stop)
         }
     }
@@ -251,7 +251,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     func initStopTimes() {
         if stopTimes == nil && targetStop != nil {
-            let effDate = (UIApplication.sharedApplication().delegate as AppDelegate).effectiveDate
+            let effDate = (UIApplication.sharedApplication().delegate as! AppDelegate).effectiveDate
             stopTimes = AppDelegate.theScheduleManager.getStopTimes(forStop: targetStop!.id,
                 inVector: route.vectors[vectorIndex], inSchedule: schedule, forDate: effDate)
         }
@@ -287,8 +287,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
         
         var attrStr = getMutableAttributedString(labelText, withFont: UIFont.systemFontOfSize(TIME_LABEL_FONT_SIZE))
-        let beforeRange = NSMakeRange(countElements(prefix), countElements(beforeStr))
-        let afterRange =  NSMakeRange(countElements(prefix + beforeStr), countElements(afterStr))
+        let beforeRange = NSMakeRange(count(prefix),count(beforeStr))
+        let afterRange =  NSMakeRange(count(prefix + beforeStr), count(afterStr))
         
         attrStr.addAttribute(NSForegroundColorAttributeName, value: UIColor.lightGrayColor(), range: beforeRange)
         attrStr.addAttribute(NSForegroundColorAttributeName, value: UIColor.blackColor(), range: afterRange)
@@ -302,7 +302,7 @@ extension MapViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if targetStop != nil {
             initStopTimes()
-            var cell = tableView.dequeueReusableCellWithIdentifier(STOP_TABLE_REUSE_ID, forIndexPath: indexPath) as UITableViewCell
+            var cell = tableView.dequeueReusableCellWithIdentifier(STOP_TABLE_REUSE_ID, forIndexPath: indexPath) as! UITableViewCell
             if stopTimes != nil {
                 var row = indexPath.row
 

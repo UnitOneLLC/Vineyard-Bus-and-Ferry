@@ -119,7 +119,7 @@ func colorWithHexString (hex:String) -> UIColor {
     if (cString.hasPrefix("#")) {
         cString = cString.substringFromIndex(hex.startIndex)
     }
-    if (countElements(cString) != 6) {
+    if (count(cString) != 6) {
         return UIColor.grayColor()
     }
     var rString = cString.substringToIndex(advance(hex.startIndex, 2))

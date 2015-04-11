@@ -127,7 +127,7 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
             tripCollection.collectionView.removeFromSuperview()
         }
         let tripCollectionFrame = CGRect(x: stopListWidth, y: 0.0, width: VectorTable.TIME_WIDTH, height: tableFrame.height)
-        let effectiveDate = (UIApplication.sharedApplication().delegate as AppDelegate).effectiveDate
+        let effectiveDate = (UIApplication.sharedApplication().delegate as! AppDelegate).effectiveDate
         let effectiveTrips = AppDelegate.theScheduleManager.filterTripsForDate(effectiveDate, trips: route.vectors[vectorIndex].trips, inSchedule: schedule)
         tripCollection = TripCollection(stopSequence: stopSequence, rowHeights: rowHeights, tripArray: effectiveTrips, frame: tripCollectionFrame)
         if tripCollection != nil {
@@ -145,7 +145,6 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
             
             var selfSize = frame.size
             selfSize.height = stopTable!.frame.height + connectionTable.connectionRouteTable.frame.height
-            println("vector table height = \(selfSize.height)")
             frame.size = selfSize
             
             tripCollection.didScrollToTrip(0)
@@ -229,7 +228,6 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
         
         if scroller != nil {
             var h = self.frame.height + connectionTable.connectionRouteTable.frame.height
-            println("set content size to \(h)")
             scroller!.contentSize = CGSize(width: scroller!.frame.width, height: h)
         }
     }
