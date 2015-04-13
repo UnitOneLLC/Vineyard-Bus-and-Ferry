@@ -12,14 +12,14 @@ let SMALL_FONT_SIZE: CGFloat = 12.0
 let LARGE_FONT_SIZE: CGFloat = 17.0
 let SUBCELL_FONT_SIZE: CGFloat = 16.0
 let SUBTABLE_ROW_HEIGHT: CGFloat = 29.0
-let PADDING_SIZE: CGFloat = 15.0
+let PADDING_SIZE: CGFloat = 9.0
 let LEFT_MARGIN: CGFloat = 10.0
 let RIGHT_MARGIN: CGFloat = 10.0
 
 class RouteListCell: UITableViewCell {
     var shortNameLabel: UILabel!
     var longNameLabel: UILabel!
-    @IBOutlet weak var subTableView: UITableView!
+    var subTableView: UITableView!
     
     var route: Route!
     var itemText: (single: String, plural: String)!
@@ -61,16 +61,8 @@ class RouteListCell: UITableViewCell {
         longNameLabel.numberOfLines = 0
         longNameLabel.lineBreakMode = .ByWordWrapping
         longNameLabel.attributedText = getAttributedString(route.longName, withFont: UIFont.boldSystemFontOfSize(LARGE_FONT_SIZE))
-        
-        subTableView.dataSource = self
-        subTableView.delegate = self
-        subTableView.reloadData()
-        
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
 
+        
         let width = self.contentView.frame.size.width
         var shortNameRect = CGRect()
         if route.shortName != nil && !route.shortName!.isEmpty {
@@ -78,14 +70,31 @@ class RouteListCell: UITableViewCell {
             shortNameRect.origin.x = LEFT_MARGIN
             shortNameRect.origin.y = 5.0
             shortNameLabel.frame = shortNameRect
+            println("short name frame \(shortNameLabel.frame)")
         }
         var longNameRect = getBoundingRect(text: route.longName, font: UIFont.boldSystemFontOfSize(LARGE_FONT_SIZE), width: width)
         longNameRect.origin.x = CGFloat(ceilf(Float(LEFT_MARGIN)))
         longNameRect.origin.y = shortNameRect.size.height + 10.0
         longNameLabel.frame = longNameRect
+        println("long name frame \(longNameLabel.frame)")
+
+        if subTableView == nil {
+            subTableView = UITableView()
+            subTableView.rowHeight = SUBTABLE_ROW_HEIGHT
+            subTableView.scrollEnabled = false
+            subTableView.separatorStyle = UITableViewCellSeparatorStyle.None
+            
+            addSubview(subTableView)
+            subTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "routeSubCell")
+            subTableView.dataSource = self
+            subTableView.delegate = self
+        }
         
-        var subTableRect = CGRect(origin: CGPoint(x: LEFT_MARGIN, y: shortNameRect.size.height + longNameRect.size.height + 10.0), size: CGSize(width: width, height: CGFloat(route.vectors.count) * SUBTABLE_ROW_HEIGHT ))
-        subTableView.frame = subTableRect
+        
+        let f = CGRect(origin: CGPoint(x: LEFT_MARGIN, y: longNameLabel.frame.origin.y + longNameLabel.frame.height), size: CGSize(width: width, height: CGFloat(route.vectors.count) * SUBTABLE_ROW_HEIGHT ))
+        subTableView.frame = f
+        println("tv frame = \(f)")
+        subTableView.reloadData()
     }
 }
 
@@ -98,6 +107,7 @@ extension RouteListCell: UITableViewDataSource {
         }
         let attrText = getAttributedString("   To " + dest, withFont: UIFont.italicSystemFontOfSize(SUBCELL_FONT_SIZE))
         cell.textLabel!.attributedText = attrText
+        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
         return cell
     }
