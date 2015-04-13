@@ -15,8 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     var effectiveDate: NSDate = NSDate()
-
-
+    var swipeHintNeeded: Bool = true
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         appInitialize()
         return true
@@ -122,7 +122,7 @@ extension AppDelegate {
         dispatch_once(&Static.token) { Static.instance = SettingsManager() }
         return Static.instance!
     }
-
+    
     func appInitialize() {
         let setMgr = AppDelegate.theSettingsManager
         if managedObjectContext != nil {

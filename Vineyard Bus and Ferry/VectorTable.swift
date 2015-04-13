@@ -59,6 +59,7 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
     var delegate: VectorTableDelegate?
     var connectionsLabel: UILabel!
     var itemText: (single: String, plural: String)!
+    var swipeHint: SwipeHintView!
     
     init(frame: CGRect, route: Route, vectorIndex: Int, text: (single: String, plural: String) ) {
         super.init(frame: frame)
@@ -148,6 +149,13 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
             frame.size = selfSize
             
             tripCollection.didScrollToTrip(0)
+        }
+        if swipeHint == nil {
+            if (UIApplication.sharedApplication().delegate as! AppDelegate).swipeHintNeeded {
+                swipeHint = SwipeHintView(frame: tripCollection.collectionView.frame)
+                addSubview(swipeHint)
+                swipeHint.slideRight(delaySeconds: 1.0)
+            }
         }
     }
     

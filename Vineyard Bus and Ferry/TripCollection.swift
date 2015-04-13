@@ -187,6 +187,7 @@ extension TripCollection:  UICollectionViewDataSource, UICollectionViewDelegate 
         if delegate != nil {
             didScrollToTrip(getIndexFromOffset(scrollView.contentOffset.x))
         }
+        (UIApplication.sharedApplication().delegate as! AppDelegate).swipeHintNeeded = false
     }
     
 }
