@@ -127,7 +127,7 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
         if tripCollection != nil && tripCollection.collectionView != nil {
             tripCollection.collectionView.removeFromSuperview()
         }
-        let tripCollectionFrame = CGRect(x: stopListWidth, y: 0.0, width: VectorTable.TIME_WIDTH, height: tableFrame.height)
+        let tripCollectionFrame = CGRect(x: stopListWidth, y: 0.0, width: frame.width - stopListWidth, height: tableFrame.height)
         let effectiveDate = (UIApplication.sharedApplication().delegate as! AppDelegate).effectiveDate
         let effectiveTrips = AppDelegate.theScheduleManager.filterTripsForDate(effectiveDate, trips: route.vectors[vectorIndex].trips, inSchedule: schedule)
         tripCollection = TripCollection(stopSequence: stopSequence, rowHeights: rowHeights, tripArray: effectiveTrips, frame: tripCollectionFrame)
@@ -154,7 +154,7 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
             if (UIApplication.sharedApplication().delegate as! AppDelegate).swipeHintNeeded {
                 swipeHint = SwipeHintView(frame: tripCollection.collectionView.frame)
                 addSubview(swipeHint)
-                swipeHint.slideRight(delaySeconds: 1.0)
+                swipeHint.slideRight(delaySeconds: 1.35)
             }
         }
     }

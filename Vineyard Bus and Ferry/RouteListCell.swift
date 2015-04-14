@@ -70,13 +70,11 @@ class RouteListCell: UITableViewCell {
             shortNameRect.origin.x = LEFT_MARGIN
             shortNameRect.origin.y = 5.0
             shortNameLabel.frame = shortNameRect
-            println("short name frame \(shortNameLabel.frame)")
         }
         var longNameRect = getBoundingRect(text: route.longName, font: UIFont.boldSystemFontOfSize(LARGE_FONT_SIZE), width: width)
         longNameRect.origin.x = CGFloat(ceilf(Float(LEFT_MARGIN)))
         longNameRect.origin.y = shortNameRect.size.height + 10.0
         longNameLabel.frame = longNameRect
-        println("long name frame \(longNameLabel.frame)")
 
         if subTableView == nil {
             subTableView = UITableView()
@@ -93,7 +91,6 @@ class RouteListCell: UITableViewCell {
         
         let f = CGRect(origin: CGPoint(x: LEFT_MARGIN, y: longNameLabel.frame.origin.y + longNameLabel.frame.height), size: CGSize(width: width, height: CGFloat(route.vectors.count) * SUBTABLE_ROW_HEIGHT ))
         subTableView.frame = f
-        println("tv frame = \(f)")
         subTableView.reloadData()
     }
 }
