@@ -2,7 +2,7 @@
 //  Settings.swift
 //  Vineyard Bus and Ferry
 //
-//  Created by Fred Hewett on 4/8/15.
+//  Created by Fred Hewett on 4/17/15.
 //  Copyright (c) 2015 Frederick Hewett. All rights reserved.
 //
 
@@ -14,5 +14,6 @@ class Settings: NSManagedObject {
 
     @NSManaged var busVersion: NSNumber
     @NSManaged var ferryVersion: NSNumber
+    @NSManaged var welcomeIssued: NSNumber
 
 }

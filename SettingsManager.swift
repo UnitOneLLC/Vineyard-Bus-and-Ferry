@@ -35,6 +35,7 @@ class SettingsManager : Printable {
         let newSettings = NSEntityDescription.insertNewObjectForEntityForName(ENTITY_SETTINGS, inManagedObjectContext: moc) as! Settings;
         newSettings.busVersion = -1
         newSettings.ferryVersion = -1
+        newSettings.welcomeIssued = 0
         var error: NSError?
         moc.save(&error)
         return error == nil

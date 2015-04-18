@@ -173,7 +173,7 @@ class ScheduleManager : Printable {
         }
     }
     
-    func acquireSchedule(forMode mode: String, moc: NSManagedObjectContext, completionHandler: ((s: Schedule?)->Void)) {
+    func acquireSchedule(forMode mode: String, vc: AnyObject, moc: NSManagedObjectContext, completionHandler: ((s: Schedule?)->Void)) {
         let storedVersion = getStoredVersion(forMode: mode, moc: moc)
         Logger.log(fromSource: self, level: .INFO, message: "Stored version for mode \(mode) is \(storedVersion)")
         
@@ -202,7 +202,7 @@ class ScheduleManager : Printable {
                     else {
                         Logger.log(fromSource: self, level: .ERROR, message: "Fatal: no schedule for mode \(mode)")
                         completionHandler(s: nil)
-                        // need an alert here
+                        simpleAlert("Network Error", "No \(mode) schedule available. Close the app and re-try.", vc)
                     }
                 }
             } // version closure
@@ -217,13 +217,12 @@ class ScheduleManager : Printable {
                 else {
                     Logger.log(fromSource: self, level: .ERROR, message: "Fatal: no schedule for mode \(mode)")
                     completionHandler(s: nil)
-                    // need an alert here
-                }
+                    simpleAlert("Network Error", "No \(mode) schedule available. You must have an internet connection.", vc)                }
             }
             else {
                 Logger.log(fromSource: self, level: .ERROR, message: "Fatal: no schedule for mode \(mode)")
                 completionHandler(s: nil)
-                // need an alert here
+                simpleAlert("Network Error", "No \(mode) schedule available. You must have an internet connection.", vc)
             }
         }
     }
@@ -236,11 +235,11 @@ class ScheduleManager : Printable {
         return schedulesByAgency[agencyId]
     }
     
-    func getRouteDestinationsForAgency(agencyId: String) -> [String] {
+    func getRouteDestinationsForAgency(agencyId: String, effectiveDate: NSDate) -> [String] {
         var result = [String]()
         if let s = schedulesByAgency[agencyId] {
             for r in s.routes {
-                if r.agency == agencyId {
+                if r.agency == agencyId && isRouteInService(r, effectiveDate: effectiveDate){
                     if r.waypoint != nil && !r.waypoint!.isEmpty {
                         result.append(r.waypoint!)
                     }
@@ -260,6 +259,30 @@ class ScheduleManager : Printable {
         }
         return result
     }
+    
+    
+    func isRouteInService(route: Route, effectiveDate: NSDate) -> Bool {
+        var calendarsForRoute: Set<String> = Set<String>()
+        var sched = scheduleForAgency(route.agency)
+
+        for v in route.vectors {
+            for t in v.trips {
+                calendarsForRoute.insert(t.serviceId)
+            }
+        }
+
+        for c in calendarsForRoute {
+            if let cal = getServiceCalendar(forId: c, inSchedule: sched!) {
+                if isDateValidForCalendar(effectiveDate, serviceCalendar: cal) {
+                    return true
+                }
+            }
+        }
+        
+        return false
+        
+    }
+    
     
     func getRoutesForDestination(destination: String, forSchedule s: Schedule, agencyId: String? = nil) -> [Route] {
         var result = [Route]()

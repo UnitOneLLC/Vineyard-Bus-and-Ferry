@@ -38,6 +38,7 @@ class SwipeHintView : UIView {
         var selfFrame = frame
         selfFrame.size.height = h + HEIGHT_PADDING
         selfFrame.size.width = lblFrame.width + WIDTH_PADDING
+        selfFrame.origin.y += YINSET
         super.init(frame: selfFrame)
         self.alpha = INITIAL_ALPHA
         

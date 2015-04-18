@@ -150,7 +150,7 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
             
             tripCollection.didScrollToTrip(0)
         }
-        if swipeHint == nil {
+        if swipeHint == nil  && tripCollection != nil {
             if (UIApplication.sharedApplication().delegate as! AppDelegate).swipeHintNeeded {
                 swipeHint = SwipeHintView(frame: tripCollection.collectionView.frame)
                 addSubview(swipeHint)

@@ -136,6 +136,13 @@ func colorWithHexString (hex:String) -> UIColor {
     return UIColor(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: CGFloat(1))
 }
 
+func simpleAlert(title: String, message: String, controller: AnyObject) {
+    let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+    let okAction = UIAlertAction(title: "OK", style: .Default) { (action) in  }
+    alert.addAction(okAction)
+    (controller as! UIViewController).presentViewController(alert, animated: true, completion: nil)
+}
+
 //
 //  Logger.swift
 //

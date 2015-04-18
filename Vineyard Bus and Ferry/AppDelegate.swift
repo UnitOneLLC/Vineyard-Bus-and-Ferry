@@ -123,6 +123,17 @@ extension AppDelegate {
         return Static.instance!
     }
     
+    class var welcomeText: String {
+        struct Static {static var instance: String?; static var token: dispatch_once_t = 0}
+        dispatch_once(&Static.token) {
+            Static.instance =
+            "This software is not affiliated with any bus or ferry transit agency. No agencies have endorsed or sponsored the application. " +
+            "Schedule data is maintained using publically available sources."
+        }
+        return Static.instance!
+    }
+
+    
     func appInitialize() {
         let setMgr = AppDelegate.theSettingsManager
         if managedObjectContext != nil {
@@ -130,6 +141,11 @@ extension AppDelegate {
                 setMgr.createInitialAppParametersObject(moc: managedObjectContext!)
             }
         }
+
+//        let fmtr = NSDateFormatter()
+//        fmtr.dateFormat = "yyyy-MM-dd"
+//        effectiveDate = fmtr.dateFromString("2015-05-05")!
+        
     }
 }
     

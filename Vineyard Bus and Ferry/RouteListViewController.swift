@@ -36,10 +36,14 @@ class RouteListViewController: IAdBannerViewController {
     func initializeGroups() {
         groups = [String: [Route]]()
         sortedKeys = [String]()
+        let effDate = (UIApplication.sharedApplication().delegate as! AppDelegate).effectiveDate
         
         if routes != nil {
 
             for r in routes! {
+                if !AppDelegate.theScheduleManager.isRouteInService(r, effectiveDate: effDate) {
+                    continue
+                }
                 if groups[r.agency] == nil {
                     groups[r.agency] = [Route]()
                     sortedKeys.append(r.agency)

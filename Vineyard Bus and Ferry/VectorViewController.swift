@@ -86,7 +86,9 @@ class VectorViewController: IAdBannerViewController, DaySelectionControlDelegate
                 vectorTable.setVector(forRoute: route, vectorIndex: 0)
             }
             dispatch_async(dispatch_get_main_queue()) {
-                self.vectorTable.tripCollection.scrollToCurrent()
+                if self.vectorTable.tripCollection != nil {
+                    self.vectorTable.tripCollection.scrollToCurrent()
+                }
             }
         }
     }

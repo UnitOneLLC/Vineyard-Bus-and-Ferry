@@ -31,10 +31,10 @@
 		B6CCEE8C1ABBA8E90051E567 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CCEE8B1ABBA8E90051E567 /* SettingsManager.swift */; };
 		B6DD78F81ADBE0F70080207C /* SwipeHint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DD78F71ADBE0F70080207C /* SwipeHint.swift */; };
 		B6DD78FA1ADC0FC90080207C /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6DD78F91ADC0FC90080207C /* Launch.storyboard */; };
+		B6DD78FC1AE12D880080207C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DD78FB1AE12D880080207C /* Settings.swift */; };
 		B6E067121AC575F0002705AB /* DaySelectionControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E067111AC575F0002705AB /* DaySelectionControl.swift */; };
 		B6E067141AC7419D002705AB /* ConnectionTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E067131AC7419D002705AB /* ConnectionTable.swift */; };
 		B6E067201AC9F8CB002705AB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E0671F1AC9F8CB002705AB /* MapViewController.swift */; };
-		B6FCADEE1AD59CCF00092EA5 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCADED1AD59CCF00092EA5 /* Settings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,10 +76,10 @@
 		B6CCEE8B1ABBA8E90051E567 /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		B6DD78F71ADBE0F70080207C /* SwipeHint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeHint.swift; sourceTree = "<group>"; };
 		B6DD78F91ADC0FC90080207C /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
+		B6DD78FB1AE12D880080207C /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Settings.swift; path = ../Settings.swift; sourceTree = "<group>"; };
 		B6E067111AC575F0002705AB /* DaySelectionControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaySelectionControl.swift; sourceTree = "<group>"; };
 		B6E067131AC7419D002705AB /* ConnectionTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionTable.swift; path = ../ConnectionTable.swift; sourceTree = "<group>"; };
 		B6E0671F1AC9F8CB002705AB /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		B6FCADED1AD59CCF00092EA5 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Settings.swift; path = ../Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,7 +147,7 @@
 				B6E0671F1AC9F8CB002705AB /* MapViewController.swift */,
 				B60314831ABA14B0001D4788 /* Images.xcassets */,
 				B60314D71ABB1AEC001D4788 /* Model.xcdatamodeld */,
-				B6FCADED1AD59CCF00092EA5 /* Settings.swift */,
+				B6DD78FB1AE12D880080207C /* Settings.swift */,
 				B60314851ABA14B0001D4788 /* LaunchScreen.xib */,
 				B60314781ABA14B0001D4788 /* Supporting Files */,
 			);
@@ -295,8 +295,8 @@
 				B6E067121AC575F0002705AB /* DaySelectionControl.swift in Sources */,
 				B607FD981AC2E27E004761BE /* VectorTable.swift in Sources */,
 				B603149F1ABA1603001D4788 /* Schedule.swift in Sources */,
-				B6FCADEE1AD59CCF00092EA5 /* Settings.swift in Sources */,
 				B6CCEE8C1ABBA8E90051E567 /* SettingsManager.swift in Sources */,
+				B6DD78FC1AE12D880080207C /* Settings.swift in Sources */,
 				B6388B501ABD97B300D16058 /* RouteListViewController.swift in Sources */,
 				B603147D1ABA14B0001D4788 /* DestinationViewController.swift in Sources */,
 				B6DD78F81ADBE0F70080207C /* SwipeHint.swift in Sources */,

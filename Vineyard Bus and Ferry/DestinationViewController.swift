@@ -36,10 +36,11 @@ class DestinationViewController: UIViewController {
             if (success) {
                 self.scheduleIsReady = true
                 var destSet = [String: Bool]()
+                let effDate = (UIApplication.sharedApplication().delegate as! AppDelegate).effectiveDate
                 
                 if let sched = AppDelegate.theScheduleManager.scheduleForMode(self.transitMode) {
                     for a in sched.agencies {
-                        var theseDests = AppDelegate.theScheduleManager.getRouteDestinationsForAgency(a.id)
+                        var theseDests = AppDelegate.theScheduleManager.getRouteDestinationsForAgency(a.id, effectiveDate: effDate)
                         for d in theseDests {
                             destSet[d] = true
                         }
@@ -58,6 +59,7 @@ class DestinationViewController: UIViewController {
                     self.tableView.reloadData()
                     self.stopLoadingIndicator()
                     self.setupTableFrame()
+                    self.welcome()
                 }
             }
         }
@@ -107,7 +109,7 @@ class DestinationViewController: UIViewController {
         
         let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
 
-        AppDelegate.theScheduleManager.acquireSchedule(forMode: transitMode, moc: moc) { (s: Schedule?) in
+        AppDelegate.theScheduleManager.acquireSchedule(forMode: transitMode, vc: self, moc: moc) { (s: Schedule?) in
             if s != nil {
                 completionHandler(success: true)
             }
@@ -139,6 +141,18 @@ class DestinationViewController: UIViewController {
             }
         }
     }
+    
+    func welcome() {
+        if let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext {
+            var alreadyDone: NSNumber? = AppDelegate.theSettingsManager.getSetting(parameter: "welcomeIssued", moc: moc)
+            if alreadyDone == 0 {
+                alreadyDone = 1
+                AppDelegate.theSettingsManager.setAppParameter(parameter: "welcomeIssued", value: alreadyDone!, moc: moc)
+                simpleAlert("Welcome", AppDelegate.welcomeText, self)
+            }
+        }
+    }
+    
 }
 
 
