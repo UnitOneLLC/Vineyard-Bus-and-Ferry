@@ -20,8 +20,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="SXX-0W-7Vu">
-                                <rect key="frame" x="16" y="0.0" width="600" height="551"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" red="0.39607846740000002" green="0.67450982329999998" blue="0.90980398650000005" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="separatorColor" red="0.39607846740000002" green="0.67450982329999998" blue="0.90980398650000005" alpha="1" colorSpace="deviceRGB"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="destinationCell" id="Zpy-Xs-kZG">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -34,10 +36,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.39607846740000002" green="0.67450982329999998" blue="0.90980398650000005" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="SXX-0W-7Vu" secondAttribute="width" placeholder="YES" id="GCg-f1-MFp"/>
-                            <constraint firstAttribute="top" secondItem="SXX-0W-7Vu" secondAttribute="top" placeholder="YES" id="Phm-dY-bBP"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="SXX-0W-7Vu" secondAttribute="leading" placeholder="YES" id="RZh-tG-JPY"/>
-                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="SXX-0W-7Vu" secondAttribute="bottom" placeholder="YES" id="bgU-Rb-lcC"/>
+                            <constraint firstAttribute="width" secondItem="SXX-0W-7Vu" secondAttribute="width" id="GCg-f1-MFp"/>
+                            <constraint firstAttribute="top" secondItem="SXX-0W-7Vu" secondAttribute="top" id="Phm-dY-bBP"/>
+                            <constraint firstAttribute="leading" secondItem="SXX-0W-7Vu" secondAttribute="leading" id="RZh-tG-JPY"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="SXX-0W-7Vu" secondAttribute="bottom" id="bgU-Rb-lcC"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Bus Routes" id="L5Q-dD-MA2"/>
@@ -70,8 +72,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="yVg-QA-g4Y">
-                                <rect key="frame" x="16" y="0.0" width="600" height="551"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" red="0.39607846740000002" green="0.67450982329999998" blue="0.90980398650000005" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="separatorColor" red="0.39607846740000002" green="0.67450982329999998" blue="0.90980398650000005" alpha="1" colorSpace="deviceRGB"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="destinationCell" id="A5R-Wf-J2v">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -84,10 +88,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.39607846740000002" green="0.67450982329999998" blue="0.90980398650000005" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstAttribute="leadingMargin" secondItem="yVg-QA-g4Y" secondAttribute="leading" placeholder="YES" id="bKA-JG-KcJ"/>
-                            <constraint firstAttribute="width" secondItem="yVg-QA-g4Y" secondAttribute="width" placeholder="YES" id="muU-4B-GQo"/>
-                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="yVg-QA-g4Y" secondAttribute="bottom" placeholder="YES" id="wLN-eA-bNO"/>
-                            <constraint firstAttribute="top" secondItem="yVg-QA-g4Y" secondAttribute="top" placeholder="YES" id="y9S-E9-vU0"/>
+                            <constraint firstAttribute="leading" secondItem="yVg-QA-g4Y" secondAttribute="leading" id="bKA-JG-KcJ"/>
+                            <constraint firstAttribute="width" secondItem="yVg-QA-g4Y" secondAttribute="width" id="muU-4B-GQo"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="yVg-QA-g4Y" secondAttribute="bottom" id="wLN-eA-bNO"/>
+                            <constraint firstAttribute="top" secondItem="yVg-QA-g4Y" secondAttribute="top" id="y9S-E9-vU0"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Ferry Routes" id="YVL-qD-cA2"/>

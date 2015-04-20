@@ -57,7 +57,6 @@ class DestinationViewController: UIViewController {
                 dispatch_async(dispatch_get_main_queue()) {
                     self.tableView.reloadData()
                     self.stopLoadingIndicator()
-                    self.setupTableFrame()
                     self.welcome()
                 }
             }
@@ -67,25 +66,6 @@ class DestinationViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        setupTableFrame()
-    }
-    
-    func setupTableFrame() {
-        var height: CGFloat
-        if destinations != nil && destinations.count > 0 {
-            height = CGFloat(destinations.count + 1) * ROW_HEIGHT + HEADER_HEIGHT + navigationController!.toolbar.frame.height
-        }
-        else {
-            height = view.frame.height
-        }
-        
-        
-        var frame = CGRect(x: CGFloat(0.0), y: CGFloat(0.0), width: view.frame.width, height: height)
-        tableView.frame = frame
     }
     
     func startLoadingIndicator() {
