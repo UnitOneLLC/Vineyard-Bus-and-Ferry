@@ -26,7 +26,7 @@ class VectorViewController: IAdBannerViewController, DaySelectionControlDelegate
     @IBOutlet weak var reverseRouteButton: UIButton!
     @IBOutlet weak var betweenLabelAndReverseButtonConstraint: NSLayoutConstraint!
     
-    var schedBox: UIScrollView!
+    var scroller: UIScrollView!
     var vectorTable: VectorTable!
     var stopSelected: Stop?
     
@@ -46,9 +46,6 @@ class VectorViewController: IAdBannerViewController, DaySelectionControlDelegate
     }
     
     func createSubViews() {
-        let w: Double = Double(frameView.frame.size.width),
-            h: Double = Double(frameView.frame.size.height - 112.0)
-        
         let daySelect = DaySelectionControl(width: DAY_SELECT_WIDTH)
         var dayFrame = daySelect.frame
         dayFrame.origin.y = VERT_OFFSET_FOR_NAV + routeTitleVConstraint.constant + SMALL_PAD
@@ -58,21 +55,23 @@ class VectorViewController: IAdBannerViewController, DaySelectionControlDelegate
         frameView.addSubview(daySelect)
         daySelect.selectDayAtIndex(ScheduleManager.getDayOfWeekIndex(forDate: NSDate()))
         
+        let w: Double = Double(frameView.frame.size.width),
+        h: Double = Double(frameView.frame.size.height - 112.0)
         let sizeSched = CGSize(width: w, height: h)
 
         let schedOffsetY = dayFrame.origin.y + dayFrame.height
-        schedBox = UIScrollView(frame: CGRect(origin: CGPoint(x: 0.0, y: schedOffsetY), size:sizeSched))
-        schedBox.scrollEnabled = true
+        scroller = UIScrollView(frame: CGRect(origin: CGPoint(x: 0.0, y: schedOffsetY), size:sizeSched))
+        scroller.scrollEnabled = true
 
-        frameView.addSubview(schedBox)
+        frameView.addSubview(scroller)
         
 
-        let vtFrame = CGRect(x: 0.0, y: 0.0, width: schedBox.frame.width, height: 0.0)
+        let vtFrame = CGRect(x: 0.0, y: 0.0, width: scroller.frame.width, height: 0.0)
         vectorTable = VectorTable(frame: vtFrame, route: route, vectorIndex: vectorIndex, text: itemText)
         vectorTable.delegate = self
         vectorTable(route, vectorIndex: vectorIndex, stop: nil)
-        schedBox.addSubview(vectorTable)
-        vectorTable.scroller = schedBox
+        scroller.addSubview(vectorTable)
+        vectorTable.scroller = scroller
         vectorTable.resetTripCollection()
         setRouteReverseButton()
     }
@@ -195,7 +194,7 @@ class VectorViewController: IAdBannerViewController, DaySelectionControlDelegate
             
             routeTitleLabel.attributedText = getAttributedString(labelText, withFont: UIFont.boldSystemFontOfSize(TITLE_FONT_SIZE))
             setRouteReverseButton()
-            schedBox.scrollRectToVisible(CGRect(x:0.0, y:0.0, width: schedBox.frame.width, height: 1.0), animated: true)
+            scroller.scrollRectToVisible(CGRect(x:0.0, y:0.0, width: scroller.frame.width, height: 1.0), animated: true)
         }
     }
     

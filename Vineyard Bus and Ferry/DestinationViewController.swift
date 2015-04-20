@@ -18,7 +18,6 @@ class DestinationViewController: UIViewController {
     var itemNameSingular: String!
     var itemNamePlural: String!
     var listSegue: String!
-    var scheduleLoaded: Bool = false
 
     var destinations: [String]!
     var destinationToDisplay: Int?
