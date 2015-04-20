@@ -36,7 +36,15 @@
          contextName = "Vineyard_Bus_and_Ferry.ScheduleManager.isDateValidForCalendar (Vineyard_Bus_and_Ferry.ScheduleManager)(ObjectiveC.NSDate, serviceCalendar : Vineyard_Bus_and_Ferry.ServiceCalendar) -&gt; Swift.Bool:ScheduleManager.swift">
       </ContextState>
       <ContextState
-         contextName = "Vineyard_Bus_and_Ferry.ScheduleManager.stopSequenceForVector (Vineyard_Bus_and_Ferry.ScheduleManager)(Vineyard_Bus_and_Ferry.Vector) -&gt; Swift.Array&lt;Swift.String&gt;:ScheduleManager.swift">
+         contextName = "Vineyard_Bus_and_Ferry.DestinationViewController.setupTableFrame (Vineyard_Bus_and_Ferry.DestinationViewController)() -&gt; ():DestinationViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tableView.contentSize.height">
+            </PersistentString>
+            <PersistentString
+               value = "tableView.rowHeight">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "Vineyard_Bus_and_Ferry.TripCollection.didScrollToTrip (Vineyard_Bus_and_Ferry.TripCollection)(Swift.Int) -&gt; ():TripCollection.swift">
@@ -75,12 +83,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Vineyard_Bus_and_Ferry.DestinationViewController.setupTableFrame (Vineyard_Bus_and_Ferry.DestinationViewController)() -&gt; ():DestinationViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "tableView.rowHeight">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "Vineyard_Bus_and_Ferry.ScheduleManager.stopSequenceForVector (Vineyard_Bus_and_Ferry.ScheduleManager)(Vineyard_Bus_and_Ferry.Vector) -&gt; Swift.Array&lt;Swift.String&gt;:ScheduleManager.swift">
       </ContextState>
       <ContextState
          contextName = "Vineyard_Bus_and_Ferry.TripCollection.collectionView (Vineyard_Bus_and_Ferry.TripCollection)(ObjectiveC.UICollectionView, cellForItemAtIndexPath : ObjectiveC.NSIndexPath) -&gt; ObjectiveC.UICollectionViewCell:TripCollection.swift">
@@ -116,18 +119,27 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Vineyard_Bus_and_Ferry.DestinationViewController.viewDidLoad (Vineyard_Bus_and_Ferry.DestinationViewController)() -&gt; ():DestinationViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "tableView.frame">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "Vineyard_Bus_and_Ferry.TripCollection.scrollToCurrent (Vineyard_Bus_and_Ferry.TripCollection)() -&gt; ():TripCollection.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.DaySelectionControl.didTapButton (Vineyard_Bus_and_Ferry.DaySelectionControl)(Swift.AnyObject) -&gt; ():DaySelectionControl.swift">
       </ContextState>
       <ContextState
          contextName = "Vineyard_Bus_and_Ferry.TripCollection.collectionView (Vineyard_Bus_and_Ferry.TripCollection)(ObjectiveC.UICollectionView, numberOfItemsInSection : Swift.Int) -&gt; Swift.Int:TripCollection.swift">
          <PersistentStrings>
             <PersistentString
                value = "trips.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.ScheduleViewController.viewDidLoad (Vineyard_Bus_and_Ferry.ScheduleViewController)() -&gt; ():ScheduleViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.DestinationViewController.viewDidLoad (Vineyard_Bus_and_Ferry.DestinationViewController)() -&gt; ():DestinationViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tableView.frame">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -140,9 +152,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Vineyard_Bus_and_Ferry.ScheduleViewController.viewDidLoad (Vineyard_Bus_and_Ferry.ScheduleViewController)() -&gt; ():ScheduleViewController.swift">
-      </ContextState>
-      <ContextState
          contextName = "Vineyard_Bus_and_Ferry.RouteListViewController.tableView (Vineyard_Bus_and_Ferry.RouteListViewController)(ObjectiveC.UITableView, heightForHeaderInSection : Swift.Int) -&gt; CoreGraphics.CGFloat:RouteListViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -151,16 +160,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Vineyard_Bus_and_Ferry.VectorTable.tripCollection (Vineyard_Bus_and_Ferry.VectorTable)(Vineyard_Bus_and_Ferry.Trip) -&gt; ():VectorTable.swift">
-      </ContextState>
-      <ContextState
-         contextName = "Vineyard_Bus_and_Ferry.TripCollection.scrollToCurrent (Vineyard_Bus_and_Ferry.TripCollection)() -&gt; ():TripCollection.swift">
-      </ContextState>
-      <ContextState
          contextName = "Vineyard_Bus_and_Ferry.RouteListCell.tableView (Vineyard_Bus_and_Ferry.RouteListCell)(ObjectiveC.UITableView, didSelectRowAtIndexPath : ObjectiveC.NSIndexPath) -&gt; ():RouteListCell.swift">
       </ContextState>
       <ContextState
-         contextName = "Vineyard_Bus_and_Ferry.DaySelectionControl.didTapButton (Vineyard_Bus_and_Ferry.DaySelectionControl)(Swift.AnyObject) -&gt; ():DaySelectionControl.swift">
+         contextName = "Vineyard_Bus_and_Ferry.VectorTable.tripCollection (Vineyard_Bus_and_Ferry.VectorTable)(Vineyard_Bus_and_Ferry.Trip) -&gt; ():VectorTable.swift">
       </ContextState>
       <ContextState
          contextName = "Vineyard_Bus_and_Ferry.Trip.init (Vineyard_Bus_and_Ferry.Trip.Type)(fromDictionary : ObjectiveC.NSDictionary) -&gt; Vineyard_Bus_and_Ferry.Trip:Schedule.swift">
@@ -228,13 +231,13 @@
          contextName = "Vineyard_Bus_and_Ferry.RouteListCell.tableView (Vineyard_Bus_and_Ferry.RouteListCell)(ObjectiveC.UITableView, cellForRowAtIndexPath : ObjectiveC.NSIndexPath) -&gt; ObjectiveC.UITableViewCell:RouteListCell.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.route">
+               value = "self.route.id">
             </PersistentString>
             <PersistentString
                value = "indexPath.row">
             </PersistentString>
             <PersistentString
-               value = "self.route.id">
+               value = "self.route">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
