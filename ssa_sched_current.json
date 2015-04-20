@@ -1,0 +1,5219 @@
+{
+	"agencies": [
+		{
+			"id": "NEFAST",
+			"name": "New England Fast Ferry",
+			"url": "http://www.nefastferry.com/",
+			"timezone": "America/New_York",
+			"phone": "",
+			"lang": "en"
+		},
+		{
+			"id": "ISLAND",
+			"name": "Island Commuter Corporation",
+			"url": "http://www.islandqueen.com",
+			"timezone": "America/New_York",
+			"phone": "508-548-4800",
+			"lang": "en"
+		},
+		{
+			"id": "CUTTY",
+			"name": "Cuttyhunk Ferry Company",
+			"url": "http://www.cuttyhunkferryco.com/",
+			"timezone": "America/New_York",
+			"phone": "508-992-0200",
+			"lang": "en"
+		},
+		{
+			"id": "HYLIN",
+			"name": "Hy-Line Cruises",
+			"url": "http://www.hy-linecruises.com/",
+			"timezone": "America/New_York",
+			"phone": "800-492-8082",
+			"lang": "en"
+		},
+		{
+			"id": "FALMO",
+			"name": "Falmouth Ferry Service",
+			"url": "http://www.falmouthferry.com/Falmouth_Ferry/Contact_Us.html",
+			"timezone": "America/New_York",
+			"phone": "508-548-9400",
+			"lang": "en"
+		},
+		{
+			"id": "HARWI",
+			"name": "Freedom Cruise Line",
+			"url": "http://www.nantucketislandferry.com/",
+			"timezone": "America/New_York",
+			"phone": "",
+			"lang": "en"
+		},
+		{
+			"id": "SSA",
+			"name": "Steamship Authority",
+			"url": "http://www.steamshipauthority.com/ssa/",
+			"timezone": "America/New_York",
+			"phone": "508-693-9130",
+			"lang": "en"
+		},
+		{
+			"id": "SAL",
+			"name": "Salem Ferry",
+			"url": "http://www.salemferry.com/",
+			"timezone": "America/New_York",
+			"phone": "",
+			"lang": "en"
+		},
+		{
+			"id": "BAYST",
+			"name": "Bay State Cruise Company",
+			"url": "http://www.baystatecruisecompany.com/",
+			"timezone": "America/New_York",
+			"phone": "",
+			"lang": "en"
+		},
+		{
+			"id": "HARBO",
+			"name": "Boston Harbor Cruises",
+			"url": "http://www.bostonharborcruises.com/",
+			"timezone": "America/New_York",
+			"phone": "617-227-4321",
+			"lang": "en"
+		},
+		{
+			"id": "CHAPP",
+			"name": "Chappaquiddick Ferry,Inc.",
+			"url": "http://www.chappyferry.net/",
+			"timezone": "America/New_York",
+			"phone": "508-627-9427",
+			"lang": "en"
+		},
+		{
+			"id": "HARBOI",
+			"name": "Boston Harbor Islands Ferries (operated by Boston's Best Cruises)",
+			"url": "http://www.bostonislands.com/trip_getthere.html",
+			"timezone": "America/New_York",
+			"phone": "617-223-8666",
+			"lang": "en"
+		},
+		{
+			"id": "VINEY",
+			"name": "Vineyard Fast Ferry",
+			"url": "http://www.vineyardfastferry.com/",
+			"timezone": "America/New_York",
+			"phone": "(401) 295-4040",
+			"lang": "en"
+		},
+		{
+			"id": "PLYMOPROVIBOAT",
+			"name": "Capt. John Boats",
+			"url": "http://www.provincetownferry.com/",
+			"timezone": "America/New_York",
+			"phone": "",
+			"lang": "en"
+		}
+	],
+	"routes": [
+	{
+			"id": "VINEYBOAT",
+			"agency": "SSA",
+			"shortName": "",
+			"longName": "Woods Hole-Vineyard Haven",
+			"colorCode": "",
+			"vectors": [
+			{
+				"destination": "Woods Hole",
+				"trips": [
+					{
+						"tripId": "VINEYINSUBOAT",
+						"calId": "SUBOAT",
+						"stops": [
+							{ "id": "VINEYBOAT", "time": "6:00:", "seq": 1 },
+							{ "id": "WOODSBOAT", "time": "6:45:", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEYINFABOAT",
+						"calId": "FABOAT",
+						"stops": [
+							{ "id": "VINEYBOAT", "time": "6:00:", "seq": 1 },
+							{ "id": "WOODSBOAT", "time": "6:45:", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			},
+			{
+				"destination": "Vineyard Haven",
+				"trips": [
+					{
+						"tripId": "VINEYOUTSUBOAT",
+						"calId": "SUBOAT",
+						"stops": [
+							{ "id": "WOODSBOAT", "time": "6:00:", "seq": 1 },
+							{ "id": "VINEYBOAT", "time": "6:45:", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWBEVINEYBOAT", "headsign": "New Bedford", "tripId": "10NEBOAT", "shortName": "", "time": " 7:40"}
+						]
+					},
+
+					{
+						"tripId": "VINEYOUTFABOAT",
+						"calId": "FABOAT",
+						"stops": [
+							{ "id": "WOODSBOAT", "time": "6:00:", "seq": 1 },
+							{ "id": "VINEYBOAT", "time": "6:45:", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWBEVINEYBOAT", "headsign": "New Bedford", "tripId": "10NEBOAT", "shortName": "", "time": " 7:40"}
+						]
+					}
+				],
+				"polyline": ""
+			}
+		]
+	},
+	{
+			"id": "OAKBOAT",
+			"agency": "SSA",
+			"shortName": "",
+			"longName": "Woods Hole-Oak Bluffs",
+			"colorCode": "",
+			"vectors": [
+			{
+				"destination": "Woods Hole",
+				"trips": [
+					{
+						"tripId": "BLUFFINSUBOAT",
+						"calId": "SUBOAT",
+						"stops": [
+							{ "id": "OAK2BOAT", "time": "6:00:", "seq": 1 },
+							{ "id": "WOODSBOAT", "time": "6:45:", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "BLUFFINFABOAT",
+						"calId": "FABOAT",
+						"stops": [
+							{ "id": "OAK2BOAT", "time": "6:00:", "seq": 1 },
+							{ "id": "WOODSBOAT", "time": "6:45:", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			},
+			{
+				"destination": "Oak Bluffs",
+				"trips": [
+					{
+						"tripId": "BLUFFOUTSUBOAT",
+						"calId": "SUBOAT",
+						"stops": [
+							{ "id": "WOODSBOAT", "time": "6:00:", "seq": 1 },
+							{ "id": "OAK2BOAT", "time": "6:45:", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "BLUFFOUTFABOAT",
+						"calId": "FABOAT",
+						"stops": [
+							{ "id": "WOODSBOAT", "time": "6:00:", "seq": 1 },
+							{ "id": "OAK2BOAT", "time": "6:45:", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			}
+		]
+	},
+	{
+			"id": "HYANBOAT",
+			"agency": "SSA",
+			"shortName": "",
+			"longName": "Hyannis-Nantucket",
+			"colorCode": "",
+			"vectors": [
+			{
+				"destination": "Hyannis",
+				"trips": [
+					{
+						"tripId": "HYANINSUBOAT",
+						"calId": "SUBOAT",
+						"stops": [
+							{ "id": "NANTUBOAT", "time": "7:30:", "seq": 1 },
+							{ "id": "HYANIBOAT", "time": "9:45:", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HYANINFABOAT",
+						"calId": "FABOAT",
+						"stops": [
+							{ "id": "NANTUBOAT", "time": "7:30:", "seq": 1 },
+							{ "id": "HYANIBOAT", "time": "9:45:", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			},
+			{
+				"destination": "Nantucket",
+				"trips": [
+					{
+						"tripId": "HYANOUTSUBOAT",
+						"calId": "SUBOAT",
+						"stops": [
+							{ "id": "HYANIBOAT", "time": "7:30:", "seq": 1 },
+							{ "id": "NANTUBOAT", "time": "9:45:", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "HY1BOAT", "headsign": "Hyannis", "tripId": "9HYBOAT", "shortName": "", "time": "10:35"}
+						]
+					},
+
+					{
+						"tripId": "HYANOUTFABOAT",
+						"calId": "FABOAT",
+						"stops": [
+							{ "id": "HYANIBOAT", "time": "7:30:", "seq": 1 },
+							{ "id": "NANTUBOAT", "time": "9:45:", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "HY1BOAT", "headsign": "Hyannis", "tripId": "9HYBOAT", "shortName": "", "time": "10:35"}
+						]
+					}
+				],
+				"polyline": ""
+			}
+		]
+	},
+	{
+			"id": "HYANFBOAT",
+			"agency": "SSA",
+			"shortName": "",
+			"longName": "Hyannis-Nantucket Fast Ferry",
+			"colorCode": "",
+			"vectors": [
+			{
+				"destination": "Hyannis",
+				"trips": [
+					{
+						"tripId": "HYANFINSUBOAT",
+						"calId": "FASTSUBOAT",
+						"stops": [
+							{ "id": "NANTUBOAT", "time": "8:00:", "seq": 1 },
+							{ "id": "HYANIBOAT", "time": "9:00:", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "HY1BOAT", "headsign": "Nantucket", "tripId": "HY2BOAT", "shortName": "", "time": " 9:10"},
+							{"routeId": "HY2BOAT", "headsign": "Oak Bluffs", "tripId": "25HYBOAT", "shortName": "", "time": " 9:25"},
+							{"routeId": "HY3BOAT", "headsign": "", "tripId": "29HYBOAT", "shortName": "", "time": " 9:20"}
+						]
+					},
+
+					{
+						"tripId": "HYANFINFABOAT",
+						"calId": "FASTFABOAT",
+						"stops": [
+							{ "id": "NANTUBOAT", "time": "8:00:", "seq": 1 },
+							{ "id": "HYANIBOAT", "time": "9:00:", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "HY1BOAT", "headsign": "Nantucket", "tripId": "HY2BOAT", "shortName": "", "time": " 9:10"},
+							{"routeId": "HY2BOAT", "headsign": "Oak Bluffs", "tripId": "25HYBOAT", "shortName": "", "time": " 9:25"},
+							{"routeId": "HY3BOAT", "headsign": "", "tripId": "29HYBOAT", "shortName": "", "time": " 9:20"}
+						]
+					}
+				],
+				"polyline": ""
+			},
+			{
+				"destination": "Nantucket",
+				"trips": [
+					{
+						"tripId": "HYANFOUTSUBOAT",
+						"calId": "FASTSUBOAT",
+						"stops": [
+							{ "id": "HYANIBOAT", "time": "8:00:", "seq": 1 },
+							{ "id": "NANTUBOAT", "time": "9:00:", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "FREEDBOAT", "headsign": "Harwich", "tripId": "FREED7BOAT", "shortName": "", "time": " 9:30"}
+						]
+					},
+
+					{
+						"tripId": "HYANFOUTFABOAT",
+						"calId": "FASTFABOAT",
+						"stops": [
+							{ "id": "HYANIBOAT", "time": "8:00:", "seq": 1 },
+							{ "id": "NANTUBOAT", "time": "9:00:", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "FREEDBOAT", "headsign": "Harwich", "tripId": "FREED7BOAT", "shortName": "", "time": " 9:30"}
+						]
+					}
+				],
+				"polyline": ""
+			}
+		]
+	},
+	{
+			"id": "NEWBEVINEYBOAT",
+			"agency": "NEFAST",
+			"shortName": "",
+			"longName": "New Bedford-Vineyard Haven",
+			"colorCode": "",
+			"vectors": [
+			{
+				"destination": "Vineyard Haven",
+				"trips": [
+					{
+						"tripId": "1NEBOAT",
+						"calId": "WESUBOAT",
+						"stops": [
+							{ "id": "NEWBEBOAT", "time": "6:30:", "seq": 1 },
+							{ "id": "VINEYBOAT", "time": "7:30:", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "4NEBOAT",
+						"calId": "LONGWESUBOAT",
+						"stops": [
+							{ "id": "NEWBEBOAT", "time": "10:35", "seq": 1 },
+							{ "id": "VINEYBOAT", "time": "11:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "6NEBOAT",
+						"calId": "DASUBOAT",
+						"stops": [
+							{ "id": "NEWBEBOAT", "time": "15:45", "seq": 1 },
+							{ "id": "VINEYBOAT", "time": "16:45", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "9NEBOAT",
+						"calId": "FRSUBOAT",
+						"stops": [
+							{ "id": "NEWBEBOAT", "time": "21:30", "seq": 1 },
+							{ "id": "VINEYBOAT", "time": "22:25", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "19NEBOAT",
+						"calId": "WEFABOAT",
+						"stops": [
+							{ "id": "NEWBEBOAT", "time": "6:30:", "seq": 1 },
+							{ "id": "VINEYBOAT", "time": "7:30:", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "22NEBOAT",
+						"calId": "DAFABOAT",
+						"stops": [
+							{ "id": "NEWBEBOAT", "time": "15:45", "seq": 1 },
+							{ "id": "VINEYBOAT", "time": "16:45", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "24NEBOAT",
+						"calId": "FRFABOAT",
+						"stops": [
+							{ "id": "NEWBEBOAT", "time": "21:30", "seq": 1 },
+							{ "id": "VINEYBOAT", "time": "22:25", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			},
+			{
+				"destination": "New Bedford",
+				"trips": [
+					{
+						"tripId": "10NEBOAT",
+						"calId": "WESUBOAT",
+						"stops": [
+							{ "id": "VINEYBOAT", "time": "7:40:", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "8:40:", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "CUTTYBOAT", "headsign": "Cuttyhunk", "tripId": "1CUTTYBOAT", "shortName": "", "time": " 9:00"},
+							{"routeId": "NEWBEBLUFFBOAT", "headsign": "Oak Bluffs", "tripId": "3NEBOAT", "shortName": "", "time": " 9:30"}
+						]
+					},
+
+					{
+						"tripId": "13NEBOAT",
+						"calId": "LONGWESUBOAT",
+						"stops": [
+							{ "id": "VINEYBOAT", "time": "11:45", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "12:45", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "CUTTYBOAT", "headsign": "Cuttyhunk", "tripId": "4CUTTYBOAT", "shortName": "", "time": "13:00"}
+						]
+					},
+
+					{
+						"tripId": "15NEBOAT",
+						"calId": "DASUBOAT",
+						"stops": [
+							{ "id": "VINEYBOAT", "time": "17:15", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "18:15", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "CUTTYBOAT", "headsign": "Cuttyhunk", "tripId": "3CUTTYBOAT", "shortName": "", "time": "19:00"},
+							{"routeId": "NEWBEBLUFFBOAT", "headsign": "Oak Bluffs", "tripId": "8NEBOAT", "shortName": "", "time": "18:30"}
+						]
+					},
+
+					{
+						"tripId": "18NEBOAT",
+						"calId": "FRSUBOAT",
+						"stops": [
+							{ "id": "VINEYBOAT", "time": "22:35", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "23:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "25NEBOAT",
+						"calId": "WEFABOAT",
+						"stops": [
+							{ "id": "VINEYBOAT", "time": "7:40:", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "8:40:", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "CUTTYBOAT", "headsign": "Cuttyhunk", "tripId": "1CUTTYBOAT", "shortName": "", "time": " 9:00"},
+							{"routeId": "NEWBEBLUFFBOAT", "headsign": "Oak Bluffs", "tripId": "3NEBOAT", "shortName": "", "time": " 9:30"}
+						]
+					},
+
+					{
+						"tripId": "28NEBOAT",
+						"calId": "DAFABOAT",
+						"stops": [
+							{ "id": "VINEYBOAT", "time": "17:15", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "18:15", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "CUTTYBOAT", "headsign": "Cuttyhunk", "tripId": "3CUTTYBOAT", "shortName": "", "time": "19:00"},
+							{"routeId": "NEWBEBLUFFBOAT", "headsign": "Oak Bluffs", "tripId": "8NEBOAT", "shortName": "", "time": "18:30"}
+						]
+					},
+
+					{
+						"tripId": "30NEBOAT",
+						"calId": "FRFABOAT",
+						"stops": [
+							{ "id": "VINEYBOAT", "time": "22:35", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "23:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			}
+		]
+	},
+	{
+			"id": "NEWBEBLUFFBOAT",
+			"agency": "NEFAST",
+			"shortName": "",
+			"longName": "New Bedford-Oak Bluffs",
+			"colorCode": "",
+			"vectors": [
+			{
+				"destination": "Oak Bluffs",
+				"trips": [
+					{
+						"tripId": "2NEBOAT",
+						"calId": "ENDSUBOAT",
+						"stops": [
+							{ "id": "NEWBEBOAT", "time": "8:00:", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "9:00:", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "VINEYFBOAT", "headsign": "Quonset", "tripId": "VINEY9BOAT", "shortName": "", "time": "10:00"}
+						]
+					},
+
+					{
+						"tripId": "3NEBOAT",
+						"calId": "DASUBOAT",
+						"stops": [
+							{ "id": "NEWBEBOAT", "time": "9:30:", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "10:30", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "VINEYFBOAT", "headsign": "Quonset", "tripId": "VINEY21BOAT", "shortName": "", "time": "11:00"}
+						]
+					},
+
+					{
+						"tripId": "5NEBOAT",
+						"calId": "DASUBOAT",
+						"stops": [
+							{ "id": "NEWBEBOAT", "time": "12:30", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "13:30", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "HY4BOAT", "headsign": "Nantucket", "tripId": "31HYBOAT", "shortName": "", "time": "14:00"},
+							{"routeId": "VINEYFBOAT", "headsign": "Quonset", "tripId": "VINEY10BOAT", "shortName": "", "time": "14:00"}
+						]
+					},
+
+					{
+						"tripId": "7NEBOAT",
+						"calId": "LONGWESUBOAT",
+						"stops": [
+							{ "id": "NEWBEBOAT", "time": "16:30", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "17:30", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "VINEYFBOAT", "headsign": "Quonset", "tripId": "VINEY4BOAT", "shortName": "", "time": "18:00"}
+						]
+					},
+
+					{
+						"tripId": "8NEBOAT",
+						"calId": "DASUBOAT",
+						"stops": [
+							{ "id": "NEWBEBOAT", "time": "18:30", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "19:25", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "VINEYFBOAT", "headsign": "Quonset", "tripId": "VINEY18BOAT", "shortName": "", "time": "19:30"}
+						]
+					},
+
+					{
+						"tripId": "20NEBOAT",
+						"calId": "DAFABOAT",
+						"stops": [
+							{ "id": "NEWBEBOAT", "time": "9:30:", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "10:30", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "VINEYFBOAT", "headsign": "Quonset", "tripId": "VINEY21BOAT", "shortName": "", "time": "11:00"}
+						]
+					},
+
+					{
+						"tripId": "21NEBOAT",
+						"calId": "DAFABOAT",
+						"stops": [
+							{ "id": "NEWBEBOAT", "time": "12:30", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "13:30", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "HY4BOAT", "headsign": "Nantucket", "tripId": "31HYBOAT", "shortName": "", "time": "14:00"},
+							{"routeId": "VINEYFBOAT", "headsign": "Quonset", "tripId": "VINEY10BOAT", "shortName": "", "time": "14:00"}
+						]
+					},
+
+					{
+						"tripId": "23NEBOAT",
+						"calId": "DAFABOAT",
+						"stops": [
+							{ "id": "NEWBEBOAT", "time": "18:30", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "19:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			},
+			{
+				"destination": "New Bedford",
+				"trips": [
+					{
+						"tripId": "11NEBOAT",
+						"calId": "ENDSUBOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "9:15:", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "10:15", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWBEVINEYBOAT", "headsign": "Vineyard Haven", "tripId": "4NEBOAT", "shortName": "", "time": "10:35"}
+						]
+					},
+
+					{
+						"tripId": "12NEBOAT",
+						"calId": "DASUBOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "10:50", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "11:50", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "CUTTYBOAT", "headsign": "Cuttyhunk", "tripId": "22CUTTYBOAT", "shortName": "", "time": "12:00"}
+						]
+					},
+
+					{
+						"tripId": "14NEBOAT",
+						"calId": "DASUBOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "14:00", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "15:00", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWBEVINEYBOAT", "headsign": "Vineyard Haven", "tripId": "6NEBOAT", "shortName": "", "time": "15:45"}
+						]
+					},
+
+					{
+						"tripId": "16NEBOAT",
+						"calId": "LONGWESUBOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "17:50", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "18:50", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "CUTTYBOAT", "headsign": "Cuttyhunk", "tripId": "3CUTTYBOAT", "shortName": "", "time": "19:00"}
+						]
+					},
+
+					{
+						"tripId": "17NEBOAT",
+						"calId": "DASUBOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "20:00", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "21:00", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWBEVINEYBOAT", "headsign": "Vineyard Haven", "tripId": "9NEBOAT", "shortName": "", "time": "21:30"}
+						]
+					},
+
+					{
+						"tripId": "26NEBOAT",
+						"calId": "DAFABOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "10:50", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "11:50", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "CUTTYBOAT", "headsign": "Cuttyhunk", "tripId": "22CUTTYBOAT", "shortName": "", "time": "12:00"}
+						]
+					},
+
+					{
+						"tripId": "27NEBOAT",
+						"calId": "DAFABOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "14:00", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "15:00", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWBEVINEYBOAT", "headsign": "Vineyard Haven", "tripId": "6NEBOAT", "shortName": "", "time": "15:45"}
+						]
+					},
+
+					{
+						"tripId": "29NEBOAT",
+						"calId": "DAFABOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "20:00", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "21:00", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWBEVINEYBOAT", "headsign": "Vineyard Haven", "tripId": "9NEBOAT", "shortName": "", "time": "21:30"}
+						]
+					}
+				],
+				"polyline": ""
+			}
+		]
+	},
+	{
+			"id": "ISLANDBOAT",
+			"agency": "ISLAND",
+			"shortName": "",
+			"longName": "Island Queen",
+			"colorCode": "",
+			"vectors": [
+			{
+				"destination": "Oak Bluffs",
+				"trips": [
+					{
+						"tripId": "1ISLANDBOAT",
+						"calId": "ISLANDDASUBOAT",
+						"stops": [
+							{ "id": "FALMOBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "OAK2BOAT", "time": "9:35:", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "2ISLANDBOAT",
+						"calId": "ISLANDDASUBOAT",
+						"stops": [
+							{ "id": "FALMOBOAT", "time": "10:30", "seq": 1 },
+							{ "id": "OAK2BOAT", "time": "11:05", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "3ISLANDBOAT",
+						"calId": "ISLANDDASUBOAT",
+						"stops": [
+							{ "id": "FALMOBOAT", "time": "12:00", "seq": 1 },
+							{ "id": "OAK2BOAT", "time": "12:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "4ISLANDBOAT",
+						"calId": "ISLANDDASUBOAT",
+						"stops": [
+							{ "id": "FALMOBOAT", "time": "13:30", "seq": 1 },
+							{ "id": "OAK2BOAT", "time": "14:05", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "5ISLANDBOAT",
+						"calId": "ISLANDDASUBOAT",
+						"stops": [
+							{ "id": "FALMOBOAT", "time": "15:00", "seq": 1 },
+							{ "id": "OAK2BOAT", "time": "15:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "6ISLANDBOAT",
+						"calId": "ISLANDDASUBOAT",
+						"stops": [
+							{ "id": "FALMOBOAT", "time": "16:30", "seq": 1 },
+							{ "id": "OAK2BOAT", "time": "17:05", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "7ISLANDBOAT",
+						"calId": "ISLANDDASUBOAT",
+						"stops": [
+							{ "id": "FALMOBOAT", "time": "18:00", "seq": 1 },
+							{ "id": "OAK2BOAT", "time": "18:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "8ISLANDBOAT",
+						"calId": "ISLANDSUSUBOAT",
+						"stops": [
+							{ "id": "FALMOBOAT", "time": "19:30", "seq": 1 },
+							{ "id": "OAK2BOAT", "time": "20:05", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "9ISLANDBOAT",
+						"calId": "ISLANDFRSUBOAT",
+						"stops": [
+							{ "id": "FALMOBOAT", "time": "20:30", "seq": 1 },
+							{ "id": "OAK2BOAT", "time": "21:05", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "19ISLANDBOAT",
+						"calId": "ISLANDDAFABOAT",
+						"stops": [
+							{ "id": "FALMOBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "OAK2BOAT", "time": "9:35:", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "20ISLANDBOAT",
+						"calId": "ISLANDDAFABOAT",
+						"stops": [
+							{ "id": "FALMOBOAT", "time": "10:30", "seq": 1 },
+							{ "id": "OAK2BOAT", "time": "11:05", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "21ISLANDBOAT",
+						"calId": "ISLANDFRFABOAT",
+						"stops": [
+							{ "id": "FALMOBOAT", "time": "15:00", "seq": 1 },
+							{ "id": "OAK2BOAT", "time": "15:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "22ISLANDBOAT",
+						"calId": "ISLANDFRFABOAT",
+						"stops": [
+							{ "id": "FALMOBOAT", "time": "18:00", "seq": 1 },
+							{ "id": "OAK2BOAT", "time": "18:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "23ISLANDBOAT",
+						"calId": "ISLANDFRFABOAT",
+						"stops": [
+							{ "id": "FALMOBOAT", "time": "20:00", "seq": 1 },
+							{ "id": "OAK2BOAT", "time": "20:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "24ISLANDBOAT",
+						"calId": "ISLANDENDFABOAT",
+						"stops": [
+							{ "id": "FALMOBOAT", "time": "12:00", "seq": 1 },
+							{ "id": "OAK2BOAT", "time": "12:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "25ISLANDBOAT",
+						"calId": "ISLANDENDFABOAT",
+						"stops": [
+							{ "id": "FALMOBOAT", "time": "15:00", "seq": 1 },
+							{ "id": "OAK2BOAT", "time": "15:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "26ISLANDBOAT",
+						"calId": "ISLANDENDFABOAT",
+						"stops": [
+							{ "id": "FALMOBOAT", "time": "16:30", "seq": 1 },
+							{ "id": "OAK2BOAT", "time": "17:05", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			},
+			{
+				"destination": "Falmouth",
+				"trips": [
+					{
+						"tripId": "10ISLANDBOAT",
+						"calId": "ISLANDDASUBOAT",
+						"stops": [
+							{ "id": "OAK2BOAT", "time": "9:35:", "seq": 1 },
+							{ "id": "FALMOBOAT", "time": "10:10", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "11ISLANDBOAT",
+						"calId": "ISLANDDASUBOAT",
+						"stops": [
+							{ "id": "OAK2BOAT", "time": "11:05", "seq": 1 },
+							{ "id": "FALMOBOAT", "time": "11:40", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "12ISLANDBOAT",
+						"calId": "ISLANDDASUBOAT",
+						"stops": [
+							{ "id": "OAK2BOAT", "time": "12:35", "seq": 1 },
+							{ "id": "FALMOBOAT", "time": "13:10", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "13ISLANDBOAT",
+						"calId": "ISLANDDASUBOAT",
+						"stops": [
+							{ "id": "OAK2BOAT", "time": "14:15", "seq": 1 },
+							{ "id": "FALMOBOAT", "time": "14:50", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "14ISLANDBOAT",
+						"calId": "ISLANDDASUBOAT",
+						"stops": [
+							{ "id": "OAK2BOAT", "time": "15:45", "seq": 1 },
+							{ "id": "FALMOBOAT", "time": "16:20", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "15ISLANDBOAT",
+						"calId": "ISLANDDASUBOAT",
+						"stops": [
+							{ "id": "OAK2BOAT", "time": "17:15", "seq": 1 },
+							{ "id": "FALMOBOAT", "time": "17:50", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "16ISLANDBOAT",
+						"calId": "ISLANDDASUBOAT",
+						"stops": [
+							{ "id": "OAK2BOAT", "time": "18:45", "seq": 1 },
+							{ "id": "FALMOBOAT", "time": "19:20", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "17ISLANDBOAT",
+						"calId": "ISLANDSUSUBOAT",
+						"stops": [
+							{ "id": "OAK2BOAT", "time": "20:15", "seq": 1 },
+							{ "id": "FALMOBOAT", "time": "20:50", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "18ISLANDBOAT",
+						"calId": "ISLANDFRSUBOAT",
+						"stops": [
+							{ "id": "OAK2BOAT", "time": "20:45", "seq": 1 },
+							{ "id": "FALMOBOAT", "time": "21:20", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "27ISLANDBOAT",
+						"calId": "ISLANDDAFABOAT",
+						"stops": [
+							{ "id": "OAK2BOAT", "time": "14:15", "seq": 1 },
+							{ "id": "FALMOBOAT", "time": "14:50", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "28ISLANDBOAT",
+						"calId": "ISLANDDAFABOAT",
+						"stops": [
+							{ "id": "OAK2BOAT", "time": "15:45", "seq": 1 },
+							{ "id": "FALMOBOAT", "time": "16:20", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "29ISLANDBOAT",
+						"calId": "ISLANDFRFABOAT",
+						"stops": [
+							{ "id": "OAK2BOAT", "time": "9:35:", "seq": 1 },
+							{ "id": "FALMOBOAT", "time": "10:10", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "30ISLANDBOAT",
+						"calId": "ISLANDFRFABOAT",
+						"stops": [
+							{ "id": "OAK2BOAT", "time": "18:45", "seq": 1 },
+							{ "id": "FALMOBOAT", "time": "19:20", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "31ISLANDBOAT",
+						"calId": "ISLANDFRFABOAT",
+						"stops": [
+							{ "id": "OAK2BOAT", "time": "20:45", "seq": 1 },
+							{ "id": "FALMOBOAT", "time": "21:20", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "32ISLANDBOAT",
+						"calId": "ISLANDENDFABOAT",
+						"stops": [
+							{ "id": "OAK2BOAT", "time": "9:35:", "seq": 1 },
+							{ "id": "FALMOBOAT", "time": "10:10", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "33ISLANDBOAT",
+						"calId": "ISLANDENDFABOAT",
+						"stops": [
+							{ "id": "OAK2BOAT", "time": "11:05", "seq": 1 },
+							{ "id": "FALMOBOAT", "time": "11:40", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "34ISLANDBOAT",
+						"calId": "ISLANDENDFABOAT",
+						"stops": [
+							{ "id": "OAK2BOAT", "time": "17:15", "seq": 1 },
+							{ "id": "FALMOBOAT", "time": "17:50", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			}
+		]
+	},
+	{
+			"id": "CUTTYBOAT",
+			"agency": "CUTTY",
+			"shortName": "",
+			"longName": "Cuttyhunk-New Bedford",
+			"colorCode": "",
+			"vectors": [
+			{
+				"destination": "Cuttyhunk",
+				"trips": [
+					{
+						"tripId": "1CUTTYBOAT",
+						"calId": "CUTTYDASUBOAT",
+						"stops": [
+							{ "id": "NEWBEBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "CUTTYBOAT", "time": "10:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "2CUTTYBOAT",
+						"calId": "CUTTYSUSUBOAT",
+						"stops": [
+							{ "id": "NEWBEBOAT", "time": "14:30", "seq": 1 },
+							{ "id": "CUTTYBOAT", "time": "15:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "3CUTTYBOAT",
+						"calId": "CUTTYFRSUBOAT",
+						"stops": [
+							{ "id": "NEWBEBOAT", "time": "19:00", "seq": 1 },
+							{ "id": "CUTTYBOAT", "time": "20:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "4CUTTYBOAT",
+						"calId": "CUTTYSASUBOAT",
+						"stops": [
+							{ "id": "NEWBEBOAT", "time": "13:00", "seq": 1 },
+							{ "id": "CUTTYBOAT", "time": "14:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "10CUTTYBOAT",
+						"calId": "CUTTYDAFA1BOAT",
+						"stops": [
+							{ "id": "NEWBEBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "CUTTYBOAT", "time": "10:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "11CUTTYBOAT",
+						"calId": "CUTTYFRFA1BOAT",
+						"stops": [
+							{ "id": "NEWBEBOAT", "time": "18:00", "seq": 1 },
+							{ "id": "CUTTYBOAT", "time": "19:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "14CUTTYBOAT",
+						"calId": "CUTTYSUMOFRSAFA2BOAT",
+						"stops": [
+							{ "id": "NEWBEBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "CUTTYBOAT", "time": "10:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "15CUTTYBOAT",
+						"calId": "CUTTYFRFA2BOAT",
+						"stops": [
+							{ "id": "NEWBEBOAT", "time": "18:00", "seq": 1 },
+							{ "id": "CUTTYBOAT", "time": "19:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "18CUTTYBOAT",
+						"calId": "CUTTYWINBOAT",
+						"stops": [
+							{ "id": "NEWBEBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "CUTTYBOAT", "time": "10:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "20CUTTYBOAT",
+						"calId": "LABORBOAT",
+						"stops": [
+							{ "id": "NEWBEBOAT", "time": "14:00", "seq": 1 },
+							{ "id": "CUTTYBOAT", "time": "15:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "22CUTTYBOAT",
+						"calId": "GENOCBOAT",
+						"stops": [
+							{ "id": "NEWBEBOAT", "time": "12:00", "seq": 1 },
+							{ "id": "CUTTYBOAT", "time": "13:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			},
+			{
+				"destination": "New Bedford",
+				"trips": [
+					{
+						"tripId": "5CUTTYBOAT",
+						"calId": "CUTTYWESASUBOAT",
+						"stops": [
+							{ "id": "CUTTYBOAT", "time": "16:00", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "17:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "6CUTTYBOAT",
+						"calId": "CUTTYSUSUBOAT",
+						"stops": [
+							{ "id": "CUTTYBOAT", "time": "12:00", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "13:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "7CUTTYBOAT",
+						"calId": "CUTTYSUSUBOAT",
+						"stops": [
+							{ "id": "CUTTYBOAT", "time": "17:00", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "18:00", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWBEBLUFFBOAT", "headsign": "Oak Bluffs", "tripId": "8NEBOAT", "shortName": "", "time": "18:30"}
+						]
+					},
+
+					{
+						"tripId": "8CUTTYBOAT",
+						"calId": "CUTTYFRSUBOAT",
+						"stops": [
+							{ "id": "CUTTYBOAT", "time": "20:00", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "21:00", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWBEVINEYBOAT", "headsign": "Vineyard Haven", "tripId": "9NEBOAT", "shortName": "", "time": "21:30"}
+						]
+					},
+
+					{
+						"tripId": "9CUTTYBOAT",
+						"calId": "CUTTYSASUBOAT",
+						"stops": [
+							{ "id": "CUTTYBOAT", "time": "11:00", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "12:00", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWBEBLUFFBOAT", "headsign": "Oak Bluffs", "tripId": "5NEBOAT", "shortName": "", "time": "12:30"}
+						]
+					},
+
+					{
+						"tripId": "12CUTTYBOAT",
+						"calId": "CUTTYDAFA1BOAT",
+						"stops": [
+							{ "id": "CUTTYBOAT", "time": "16:00", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "17:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "13CUTTYBOAT",
+						"calId": "CUTTYFRFA1BOAT",
+						"stops": [
+							{ "id": "CUTTYBOAT", "time": "19:00", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "20:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "16CUTTYBOAT",
+						"calId": "CUTTYSUMOFRSAFA2BOAT",
+						"stops": [
+							{ "id": "CUTTYBOAT", "time": "15:00", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "16:00", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWBEBLUFFBOAT", "headsign": "Oak Bluffs", "tripId": "7NEBOAT", "shortName": "", "time": "16:30"}
+						]
+					},
+
+					{
+						"tripId": "17CUTTYBOAT",
+						"calId": "CUTTYFRFA2BOAT",
+						"stops": [
+							{ "id": "CUTTYBOAT", "time": "19:00", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "20:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "19CUTTYBOAT",
+						"calId": "CUTTYWINBOAT",
+						"stops": [
+							{ "id": "CUTTYBOAT", "time": "15:00", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "16:00", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWBEBLUFFBOAT", "headsign": "Oak Bluffs", "tripId": "7NEBOAT", "shortName": "", "time": "16:30"}
+						]
+					},
+
+					{
+						"tripId": "21CUTTYBOAT",
+						"calId": "LABORBOAT",
+						"stops": [
+							{ "id": "CUTTYBOAT", "time": "12:00", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "13:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "23CUTTYBOAT",
+						"calId": "GENOCBOAT",
+						"stops": [
+							{ "id": "CUTTYBOAT", "time": "11:00", "seq": 1 },
+							{ "id": "NEWBEBOAT", "time": "12:00", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWBEBLUFFBOAT", "headsign": "Oak Bluffs", "tripId": "5NEBOAT", "shortName": "", "time": "12:30"}
+						]
+					}
+				],
+				"polyline": ""
+			}
+		]
+	},
+	{
+			"id": "HY1BOAT",
+			"agency": "HYLIN",
+			"shortName": "",
+			"longName": "Nantucket-Hyannis Fast Ferry",
+			"colorCode": "",
+			"vectors": [
+			{
+				"destination": "Nantucket",
+				"trips": [
+					{
+						"tripId": "HY1BOAT",
+						"calId": "HYDASUBOAT",
+						"stops": [
+							{ "id": "HYANIBOAT", "time": "6:30:", "seq": 1 },
+							{ "id": "NANTUBOAT", "time": "7:30:", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "HYANFBOAT", "headsign": "Hyannis", "tripId": "HYANFINSUBOAT", "shortName": "", "time": " 8:00"}
+						]
+					},
+
+					{
+						"tripId": "HY2BOAT",
+						"calId": "HYDASUBOAT",
+						"stops": [
+							{ "id": "HYANIBOAT", "time": "9:10:", "seq": 1 },
+							{ "id": "NANTUBOAT", "time": "10:10", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HY3BOAT",
+						"calId": "HYDASUBOAT",
+						"stops": [
+							{ "id": "HYANIBOAT", "time": "12:00", "seq": 1 },
+							{ "id": "NANTUBOAT", "time": "13:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HY4BOAT",
+						"calId": "HYDASUBOAT",
+						"stops": [
+							{ "id": "HYANIBOAT", "time": "15:15", "seq": 1 },
+							{ "id": "NANTUBOAT", "time": "16:15", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "5HYBOAT",
+						"calId": "HYDASUBOAT",
+						"stops": [
+							{ "id": "HYANIBOAT", "time": "18:00", "seq": 1 },
+							{ "id": "NANTUBOAT", "time": "19:00", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "FREEDBOAT", "headsign": "Harwich", "tripId": "FREED6BOAT", "shortName": "", "time": "19:30"}
+						]
+					},
+
+					{
+						"tripId": "6HYBOAT",
+						"calId": "HYDASU1BOAT",
+						"stops": [
+							{ "id": "HYANIBOAT", "time": "20:45", "seq": 1 },
+							{ "id": "NANTUBOAT", "time": "21:45", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "7HYBOAT",
+						"calId": "HYFRFABOAT",
+						"stops": [
+							{ "id": "HYANIBOAT", "time": "20:45", "seq": 1 },
+							{ "id": "NANTUBOAT", "time": "21:45", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "15HYBOAT",
+						"calId": "HYDAFABOAT",
+						"stops": [
+							{ "id": "HYANIBOAT", "time": "6:30:", "seq": 1 },
+							{ "id": "NANTUBOAT", "time": "7:30:", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "HYANFBOAT", "headsign": "Hyannis", "tripId": "HYANFINSUBOAT", "shortName": "", "time": " 8:00"}
+						]
+					},
+
+					{
+						"tripId": "16HYBOAT",
+						"calId": "HYDAFABOAT",
+						"stops": [
+							{ "id": "HYANIBOAT", "time": "9:10:", "seq": 1 },
+							{ "id": "NANTUBOAT", "time": "10:10", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "17HYBOAT",
+						"calId": "HYDAFABOAT",
+						"stops": [
+							{ "id": "HYANIBOAT", "time": "12:00", "seq": 1 },
+							{ "id": "NANTUBOAT", "time": "13:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "18HYBOAT",
+						"calId": "HYDAFABOAT",
+						"stops": [
+							{ "id": "HYANIBOAT", "time": "15:15", "seq": 1 },
+							{ "id": "NANTUBOAT", "time": "16:15", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "19HYBOAT",
+						"calId": "HYDAFABOAT",
+						"stops": [
+							{ "id": "HYANIBOAT", "time": "19:00", "seq": 1 },
+							{ "id": "NANTUBOAT", "time": "20:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			},
+			{
+				"destination": "Hyannis",
+				"trips": [
+					{
+						"tripId": "8HYBOAT",
+						"calId": "HYDASUBOAT",
+						"stops": [
+							{ "id": "NANTUBOAT", "time": "7:45:", "seq": 1 },
+							{ "id": "HYANIBOAT", "time": "8:45:", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "HY2BOAT", "headsign": "Oak Bluffs", "tripId": "25HYBOAT", "shortName": "", "time": " 9:25"},
+							{"routeId": "HY3BOAT", "headsign": "", "tripId": "29HYBOAT", "shortName": "", "time": " 9:20"}
+						]
+					},
+
+					{
+						"tripId": "9HYBOAT",
+						"calId": "HYDASUBOAT",
+						"stops": [
+							{ "id": "NANTUBOAT", "time": "10:35", "seq": 1 },
+							{ "id": "HYANIBOAT", "time": "11:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "10HYBOAT",
+						"calId": "HYDASUBOAT",
+						"stops": [
+							{ "id": "NANTUBOAT", "time": "13:25", "seq": 1 },
+							{ "id": "HYANIBOAT", "time": "14:25", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "11HYBOAT",
+						"calId": "HYDASUBOAT",
+						"stops": [
+							{ "id": "NANTUBOAT", "time": "16:35", "seq": 1 },
+							{ "id": "HYANIBOAT", "time": "17:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "12HYBOAT",
+						"calId": "HYDASUBOAT",
+						"stops": [
+							{ "id": "NANTUBOAT", "time": "19:20", "seq": 1 },
+							{ "id": "HYANIBOAT", "time": "20:20", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "13HYBOAT",
+						"calId": "HYDASU1BOAT",
+						"stops": [
+							{ "id": "NANTUBOAT", "time": "22:00", "seq": 1 },
+							{ "id": "HYANIBOAT", "time": "23:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "14HYBOAT",
+						"calId": "HYFRFABOAT",
+						"stops": [
+							{ "id": "NANTUBOAT", "time": "22:00", "seq": 1 },
+							{ "id": "HYANIBOAT", "time": "23:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "20HYBOAT",
+						"calId": "HYDAFABOAT",
+						"stops": [
+							{ "id": "NANTUBOAT", "time": "7:45:", "seq": 1 },
+							{ "id": "HYANIBOAT", "time": "8:45:", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "HY2BOAT", "headsign": "Oak Bluffs", "tripId": "25HYBOAT", "shortName": "", "time": " 9:25"},
+							{"routeId": "HY3BOAT", "headsign": "", "tripId": "29HYBOAT", "shortName": "", "time": " 9:20"}
+						]
+					},
+
+					{
+						"tripId": "21HYBOAT",
+						"calId": "HYDAFABOAT",
+						"stops": [
+							{ "id": "NANTUBOAT", "time": "10:35", "seq": 1 },
+							{ "id": "HYANIBOAT", "time": "11:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "22HYBOAT",
+						"calId": "HYDAFABOAT",
+						"stops": [
+							{ "id": "NANTUBOAT", "time": "13:25", "seq": 1 },
+							{ "id": "HYANIBOAT", "time": "14:25", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "23HYBOAT",
+						"calId": "HYDAFABOAT",
+						"stops": [
+							{ "id": "NANTUBOAT", "time": "16:35", "seq": 1 },
+							{ "id": "HYANIBOAT", "time": "17:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "24HYBOAT",
+						"calId": "HYDAFABOAT",
+						"stops": [
+							{ "id": "NANTUBOAT", "time": "20:10", "seq": 1 },
+							{ "id": "HYANIBOAT", "time": "21:10", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			}
+		]
+	},
+	{
+			"id": "HY2BOAT",
+			"agency": "HYLIN",
+			"shortName": "",
+			"longName": "Hyannis-Oak Bluffs",
+			"colorCode": "",
+			"vectors": [
+			{
+				"destination": "Oak Bluffs",
+				"trips": [
+					{
+						"tripId": "25HYBOAT",
+						"calId": "HYVINEYARDDASUBOAT",
+						"stops": [
+							{ "id": "HYANIBOAT", "time": "9:25:", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "11:05", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "VINEYFBOAT", "headsign": "Quonset", "tripId": "VINEY45BOAT", "shortName": "", "time": "12:00"}
+						]
+					},
+
+					{
+						"tripId": "27HYBOAT",
+						"calId": "HYVINEYARDDASUBOAT",
+						"stops": [
+							{ "id": "HYANIBOAT", "time": "9:25:", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "11:05", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "VINEYFBOAT", "headsign": "Quonset", "tripId": "VINEY45BOAT", "shortName": "", "time": "12:00"}
+						]
+					}
+				],
+				"polyline": ""
+			},
+			{
+				"destination": "Hyannis",
+				"trips": [
+					{
+						"tripId": "26HYBOAT",
+						"calId": "HYVINEYARDDAFABOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "17:15", "seq": 1 },
+							{ "id": "HYANIBOAT", "time": "18:55", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "HY1BOAT", "headsign": "Nantucket", "tripId": "19HYBOAT", "shortName": "", "time": "19:00"}
+						]
+					},
+
+					{
+						"tripId": "28HYBOAT",
+						"calId": "HYVINEYARDDAFABOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "15:45", "seq": 1 },
+							{ "id": "HYANIBOAT", "time": "17:25", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "HY1BOAT", "headsign": "Nantucket", "tripId": "5HYBOAT", "shortName": "", "time": "18:00"}
+						]
+					}
+				],
+				"polyline": ""
+			}
+		]
+	},
+	{
+			"id": "HY3BOAT",
+			"agency": "HYLIN",
+			"shortName": "",
+			"longName": "Visit Both Islands: Hyannis-Nantucket-Oak Bluffs",
+			"colorCode": "",
+			"vectors": [
+			{
+				"destination": "Loop",
+				"trips": [
+					{
+						"tripId": "29HYBOAT",
+						"calId": "HYISLANDDASUBOAT",
+						"stops": [
+							{ "id": "HYANIBOAT", "time": "9:20:", "seq": 1 },
+							{ "id": "NANTUBOAT", "time": "11:10", "seq": 2 },
+							{ "id": "OAKSSABOAT", "time": "16:35", "seq": 3 },
+							{ "id": "HYANIBOAT", "time": "22:15", "seq": 4 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "30HYBOAT",
+						"calId": "HYISLANDDAFABOAT",
+						"stops": [
+							{ "id": "HYANIBOAT", "time": "9:20:", "seq": 1 },
+							{ "id": "NANTUBOAT", "time": "11:10", "seq": 2 },
+							{ "id": "OAKSSABOAT", "time": "16:00", "seq": 3 },
+							{ "id": "HYANIBOAT", "time": "21:45", "seq": 4 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			}
+		]
+	},
+	{
+			"id": "HY4BOAT",
+			"agency": "HYLIN",
+			"shortName": "",
+			"longName": "Inter-Island: Oak Bluffs-Nantucket",
+			"colorCode": "",
+			"vectors": [
+			{
+				"destination": "Nantucket",
+				"trips": [
+					{
+						"tripId": "31HYBOAT",
+						"calId": "HYISLANDDASUBOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "14:00", "seq": 1 },
+							{ "id": "NANTUBOAT", "time": "15:10", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "FREEDBOAT", "headsign": "Harwich", "tripId": "FREED5BOAT", "shortName": "", "time": "16:10"}
+						]
+					},
+
+					{
+						"tripId": "33HYBOAT",
+						"calId": "HYISLANDDAFABOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "13:25", "seq": 1 },
+							{ "id": "NANTUBOAT", "time": "14:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			},
+			{
+				"destination": "Oak Bluffs",
+				"trips": [
+					{
+						"tripId": "32HYBOAT",
+						"calId": "HYISLANDDASUBOAT",
+						"stops": [
+							{ "id": "NANTUBOAT", "time": "15:25", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "16:35", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "VINEYFBOAT", "headsign": "Quonset", "tripId": "VINEY22BOAT", "shortName": "", "time": "17:00"},
+							{"routeId": "HY2BOAT", "headsign": "Hyannis", "tripId": "26HYBOAT", "shortName": "", "time": "17:15"}
+						]
+					},
+
+					{
+						"tripId": "34HYBOAT",
+						"calId": "HYISLANDDAFABOAT",
+						"stops": [
+							{ "id": "NANTUBOAT", "time": "14:50", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "16:00", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "VINEYFBOAT", "headsign": "Quonset", "tripId": "VINEY22BOAT", "shortName": "", "time": "17:00"}
+						]
+					}
+				],
+				"polyline": ""
+			}
+		]
+	},
+	{
+			"id": "FALMOBOAT",
+			"agency": "FALMO",
+			"shortName": "",
+			"longName": "Falmouth Ferry",
+			"colorCode": "",
+			"vectors": [
+			{
+				"destination": "Edgartown",
+				"trips": [
+					{
+						"tripId": "1FALMOBOAT",
+						"calId": "FALMOMOSASUBOAT",
+						"stops": [
+							{ "id": "FALMO2BOAT", "time": "8:30:", "seq": 1 },
+							{ "id": "EDGARBOAT", "time": "9:30:", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "2FALMOBOAT",
+						"calId": "FALMOMOSASUBOAT",
+						"stops": [
+							{ "id": "FALMO2BOAT", "time": "11:00", "seq": 1 },
+							{ "id": "EDGARBOAT", "time": "12:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "3FALMOBOAT",
+						"calId": "FALMOMOSASUBOAT",
+						"stops": [
+							{ "id": "FALMO2BOAT", "time": "13:30", "seq": 1 },
+							{ "id": "EDGARBOAT", "time": "14:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "4FALMOBOAT",
+						"calId": "FALMOMOSASUBOAT",
+						"stops": [
+							{ "id": "FALMO2BOAT", "time": "16:00", "seq": 1 },
+							{ "id": "EDGARBOAT", "time": "17:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "5FALMOBOAT",
+						"calId": "FALMOFRSUBOAT",
+						"stops": [
+							{ "id": "FALMO2BOAT", "time": "19:00", "seq": 1 },
+							{ "id": "EDGARBOAT", "time": "20:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "6FALMOBOAT",
+						"calId": "FALMOSUSUBOAT",
+						"stops": [
+							{ "id": "FALMO2BOAT", "time": "10:00", "seq": 1 },
+							{ "id": "EDGARBOAT", "time": "11:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "7FALMOBOAT",
+						"calId": "FALMOSUSUBOAT",
+						"stops": [
+							{ "id": "FALMO2BOAT", "time": "12:30", "seq": 1 },
+							{ "id": "EDGARBOAT", "time": "13:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "8FALMOBOAT",
+						"calId": "FALMOSUSUBOAT",
+						"stops": [
+							{ "id": "FALMO2BOAT", "time": "15:00", "seq": 1 },
+							{ "id": "EDGARBOAT", "time": "16:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "9FALMOBOAT",
+						"calId": "FALMOSUSUBOAT",
+						"stops": [
+							{ "id": "FALMO2BOAT", "time": "18:00", "seq": 1 },
+							{ "id": "EDGARBOAT", "time": "19:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "19FALMOBOAT",
+						"calId": "FALMOFRFABOAT",
+						"stops": [
+							{ "id": "FALMO2BOAT", "time": "11:00", "seq": 1 },
+							{ "id": "EDGARBOAT", "time": "12:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "20FALMOBOAT",
+						"calId": "FALMOFRFABOAT",
+						"stops": [
+							{ "id": "FALMO2BOAT", "time": "17:30", "seq": 1 },
+							{ "id": "EDGARBOAT", "time": "18:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "21FALMOBOAT",
+						"calId": "FALMOSAFABOAT",
+						"stops": [
+							{ "id": "FALMO2BOAT", "time": "10:00", "seq": 1 },
+							{ "id": "EDGARBOAT", "time": "11:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "22FALMOBOAT",
+						"calId": "FALMOSAFABOAT",
+						"stops": [
+							{ "id": "FALMO2BOAT", "time": "17:30", "seq": 1 },
+							{ "id": "EDGARBOAT", "time": "18:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "23FALMOBOAT",
+						"calId": "FALMOSUFABOAT",
+						"stops": [
+							{ "id": "FALMO2BOAT", "time": "14:00", "seq": 1 },
+							{ "id": "EDGARBOAT", "time": "15:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "24FALMOBOAT",
+						"calId": "FALMOSUFABOAT",
+						"stops": [
+							{ "id": "FALMO2BOAT", "time": "17:30", "seq": 1 },
+							{ "id": "EDGARBOAT", "time": "18:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			},
+			{
+				"destination": "Falmouth",
+				"trips": [
+					{
+						"tripId": "10FALMOBOAT",
+						"calId": "FALMOMOSASUBOAT",
+						"stops": [
+							{ "id": "EDGARBOAT", "time": "9:45:", "seq": 1 },
+							{ "id": "FALMO2BOAT", "time": "10:45", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "11FALMOBOAT",
+						"calId": "FALMOMOSASUBOAT",
+						"stops": [
+							{ "id": "EDGARBOAT", "time": "12:15", "seq": 1 },
+							{ "id": "FALMO2BOAT", "time": "13:15", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "12FALMOBOAT",
+						"calId": "FALMOMOSASUBOAT",
+						"stops": [
+							{ "id": "EDGARBOAT", "time": "14:45", "seq": 1 },
+							{ "id": "FALMO2BOAT", "time": "15:45", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "13FALMOBOAT",
+						"calId": "FALMOMOSASUBOAT",
+						"stops": [
+							{ "id": "EDGARBOAT", "time": "17:15", "seq": 1 },
+							{ "id": "FALMO2BOAT", "time": "18:15", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "14FALMOBOAT",
+						"calId": "FALMOFRSUBOAT",
+						"stops": [
+							{ "id": "EDGARBOAT", "time": "20:15", "seq": 1 },
+							{ "id": "FALMO2BOAT", "time": "21:15", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "15FALMOBOAT",
+						"calId": "FALMOSUSUBOAT",
+						"stops": [
+							{ "id": "EDGARBOAT", "time": "11:15", "seq": 1 },
+							{ "id": "FALMO2BOAT", "time": "12:15", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "16FALMOBOAT",
+						"calId": "FALMOSUSUBOAT",
+						"stops": [
+							{ "id": "EDGARBOAT", "time": "13:45", "seq": 1 },
+							{ "id": "FALMO2BOAT", "time": "14:45", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "17FALMOBOAT",
+						"calId": "FALMOSUSUBOAT",
+						"stops": [
+							{ "id": "EDGARBOAT", "time": "16:15", "seq": 1 },
+							{ "id": "FALMO2BOAT", "time": "17:15", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "18FALMOBOAT",
+						"calId": "FALMOSUSUBOAT",
+						"stops": [
+							{ "id": "EDGARBOAT", "time": "19:15", "seq": 1 },
+							{ "id": "FALMO2BOAT", "time": "20:15", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "25FALMOBOAT",
+						"calId": "FALMOFRFABOAT",
+						"stops": [
+							{ "id": "EDGARBOAT", "time": "12:15", "seq": 1 },
+							{ "id": "FALMO2BOAT", "time": "13:15", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "26FALMOBOAT",
+						"calId": "FALMOFRFABOAT",
+						"stops": [
+							{ "id": "EDGARBOAT", "time": "18:45", "seq": 1 },
+							{ "id": "FALMO2BOAT", "time": "19:45", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "27FALMOBOAT",
+						"calId": "FALMOSAFABOAT",
+						"stops": [
+							{ "id": "EDGARBOAT", "time": "11:15", "seq": 1 },
+							{ "id": "FALMO2BOAT", "time": "12:15", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "28FALMOBOAT",
+						"calId": "FALMOSAFABOAT",
+						"stops": [
+							{ "id": "EDGARBOAT", "time": "18:45", "seq": 1 },
+							{ "id": "FALMO2BOAT", "time": "19:45", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "29FALMOBOAT",
+						"calId": "FALMOSUFABOAT",
+						"stops": [
+							{ "id": "EDGARBOAT", "time": "15:15", "seq": 1 },
+							{ "id": "FALMO2BOAT", "time": "16:15", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "30FALMOBOAT",
+						"calId": "FALMOSUFABOAT",
+						"stops": [
+							{ "id": "EDGARBOAT", "time": "18:45", "seq": 1 },
+							{ "id": "FALMO2BOAT", "time": "19:45", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			}
+		]
+	},
+	{
+			"id": "FREEDBOAT",
+			"agency": "HARWI",
+			"shortName": "",
+			"longName": "Harwich-Nantucket",
+			"colorCode": "",
+			"vectors": [
+			{
+				"destination": "Nantucket",
+				"trips": [
+					{
+						"tripId": "FREED1BOAT",
+						"calId": "FREEDSUBOAT",
+						"stops": [
+							{ "id": "SAQUABOAT", "time": "8:00:", "seq": 1 },
+							{ "id": "NANTUBOAT", "time": "9:20:", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "FREED2BOAT",
+						"calId": "FREEDSUBOAT",
+						"stops": [
+							{ "id": "SAQUABOAT", "time": "11:20", "seq": 1 },
+							{ "id": "NANTUBOAT", "time": "12:40", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "HY1BOAT", "headsign": "Hyannis", "tripId": "10HYBOAT", "shortName": "", "time": "13:25"}
+						]
+					},
+
+					{
+						"tripId": "FREED3BOAT",
+						"calId": "FREEDSUBOAT",
+						"stops": [
+							{ "id": "SAQUABOAT", "time": "17:40", "seq": 1 },
+							{ "id": "NANTUBOAT", "time": "18:50", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "HY1BOAT", "headsign": "Hyannis", "tripId": "12HYBOAT", "shortName": "", "time": "19:20"}
+						]
+					},
+
+					{
+						"tripId": "FREED4BOAT",
+						"calId": "FREEDFABOAT",
+						"stops": [
+							{ "id": "SAQUABOAT", "time": "8:50:", "seq": 1 },
+							{ "id": "NANTUBOAT", "time": "10:10", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "HY1BOAT", "headsign": "Hyannis", "tripId": "9HYBOAT", "shortName": "", "time": "10:35"}
+						]
+					}
+				],
+				"polyline": ""
+			},
+			{
+				"destination": "Harwich",
+				"trips": [
+					{
+						"tripId": "FREED5BOAT",
+						"calId": "FREEDSUBOAT",
+						"stops": [
+							{ "id": "NANTUBOAT", "time": "16:10", "seq": 1 },
+							{ "id": "SAQUABOAT", "time": "17:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "FREED6BOAT",
+						"calId": "FREEDSUBOAT",
+						"stops": [
+							{ "id": "NANTUBOAT", "time": "19:30", "seq": 1 },
+							{ "id": "SAQUABOAT", "time": "20:50", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "FREED7BOAT",
+						"calId": "FREEDSUBOAT",
+						"stops": [
+							{ "id": "NANTUBOAT", "time": "9:30:", "seq": 1 },
+							{ "id": "SAQUABOAT", "time": "10:50", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "FREED8BOAT",
+						"calId": "FREEDFABOAT",
+						"stops": [
+							{ "id": "NANTUBOAT", "time": "16:10", "seq": 1 },
+							{ "id": "SAQUABOAT", "time": "17:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			}
+		]
+	},
+	{
+			"id": "SALEMBOAT",
+			"agency": "SAL",
+			"shortName": "",
+			"longName": "Salem-Boston",
+			"colorCode": "",
+			"vectors": [
+			{
+				"destination": "Loop",
+				"trips": [
+					{
+						"tripId": "1SALEMBOAT",
+						"calId": "SALEMWESUBOAT",
+						"stops": [
+							{ "id": "SALEMBOAT", "time": "7:00:", "seq": 1 },
+							{ "id": "SEAPOBOAT", "time": "7:40:", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "2SALEMBOAT",
+						"calId": "SALEMENDSUBOAT",
+						"stops": [
+							{ "id": "SALEMBOAT", "time": "8:00:", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "9:00:", "seq": 2 },
+							{ "id": "SALEMBOAT", "time": "9:55:", "seq": 3 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "3SALEMBOAT",
+						"calId": "SALEMWESUBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "SALEMBOAT", "time": "9:55:", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "4SALEMBOAT",
+						"calId": "SALEMDASUBOAT",
+						"stops": [
+							{ "id": "SALEMBOAT", "time": "10:00", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "11:00", "seq": 2 },
+							{ "id": "SALEMBOAT", "time": "11:55", "seq": 3 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "5SALEMBOAT",
+						"calId": "SALEMDASUBOAT",
+						"stops": [
+							{ "id": "SALEMBOAT", "time": "12:00", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "13:00", "seq": 2 },
+							{ "id": "SALEMBOAT", "time": "13:55", "seq": 3 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "6SALEMBOAT",
+						"calId": "SALEMDASUBOAT",
+						"stops": [
+							{ "id": "SALEMBOAT", "time": "14:00", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "15:00", "seq": 2 },
+							{ "id": "SALEMBOAT", "time": "15:55", "seq": 3 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "7SALEMBOAT",
+						"calId": "SALEMENDSUBOAT",
+						"stops": [
+							{ "id": "SALEMBOAT", "time": "16:00", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "17:10", "seq": 2 },
+							{ "id": "SALEMBOAT", "time": "18:05", "seq": 3 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "8SALEMBOAT",
+						"calId": "SALEMWESUBOAT",
+						"stops": [
+							{ "id": "SALEMBOAT", "time": "16:00", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "17:10", "seq": 2 },
+							{ "id": "SEAPOBOAT", "time": "17:25", "seq": 3 },
+							{ "id": "SALEMBOAT", "time": "18:05", "seq": 4 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "8aSALEMBOAT",
+						"calId": "SALEMENDSUBOAT",
+						"stops": [
+							{ "id": "SALEMBOAT", "time": "18:10", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "19:10", "seq": 2 },
+							{ "id": "SALEMBOAT", "time": "20:05", "seq": 3 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "8bSALEMBOAT",
+						"calId": "SALEMWESUBOAT",
+						"stops": [
+							{ "id": "SALEMBOAT", "time": "18:10", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "19:10", "seq": 2 },
+							{ "id": "SEAPOBOAT", "time": "19:25", "seq": 3 },
+							{ "id": "SALEMBOAT", "time": "20:05", "seq": 4 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "9SALEMBOAT",
+						"calId": "SALEMDASUBOAT",
+						"stops": [
+							{ "id": "SALEMBOAT", "time": "20:10", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "21:00", "seq": 2 },
+							{ "id": "SALEMBOAT", "time": "21:55", "seq": 3 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "10SALEMBOAT",
+						"calId": "SALEMFRSASUBOAT",
+						"stops": [
+							{ "id": "SALEMBOAT", "time": "22:00", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "23:00", "seq": 2 },
+							{ "id": "SALEMBOAT", "time": "23:55", "seq": 3 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "11SALEMBOAT",
+						"calId": "SALEMWEFABOAT",
+						"stops": [
+							{ "id": "SALEMBOAT", "time": "7:00:", "seq": 1 },
+							{ "id": "SEAPOBOAT", "time": "7:40:", "seq": 2 },
+							{ "id": "LONGWBOAT", "time": "9:00:", "seq": 3 },
+							{ "id": "SALEMBOAT", "time": "9:55:", "seq": 4 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "12SALEMBOAT",
+						"calId": "SALEMDAFABOAT",
+						"stops": [
+							{ "id": "SALEMBOAT", "time": "10:00", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "11:00", "seq": 2 },
+							{ "id": "SALEMBOAT", "time": "11:55", "seq": 3 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "13SALEMBOAT",
+						"calId": "SALEMDAFABOAT",
+						"stops": [
+							{ "id": "SALEMBOAT", "time": "12:00", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "13:00", "seq": 2 },
+							{ "id": "SALEMBOAT", "time": "13:55", "seq": 3 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "14SALEMBOAT",
+						"calId": "SALEMDAFABOAT",
+						"stops": [
+							{ "id": "SALEMBOAT", "time": "14:00", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "15:00", "seq": 2 },
+							{ "id": "SALEMBOAT", "time": "15:55", "seq": 3 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "15SALEMBOAT",
+						"calId": "SALEMENDFABOAT",
+						"stops": [
+							{ "id": "SALEMBOAT", "time": "16:00", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "17:10", "seq": 2 },
+							{ "id": "SALEMBOAT", "time": "18:05", "seq": 3 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "16SALEMBOAT",
+						"calId": "SALEMWEFABOAT",
+						"stops": [
+							{ "id": "SALEMBOAT", "time": "16:00", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "17:10", "seq": 2 },
+							{ "id": "SEAPOBOAT", "time": "17:25", "seq": 3 },
+							{ "id": "SALEMBOAT", "time": "18:05", "seq": 4 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "17SALEMBOAT",
+						"calId": "SALEMENDFABOAT",
+						"stops": [
+							{ "id": "SALEMBOAT", "time": "18:10", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "19:10", "seq": 2 },
+							{ "id": "SALEMBOAT", "time": "20:05", "seq": 3 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "18SALEMBOAT",
+						"calId": "SALEMWEFABOAT",
+						"stops": [
+							{ "id": "SALEMBOAT", "time": "18:10", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "19:10", "seq": 2 },
+							{ "id": "SEAPOBOAT", "time": "19:25", "seq": 3 },
+							{ "id": "SALEMBOAT", "time": "20:05", "seq": 4 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "19SALEMBOAT",
+						"calId": "SALEMFRSAFABOAT",
+						"stops": [
+							{ "id": "SALEMBOAT", "time": "20:10", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "22:00", "seq": 2 },
+							{ "id": "SALEMBOAT", "time": "22:55", "seq": 3 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			}
+		]
+	},
+	{
+			"id": "PROV1BOAT",
+			"agency": "BAYST",
+			"shortName": "",
+			"longName": "Bay State Cruise Co. Provincetown Ferry",
+			"colorCode": "",
+			"vectors": [
+			{
+				"destination": "Provincetown",
+				"trips": [
+					{
+						"tripId": "1BAYSTBOAT",
+						"calId": "BAYST1BOAT",
+						"stops": [
+							{ "id": "WORLDBOAT", "time": "8:30:", "seq": 1 },
+							{ "id": "PROVIBOAT", "time": "10:00", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "PROV2BOAT", "headsign": "Boston", "tripId": "HARBO3BOAT", "shortName": "", "time": "11:00"}
+						]
+					},
+
+					{
+						"tripId": "2BAYSTBOAT",
+						"calId": "BAYST1BOAT",
+						"stops": [
+							{ "id": "WORLDBOAT", "time": "13:00", "seq": 1 },
+							{ "id": "PROVIBOAT", "time": "14:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "3BAYSTBOAT",
+						"calId": "BAYST1BOAT",
+						"stops": [
+							{ "id": "WORLDBOAT", "time": "17:30", "seq": 1 },
+							{ "id": "PROVIBOAT", "time": "19:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "4BAYSTBOAT",
+						"calId": "BAYST2BOAT",
+						"stops": [
+							{ "id": "WORLDBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "PROVIBOAT", "time": "12:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			},
+			{
+				"destination": "Boston",
+				"trips": [
+					{
+						"tripId": "5BAYSTBOAT",
+						"calId": "BAYST1BOAT",
+						"stops": [
+							{ "id": "PROVIBOAT", "time": "10:30", "seq": 1 },
+							{ "id": "WORLDBOAT", "time": "12:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "6BAYSTBOAT",
+						"calId": "BAYST1BOAT",
+						"stops": [
+							{ "id": "PROVIBOAT", "time": "15:00", "seq": 1 },
+							{ "id": "WORLDBOAT", "time": "16:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "7BAYSTBOAT",
+						"calId": "BAYST1BOAT",
+						"stops": [
+							{ "id": "PROVIBOAT", "time": "19:30", "seq": 1 },
+							{ "id": "WORLDBOAT", "time": "21:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "8BAYSTBOAT",
+						"calId": "BAYST2BOAT",
+						"stops": [
+							{ "id": "PROVIBOAT", "time": "15:30", "seq": 1 },
+							{ "id": "WORLDBOAT", "time": "18:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			}
+		]
+	},
+	{
+			"id": "PROV2BOAT",
+			"agency": "HARBO",
+			"shortName": "",
+			"longName": "BHC Provincetown Ferry",
+			"colorCode": "",
+			"vectors": [
+			{
+				"destination": "Provincetown",
+				"trips": [
+					{
+						"tripId": "HARBO1BOAT",
+						"calId": "HARBOMOWESUBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "PROVIBOAT", "time": "10:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HARBO2BOAT",
+						"calId": "HARBOMOWESUBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "14:00", "seq": 1 },
+							{ "id": "PROVIBOAT", "time": "15:30", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "PLYMOPROVIBOAT", "headsign": "Plymouth", "tripId": "PLYMO2BOAT", "shortName": "", "time": "16:30"}
+						]
+					},
+
+					{
+						"tripId": "HARBO5BOAT",
+						"calId": "HARBOTHSUSUBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "PROVIBOAT", "time": "10:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HARBO6BOAT",
+						"calId": "HARBOTHSUSUBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "14:00", "seq": 1 },
+							{ "id": "PROVIBOAT", "time": "15:30", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "PLYMOPROVIBOAT", "headsign": "Plymouth", "tripId": "PLYMO2BOAT", "shortName": "", "time": "16:30"}
+						]
+					},
+
+					{
+						"tripId": "HARBO7BOAT",
+						"calId": "HARBOTHSUSUBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "18:30", "seq": 1 },
+							{ "id": "PROVIBOAT", "time": "20:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HARBO11BOAT",
+						"calId": "HARBOLABORBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "PROVIBOAT", "time": "10:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HARBO12BOAT",
+						"calId": "HARBOLABORBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "14:00", "seq": 1 },
+							{ "id": "PROVIBOAT", "time": "15:30", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "PLYMOPROVIBOAT", "headsign": "Plymouth", "tripId": "PLYMO2BOAT", "shortName": "", "time": "16:30"}
+						]
+					},
+
+					{
+						"tripId": "HARBO13BOAT",
+						"calId": "HARBOLABORBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "18:30", "seq": 1 },
+							{ "id": "PROVIBOAT", "time": "20:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HARBO17BOAT",
+						"calId": "HARBOMOFABOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "PROVIBOAT", "time": "10:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HARBO18BOAT",
+						"calId": "HARBOMOFABOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "14:00", "seq": 1 },
+							{ "id": "PROVIBOAT", "time": "15:30", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "PLYMOPROVIBOAT", "headsign": "Plymouth", "tripId": "PLYMO2BOAT", "shortName": "", "time": "16:30"}
+						]
+					},
+
+					{
+						"tripId": "HARBO21BOAT",
+						"calId": "HARBOTUTHFABOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "PROVIBOAT", "time": "10:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HARBO23BOAT",
+						"calId": "HARBOFRFABOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "PROVIBOAT", "time": "10:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HARBO24BOAT",
+						"calId": "HARBOFRFABOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "18:30", "seq": 1 },
+							{ "id": "PROVIBOAT", "time": "20:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HARBO27BOAT",
+						"calId": "HARBOENDFABOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "PROVIBOAT", "time": "10:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HARBO28BOAT",
+						"calId": "HARBOENDFABOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "14:00", "seq": 1 },
+							{ "id": "PROVIBOAT", "time": "15:30", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "PLYMOPROVIBOAT", "headsign": "Plymouth", "tripId": "PLYMO2BOAT", "shortName": "", "time": "16:30"}
+						]
+					},
+
+					{
+						"tripId": "HARBO29BOAT",
+						"calId": "HARBOENDFABOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "18:30", "seq": 1 },
+							{ "id": "PROVIBOAT", "time": "20:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HARBO33BOAT",
+						"calId": "HARBOFA2BOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "PROVIBOAT", "time": "10:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HARBO35BOAT",
+						"calId": "HARBOFA3BOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "PROVIBOAT", "time": "10:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			},
+			{
+				"destination": "Boston",
+				"trips": [
+					{
+						"tripId": "HARBO3BOAT",
+						"calId": "HARBOMOWESUBOAT",
+						"stops": [
+							{ "id": "PROVIBOAT", "time": "11:00", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "12:30", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "LONGBOAT", "headsign": "", "tripId": "LONG4BOAT", "shortName": "", "time": "13:00"}
+						]
+					},
+
+					{
+						"tripId": "HARBO4BOAT",
+						"calId": "HARBOMOWESUBOAT",
+						"stops": [
+							{ "id": "PROVIBOAT", "time": "16:00", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "17:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HARBO8BOAT",
+						"calId": "HARBOTHSUSUBOAT",
+						"stops": [
+							{ "id": "PROVIBOAT", "time": "11:00", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "12:30", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "LONGBOAT", "headsign": "", "tripId": "LONG4BOAT", "shortName": "", "time": "13:00"}
+						]
+					},
+
+					{
+						"tripId": "HARBO9BOAT",
+						"calId": "HARBOTHSUSUBOAT",
+						"stops": [
+							{ "id": "PROVIBOAT", "time": "16:00", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "17:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HARBO10BOAT",
+						"calId": "HARBOTHSUSUBOAT",
+						"stops": [
+							{ "id": "PROVIBOAT", "time": "20:30", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "22:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HARBO14BOAT",
+						"calId": "HARBOLABORBOAT",
+						"stops": [
+							{ "id": "PROVIBOAT", "time": "11:00", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "12:30", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "LONGBOAT", "headsign": "", "tripId": "LONG4BOAT", "shortName": "", "time": "13:00"}
+						]
+					},
+
+					{
+						"tripId": "HARBO15BOAT",
+						"calId": "HARBOLABORBOAT",
+						"stops": [
+							{ "id": "PROVIBOAT", "time": "16:00", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "17:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HARBO16BOAT",
+						"calId": "HARBOLABORBOAT",
+						"stops": [
+							{ "id": "PROVIBOAT", "time": "20:30", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "22:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HARBO19BOAT",
+						"calId": "HARBOMOFABOAT",
+						"stops": [
+							{ "id": "PROVIBOAT", "time": "11:00", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "12:30", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "LONGBOAT", "headsign": "", "tripId": "LONG4BOAT", "shortName": "", "time": "13:00"}
+						]
+					},
+
+					{
+						"tripId": "HARBO20BOAT",
+						"calId": "HARBOMOFABOAT",
+						"stops": [
+							{ "id": "PROVIBOAT", "time": "16:00", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "17:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HARBO22BOAT",
+						"calId": "HARBOTUTHFABOAT",
+						"stops": [
+							{ "id": "PROVIBOAT", "time": "16:00", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "17:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HARBO25BOAT",
+						"calId": "HARBOFRFABOAT",
+						"stops": [
+							{ "id": "PROVIBOAT", "time": "16:00", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "17:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HARBO26BOAT",
+						"calId": "HARBOFRFABOAT",
+						"stops": [
+							{ "id": "PROVIBOAT", "time": "20:30", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "22:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HARBO30BOAT",
+						"calId": "HARBOENDFABOAT",
+						"stops": [
+							{ "id": "PROVIBOAT", "time": "11:00", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "12:30", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "LONGBOAT", "headsign": "", "tripId": "LONG4BOAT", "shortName": "", "time": "13:00"}
+						]
+					},
+
+					{
+						"tripId": "HARBO31BOAT",
+						"calId": "HARBOENDFABOAT",
+						"stops": [
+							{ "id": "PROVIBOAT", "time": "16:00", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "17:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HARBO32BOAT",
+						"calId": "HARBOENDFABOAT",
+						"stops": [
+							{ "id": "PROVIBOAT", "time": "20:30", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "22:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HARBO34BOAT",
+						"calId": "HARBOFA2BOAT",
+						"stops": [
+							{ "id": "PROVIBOAT", "time": "16:00", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "17:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "HARBO36BOAT",
+						"calId": "HARBOFA3BOAT",
+						"stops": [
+							{ "id": "PROVIBOAT", "time": "16:00", "seq": 1 },
+							{ "id": "LONGWBOAT", "time": "17:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			}
+		]
+	},
+	{
+			"id": "CHAPPBOAT",
+			"agency": "CHAPP",
+			"shortName": "",
+			"longName": "Chappy Ferry",
+			"colorCode": "",
+			"vectors": [
+			{
+				"destination": "Chappaquiddick",
+				"trips": [
+					{
+						"tripId": "CHAPPSUM1BOAT",
+						"calId": "CHAPPSUMBOAT",
+						"stops": [
+							{ "id": "DOCKBOAT", "time": "7:00:", "seq": 1 },
+							{ "id": "CHAPPBOAT", "time": "7:01:", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "CHAPPSUM2BOAT",
+						"calId": "CHAPPSUMBOAT",
+						"stops": [
+							{ "id": "DOCKBOAT", "time": "7:00:", "seq": 1 },
+							{ "id": "CHAPPBOAT", "time": "7:01:", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			},
+			{
+				"destination": "Nantucket",
+				"trips": [
+					{
+						"tripId": "CHAPPWIN1BOAT",
+						"calId": "CHAPPWINBOAT",
+						"stops": [
+							{ "id": "CHAPPBOAT", "time": "7:00:", "seq": 1 },
+							{ "id": "DOCKBOAT", "time": "7:01:", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "CHAPPWIN2BOAT",
+						"calId": "CHAPPWINBOAT",
+						"stops": [
+							{ "id": "CHAPPBOAT", "time": "7:00:", "seq": 1 },
+							{ "id": "DOCKBOAT", "time": "7:01:", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			}
+		]
+	},
+	{
+			"id": "LONGBOAT",
+			"agency": "HARBOI",
+			"shortName": "",
+			"longName": "Long Wharf-Spectacle/Georges",
+			"colorCode": "",
+			"vectors": [
+			{
+				"destination": "Loop",
+				"trips": [
+					{
+						"tripId": "LONG1BOAT",
+						"calId": "LONGFALBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "10:00", "seq": 1 },
+							{ "id": "SPECTBOAT", "time": "10:15", "seq": 2 },
+							{ "id": "GEORGBOAT", "time": "10:30", "seq": 3 },
+							{ "id": "LONGWBOAT", "time": "10:55", "seq": 4 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "LONG2BOAT",
+						"calId": "LONGFALBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "11:00", "seq": 1 },
+							{ "id": "GEORGBOAT", "time": "11:30", "seq": 2 },
+							{ "id": "SPECTBOAT", "time": "11:45", "seq": 3 },
+							{ "id": "LONGWBOAT", "time": "11:55", "seq": 4 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "LONG3BOAT",
+						"calId": "LONGFALBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "12:00", "seq": 1 },
+							{ "id": "SPECTBOAT", "time": "12:15", "seq": 2 },
+							{ "id": "GEORGBOAT", "time": "12:30", "seq": 3 },
+							{ "id": "LONGWBOAT", "time": "12:55", "seq": 4 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "LONG4BOAT",
+						"calId": "LONGFALBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "13:00", "seq": 1 },
+							{ "id": "GEORGBOAT", "time": "13:30", "seq": 2 },
+							{ "id": "SPECTBOAT", "time": "13:45", "seq": 3 },
+							{ "id": "LONGWBOAT", "time": "13:55", "seq": 4 }
+						],
+						"connections": [
+							{"routeId": "PROV2BOAT", "headsign": "Provincetown", "tripId": "HARBO2BOAT", "shortName": "", "time": "14:00"}
+						]
+					},
+
+					{
+						"tripId": "LONG5BOAT",
+						"calId": "LONGFALBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "14:00", "seq": 1 },
+							{ "id": "SPECTBOAT", "time": "14:15", "seq": 2 },
+							{ "id": "GEORGBOAT", "time": "14:30", "seq": 3 },
+							{ "id": "LONGWBOAT", "time": "14:55", "seq": 4 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "LONG6BOAT",
+						"calId": "LONGFALBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "15:00", "seq": 1 },
+							{ "id": "GEORGBOAT", "time": "15:30", "seq": 2 },
+							{ "id": "SPECTBOAT", "time": "15:45", "seq": 3 },
+							{ "id": "LONGWBOAT", "time": "15:55", "seq": 4 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "LONG7BOAT",
+						"calId": "LONGFALBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "16:00", "seq": 1 },
+							{ "id": "GEORGBOAT", "time": "16:30", "seq": 2 },
+							{ "id": "SPECTBOAT", "time": "16:45", "seq": 3 },
+							{ "id": "LONGWBOAT", "time": "16:55", "seq": 4 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "LONG8BOAT",
+						"calId": "LONGGWESUBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "SPECTBOAT", "time": "9:15:", "seq": 2 },
+							{ "id": "GEORGBOAT", "time": "9:30:", "seq": 3 },
+							{ "id": "LONGWBOAT", "time": "9:55:", "seq": 4 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "LONG9BOAT",
+						"calId": "LONGGWESUBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "10:00", "seq": 1 },
+							{ "id": "SPECTBOAT", "time": "10:15", "seq": 2 },
+							{ "id": "GEORGBOAT", "time": "10:30", "seq": 3 },
+							{ "id": "LONGWBOAT", "time": "10:55", "seq": 4 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "LONG10BOAT",
+						"calId": "LONGGWESUBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "11:00", "seq": 1 },
+							{ "id": "GEORGBOAT", "time": "11:30", "seq": 2 },
+							{ "id": "SPECTBOAT", "time": "11:45", "seq": 3 },
+							{ "id": "LONGWBOAT", "time": "11:55", "seq": 4 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "LONG11BOAT",
+						"calId": "LONGGWESUBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "12:00", "seq": 1 },
+							{ "id": "SPECTBOAT", "time": "12:15", "seq": 2 },
+							{ "id": "GEORGBOAT", "time": "12:30", "seq": 3 },
+							{ "id": "LONGWBOAT", "time": "12:55", "seq": 4 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "LONG12BOAT",
+						"calId": "LONGGWESUBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "13:00", "seq": 1 },
+							{ "id": "GEORGBOAT", "time": "13:30", "seq": 2 },
+							{ "id": "SPECTBOAT", "time": "13:45", "seq": 3 },
+							{ "id": "LONGWBOAT", "time": "13:55", "seq": 4 }
+						],
+						"connections": [
+							{"routeId": "PROV2BOAT", "headsign": "Provincetown", "tripId": "HARBO2BOAT", "shortName": "", "time": "14:00"}
+						]
+					},
+
+					{
+						"tripId": "LONG13BOAT",
+						"calId": "LONGGWESUBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "14:00", "seq": 1 },
+							{ "id": "SPECTBOAT", "time": "14:15", "seq": 2 },
+							{ "id": "GEORGBOAT", "time": "14:30", "seq": 3 },
+							{ "id": "LONGWBOAT", "time": "14:55", "seq": 4 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "LONG14BOAT",
+						"calId": "LONGGWESUBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "15:00", "seq": 1 },
+							{ "id": "GEORGBOAT", "time": "15:30", "seq": 2 },
+							{ "id": "SPECTBOAT", "time": "15:45", "seq": 3 },
+							{ "id": "LONGWBOAT", "time": "15:55", "seq": 4 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "LONG15BOAT",
+						"calId": "LONGGWESUBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "16:00", "seq": 1 },
+							{ "id": "GEORGBOAT", "time": "16:30", "seq": 2 },
+							{ "id": "SPECTBOAT", "time": "16:45", "seq": 3 },
+							{ "id": "LONGWBOAT", "time": "16:55", "seq": 4 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "LONG16BOAT",
+						"calId": "LONGGWESUBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "17:00", "seq": 1 },
+							{ "id": "GEORGBOAT", "time": "17:30", "seq": 2 },
+							{ "id": "SPECTBOAT", "time": "17:45", "seq": 3 },
+							{ "id": "LONGWBOAT", "time": "17:55", "seq": 4 }
+						],
+						"connections": [
+							{"routeId": "PROV2BOAT", "headsign": "Provincetown", "tripId": "HARBO7BOAT", "shortName": "", "time": "18:30"}
+						]
+					},
+
+					{
+						"tripId": "LONG17BOAT",
+						"calId": "LONGENDSUBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "SPECTBOAT", "time": "9:30:", "seq": 2 },
+							{ "id": "LONGWBOAT", "time": "9:50:", "seq": 3 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "LONG18BOAT",
+						"calId": "LONGENDSUBOAT",
+						"stops": [
+							{ "id": "LONGWBOAT", "time": "9:30:", "seq": 1 },
+							{ "id": "GEORGBOAT", "time": "10:00", "seq": 2 },
+							{ "id": "LONGWBOAT", "time": "10:30", "seq": 3 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			}
+		]
+	},
+	{
+			"id": "BUMPKBOAT",
+			"agency": "HARBOI",
+			"shortName": "",
+			"longName": "Bumpkin, Georges, Grape, Lovells,Peddocks& South Shore Connector",
+			"colorCode": "",
+			"vectors": [
+			{
+				"destination": "Loop",
+				"trips": [
+					{
+						"tripId": "BUMPK1BOAT",
+						"calId": "BUMPKBOAT",
+						"stops": [
+							{ "id": "HINGHBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "GRAPEBOAT", "time": "9:15:", "seq": 2 },
+							{ "id": "BUMPKBOAT", "time": "9:35:", "seq": 3 },
+							{ "id": "PEMBEBOAT", "time": "9:55:", "seq": 4 },
+							{ "id": "GEORGBOAT", "time": "10:10", "seq": 5 },
+							{ "id": "LOVELBOAT", "time": "10:20", "seq": 6 },
+							{ "id": "GEORGBOAT", "time": "10:30", "seq": 7 },
+							{ "id": "PEDDOBOAT", "time": "10:45", "seq": 8 },
+							{ "id": "BUMPKBOAT", "time": "11:05", "seq": 9 },
+							{ "id": "GRAPEBOAT", "time": "11:25", "seq": 10 },
+							{ "id": "HINGHBOAT", "time": "11:35", "seq": 11 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "BUMPK2BOAT",
+						"calId": "BUMPKBOAT",
+						"stops": [
+							{ "id": "HINGHBOAT", "time": "11:40", "seq": 1 },
+							{ "id": "GRAPEBOAT", "time": "11:55", "seq": 2 },
+							{ "id": "BUMPKBOAT", "time": "12:15", "seq": 3 },
+							{ "id": "PEMBEBOAT", "time": "12:35", "seq": 4 },
+							{ "id": "GEORGBOAT", "time": "12:50", "seq": 5 },
+							{ "id": "LOVELBOAT", "time": "13:00", "seq": 6 },
+							{ "id": "GEORGBOAT", "time": "13:10", "seq": 7 },
+							{ "id": "PEDDOBOAT", "time": "13:25", "seq": 8 },
+							{ "id": "BUMPKBOAT", "time": "13:45", "seq": 9 },
+							{ "id": "GRAPEBOAT", "time": "14:05", "seq": 10 },
+							{ "id": "HINGHBOAT", "time": "14:15", "seq": 11 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "BUMPK3BOAT",
+						"calId": "BUMPKBOAT",
+						"stops": [
+							{ "id": "HINGHBOAT", "time": "14:20", "seq": 1 },
+							{ "id": "GRAPEBOAT", "time": "14:35", "seq": 2 },
+							{ "id": "BUMPKBOAT", "time": "14:55", "seq": 3 },
+							{ "id": "PEDDOBOAT", "time": "15:15", "seq": 4 },
+							{ "id": "GEORGBOAT", "time": "15:30", "seq": 5 },
+							{ "id": "LOVELBOAT", "time": "15:40", "seq": 6 },
+							{ "id": "GEORGBOAT", "time": "15:50", "seq": 7 },
+							{ "id": "PEMBEBOAT", "time": "16:05", "seq": 8 },
+							{ "id": "BUMPKBOAT", "time": "16:25", "seq": 9 },
+							{ "id": "GRAPEBOAT", "time": "16:45", "seq": 10 },
+							{ "id": "HINGHBOAT", "time": "16:55", "seq": 11 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "BUMPK4BOAT",
+						"calId": "BUMPKBOAT",
+						"stops": [
+							{ "id": "HINGHBOAT", "time": "17:00", "seq": 1 },
+							{ "id": "GRAPEBOAT", "time": "17:15", "seq": 2 },
+							{ "id": "BUMPKBOAT", "time": "17:35", "seq": 3 },
+							{ "id": "PEDDOBOAT", "time": "17:55", "seq": 4 },
+							{ "id": "GEORGBOAT", "time": "18:10", "seq": 5 },
+							{ "id": "HINGHBOAT", "time": "18:30", "seq": 6 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			}
+		]
+	},
+	{
+			"id": "CONNEBOAT",
+			"agency": "HARBOI",
+			"shortName": "",
+			"longName": "Spectacle & Georges Connector",
+			"colorCode": "",
+			"vectors": [
+			{
+				"destination": "George's Island",
+				"trips": [
+					{
+						"tripId": "CONNE2BOAT",
+						"calId": "BUMPKBOAT",
+						"stops": [
+							{ "id": "SPECTBOAT", "time": "10:45", "seq": 1 },
+							{ "id": "GEORGBOAT", "time": "11:15", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			},
+			{
+				"destination": "Spectacle Island",
+				"trips": [
+					{
+						"tripId": "CONNE4BOAT",
+						"calId": "BUMPKBOAT",
+						"stops": [
+							{ "id": "GEORGBOAT", "time": "10:15", "seq": 1 },
+							{ "id": "SPECTBOAT", "time": "10:45", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			}
+		]
+	},
+	{
+			"id": "THOMPBOAT",
+			"agency": "HARBOI",
+			"shortName": "",
+			"longName": "Thompson Island Ferry",
+			"colorCode": "",
+			"vectors": [
+			{
+				"destination": "Thompson Island",
+				"trips": [
+					{
+						"tripId": "THOMP1BOAT",
+						"calId": "THOMPBOAT",
+						"stops": [
+							{ "id": "EDICBOAT", "time": "8:00:", "seq": 1 },
+							{ "id": "THOMPBOAT", "time": "8:30:", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "THOMP2BOAT",
+						"calId": "THOMPBOAT",
+						"stops": [
+							{ "id": "EDICBOAT", "time": "12:00", "seq": 1 },
+							{ "id": "THOMPBOAT", "time": "12:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "THOMP8BOAT",
+						"calId": "THOMPBOAT",
+						"stops": [
+							{ "id": "SPECTBOAT", "time": "9:15:", "seq": 1 },
+							{ "id": "THOMPBOAT", "time": "9:30:", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "THOMP9BOAT",
+						"calId": "THOMPBOAT",
+						"stops": [
+							{ "id": "SPECTBOAT", "time": "12:45", "seq": 1 },
+							{ "id": "THOMPBOAT", "time": "13:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "THOMP10BOAT",
+						"calId": "THOMPBOAT",
+						"stops": [
+							{ "id": "SPECTBOAT", "time": "15:15", "seq": 1 },
+							{ "id": "THOMPBOAT", "time": "15:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			},
+			{
+				"destination": "South Boston",
+				"trips": [
+					{
+						"tripId": "THOMP3BOAT",
+						"calId": "THOMPBOAT",
+						"stops": [
+							{ "id": "THOMPBOAT", "time": "11:30", "seq": 1 },
+							{ "id": "EDICBOAT", "time": "12:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "THOMP4BOAT",
+						"calId": "THOMPBOAT",
+						"stops": [
+							{ "id": "THOMPBOAT", "time": "16:00", "seq": 1 },
+							{ "id": "EDICBOAT", "time": "16:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			},
+			{
+				"destination": "Spectacle Island",
+				"trips": [
+					{
+						"tripId": "THOMP5BOAT",
+						"calId": "THOMPBOAT",
+						"stops": [
+							{ "id": "THOMPBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "SPECTBOAT", "time": "9:15:", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "THOMP6BOAT",
+						"calId": "THOMPBOAT",
+						"stops": [
+							{ "id": "THOMPBOAT", "time": "12:30", "seq": 1 },
+							{ "id": "SPECTBOAT", "time": "12:45", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "THOMP7BOAT",
+						"calId": "THOMPBOAT",
+						"stops": [
+							{ "id": "THOMPBOAT", "time": "15:00", "seq": 1 },
+							{ "id": "SPECTBOAT", "time": "15:15", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			}
+		]
+	},
+	{
+			"id": "NEWYOBOAT",
+			"agency": "NEFAST",
+			"shortName": "",
+			"longName": "New York-Martha's Vineyard",
+			"colorCode": "",
+			"vectors": [
+			{
+				"destination": "New York",
+				"trips": [
+					{
+						"tripId": "NEFAST1BOAT",
+						"calId": "NEFASTSUBOAT",
+						"stops": [
+							{ "id": "CONNOBOAT", "time": "15:30", "seq": 1 },
+							{ "id": "11BOAT", "time": "16:20", "seq": 2 },
+							{ "id": "35BOAT", "time": "16:45", "seq": 3 },
+							{ "id": "OAKSSABOAT", "time": "22:00", "seq": 4 }
+						],
+						"connections": [
+							{"routeId": "VINEYFBOAT", "headsign": "Quonset", "tripId": "VINEY12BOAT", "shortName": "", "time": "22:15"}
+						]
+					}
+				],
+				"polyline": ""
+			},
+			{
+				"destination": "Oak Bluffs",
+				"trips": [
+					{
+						"tripId": "NEFAST2BOAT",
+						"calId": "NEFASTFRBOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "16:00", "seq": 1 },
+							{ "id": "35BOAT", "time": "21:20", "seq": 2 },
+							{ "id": "11BOAT", "time": "21:35", "seq": 3 },
+							{ "id": "CONNOBOAT", "time": "22:35", "seq": 4 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			}
+		]
+	},
+	{
+			"id": "VINEYFBOAT",
+			"agency": "VINEY",
+			"shortName": "",
+			"longName": "Vineyard Fast Ferry",
+			"colorCode": "",
+			"vectors": [
+			{
+				"destination": "Oak Bluffs",
+				"trips": [
+					{
+						"tripId": "VINEY1BOAT",
+						"calId": "QUONSWESUBOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "10:35", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWBEBLUFFBOAT", "headsign": "New Bedford", "tripId": "12NEBOAT", "shortName": "", "time": "10:50"}
+						]
+					},
+
+					{
+						"tripId": "VINEY2BOAT",
+						"calId": "QUONSWESUBOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "16:00", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "17:30", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWBEBLUFFBOAT", "headsign": "New Bedford", "tripId": "16NEBOAT", "shortName": "", "time": "17:50"}
+						]
+					},
+
+					{
+						"tripId": "VINEY5BOAT",
+						"calId": "QUONSFRSUBOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "8:05:", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "9:35:", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY6BOAT",
+						"calId": "QUONSFRSUBOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "12:00", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "13:30", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "HY4BOAT", "headsign": "Nantucket", "tripId": "31HYBOAT", "shortName": "", "time": "14:00"},
+							{"routeId": "NEWBEBLUFFBOAT", "headsign": "New Bedford", "tripId": "14NEBOAT", "shortName": "", "time": "14:00"}
+						]
+					},
+
+					{
+						"tripId": "VINEY7BOAT",
+						"calId": "QUONSFRSUBOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "16:30", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "18:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY8BOAT",
+						"calId": "QUONSFRSUBOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "20:30", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "22:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY13BOAT",
+						"calId": "QUONSENDSUBOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "8:30:", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "10:00", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWBEBLUFFBOAT", "headsign": "New Bedford", "tripId": "12NEBOAT", "shortName": "", "time": "10:50"}
+						]
+					},
+
+					{
+						"tripId": "VINEY14BOAT",
+						"calId": "QUONSENDSUBOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "13:00", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "14:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY15BOAT",
+						"calId": "QUONSENDSUBOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "17:30", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "19:00", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWBEBLUFFBOAT", "headsign": "New Bedford", "tripId": "17NEBOAT", "shortName": "", "time": "20:00"}
+						]
+					},
+
+					{
+						"tripId": "VINEY19BOAT",
+						"calId": "QUONSWEFABOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "10:30", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWBEBLUFFBOAT", "headsign": "New Bedford", "tripId": "12NEBOAT", "shortName": "", "time": "10:50"}
+						]
+					},
+
+					{
+						"tripId": "VINEY20BOAT",
+						"calId": "QUONSWEFABOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "15:00", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "16:30", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "HY2BOAT", "headsign": "Hyannis", "tripId": "26HYBOAT", "shortName": "", "time": "17:15"}
+						]
+					},
+
+					{
+						"tripId": "VINEY23BOAT",
+						"calId": "QUONSTHFABOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "10:30", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWBEBLUFFBOAT", "headsign": "New Bedford", "tripId": "12NEBOAT", "shortName": "", "time": "10:50"}
+						]
+					},
+
+					{
+						"tripId": "VINEY24BOAT",
+						"calId": "QUONSTHFABOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "13:30", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "15:00", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWYOBOAT", "headsign": "Oak Bluffs", "tripId": "NEFAST2BOAT", "shortName": "", "time": "16:00"},
+							{"routeId": "HY2BOAT", "headsign": "Hyannis", "tripId": "28HYBOAT", "shortName": "", "time": "15:45"}
+						]
+					},
+
+					{
+						"tripId": "VINEY25BOAT",
+						"calId": "QUONSTHFABOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "17:30", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "19:05", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWBEBLUFFBOAT", "headsign": "New Bedford", "tripId": "17NEBOAT", "shortName": "", "time": "20:00"}
+						]
+					},
+
+					{
+						"tripId": "VINEY29BOAT",
+						"calId": "QUONSFRFABOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "10:30", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWBEBLUFFBOAT", "headsign": "New Bedford", "tripId": "12NEBOAT", "shortName": "", "time": "10:50"}
+						]
+					},
+
+					{
+						"tripId": "VINEY30BOAT",
+						"calId": "QUONSFRFABOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "13:30", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "15:00", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWYOBOAT", "headsign": "Oak Bluffs", "tripId": "NEFAST2BOAT", "shortName": "", "time": "16:00"},
+							{"routeId": "HY2BOAT", "headsign": "Hyannis", "tripId": "28HYBOAT", "shortName": "", "time": "15:45"}
+						]
+					},
+
+					{
+						"tripId": "VINEY31BOAT",
+						"calId": "QUONSFRFABOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "19:30", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "21:05", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY35BOAT",
+						"calId": "QUONSENDFABOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "10:30", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWBEBLUFFBOAT", "headsign": "New Bedford", "tripId": "12NEBOAT", "shortName": "", "time": "10:50"}
+						]
+					},
+
+					{
+						"tripId": "VINEY36BOAT",
+						"calId": "QUONSENDFABOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "15:00", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "16:30", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "HY2BOAT", "headsign": "Hyannis", "tripId": "26HYBOAT", "shortName": "", "time": "17:15"}
+						]
+					},
+
+					{
+						"tripId": "VINEY39BOAT",
+						"calId": "QUONSTHOCBOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "10:35", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWBEBLUFFBOAT", "headsign": "New Bedford", "tripId": "12NEBOAT", "shortName": "", "time": "10:50"}
+						]
+					},
+
+					{
+						"tripId": "VINEY40BOAT",
+						"calId": "QUONSTHOCBOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "15:00", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "16:35", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "HY2BOAT", "headsign": "Hyannis", "tripId": "26HYBOAT", "shortName": "", "time": "17:15"}
+						]
+					},
+
+					{
+						"tripId": "VINEY43BOAT",
+						"calId": "QUONSFROCBOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "10:00", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "11:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY44BOAT",
+						"calId": "QUONSFROCBOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "15:00", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "16:35", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "HY2BOAT", "headsign": "Hyannis", "tripId": "26HYBOAT", "shortName": "", "time": "17:15"}
+						]
+					},
+
+					{
+						"tripId": "VINEY47BOAT",
+						"calId": "QUONSENDOCBOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "9:00:", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "10:35", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWBEBLUFFBOAT", "headsign": "New Bedford", "tripId": "12NEBOAT", "shortName": "", "time": "10:50"}
+						]
+					},
+
+					{
+						"tripId": "VINEY48BOAT",
+						"calId": "QUONSENDOCBOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "15:00", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "16:35", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "HY2BOAT", "headsign": "Hyannis", "tripId": "26HYBOAT", "shortName": "", "time": "17:15"}
+						]
+					},
+
+					{
+						"tripId": "VINEY51BOAT",
+						"calId": "QUONSLABORBOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "8:05:", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "9:35:", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY52BOAT",
+						"calId": "QUONSLABORBOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "13:00", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "14:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY53BOAT",
+						"calId": "QUONSLABORBOAT",
+						"stops": [
+							{ "id": "QUONSBOAT", "time": "17:30", "seq": 1 },
+							{ "id": "OAKSSABOAT", "time": "19:00", "seq": 2 }
+						],
+						"connections": [
+							{"routeId": "NEWBEBLUFFBOAT", "headsign": "New Bedford", "tripId": "17NEBOAT", "shortName": "", "time": "20:00"}
+						]
+					}
+				],
+				"polyline": ""
+			},
+			{
+				"destination": "Quonset",
+				"trips": [
+					{
+						"tripId": "VINEY3BOAT",
+						"calId": "QUONSWESUBOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "11:05", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "12:45", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY4BOAT",
+						"calId": "QUONSWESUBOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "18:00", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "19:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY9BOAT",
+						"calId": "QUONSFRSUBOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "10:00", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "11:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY10BOAT",
+						"calId": "QUONSFRSUBOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "14:00", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "15:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY11BOAT",
+						"calId": "QUONSFRSUBOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "18:30", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "20:05", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY12BOAT",
+						"calId": "QUONSFRSUBOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "22:15", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "23:50", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY16BOAT",
+						"calId": "QUONSENDSUBOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "10:30", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "12:05", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY17BOAT",
+						"calId": "QUONSENDSUBOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "15:30", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "17:05", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY18BOAT",
+						"calId": "QUONSENDSUBOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "19:30", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "21:05", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY21BOAT",
+						"calId": "QUONSWEFABOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "11:00", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "12:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY22BOAT",
+						"calId": "QUONSWEFABOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "17:00", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "18:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY26BOAT",
+						"calId": "QUONSTHFABOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "11:00", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "12:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY27BOAT",
+						"calId": "QUONSTHFABOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "15:30", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "17:05", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY28BOAT",
+						"calId": "QUONSTHFABOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "19:30", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "21:05", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY32BOAT",
+						"calId": "QUONSFRFABOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "11:00", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "12:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY33BOAT",
+						"calId": "QUONSFRFABOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "15:30", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "17:05", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY34BOAT",
+						"calId": "QUONSFRFABOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "21:30", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "23:05", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY37BOAT",
+						"calId": "QUONSENDFABOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "11:00", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "12:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY38BOAT",
+						"calId": "QUONSENDFABOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "17:00", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "18:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY41BOAT",
+						"calId": "QUONSTHOCBOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "11:00", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "12:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY42BOAT",
+						"calId": "QUONSTHOCBOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "17:00", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "18:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY45BOAT",
+						"calId": "QUONSFROCBOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "12:00", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "13:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY46BOAT",
+						"calId": "QUONSFROCBOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "17:00", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "18:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY49BOAT",
+						"calId": "QUONSENDOCBOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "11:00", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "12:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY50BOAT",
+						"calId": "QUONSENDOCBOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "17:00", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "18:35", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY54BOAT",
+						"calId": "QUONSLABORBOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "10:30", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "12:05", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY55BOAT",
+						"calId": "QUONSLABORBOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "15:30", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "17:05", "seq": 2 }
+						],
+						"connections": [
+						]
+					},
+
+					{
+						"tripId": "VINEY56BOAT",
+						"calId": "QUONSLABORBOAT",
+						"stops": [
+							{ "id": "OAKSSABOAT", "time": "19:30", "seq": 1 },
+							{ "id": "QUONSBOAT", "time": "21:05", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			}
+		]
+	},
+	{
+			"id": "PLYMOPROVIBOAT",
+			"agency": "PLYMOPROVIBOAT",
+			"shortName": "",
+			"longName": "Provincetown Ferry",
+			"colorCode": "",
+			"vectors": [
+			{
+				"destination": "Provincetown",
+				"trips": [
+					{
+						"tripId": "PLYMO1BOAT",
+						"calId": "PLYMO",
+						"stops": [
+							{ "id": "PLYMOBOAT", "time": "10:00", "seq": 1 },
+							{ "id": "PROVIBOAT", "time": "11:30", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			},
+			{
+				"destination": "Plymouth",
+				"trips": [
+					{
+						"tripId": "PLYMO2BOAT",
+						"calId": "PLYMO",
+						"stops": [
+							{ "id": "PROVIBOAT", "time": "16:30", "seq": 1 },
+							{ "id": "PLYMOBOAT", "time": "18:00", "seq": 2 }
+						],
+						"connections": [
+						]
+					}
+				],
+				"polyline": ""
+			}
+		]
+	}
+	],
+	"stops": [
+		{"id": "OAKSSABOAT", "name": "Oak Bluffs Terminal", "lat": 41.45895, "lng": -70.55836},
+		{"id": "VINEYBOAT", "name": "Vineyard Haven Terminal", "lat": 41.45527, "lng": -70.60131},
+		{"id": "WOODSBOAT", "name": "Woods Hole Terminal", "lat": 41.52225, "lng": -70.67005},
+		{"id": "HYANIBOAT", "name": "Hyannis Terminal", "lat": 41.6503, "lng": -70.27733},
+		{"id": "NANTUBOAT", "name": "Nantucket Wharves", "lat": 41.28468, "lng": -70.09436},
+		{"id": "NEWBEBOAT", "name": "New Bedford Fast Ferry Terminal", "lat": 41.59365, "lng": -70.90496},
+		{"id": "FALMOBOAT", "name": "Falmouth Island Queen Terminal", "lat": 41.54217, "lng": -70.61789},
+		{"id": "OAK2BOAT", "name": "Oak Bluffs SSA Terminal", "lat": 41.45707, "lng": -70.55578},
+		{"id": "CUTTYBOAT", "name": "Cuttyhunk Terminal", "lat": 41.42441, "lng": -70.9283},
+		{"id": "EDGARBOAT", "name": "Memorial Wharf", "lat": 41.38919, "lng": -70.51008},
+		{"id": "FALMO2BOAT", "name": "Falmouth Ferry Terminal", "lat": 41.54643, "lng": -70.6053},
+		{"id": "GEORGBOAT", "name": "George's Island", "lat": 42.319442, "lng": -70.930249},
+		{"id": "LONGWBOAT", "name": "Long Wharf", "lat": 42.360174, "lng": -71.048399},
+		{"id": "PEMBEBOAT", "name": "Pemberton Point", "lat": 42.303346, "lng": -70.920137},
+		{"id": "SEAPOBOAT", "name": "Seaport District - Commonwealth Pier", "lat": 42.35293, "lng": -71.03942},
+		{"id": "SALEMBOAT", "name": "Salem", "lat": 42.52193, "lng": -70.88252},
+		{"id": "WORLDBOAT", "name": "World Trade Center", "lat": 42.351893, "lng": -71.04006},
+		{"id": "PROVIBOAT", "name": "Provincetown", "lat": 42.050748, "lng": -70.185245},
+		{"id": "SAQUABOAT", "name": "Saquatucket Harbor", "lat": 41.66959, "lng": -70.05891},
+		{"id": "DOCKBOAT", "name": "Dock Street", "lat": 41.38943, "lng": -70.51015},
+		{"id": "CHAPPBOAT", "name": "Chappaquiddick", "lat": 41.38862, "lng": -70.5084},
+		{"id": "SPECTBOAT", "name": "Spectacle", "lat": 42.321285, "lng": -70.988794},
+		{"id": "GRAPEBOAT", "name": "Grape Island", "lat": 42.267272, "lng": -70.921051},
+		{"id": "BUMPKBOAT", "name": "Bumpkin Island", "lat": 42.280148, "lng": -70.901165},
+		{"id": "PEDDOBOAT", "name": "Peddocks Island", "lat": 42.299449, "lng": -70.927144},
+		{"id": "LOVELBOAT", "name": "Lovells Island", "lat": 42.326671, "lng": -70.926536},
+		{"id": "THOMPBOAT", "name": "Thompson Island", "lat": 42.31851, "lng": -71.00957},
+		{"id": "HINGHBOAT", "name": "Hingham Shipyard", "lat": 42.25215, "lng": -70.92135},
+		{"id": "EDICBOAT", "name": "EDIC Pier #10", "lat": 42.343624, "lng": -71.033938},
+		{"id": "35BOAT", "name": "East 35th Street", "lat": 40.743735, "lng": -73.97138},
+		{"id": "CONNOBOAT", "name": "Connor's Dock", "lat": 40.409099, "lng": -73.996342},
+		{"id": "11BOAT", "name": "Pier 11 (Wall Street)", "lat": 40.703521, "lng": -74.006617},
+		{"id": "QUONSBOAT", "name": "Quonset", "lat": 41.587295, "lng": -71.412657},
+		{"id": "PLYMOBOAT", "name": "State Pier", "lat": 41.95973, "lng": -70.66221}
+	],
+	"calendars": [
+		{"serviceId": "SUBOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-06-24", "endDate": "2015-09-09",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "FABOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-09-10", "endDate": "2015-10-12",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "FASTSUBOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-05-19", "endDate": "2015-10-12",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "FASTFABOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-10-13", "endDate": "2015-12-29",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "FRFABOAT", "days": [0,0,0,0,1,0,0], "startDate": "2014-09-10", "endDate": "2015-10-12",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "WEFABOAT", "days": [1,1,1,1,1,0,0], "startDate": "2014-09-10", "endDate": "2015-10-12",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "DAFABOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-09-10", "endDate": "2015-10-12",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "FRSUBOAT", "days": [0,0,0,0,1,0,0], "startDate": "2014-06-24", "endDate": "2015-09-09",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "LONGWESUBOAT", "days": [0,0,0,1,1,1,1], "startDate": "2014-06-24", "endDate": "2015-09-09",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "DASUBOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-06-24", "endDate": "2015-09-09",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "ENDSUBOAT", "days": [0,0,0,0,0,1,1], "startDate": "2014-06-24", "endDate": "2015-09-09",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "WESUBOAT", "days": [1,1,1,1,1,0,0], "startDate": "2014-06-24", "endDate": "2015-09-09",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "ISLANDDASUBOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-06-19", "endDate": "2015-09-13",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			"2010-10-12"
+		 ]
+		},
+		{"serviceId": "ISLANDSUSUBOAT", "days": [0,0,0,0,0,0,1], "startDate": "2014-06-19", "endDate": "2015-09-13",
+		 "addExceptions": [
+			"2009-09-07"
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "ISLANDFRSUBOAT", "days": [0,0,0,0,1,0,0], "startDate": "2014-06-19", "endDate": "2015-09-13",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "ISLANDFRFABOAT", "days": [0,0,0,0,1,0,0], "startDate": "2014-09-14", "endDate": "2015-10-12",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "ISLANDENDFABOAT", "days": [0,0,0,0,0,1,1], "startDate": "2014-09-14", "endDate": "2015-10-12",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "ISLANDDAFABOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-09-14", "endDate": "2015-10-12",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "CUTTYDASUBOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-07-20", "endDate": "2015-09-07",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "CUTTYWESASUBOAT", "days": [1,1,1,1,1,1,0], "startDate": "2014-07-20", "endDate": "2015-09-07",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "CUTTYFRSUBOAT", "days": [0,0,0,0,1,0,0], "startDate": "2014-07-20", "endDate": "2015-09-07",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "CUTTYSASUBOAT", "days": [0,0,0,0,0,1,0], "startDate": "2014-07-20", "endDate": "2015-09-07",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "CUTTYSUSUBOAT", "days": [0,0,0,0,0,0,1], "startDate": "2014-07-20", "endDate": "2015-09-07",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "CUTTYDAFA1BOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-09-08", "endDate": "2015-09-27",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "CUTTYFRFA1BOAT", "days": [0,0,0,0,1,0,0], "startDate": "2014-09-08", "endDate": "2015-09-27",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "CUTTYFRFA2BOAT", "days": [0,0,0,0,1,0,0], "startDate": "2014-09-28", "endDate": "2015-10-09",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "CUTTYSUMOFRSAFA2BOAT", "days": [1,0,0,0,1,1,1], "startDate": "2014-09-28", "endDate": "2015-10-18",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "CUTTYWINBOAT", "days": [1,0,0,0,1,0,0], "startDate": "2014-10-19", "endDate": "2010-04-16",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "LABORBOAT", "days": [1,0,0,0,0,0,0], "startDate": "2014-09-06", "endDate": "2015-09-08",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "GENOCBOAT", "days": [1,0,0,0,0,0,0], "startDate": "2014-10-11", "endDate": "2015-10-13",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "HYDASUBOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-05-19", "endDate": "2015-10-12",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "HYFRFABOAT", "days": [0,0,0,0,1,0,0], "startDate": "2014-09-11", "endDate": "2015-10-12",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "HYDASU1BOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-05-19", "endDate": "2015-09-10",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "HYDAFABOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-10-13", "endDate": "2015-12-31",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "HYVINEYARDDASUBOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-06-20", "endDate": "2015-09-07",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "HYVINEYARDDAFABOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-09-08", "endDate": "2015-10-18",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "HYISLANDDASUBOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-07-04", "endDate": "2015-09-06",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "HYISLANDDAFABOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-09-07", "endDate": "2015-09-12",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "FALMOMOSASUBOAT", "days": [1,1,1,1,1,1,0], "startDate": "2014-06-19", "endDate": "2015-09-01",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			"2009-09-07"
+		 ]
+		},
+		{"serviceId": "FALMOFRSUBOAT", "days": [0,0,0,0,1,0,0], "startDate": "2014-06-19", "endDate": "2015-09-01",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "FALMOSUSUBOAT", "days": [0,0,0,0,0,0,1], "startDate": "2014-06-19", "endDate": "2015-09-01",
+		 "addExceptions": [
+			"2009-09-07"
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "FALMOFRFABOAT", "days": [0,0,0,0,1,0,0], "startDate": "2014-09-02", "endDate": "2015-09-12",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "FALMOSAFABOAT", "days": [0,0,0,0,0,1,0], "startDate": "2014-09-02", "endDate": "2015-09-12",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "FALMOSUFABOAT", "days": [0,0,0,0,0,0,1], "startDate": "2014-09-02", "endDate": "2015-09-12",
+		 "addExceptions": [
+			"2010-10-12"
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "FREEDSUBOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-06-30", "endDate": "2015-08-29",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "FREEDFABOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-08-30", "endDate": "2015-09-26",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "SALEMWESUBOAT", "days": [1,1,1,1,1,0,0], "startDate": "2014-06-30", "endDate": "2015-09-07",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "SALEMENDSUBOAT", "days": [0,0,0,0,0,1,1], "startDate": "2014-06-30", "endDate": "2015-09-07",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "SALEMFRSASUBOAT", "days": [0,0,0,0,1,1,0], "startDate": "2014-06-30", "endDate": "2015-09-07",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "SALEMDASUBOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-06-30", "endDate": "2015-09-07",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "SALEMWEFABOAT", "days": [1,1,1,1,1,0,0], "startDate": "2014-09-08", "endDate": "2015-11-01",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "SALEMFRSAFABOAT", "days": [0,0,0,0,1,1,0], "startDate": "2014-09-08", "endDate": "2015-11-01",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "SALEMDAFABOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-09-08", "endDate": "2015-11-01",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "SALEMENDFABOAT", "days": [0,0,0,0,0,1,1], "startDate": "2014-09-08", "endDate": "2015-11-01",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "BAYST1BOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-05-15", "endDate": "2015-10-13",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "BAYST2BOAT", "days": [0,0,0,0,0,1,0], "startDate": "2014-06-27", "endDate": "2015-09-05",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "HARBOMOWESUBOAT", "days": [1,1,1,0,0,0,0], "startDate": "2014-06-13", "endDate": "2015-09-06",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "HARBOTHSUSUBOAT", "days": [0,0,0,1,1,1,1], "startDate": "2014-06-13", "endDate": "2015-09-06",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "HARBOLABORBOAT", "days": [1,0,0,0,0,0,0], "startDate": "2014-09-06", "endDate": "2015-09-08",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "HARBOMOFABOAT", "days": [1,0,0,0,0,0,0], "startDate": "2014-09-08", "endDate": "2015-09-27",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "HARBOTUTHFABOAT", "days": [0,1,1,1,0,0,0], "startDate": "2014-09-08", "endDate": "2015-09-27",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "HARBOFRFABOAT", "days": [0,0,0,0,1,0,0], "startDate": "2014-09-08", "endDate": "2015-09-27",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "HARBOENDFABOAT", "days": [0,0,0,0,0,1,1], "startDate": "2014-09-08", "endDate": "2015-09-27",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "HARBOFA2BOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-09-28", "endDate": "2015-10-04",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "HARBOFA3BOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-10-10", "endDate": "2015-10-11",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "CHAPPSUMBOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-07-01", "endDate": "2015-10-14",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "CHAPPWINBOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-10-15", "endDate": "2010-05-30",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "LONGFALBOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-09-08", "endDate": "2015-10-12",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "LONGGWESUBOAT", "days": [1,1,1,1,0,0,0], "startDate": "2014-07-01", "endDate": "2015-09-07",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "LONGENDSUBOAT", "days": [0,0,0,0,1,1,1], "startDate": "2014-07-01", "endDate": "2015-09-07",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "BUMPKBOAT", "days": [1,1,1,1,1,1,1], "startDate": "2014-06-20", "endDate": "2015-09-07",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "THOMPBOAT", "days": [0,0,0,0,0,0,1], "startDate": "2014-07-01", "endDate": "2015-09-06",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "NEFASTSUBOAT", "days": [0,0,0,0,0,0,1], "startDate": "2014-07-01", "endDate": "2015-09-07",
+		 "addExceptions": [
+			"2009-09-07"
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "NEFASTFRBOAT", "days": [0,0,0,0,1,0,0], "startDate": "2014-07-01", "endDate": "2015-09-07",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "QUONSWESUBOAT", "days": [1,1,1,0,0,0,0], "startDate": "2014-07-07", "endDate": "2015-09-07",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "QUONSFRSUBOAT", "days": [0,0,0,0,1,0,0], "startDate": "2014-07-07", "endDate": "2015-09-07",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "QUONSENDSUBOAT", "days": [0,0,0,1,0,1,1], "startDate": "2014-07-07", "endDate": "2015-09-07",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "QUONSWEFABOAT", "days": [1,1,1,0,0,0,0], "startDate": "2014-09-08", "endDate": "2015-09-28",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			"2009-09-22","2009-09-23"
+		 ]
+		},
+		{"serviceId": "QUONSTHFABOAT", "days": [0,0,0,1,0,0,0], "startDate": "2014-09-08", "endDate": "2015-09-28",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "QUONSFRFABOAT", "days": [0,0,0,0,1,0,0], "startDate": "2014-09-08", "endDate": "2015-09-28",
+		 "addExceptions": [
+			"2009-10-09"
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "QUONSENDFABOAT", "days": [0,0,0,0,0,1,1], "startDate": "2014-09-08", "endDate": "2015-09-28",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "QUONSTHOCBOAT", "days": [0,0,0,1,0,0,0], "startDate": "2014-10-01", "endDate": "2015-10-12",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "QUONSFROCBOAT", "days": [0,0,0,0,1,0,0], "startDate": "2014-10-01", "endDate": "2015-10-12",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			"2009-10-09"
+		 ]
+		},
+		{"serviceId": "QUONSENDOCBOAT", "days": [0,0,0,0,0,1,1], "startDate": "2014-10-01", "endDate": "2015-10-12",
+		 "addExceptions": [
+			"2009-10-12"
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "QUONSLABORBOAT", "days": [1,0,0,0,0,0,0], "startDate": "2014-09-07", "endDate": "2015-09-07",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		},
+		{"serviceId": "PLYMO", "days": [1,1,1,1,1,1,1], "startDate": "2014-06-20", "endDate": "2015-09-07",
+		 "addExceptions": [
+			
+		 ],
+		 "removeExceptions": [
+			
+		 ]
+		}
+	]
+}

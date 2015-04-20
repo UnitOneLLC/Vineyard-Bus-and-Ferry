@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.VectorTable.didScrollToTrip (Vineyard_Bus_and_Ferry.VectorTable)(Vineyard_Bus_and_Ferry.Trip) -&gt; Swift.Array&lt;Swift.Double&gt;:VectorTable.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.RouteListViewController.tableView (Vineyard_Bus_and_Ferry.RouteListViewController)(ObjectiveC.UITableView, viewForHeaderInSection : Swift.Int) -&gt; Swift.Optional&lt;ObjectiveC.UIView&gt;:RouteListViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "headerView.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.TripCollection.collectionView (Vineyard_Bus_and_Ferry.TripCollection)(ObjectiveC.UICollectionView, layout : ObjectiveC.UICollectionViewLayout, sizeForItemAtIndexPath : ObjectiveC.NSIndexPath) -&gt; C.CGSize:TripCollection.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.SettingsManager.createInitialAppParametersObject (Vineyard_Bus_and_Ferry.SettingsManager)(moc : ObjectiveC.NSManagedObjectContext) -&gt; Swift.Bool:SettingsManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "newSettings.legalAgreementRead">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.SettingsManager.getSetting (Vineyard_Bus_and_Ferry.SettingsManager)&lt;A : Swift.AnyObject&gt;(parameter : Swift.String, moc : ObjectiveC.NSManagedObjectContext) -&gt; Swift.Optional&lt;A&gt;:SettingsManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "retObj as Int">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.ScheduleManager.isDateValidForCalendar (Vineyard_Bus_and_Ferry.ScheduleManager)(ObjectiveC.NSDate, serviceCalendar : Vineyard_Bus_and_Ferry.ServiceCalendar) -&gt; Swift.Bool:ScheduleManager.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.ScheduleManager.stopSequenceForVector (Vineyard_Bus_and_Ferry.ScheduleManager)(Vineyard_Bus_and_Ferry.Vector) -&gt; Swift.Array&lt;Swift.String&gt;:ScheduleManager.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.TripCollection.didScrollToTrip (Vineyard_Bus_and_Ferry.TripCollection)(Swift.Int) -&gt; ():TripCollection.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.ScheduleViewController.(appInit (Vineyard_Bus_and_Ferry.ScheduleViewController) -&gt; () -&gt; ()).(closure #1):ScheduleViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.RouteListViewController.numberOfSectionsInTableView (Vineyard_Bus_and_Ferry.RouteListViewController)(ObjectiveC.UITableView) -&gt; Swift.Int:RouteListViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.VectorTable.init (Vineyard_Bus_and_Ferry.VectorTable.Type)(frame : C.CGRect, route : Vineyard_Bus_and_Ferry.Route, vectorIndex : Swift.Int) -&gt; Vineyard_Bus_and_Ferry.VectorTable:VectorTable.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.VectorTable.resetTripCollection (Vineyard_Bus_and_Ferry.VectorTable)() -&gt; ():VectorTable.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.RouteListViewController.tableView (Vineyard_Bus_and_Ferry.RouteListViewController)(ObjectiveC.UITableView, cellForRowAtIndexPath : ObjectiveC.NSIndexPath) -&gt; ObjectiveC.UITableViewCell:RouteListViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tableView.frame.size">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.StopTimeTable.tableView (Vineyard_Bus_and_Ferry.StopTimeTable)(ObjectiveC.UITableView, heightForRowAtIndexPath : ObjectiveC.NSIndexPath) -&gt; CoreGraphics.CGFloat:StopTimeTable.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.DestinationViewController.setupTableFrame (Vineyard_Bus_and_Ferry.DestinationViewController)() -&gt; ():DestinationViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tableView.rowHeight">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.TripCollection.collectionView (Vineyard_Bus_and_Ferry.TripCollection)(ObjectiveC.UICollectionView, cellForItemAtIndexPath : ObjectiveC.NSIndexPath) -&gt; ObjectiveC.UICollectionViewCell:TripCollection.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "tvForCell.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.RouteListCell.layoutSubviews (Vineyard_Bus_and_Ferry.RouteListCell)() -&gt; ():RouteListCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "longNameLabel.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.AppDelegate.(getScheduleFromURL (Vineyard_Bus_and_Ferry.AppDelegate) -&gt; (Swift.String) -&gt; ()).(closure #1):AppDelegate.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.StopAnnotation.title.getter : Swift.ImplicitlyUnwrappedOptional&lt;Swift.String&gt;:MapViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.RouteListViewController.tableView (Vineyard_Bus_and_Ferry.RouteListViewController)(ObjectiveC.UITableView, heightForRowAtIndexPath : ObjectiveC.NSIndexPath) -&gt; CoreGraphics.CGFloat:RouteListViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.DestinationViewController.viewDidLoad (Vineyard_Bus_and_Ferry.DestinationViewController)() -&gt; ():DestinationViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tableView.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.TripCollection.collectionView (Vineyard_Bus_and_Ferry.TripCollection)(ObjectiveC.UICollectionView, numberOfItemsInSection : Swift.Int) -&gt; Swift.Int:TripCollection.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "trips.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.ScheduleManager.(downloadSchedule (Vineyard_Bus_and_Ferry.ScheduleManager) -&gt; (forMode : Swift.String, moc : ObjectiveC.NSManagedObjectContext, completionHandler : (data : Swift.Optional&lt;ObjectiveC.NSData&gt;) -&gt; ()) -&gt; ()).(closure #1):ScheduleManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "err.description">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.ScheduleViewController.viewDidLoad (Vineyard_Bus_and_Ferry.ScheduleViewController)() -&gt; ():ScheduleViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.RouteListViewController.tableView (Vineyard_Bus_and_Ferry.RouteListViewController)(ObjectiveC.UITableView, heightForHeaderInSection : Swift.Int) -&gt; CoreGraphics.CGFloat:RouteListViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tableView.frame.width">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.VectorTable.tripCollection (Vineyard_Bus_and_Ferry.VectorTable)(Vineyard_Bus_and_Ferry.Trip) -&gt; ():VectorTable.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.TripCollection.scrollToCurrent (Vineyard_Bus_and_Ferry.TripCollection)() -&gt; ():TripCollection.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.RouteListCell.tableView (Vineyard_Bus_and_Ferry.RouteListCell)(ObjectiveC.UITableView, didSelectRowAtIndexPath : ObjectiveC.NSIndexPath) -&gt; ():RouteListCell.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.DaySelectionControl.didTapButton (Vineyard_Bus_and_Ferry.DaySelectionControl)(Swift.AnyObject) -&gt; ():DaySelectionControl.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.Trip.init (Vineyard_Bus_and_Ferry.Trip.Type)(fromDictionary : ObjectiveC.NSDictionary) -&gt; Vineyard_Bus_and_Ferry.Trip:Schedule.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.ScheduleManager.stopSequenceForVector (Vineyard_Bus_and_Ferry.ScheduleManager)(Vineyard_Bus_and_Ferry.Vector, inSchedule : Vineyard_Bus_and_Ferry.Schedule) -&gt; Swift.Array&lt;Vineyard_Bus_and_Ferry.Stop&gt;:ScheduleManager.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.RouteListCell.getBoundingRect (Vineyard_Bus_and_Ferry.RouteListCell.Type)(Swift.String, font : ObjectiveC.UIFont, width : CoreGraphics.CGFloat) -&gt; C.CGRect:RouteListCell.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.RouteListCell.initialize (Vineyard_Bus_and_Ferry.RouteListCell)(route : Vineyard_Bus_and_Ferry.Route, width : CoreGraphics.CGFloat) -&gt; ():RouteListCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "longNameLabel.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.VectorTable.setVector (Vineyard_Bus_and_Ferry.VectorTable)(forRoute : Vineyard_Bus_and_Ferry.Route, vectorIndex : Swift.Int, tripIndex : Swift.Optional&lt;Swift.Int&gt;) -&gt; ():VectorTable.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.VectorTable.tableView (Vineyard_Bus_and_Ferry.VectorTable)(ObjectiveC.UITableView, cellForRowAtIndexPath : ObjectiveC.NSIndexPath) -&gt; ObjectiveC.UITableViewCell:VectorTable.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.FirstViewController.test (Vineyard_Bus_and_Ferry.FirstViewController)() -&gt; ():FirstViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.DestinationViewController.tableView (Vineyard_Bus_and_Ferry.DestinationViewController)(ObjectiveC.UITableView, numberOfRowsInSection : Swift.Int) -&gt; Swift.Int:DestinationViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tableView.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.ScheduleManager.getStopTimes (Vineyard_Bus_and_Ferry.ScheduleManager)(forStop : Swift.String, inVector : Vineyard_Bus_and_Ferry.Vector) -&gt; (beforeNow : Swift.Array&lt;Vineyard_Bus_and_Ferry.TimeOfDay&gt;, afterNow : Swift.Array&lt;Vineyard_Bus_and_Ferry.TimeOfDay&gt;):ScheduleManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dateComponents.minute">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.decodePolyline (Swift.String) -&gt; Swift.Optional&lt;Swift.Array&lt;C.CLLocationCoordinate2D&gt;&gt;:Polyline.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.ScheduleManager.addSchedule (Vineyard_Bus_and_Ferry.ScheduleManager)(Vineyard_Bus_and_Ferry.Schedule) -&gt; ():ScheduleManager.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.ScheduleViewController.appInit (Vineyard_Bus_and_Ferry.ScheduleViewController)() -&gt; ():ScheduleViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "eulaOK as Bool">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.TripPager.didChangeSliderValue (Vineyard_Bus_and_Ferry.TripPager)(Swift.AnyObject) -&gt; ():TripPager.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.VectorViewController.VectorTable.tableView (Vineyard_Bus_and_Ferry.VectorViewController.VectorTable)(ObjectiveC.UITableView, numberOfRowsInSection : Swift.Int) -&gt; Swift.Int:VectorViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.RouteListCell.tableView (Vineyard_Bus_and_Ferry.RouteListCell)(ObjectiveC.UITableView, cellForRowAtIndexPath : ObjectiveC.NSIndexPath) -&gt; ObjectiveC.UITableViewCell:RouteListCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.route">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "self.route.id">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.IAdBannerViewController.bannerViewDidLoadAd (Vineyard_Bus_and_Ferry.IAdBannerViewController)(Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.ADBannerView&gt;) -&gt; ():IAdBannerViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "banner.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.ServiceCalendar.init (Vineyard_Bus_and_Ferry.ServiceCalendar.Type)(fromDictionary : ObjectiveC.NSDictionary) -&gt; Vineyard_Bus_and_Ferry.ServiceCalendar:Schedule.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "startDate.description">
+            </PersistentString>
+            <PersistentString
+               value = "endDate.description">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.Vector.init (Vineyard_Bus_and_Ferry.Vector.Type)(fromDictionary : ObjectiveC.NSDictionary) -&gt; Vineyard_Bus_and_Ferry.Vector:Schedule.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.ScheduleManager.(downloadCurrentVersion (Vineyard_Bus_and_Ferry.ScheduleManager) -&gt; (forMode : Swift.String, completionHandler : (version : Swift.Int) -&gt; ()) -&gt; ()).(closure #1):ScheduleManager.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.VectorViewController.viewDidLayoutSubviews (Vineyard_Bus_and_Ferry.VectorViewController)() -&gt; ():VectorViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "mapBox.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Vineyard_Bus_and_Ferry.VectorViewController.createSubViews (Vineyard_Bus_and_Ferry.VectorViewController)() -&gt; ():VectorViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "frameView.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
