@@ -52,11 +52,17 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     var vectorIndex: Int!
     var targetStop: Stop?
     var stopTimes: (beforeNow: [TimeOfDay], afterNow: [TimeOfDay])!
+    var locationManager: CLLocationManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         mapView.autoresizingMask = UIViewAutoresizing.FlexibleHeight
         mapView.delegate = self
+        mapView.showsUserLocation = true
+        
+        locationManager = CLLocationManager();
+        setCurrentLocation()
         
         stopTimeTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: STOP_TABLE_REUSE_ID)
         stopTimeTableView.alpha = (targetStop == nil) ? 0.0 : FULL_ALPHA
@@ -89,6 +95,22 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidDisappear(animated: Bool) {
         targetStop = nil
+    }
+
+    func setCurrentLocation() {
+        if (!CLLocationManager.locationServicesEnabled()) {
+            Logger.log(fromSource: self, level: .ERROR, message: "Location services are not enabled");
+        }
+
+        locationManager.requestWhenInUseAuthorization();
+        locationManager.delegate = self;
+        if (!CLLocationManager.locationServicesEnabled()) {
+            Logger.log(fromSource: self, level: .INFO, message: "Location services are not enabled");
+            return
+        }
+
+        locationManager.pausesLocationUpdatesAutomatically = true;
+        locationManager.startUpdatingLocation()
     }
     
     func setRouteLabel() {
@@ -335,6 +357,12 @@ extension MapViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+}
+
+extension MapViewController: CLLocationManagerDelegate {
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+       
+    }
 }
 
 

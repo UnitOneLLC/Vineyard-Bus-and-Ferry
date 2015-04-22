@@ -22,6 +22,7 @@
 		B607FD981AC2E27E004761BE /* VectorTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B607FD971AC2E27E004761BE /* VectorTable.swift */; };
 		B607FD9A1AC315E5004761BE /* TripCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B607FD991AC315E5004761BE /* TripCollection.swift */; };
 		B607FD9E1AC31F70004761BE /* StopTimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B607FD9D1AC31F70004761BE /* StopTimeTable.swift */; };
+		B61E44761AE7DA1200A58835 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B61E44751AE7DA1200A58835 /* MapKit.framework */; };
 		B6388B501ABD97B300D16058 /* RouteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6388B4F1ABD97B300D16058 /* RouteListViewController.swift */; };
 		B6388B521ABD993600D16058 /* RouteListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6388B511ABD993600D16058 /* RouteListCell.swift */; };
 		B6388BB61AC0AA3E00D16058 /* VectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6388BB51AC0AA3E00D16058 /* VectorViewController.swift */; };
@@ -67,6 +68,7 @@
 		B607FD971AC2E27E004761BE /* VectorTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorTable.swift; sourceTree = "<group>"; };
 		B607FD991AC315E5004761BE /* TripCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripCollection.swift; sourceTree = "<group>"; };
 		B607FD9D1AC31F70004761BE /* StopTimeTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopTimeTable.swift; sourceTree = "<group>"; };
+		B61E44751AE7DA1200A58835 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B6388B4F1ABD97B300D16058 /* RouteListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteListViewController.swift; sourceTree = "<group>"; };
 		B6388B511ABD993600D16058 /* RouteListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteListCell.swift; sourceTree = "<group>"; };
 		B6388BB51AC0AA3E00D16058 /* VectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B687F6611ACDEADA0042962E /* iAd.framework in Frameworks */,
+				B61E44761AE7DA1200A58835 /* MapKit.framework in Frameworks */,
 				B60314A51ABAFCC0001D4788 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,6 +108,7 @@
 		B603146C1ABA14B0001D4788 = {
 			isa = PBXGroup;
 			children = (
+				B61E44751AE7DA1200A58835 /* MapKit.framework */,
 				B687F6601ACDEADA0042962E /* iAd.framework */,
 				B687F65E1ACDE9E70042962E /* IAdBannerViewController.swift */,
 				B6CCEE8B1ABBA8E90051E567 /* SettingsManager.swift */,
@@ -230,6 +234,11 @@
 					B60314741ABA14B0001D4788 = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = TV3VB3J23U;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					B603148B1ABA14B1001D4788 = {
 						CreatedOnToolsVersion = 6.2;
