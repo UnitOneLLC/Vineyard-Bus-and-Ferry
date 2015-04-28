@@ -381,8 +381,11 @@ class ScheduleManager : Printable {
     class func formatTimeOfDay(tod: TimeOfDay) -> String {
         let minutes = tod.minute < 10 ? "0" + String(tod.minute) : String(tod.minute)
         let mod12 = tod.hour == 12 ? 12 : tod.hour % 12
-        let hour = (mod12) < 10 ? " " + String(mod12) : String(mod12)
+        var hour = (mod12) < 10 ? " " + String(mod12) : String(mod12)
         let ampm = (tod.hour < 12) ? "AM" : "PM"
+        if hour == " 0" {
+            hour = "12"
+        }
 
         return hour + ":" + minutes + " " + ampm
     }
