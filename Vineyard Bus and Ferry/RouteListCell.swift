@@ -12,7 +12,7 @@ let SMALL_FONT_SIZE: CGFloat = 12.0
 let LARGE_FONT_SIZE: CGFloat = 17.0
 let SUBCELL_FONT_SIZE: CGFloat = 16.0
 let SUBTABLE_ROW_HEIGHT: CGFloat = 29.0
-let PADDING_SIZE: CGFloat = 9.0
+let PADDING_SIZE: CGFloat = 12.0
 let LEFT_MARGIN: CGFloat = 10.0
 let RIGHT_MARGIN: CGFloat = 10.0
 
@@ -89,7 +89,7 @@ class RouteListCell: UITableViewCell {
         }
         
         
-        let f = CGRect(origin: CGPoint(x: LEFT_MARGIN, y: longNameLabel.frame.origin.y + longNameLabel.frame.height), size: CGSize(width: width, height: CGFloat(route.vectors.count) * SUBTABLE_ROW_HEIGHT ))
+        let f = CGRect(origin: CGPoint(x: 0.0, y: longNameLabel.frame.origin.y + longNameLabel.frame.height), size: CGSize(width: width, height: CGFloat(route.vectors.count) * SUBTABLE_ROW_HEIGHT ))
         subTableView.frame = f
         subTableView.reloadData()
     }
