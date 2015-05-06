@@ -18,9 +18,13 @@ class IAdBannerViewController: UIViewController, ADBannerViewDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         adBannerView = ADBannerView(frame: CGRect.zeroRect)
-        adBannerView.delegate = self
-        adBannerView.hidden = true
-        view.addSubview(adBannerView)
+        if adBannerView != nil {
+            adBannerView.delegate = self
+        }
+        if adBannerView != nil {
+            adBannerView.hidden = true
+            view.addSubview(adBannerView)
+        }
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -31,6 +35,9 @@ class IAdBannerViewController: UIViewController, ADBannerViewDelegate {
     }
     
     func bannerViewDidLoadAd(banner: ADBannerView!) {
+        if banner == nil  {
+            return
+        }
         banner.hidden = false
         view.bringSubviewToFront(banner)
         let f = CGRect(x: 0, y: view.frame.height - BOTTOM_BAR_HEIGHT - BANNER_HEIGHT, width: view.frame.width, height: BANNER_HEIGHT)
@@ -38,6 +45,9 @@ class IAdBannerViewController: UIViewController, ADBannerViewDelegate {
     }
     
     func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
+        if banner == nil {
+            return
+        }
         banner.removeFromSuperview()
         adBannerView = nil
     }

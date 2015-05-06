@@ -117,7 +117,9 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
         }
         if tripIndex != nil && tripIndex < route.vectors[vectorIndex].trips.count {
             dispatch_async(dispatch_get_main_queue()) {
-                self.tripCollection.scrollToTripAtIndex(tripIndex!)
+                if self.tripCollection != nil {
+                    self.tripCollection.scrollToTripAtIndex(tripIndex!)
+                }
             }
         }
     }
