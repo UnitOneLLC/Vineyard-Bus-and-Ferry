@@ -30,7 +30,7 @@ class DaySelectionControl : UIView {
         
         buttons = [UIButton]()
         
-        var frame = CGRect(x: 0.0, y: 0.0, width: width, height: HEIGHT)
+        let frame = CGRect(x: 0.0, y: 0.0, width: width, height: HEIGHT)
         super.init(frame: frame)
         userInteractionEnabled = true
         
@@ -38,13 +38,13 @@ class DaySelectionControl : UIView {
         
         var buttonFrame = CGRect(x: 0.0, y: VMARGIN, width: deltaX, height: HEIGHT - (2*VMARGIN))
         for abbrev in dayAbbrevs {
-            var button = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+            let button = UIButton(type: UIButtonType.Custom)
             button.frame = buttonFrame
             button.userInteractionEnabled = true
             buttonFrame.origin.x += deltaX
             button.titleLabel!.font = UIFont.systemFontOfSize(FONT_SIZE)
             
-            var attrs = [NSObject : AnyObject]()
+            var attrs = [String : AnyObject]()
             
             attrs[NSForegroundColorAttributeName] = TEXT_COLOR
             let normal = NSMutableAttributedString(string: abbrev, attributes: attrs)
@@ -55,7 +55,7 @@ class DaySelectionControl : UIView {
             
             let selected = NSMutableAttributedString(string: abbrev, attributes: attrs)
             selected.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue, range: NSMakeRange(0,
-                  count(button.titleLabel!.text!.utf16)))
+                  button.titleLabel!.text!.utf16.count))
 
             button.setAttributedTitle(selected, forState: UIControlState.Selected)
 

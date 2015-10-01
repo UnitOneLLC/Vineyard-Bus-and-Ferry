@@ -17,7 +17,7 @@ class IAdBannerViewController: UIViewController, ADBannerViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        adBannerView = ADBannerView(frame: CGRect.zeroRect)
+        adBannerView = ADBannerView(frame: CGRect.zero)
         if adBannerView != nil {
             adBannerView.delegate = self
         }

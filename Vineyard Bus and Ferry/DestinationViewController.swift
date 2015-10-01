@@ -39,7 +39,7 @@ class DestinationViewController: UIViewController {
                 
                 if let sched = AppDelegate.theScheduleManager.scheduleForMode(self.transitMode) {
                     for a in sched.agencies {
-                        var theseDests = AppDelegate.theScheduleManager.getRouteDestinationsForAgency(a.id, effectiveDate: effDate)
+                        let theseDests = AppDelegate.theScheduleManager.getRouteDestinationsForAgency(a.id, effectiveDate: effDate)
                         for d in theseDests {
                             destSet[d] = true
                         }
@@ -49,7 +49,7 @@ class DestinationViewController: UIViewController {
                     for k in destSet.keys {
                         self.destinations.append(k)
                     }
-                    self.destinations.sort() {$0 < $1}
+                    self.destinations.sortInPlace() {$0 < $1}
                 }
                 self.tableView.rowHeight = self.ROW_HEIGHT
                 self.tableView.dataSource = self
@@ -86,7 +86,7 @@ class DestinationViewController: UIViewController {
 
     func loadScheduleForView(completionHandler: (success: Bool) -> Void) {
         
-        let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
+        let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
 
         AppDelegate.theScheduleManager.acquireSchedule(forMode: transitMode, vc: self, moc: moc) { (s: Schedule?) in
             if s != nil {
@@ -122,16 +122,14 @@ class DestinationViewController: UIViewController {
     }
     
     func welcome() {
-        if let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext {
-            var alreadyDone: NSNumber? = AppDelegate.theSettingsManager.getSetting(parameter: "welcomeIssued", moc: moc)
-            if alreadyDone == 0 {
-                alreadyDone = 1
-                AppDelegate.theSettingsManager.setAppParameter(parameter: "welcomeIssued", value: alreadyDone!, moc: moc)
-                simpleAlert("Welcome", AppDelegate.welcomeText, self)
-            }
+        let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        var alreadyDone: NSNumber? = AppDelegate.theSettingsManager.getSetting(parameter: "welcomeIssued", moc: moc)
+        if alreadyDone == 0 {
+            alreadyDone = 1
+            AppDelegate.theSettingsManager.setAppParameter(parameter: "welcomeIssued", value: alreadyDone!, moc: moc)
+            simpleAlert("Welcome", message: AppDelegate.welcomeText, controller: self)
         }
     }
-    
 }
 
 
@@ -146,7 +144,7 @@ extension DestinationViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("destinationCell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("destinationCell", forIndexPath: indexPath) 
         
         var labelText = ""
         if indexPath.row == 0 {

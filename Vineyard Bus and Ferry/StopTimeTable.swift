@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class StopTimeTable: NSObject, UITableViewDataSource, UITableViewDelegate {
     class var REUSE_ID: String {return "stopTableCell"}
     let trip: Trip
@@ -22,7 +23,7 @@ class StopTimeTable: NSObject, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier(StopTimeTable.REUSE_ID, forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(StopTimeTable.REUSE_ID, forIndexPath: indexPath)
         
         let stopId = stopSequence[indexPath.row].id
         var found: Bool = false

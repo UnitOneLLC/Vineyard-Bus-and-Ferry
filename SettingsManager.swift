@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-class SettingsManager : Printable {
+class SettingsManager : CustomStringConvertible {
     
     let ENTITY_SETTINGS: String = "Settings"
     
@@ -20,9 +20,9 @@ class SettingsManager : Printable {
     
     
     func isSettingsObjectCreated(moc: NSManagedObjectContext) -> Bool {
-        var error: NSError?
+
         let fetchRequest = NSFetchRequest(entityName: ENTITY_SETTINGS)
-        let fetchedResults = moc.executeFetchRequest(fetchRequest, error: &error) as! [Settings]?
+        let fetchedResults = try? moc.executeFetchRequest(fetchRequest) as! [Settings]
         
         return fetchedResults != nil && fetchedResults!.count > 0
     }
@@ -31,22 +31,26 @@ class SettingsManager : Printable {
         
     }
     
-    func createInitialAppParametersObject(#moc: NSManagedObjectContext) -> Bool {
+    func createInitialAppParametersObject(moc moc: NSManagedObjectContext) -> Bool {
         let newSettings = NSEntityDescription.insertNewObjectForEntityForName(ENTITY_SETTINGS, inManagedObjectContext: moc) as! Settings;
         newSettings.busVersion = -1
         newSettings.ferryVersion = -1
         newSettings.welcomeIssued = 0
-        var error: NSError?
-        moc.save(&error)
-        return error == nil
+        
+        do {
+            try moc.save()
+            return true
+        }
+        catch {
+            return false
+        }
     }
     
-    func getSetting<T: AnyObject>(#parameter: String, moc: NSManagedObjectContext) -> T? {
+    func getSetting<T: AnyObject>(parameter parameter: String, moc: NSManagedObjectContext) -> T? {
         
         let fetchRequest = NSFetchRequest(entityName: ENTITY_SETTINGS)
-        var error: NSError?
-        let fetchedResults = moc.executeFetchRequest(fetchRequest, error: &error) as! [Settings]?
-        if (error != nil || fetchedResults == nil) {
+        let fetchedResults = try? moc.executeFetchRequest(fetchRequest) as! [Settings]
+        if fetchedResults == nil {
             Logger.log(fromSource: self, level: .ERROR, message: "failed to get app parameters")
         }
         else if fetchedResults!.count == 0 {
@@ -65,12 +69,11 @@ class SettingsManager : Printable {
         }
     }
     
-    func setAppParameter<T: AnyObject>(#parameter: String, value: T, moc: NSManagedObjectContext) -> Bool {
+    func setAppParameter<T: AnyObject>(parameter parameter: String, value: T, moc: NSManagedObjectContext) -> Bool {
         
         let fetchRequest = NSFetchRequest(entityName: ENTITY_SETTINGS)
-        var error: NSError?
-        let fetchedResults = moc.executeFetchRequest(fetchRequest, error: &error) as! [Settings]?
-        if (error != nil || fetchedResults == nil) {
+        let fetchedResults = try? moc.executeFetchRequest(fetchRequest) as! [Settings]
+        if fetchedResults == nil {
             Logger.log(fromSource: self, level: .ERROR, message: "failed to get app parameters")
         }
         else if fetchedResults!.count == 0 {
@@ -82,8 +85,13 @@ class SettingsManager : Printable {
         let settings = fetchedResults![0] as Settings
         settings.setValue(value, forKey: parameter)
         
-        moc.save(&error)
-        return error == nil
+        do {
+            try moc.save()
+            return true
+        }
+        catch {
+            return false
+        }
     }
     
     

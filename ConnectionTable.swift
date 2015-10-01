@@ -68,13 +68,13 @@ class ConnectionTable: NSObject, UITableViewDelegate, UITableViewDataSource {
             for c in _currentTrip!.connections {
                 let labelText = getTextForConnection(c)
                 let font = UIFont.systemFontOfSize(VectorTable.CELL_FONT_SIZE)
-                let h = Double(getLabelHeight(labelText, font, connectionRouteTable.frame.width - PADDING_PX)) + CELL_HEIGHT_PADDING
+                let h = Double(getLabelHeight(labelText, font: font, width: connectionRouteTable.frame.width - PADDING_PX)) + CELL_HEIGHT_PADDING
                 rowHeights.append(h)
                 totalHeight += h
             }
             
             var frame: CGRect
-            var height = CGFloat(totalHeight)
+            let height = CGFloat(totalHeight)
 
             frame = connectionTimeTable.frame
             frame.size.height = height
@@ -114,7 +114,7 @@ class ConnectionTable: NSObject, UITableViewDelegate, UITableViewDataSource {
         }
         
         if tableView === connectionTimeTable {
-            var cell = tableView.dequeueReusableCellWithIdentifier(TIME_TABLE_CELL_ID, forIndexPath: indexPath) as! UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(TIME_TABLE_CELL_ID, forIndexPath: indexPath) 
             if connection != nil {
                 let labelText = ScheduleManager.formatTimeOfDay(connection!.time)
                 cell.textLabel!.attributedText = getAttributedString(labelText, withFont: VectorTable.cellFont)
@@ -122,7 +122,7 @@ class ConnectionTable: NSObject, UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         else {
-            var cell = tableView.dequeueReusableCellWithIdentifier(ROUTE_TABLE_CELL_ID, forIndexPath: indexPath) as! VectorTableStopCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(ROUTE_TABLE_CELL_ID, forIndexPath: indexPath) as! VectorTableStopCell
             if connection != nil  {
                 let labelText = getTextForConnection(connection!)
                 cell.textLabel!.numberOfLines = 0

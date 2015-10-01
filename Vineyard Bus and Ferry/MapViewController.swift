@@ -24,7 +24,7 @@ class StopAnnotation : NSObject, MKAnnotation {
     }
     
     // Title and subtitle for use by selection UI.
-    var title: String! {
+    var title: String? {
         return stop.name
     }
     
@@ -122,7 +122,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         var frame = routeTitleLabel.frame
         frame.size.width = view.frame.width
         frame.origin = CGPoint(x: 0.0, y: 75.0)
-        frame.size.height = getLabelHeight(route.longName, font, frame.size.width) + VPADDING
+        frame.size.height = getLabelHeight(route.longName, font: font, width: frame.size.width) + VPADDING
 
         routeTitleLabel.frame = frame
         routeTitleLabel.textAlignment = NSTextAlignment.Center
@@ -140,8 +140,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         setRegion(v.polyline)
         
         var coords: [CLLocationCoordinate2D] = v.polyline.coordinates
-        
-        var mkPoly = MKPolyline(coordinates: &coords, count: v.polyline.coordinates.count)
+        let mkPoly = MKPolyline(coordinates: &coords, count: v.polyline.coordinates.count)
         mapView.addOverlay(mkPoly)
     }
     
@@ -177,7 +176,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             maxLng = max(maxLng, coord.longitude)
         }
         
-        let span = makeSpan(maxLat-minLat, maxLng-minLng, mapView!)
+        let span = makeSpan(maxLat-minLat, lngDelta: maxLng-minLng, view: mapView!)
         let center = CLLocationCoordinate2D(latitude: (minLat+maxLat)/2, longitude: (minLng+maxLng)/2)
         let region = MKCoordinateRegionMake(center, span)
         mapView.setRegion(region, animated: true)
@@ -185,28 +184,28 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     // MARK - MKMapViewDelegate
     
-    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) throws -> MKOverlayRenderer {
         if overlay is MKPolyline {
-            var pr = MKPolylineRenderer(overlay: overlay);
+            let pr = MKPolylineRenderer(overlay: overlay);
             pr.strokeColor = colorWithHexString(route.colorRGB!)
             pr.lineWidth = 5;
             return pr;
         }
         Logger.log(fromSource: self, level: .ERROR, message: "Unexpected call to mapView:rendererForOverlay")
-        return nil
+        throw NSError(domain: "map", code:-1 , userInfo: ["message" : "Failed to create map view"])
     }
     
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is StopAnnotation {
             
             var annoView = mapView.dequeueReusableAnnotationViewWithIdentifier(STOP_ANNO_REUSE_ID)
             if annoView == nil {
                 annoView = MKAnnotationView(annotation: annotation, reuseIdentifier: STOP_ANNO_REUSE_ID)
             }
-            annoView.frame = CGRect(x: 0.0, y: 0.0, width: STOP_ANNOTATION_WIDTH, height: STOP_ANNOTATION_HEIGHT)
+            annoView!.frame = CGRect(x: 0.0, y: 0.0, width: STOP_ANNOTATION_WIDTH, height: STOP_ANNOTATION_HEIGHT)
             annoView!.annotation = annotation
-            annoView.backgroundColor = STOP_COLOR
-            annoView.canShowCallout = true
+            annoView!.backgroundColor = STOP_COLOR
+            annoView!.canShowCallout = true
             return annoView
         }
         
@@ -235,7 +234,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     
-    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         
         if view.annotation is StopAnnotation {
             let stop = (view.annotation as! StopAnnotation).stop
@@ -243,7 +242,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    func mapView(mapView: MKMapView!, didDeselectAnnotationView view: MKAnnotationView!) {
+    func mapView(mapView: MKMapView,didDeselectAnnotationView view: MKAnnotationView){
         UIView.animateWithDuration(0.25) {
             self.stopTimeTableView.alpha = 0.0
         }
@@ -283,7 +282,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     func getStopTimesForDisplay(stop: Stop) -> NSMutableAttributedString {
         initStopTimes()
-        var prefix = " Stop times: "
+        let prefix = " Stop times: "
         var beforeStr = ""
         for (var i = 0; i < stopTimes.beforeNow.count; ++i) {
             beforeStr += ScheduleManager.formatTimeOfDay(stopTimes.beforeNow[i])
@@ -308,9 +307,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             labelText = prefix + beforeStr
         }
         
-        var attrStr = getMutableAttributedString(labelText, withFont: UIFont.systemFontOfSize(TIME_LABEL_FONT_SIZE))
-        let beforeRange = NSMakeRange(count(prefix),count(beforeStr))
-        let afterRange =  NSMakeRange(count(prefix + beforeStr), count(afterStr))
+        let attrStr = getMutableAttributedString(labelText, withFont: UIFont.systemFontOfSize(TIME_LABEL_FONT_SIZE))
+        let beforeRange = NSMakeRange(prefix.characters.count, beforeStr.characters.count)
+        let afterRange =  NSMakeRange((prefix + beforeStr).characters.count, afterStr.characters.count)
         
         attrStr.addAttribute(NSForegroundColorAttributeName, value: UIColor.lightGrayColor(), range: beforeRange)
         attrStr.addAttribute(NSForegroundColorAttributeName, value: UIColor.blackColor(), range: afterRange)
@@ -324,7 +323,7 @@ extension MapViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if targetStop != nil {
             initStopTimes()
-            var cell = tableView.dequeueReusableCellWithIdentifier(STOP_TABLE_REUSE_ID, forIndexPath: indexPath) as! UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(STOP_TABLE_REUSE_ID, forIndexPath: indexPath) 
             if stopTimes != nil {
                 var row = indexPath.row
 
@@ -360,8 +359,7 @@ extension MapViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension MapViewController: CLLocationManagerDelegate {
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
-       
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
     }
 }
 

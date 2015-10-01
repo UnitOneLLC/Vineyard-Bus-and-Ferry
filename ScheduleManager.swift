@@ -15,7 +15,7 @@ var DOMAIN_STEM : String!
 var modeURLMap: [String: String]!
 var modeVersionURLMap: [String: String]!
 
-class ScheduleManager : Printable {
+class ScheduleManager : CustomStringConvertible {
     var schedulesByAgency: [String: Schedule]
     var schedulesByMode: [String: Schedule]
     
@@ -27,27 +27,33 @@ class ScheduleManager : Printable {
     
     func readUrlData() {
         let path = NSBundle.mainBundle().pathForResource("urlinfo", ofType: "json")
-        var err: NSError?
         
         modeURLMap = [String: String]()
         modeVersionURLMap = [String: String]()
 
         if let json = NSData(contentsOfFile: path!) {
-            var dico = NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions.MutableContainers, error: &err) as! NSDictionary
-            DOMAIN_STEM = dico["domainStem"] as! String
+            do {
+                let dico = try NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary;
+
+                DOMAIN_STEM = dico["domainStem"] as! String
+                
+                let urlDico = dico["urlMap"] as! NSDictionary
+                for key in urlDico.keyEnumerator() {
+                    let mode = key as! String
+                    let url = urlDico[mode] as! String
+                    modeURLMap[mode] = DOMAIN_STEM + url
+                }
+                let verDico = dico["versionUrlMap"] as! NSDictionary
+                for key in verDico.keyEnumerator() {
+                    let mode = key as! String
+                    let url = verDico[mode] as! String
+                    modeVersionURLMap[mode] = DOMAIN_STEM + url
+                }
+            }
+            catch {
+                return
+            }
             
-            var urlDico = dico["urlMap"] as! NSDictionary
-            for key in urlDico.keyEnumerator() {
-                let mode = key as! String
-                let url = urlDico[mode] as! String
-                modeURLMap[mode] = DOMAIN_STEM + url
-            }
-            var verDico = dico["versionUrlMap"] as! NSDictionary
-            for key in verDico.keyEnumerator() {
-                let mode = key as! String
-                let url = verDico[mode] as! String
-                modeVersionURLMap[mode] = DOMAIN_STEM + url
-            }
         }
     }
     
@@ -64,9 +70,10 @@ class ScheduleManager : Printable {
     }
     
     func getNameOfStoredFile(mode: String) -> String {
-        var docPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
-        let filePath = docPath.stringByAppendingPathComponent(mode + EXTENSION)
-        return filePath
+        let docPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+        let docURL = NSURL(fileURLWithPath: docPath)
+        let filePath = docURL.URLByAppendingPathComponent(mode + EXTENSION)
+        return filePath.absoluteString
     }
     
     func isScheduleFileStored(mode: String) -> Bool {
@@ -86,8 +93,11 @@ class ScheduleManager : Printable {
     }
     
     func deleteStoredFile(mode: String) {
-        var error = NSErrorPointer()
-        NSFileManager.defaultManager().removeItemAtPath(getNameOfStoredFile(mode), error: error)
+        do {
+            try NSFileManager.defaultManager().removeItemAtPath(getNameOfStoredFile(mode));
+        }
+        catch {
+        }
     }
     
     func downloadSchedule(forMode mode: String, moc: NSManagedObjectContext, completionHandler: ((data: NSData?)->Void)) {
@@ -99,14 +109,25 @@ class ScheduleManager : Printable {
         }
         Logger.log(fromSource: self, level: .INFO, message: "Downloading new schedule for mode \(mode)")
         
-        var request = NSMutableURLRequest(URL: NSURL(string: url!)!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 60.0)
+        let request = NSMutableURLRequest(URL: NSURL(string: url!)!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 60.0)
         
         request.setValue("gzip", forHTTPHeaderField: "Accept-Encoding")
         
-        let queue:NSOperationQueue = NSOperationQueue()
-        NSURLConnection.sendAsynchronousRequest(request, queue: queue, completionHandler:{ (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+        
+        let session = NSURLSession.sharedSession()
+        request.HTTPMethod = "POST"
+        
+        let task = session.dataTaskWithRequest(request, completionHandler: { ( data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             completionHandler(data: data)
         })
+        
+        task.resume()
+        
+        
+//        let queue:NSOperationQueue = NSOperationQueue()
+//        NSURLConnection.sendAsynchronousRequest(request, queue: queue, completionHandler:{ (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+//            completionHandler(data: data)
+//        })
     }
     
     
@@ -117,24 +138,25 @@ class ScheduleManager : Printable {
             return
         }
         
-        var request = NSMutableURLRequest(URL: NSURL(string: url!)!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 60.0)
+        let request = NSMutableURLRequest(URL: NSURL(string: url!)!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 60.0)
         
         let queue:NSOperationQueue = NSOperationQueue()
-        NSURLConnection.sendAsynchronousRequest(request, queue: queue, completionHandler:{ (response: NSURLResponse!, json: NSData!, error: NSError!) -> Void in
-            var err: NSError?
+        NSURLConnection.sendAsynchronousRequest(request, queue: queue, completionHandler:{ (response: NSURLResponse?, json: NSData?, error: NSError?) -> Void in
 
             var version: Int
-            var dico = NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions.MutableContainers, error: &err) as! NSDictionary
-            if err == nil {
+            do {
+                let dico = try NSJSONSerialization.JSONObjectWithData(json!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+
                 version = dico["version"] as! Int
                 Logger.log(fromSource: self, level: .INFO, message: "Current version for mode \(mode) is \(version)")
-            }
-            else {
-                Logger.log(fromSource: self, level: .ERROR, message: "Did not retrieve version: \(err)")
-                version = -1
-            }
 
-            completionHandler(version: version as Int)
+                completionHandler(version: version as Int)
+            }
+            catch {
+                Logger.log(fromSource: self, level: .ERROR, message: "Did not retrieve version")
+                version = -1
+                
+            }
         })
         
     }
@@ -202,7 +224,7 @@ class ScheduleManager : Printable {
                     else {
                         Logger.log(fromSource: self, level: .ERROR, message: "Fatal: no schedule for mode \(mode)")
                         completionHandler(s: nil)
-                        simpleAlert("Network Error", "No \(mode) schedule available. Close the app and re-try.", vc)
+                        simpleAlert("Network Error", message: "No \(mode) schedule available. Close the app and re-try.", controller: vc)
                     }
                 }
             } // version closure
@@ -217,12 +239,12 @@ class ScheduleManager : Printable {
                 else {
                     Logger.log(fromSource: self, level: .ERROR, message: "Fatal: no schedule for mode \(mode)")
                     completionHandler(s: nil)
-                    simpleAlert("Network Error", "No \(mode) schedule available. You must have an internet connection.", vc)                }
+                    simpleAlert("Network Error", message: "No \(mode) schedule available. You must have an internet connection.", controller: vc)                }
             }
             else {
                 Logger.log(fromSource: self, level: .ERROR, message: "Fatal: no schedule for mode \(mode)")
                 completionHandler(s: nil)
-                simpleAlert("Network Error", "No \(mode) schedule available. You must have an internet connection.", vc)
+                simpleAlert("Network Error", message: "No \(mode) schedule available. You must have an internet connection.", controller: vc)
             }
         }
     }
@@ -247,7 +269,7 @@ class ScheduleManager : Printable {
                         if v.destination == "Loop" {
                             continue
                         }
-                        if !contains(result, v.destination) {
+                        if !result.contains(v.destination) {
                             result.append(v.destination)
                         }
                     }
@@ -263,7 +285,7 @@ class ScheduleManager : Printable {
     
     func isRouteInService(route: Route, effectiveDate: NSDate) -> Bool {
         var calendarsForRoute: Set<String> = Set<String>()
-        var sched = scheduleForAgency(route.agency)
+        let sched = scheduleForAgency(route.agency)
 
         for v in route.vectors {
             for t in v.trips {
@@ -343,10 +365,10 @@ class ScheduleManager : Printable {
         
         for t in v.trips {
             for s in t.stops {
-                if !contains(set.keys, s.id) {
+                if !set.keys.contains(s.id) {
                     set[s.id] = [Int]()
                 }
-                if !contains(set[s.id]!, s.seq) {
+                if !set[s.id]!.contains(s.seq) {
                     set[s.id]!.append(s.seq)
                 }
             }
@@ -356,10 +378,10 @@ class ScheduleManager : Printable {
         for (var i = set.count; i > 0; --i) {
             
             var foundKey: String? = nil
-            do {
+            repeat {
                 foundKey = nil
                 for k in set.keys {
-                    if contains(set[k]!, i) {
+                    if set[k]!.contains(i) {
                         foundKey = k
                         idList.append(k)
                         set.removeValueForKey(k)
@@ -401,7 +423,7 @@ class ScheduleManager : Printable {
     
     class func getDayOfWeekIndex(forDate date: NSDate) -> Int { // Monday=0, Sunday=6
         let calendar = NSCalendar.currentCalendar()
-        let dateComponents = calendar.components(NSCalendarUnit.CalendarUnitWeekday, fromDate: date)
+        let dateComponents = calendar.components(NSCalendarUnit.Weekday, fromDate: date)
         
         let ord = dateComponents.weekday - 2
         if ord == -1 {
@@ -460,10 +482,10 @@ class ScheduleManager : Printable {
         for t in trips {
             let svcId = t.serviceId
             
-            if contains(okCalendars, svcId) {
+            if okCalendars.contains(svcId) {
                 filtered.append(t)
             }
-            else if contains(notOkCalendars, svcId) {
+            else if notOkCalendars.contains(svcId) {
                 continue
             }
             else {
@@ -501,7 +523,7 @@ class ScheduleManager : Printable {
         let now = NSDate()
         
         let calendar = NSCalendar.currentCalendar()
-        let dateComponents = calendar.components(NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitMinute, fromDate: now)
+        let dateComponents = calendar.components([.Hour, .Minute], fromDate: now)
 
         let nowTod = TimeOfDay(fromString: String(dateComponents.hour) + ":" + String(dateComponents.minute))
         

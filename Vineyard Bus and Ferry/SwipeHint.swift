@@ -25,7 +25,7 @@ class SwipeHintView : UIView {
         let font = UIFont.italicSystemFontOfSize(FONT_SIZE)
         let lblSize = (TEXT as NSString).sizeWithAttributes([NSFontAttributeName: font])
         let w = lblSize.width + WIDTH_PADDING
-        let h = getLabelHeight(TEXT, font, w)
+        let h = getLabelHeight(TEXT, font: font, width: w)
         
         let lblFrame = CGRect(x: XINSET, y: YINSET, width: w, height: h)
         label = UILabel(frame: lblFrame)
@@ -49,7 +49,7 @@ class SwipeHintView : UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func slideRight(#delaySeconds: Double) {
+    func slideRight(delaySeconds delaySeconds: Double) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delaySeconds * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
             var f = self.frame
             f.origin.x += f.width

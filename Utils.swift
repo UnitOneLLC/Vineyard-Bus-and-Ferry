@@ -10,13 +10,13 @@ import UIKit
 import SystemConfiguration
 import MapKit
 
-func hCenterInFrame(#frameToCenter: CGRect, #container: CGRect) -> CGRect {
-    var origin = CGPoint(x: CGFloat(container.width - frameToCenter.width)/CGFloat(2.0), y: frameToCenter.origin.y)
+func hCenterInFrame(frameToCenter frameToCenter: CGRect, container: CGRect) -> CGRect {
+    let origin = CGPoint(x: CGFloat(container.width - frameToCenter.width)/CGFloat(2.0), y: frameToCenter.origin.y)
     return CGRect(origin: origin, size: frameToCenter.size)
 }
 
 func getAttributedString(text: String, withFont font: UIFont) -> NSAttributedString {
-    var dico: [NSObject: AnyObject] = [NSObject: AnyObject]()
+    var dico: [String: AnyObject] = [String: AnyObject]()
     dico[NSFontAttributeName] = font
     let attrString = NSAttributedString(string: text, attributes: dico)
     
@@ -24,14 +24,14 @@ func getAttributedString(text: String, withFont font: UIFont) -> NSAttributedStr
 }
 
 func getMutableAttributedString(text: String, withFont font: UIFont) -> NSMutableAttributedString {
-    var dico: [NSObject: AnyObject] = [NSObject: AnyObject]()
+    var dico: [String: AnyObject] = [String: AnyObject]()
     dico[NSFontAttributeName] = font
     let attrString = NSMutableAttributedString(string: text, attributes: dico)
     
     return attrString
 }
 
-func getBoundingRect(#text: String, #font: UIFont, #width: CGFloat) -> CGRect {
+func getBoundingRect(text text: String, font: UIFont, width: CGFloat) -> CGRect {
     let attrString = getAttributedString(text, withFont: font)
     
     let size = CGSize(width: width - RIGHT_MARGIN, height: CGFloat.max)
@@ -46,26 +46,34 @@ func getLabelHeight(text: String, font: UIFont, width: CGFloat) -> CGFloat {
     return CGFloat(ceilf(Float(rect.height)))
 }
 
-func isInternetConnected() -> Bool {
-    
-    var reachability = SCNetworkReachabilityCreateWithName(kCFAllocatorDefault, "frederickhewett.com").takeRetainedValue()
-    
-    var flags : SCNetworkReachabilityFlags = 0
-    
-    if SCNetworkReachabilityGetFlags(reachability, &flags) == 0 {
-        return false
+
+public class Reachability {
+    class func isConnectedToNetwork() -> Bool {
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        let defaultRouteReachability = withUnsafePointer(&zeroAddress) {
+            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
+        }
+        var flags = SCNetworkReachabilityFlags()
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
+            return false
+        }
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        return (isReachable && !needsConnection)
     }
-    
-    let isReachable     = (flags & UInt32(kSCNetworkFlagsReachable)) != 0
-    let needsConnection = (flags & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
-    
-    return (isReachable && !needsConnection)
+}
+
+
+func isInternetConnected() -> Bool {
+    return Reachability.isConnectedToNetwork()
 }
 
 func normalizedDate(date: NSDate) -> NSDate {
     let calendar = NSCalendar.currentCalendar()
-    let mask = NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitDay
-    let components = calendar.components(mask, fromDate: date)
+    let set : NSCalendarUnit = [NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day]
+    let components = calendar.components(set, fromDate: date)
     let result = calendar.dateFromComponents(components)
     return result!
 }
@@ -119,14 +127,14 @@ func colorWithHexString (hex:String) -> UIColor {
     if (cString.hasPrefix("#")) {
         cString = cString.substringFromIndex(hex.startIndex)
     }
-    if (count(cString) != 6) {
+    if (cString.characters.count != 6) {
         return UIColor.grayColor()
     }
-    var rString = cString.substringToIndex(advance(hex.startIndex, 2))
-    var gString = cString.substringFromIndex(advance(hex.startIndex, 2))
-        gString = gString.substringToIndex(advance(gString.startIndex, 2))
-    var bString = cString.substringFromIndex(advance(hex.startIndex, 4))
-        bString = bString.substringToIndex(advance(bString.startIndex, 2))
+    let rString = cString.substringToIndex(hex.startIndex.advancedBy(2))
+    var gString = cString.substringFromIndex(hex.startIndex.advancedBy(2))
+        gString = gString.substringToIndex(gString.startIndex.advancedBy(2))
+    var bString = cString.substringFromIndex(hex.startIndex.advancedBy(4))
+        bString = bString.substringToIndex(bString.startIndex.advancedBy(2))
     
     var r:CUnsignedInt = 0, g:CUnsignedInt = 0, b:CUnsignedInt = 0;
     NSScanner(string: rString).scanHexInt(&r)
@@ -162,7 +170,7 @@ class Logger {
         case FATAL
     }
     
-    class func log<T: Printable>(fromSource source: T, level: Level, message: String) {
+    class func log<T:CustomStringConvertible>(fromSource source: T, level: Level, message: String) {
         var output = "\(source) "
         
         switch level {

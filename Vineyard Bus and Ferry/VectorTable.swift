@@ -102,7 +102,7 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
         self.stopSequence = AppDelegate.theScheduleManager.stopSequenceForVector(route.vectors[vectorIndex], inSchedule: self.schedule)
         rowHeights = [Double]()
         for stop in stopSequence {
-            let h: Double = Double(getLabelHeight(stop.name, UIFont.systemFontOfSize(VectorTable.CELL_FONT_SIZE), stopListWidth - PADDING_PX)) + Double(CELL_HEIGHT_PADDING)
+            let h: Double = Double(getLabelHeight(stop.name, font: UIFont.systemFontOfSize(VectorTable.CELL_FONT_SIZE), width: stopListWidth - PADDING_PX)) + Double(CELL_HEIGHT_PADDING)
             rowHeights.append(h)
         }
         
@@ -162,7 +162,7 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
     }
     
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
     }
     
     
@@ -237,7 +237,7 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
         
         
         if scroller != nil {
-            var h = self.frame.height + connectionTable.connectionRouteTable.frame.height
+            let h = self.frame.height + connectionTable.connectionRouteTable.frame.height
             scroller!.contentSize = CGSize(width: scroller!.frame.width, height: h)
         }
     }
@@ -267,7 +267,7 @@ class VectorTable : UIView, UITableViewDataSource, UITableViewDelegate, TripColl
     var totalHeight: Double {
         var result: Double = 0.0
         for stop in stopSequence {
-            let h: Double = Double(getLabelHeight(stop.name, VectorTable.cellFont, stopListWidth - PADDING_PX))
+            let h: Double = Double(getLabelHeight(stop.name, font: VectorTable.cellFont, width: stopListWidth - PADDING_PX))
             result += h + Double(CELL_HEIGHT_PADDING)
         }
         return result

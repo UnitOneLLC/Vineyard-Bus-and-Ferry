@@ -13,15 +13,14 @@ protocol TripCollectionDelegate {
 }
 
 class TripColllectionLayout : UICollectionViewFlowLayout {
-    override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
+    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
 
-        var result: [AnyObject]! = super.layoutAttributesForElementsInRect(rect)
+        var result: [UICollectionViewLayoutAttributes]! = super.layoutAttributesForElementsInRect(rect)
         if result == nil {
             return nil
         }
         for (var i=1; i < result.count; ++i) {
-            var currentLayoutAttributes = result[i] as! UICollectionViewLayoutAttributes
-            var prevLayoutAttributes = result[i-1] as! UICollectionViewLayoutAttributes
+            let currentLayoutAttributes = result[i] 
             var currentFrame = currentLayoutAttributes.frame
             
             currentFrame.origin.x = CGFloat(currentLayoutAttributes.indexPath.row) * currentFrame.width
@@ -56,7 +55,7 @@ class TripCollection: NSObject {
         }
         
         
-        var layout = TripColllectionLayout()
+        let layout = TripColllectionLayout()
         layout.scrollDirection = UICollectionViewScrollDirection.Horizontal
 
         collectionView = UICollectionView(frame: frame, collectionViewLayout:layout)
@@ -110,7 +109,7 @@ class TripCollection: NSObject {
     
     func scrollToCurrent() {
         let now = NSDate()
-        let dateCompos = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitHour|NSCalendarUnit.CalendarUnitMinute, fromDate: now)
+        let dateCompos = NSCalendar.currentCalendar().components([NSCalendarUnit.Hour,NSCalendarUnit.Minute], fromDate: now)
         let nowScalar = dateCompos.hour * 60 + dateCompos.minute
         
         var index = 0;
@@ -137,7 +136,7 @@ class TripCollection: NSObject {
 extension TripCollection:  UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier(TripCollection.COLL_REUSE_ID, forIndexPath: indexPath) as! UICollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(TripCollection.COLL_REUSE_ID, forIndexPath: indexPath) 
 
         let stopTimeTable = StopTimeTable(stopSequence: stopSequence, trip: trips[indexPath.row], rowHeights: rowHeights)
         stopTimeTables.append(stopTimeTable)
@@ -147,7 +146,7 @@ extension TripCollection:  UICollectionViewDataSource, UICollectionViewDelegate 
         let h = collectionView.frame.height // - collectionView.layoutMargins.top - collectionView.layoutMargins.bottom
         let f = CGRect(origin: origin, size: CGSize(width: w, height: h))
         
-        var tvForCell = UITableView(frame: f)
+        let tvForCell = UITableView(frame: f)
         tvForCell.separatorStyle = UITableViewCellSeparatorStyle.None
         tvForCell.registerClass(UITableViewCell.self, forCellReuseIdentifier: StopTimeTable.REUSE_ID)
         tvForCell.scrollEnabled = false
@@ -176,7 +175,7 @@ extension TripCollection:  UICollectionViewDataSource, UICollectionViewDelegate 
     }
 
     func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        var raw = targetContentOffset.memory.x
+        let raw = targetContentOffset.memory.x
         var paged = round((raw/frame.width) * frame.width)
         paged = min(paged, frame.width * CGFloat(trips.count - 1))
         targetContentOffset.memory.x = paged

@@ -30,16 +30,16 @@ class RouteListCell: UITableViewCell {
             shortNameHeight = 0.0
         }
         else {
-            shortNameHeight = getLabelHeight(route.shortName!, UIFont.systemFontOfSize(SMALL_FONT_SIZE), width)
+            shortNameHeight = getLabelHeight(route.shortName!, font: UIFont.systemFontOfSize(SMALL_FONT_SIZE), width: width)
         }
-        var longNameHeight = getLabelHeight(route.longName, UIFont.boldSystemFontOfSize(LARGE_FONT_SIZE), width)
+        let longNameHeight = getLabelHeight(route.longName, font: UIFont.boldSystemFontOfSize(LARGE_FONT_SIZE), width: width)
         
         let total: CGFloat = shortNameHeight + longNameHeight + PADDING_SIZE + CGFloat(route.vectors.count) * SUBTABLE_ROW_HEIGHT
         
         return total
     }
     
-    func initialize(#route: Route, width: CGFloat, text: (single: String, plural: String)) {
+    func initialize(route route: Route, width: CGFloat, text: (single: String, plural: String)) {
         self.route = route
         self.itemText = text
         
@@ -97,7 +97,7 @@ class RouteListCell: UITableViewCell {
 
 extension RouteListCell: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("routeSubCell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("routeSubCell", forIndexPath: indexPath)
         var dest = route.vectors[indexPath.row].destination
         if dest == "Loop" && route.waypoint != nil && !route.waypoint!.isEmpty {
             dest = route.waypoint!
@@ -115,7 +115,7 @@ extension RouteListCell: UITableViewDataSource {
 
 extension RouteListCell: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var vc = (self.superview!.superview as! UITableView).delegate as! RouteListViewController
+        let vc = (self.superview!.superview as! UITableView).delegate as! RouteListViewController
         vc.selectedRoute = route
         vc.selectedVectorIndex = indexPath.row
         tableView.deselectRowAtIndexPath(indexPath, animated: false)

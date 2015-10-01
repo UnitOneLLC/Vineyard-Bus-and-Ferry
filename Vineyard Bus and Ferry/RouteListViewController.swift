@@ -50,7 +50,7 @@ class RouteListViewController: IAdBannerViewController {
                 }
                 groups[r.agency]?.append(r)
             }
-            sortedKeys.sort() {$0 < $1}
+            sortedKeys.sortInPlace() {$0 < $1}
         }
     }
     
@@ -89,7 +89,7 @@ extension RouteListViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("routeCell", forIndexPath: indexPath) as! RouteListCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("routeCell", forIndexPath: indexPath) as! RouteListCell
         if indexPath.section < sortedKeys.count {
             if let routeSet = groups[sortedKeys[indexPath.section]] {
                 let r = routeSet[indexPath.row]
@@ -114,7 +114,7 @@ extension RouteListViewController: UITableViewDataSource {
         if let agency = AppDelegate.theScheduleManager.getAgencyById(sortedKeys[section]) {
             let text = agency.name
             let font = UIFont.boldSystemFontOfSize(SECTION_FONT_SIZE)
-            let height = getLabelHeight(text, font, view.frame.width-HMARGIN) + 2*SECTION_VPAD
+            let height = getLabelHeight(text, font: font, width: view.frame.width-HMARGIN) + 2*SECTION_VPAD
             return height
         }
         else {
@@ -132,11 +132,11 @@ extension RouteListViewController: UITableViewDataSource {
             let text = agency.name
             let font = UIFont.boldSystemFontOfSize(SECTION_FONT_SIZE)
             var headframe = tableView.frame
-            let height = getLabelHeight(text, font, view.frame.width-HMARGIN)
+            let height = getLabelHeight(text, font: font, width: view.frame.width-HMARGIN)
             headframe.size.height = height
             let headerView = UIView(frame: headframe)
             headframe.origin.y = SECTION_VPAD
-            var headerLbl = UILabel(frame: headframe)
+            let headerLbl = UILabel(frame: headframe)
             headerLbl.textAlignment = NSTextAlignment.Center
             headerLbl.numberOfLines = 0
             headerLbl.lineBreakMode = .ByWordWrapping

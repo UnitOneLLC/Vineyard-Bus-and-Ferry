@@ -14,10 +14,10 @@ struct TimeOfDay {
     let minute: Int!
     
     init(fromString string: String) {
-        let array = split(string) {$0 == ":"}
+        let array : [String.CharacterView] = string.characters.split {$0 == ":"}
         
-        self.hour = (array[0] as NSString).integerValue
-        self.minute = (array[1] as NSString).integerValue
+        self.hour = (String(array[0]) as NSString).integerValue
+        self.minute = (String(array[1]) as NSString).integerValue
     }
 }
 
@@ -192,31 +192,38 @@ class Schedule {
     let services: [ServiceCalendar]!
     
     init(fromJson json: NSData) {
-        var err: NSError?
-        var dico = NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions.MutableContainers, error: &err) as! NSDictionary
-        
-        let agencyArr = dico["agencies"] as! [NSDictionary]
-        self.agencies = [Agency]()
-        for item in agencyArr {
-            self.agencies.append(Agency(fromDictionary: item))
+        let dico = try? NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+        if dico == nil {
+            agencies = [Agency]()
+            routes = [Route]()
+            stops = [Stop]()
+            services = [ServiceCalendar]()
+            Logger.log(fromSource: "Failure", level: .FATAL, message: "failed to get JSON schedule")
         }
-        
-        let routesArr = dico["routes"] as! [NSDictionary]
-        self.routes = [Route]()
-        for item in routesArr {
-            self.routes.append(Route(fromDictionary: item))
-        }
-        
-        let stopsArr = dico["stops"] as! [NSDictionary]
-        self.stops = [Stop]()
-        for item in stopsArr {
-            self.stops.append(Stop(fromDictionary: item))
-        }
-        
-        let servicesArr = dico["calendars"] as! [NSDictionary]
-        self.services = [ServiceCalendar]()
-        for item in servicesArr {
-            self.services.append(ServiceCalendar(fromDictionary: item))
+        else {
+            let agencyArr = dico!["agencies"] as! [NSDictionary]
+            self.agencies = [Agency]()
+            for item in agencyArr {
+                self.agencies.append(Agency(fromDictionary: item))
+            }
+            
+            let routesArr = dico!["routes"] as! [NSDictionary]
+            self.routes = [Route]()
+            for item in routesArr {
+                self.routes.append(Route(fromDictionary: item))
+            }
+            
+            let stopsArr = dico!["stops"] as! [NSDictionary]
+            self.stops = [Stop]()
+            for item in stopsArr {
+                self.stops.append(Stop(fromDictionary: item))
+            }
+            
+            let servicesArr = dico!["calendars"] as! [NSDictionary]
+            self.services = [ServiceCalendar]()
+            for item in servicesArr {
+                self.services.append(ServiceCalendar(fromDictionary: item))
+            }
         }
     }
 }

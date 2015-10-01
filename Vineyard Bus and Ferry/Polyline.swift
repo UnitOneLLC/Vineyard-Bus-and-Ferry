@@ -206,8 +206,8 @@ public func decodeLevels(encodedLevels: String) -> [UInt32]? {
     var remainingLevels = encodedLevels.unicodeScalars
     var decodedLevels   = [UInt32]()
     
-    while count(remainingLevels) > 0 {
-        var result = extractNextChunk(&remainingLevels)
+    while remainingLevels.count > 0 {
+        let result = extractNextChunk(&remainingLevels)
         if result.failed {
             return nil
         }else{
@@ -258,7 +258,7 @@ private func encodeFiveBitComponents(value: Int) -> String {
     var fiveBitComponent = 0
     var returnString = ""
     
-    do {
+    repeat {
         fiveBitComponent = remainingComponents & 0x1F
         
         if remainingComponents >= 0x20 {
@@ -278,7 +278,7 @@ private func encodeFiveBitComponents(value: Int) -> String {
 
 // We use a byte array (UnsafePointer<Int8>) here for performance reasons. Check with swift 1.2 if we can 
 // go back to using [Int8]
-private func decodeSingleCoordinate(#byteArray: UnsafePointer<Int8>, #length: Int, inout #position: Int ) -> Result<Double> {
+private func decodeSingleCoordinate(byteArray byteArray: UnsafePointer<Int8>, length: Int, inout position: Int ) -> Result<Double> {
     
     if position >= length {
         return Result.Failure
@@ -292,7 +292,7 @@ private func decodeSingleCoordinate(#byteArray: UnsafePointer<Int8>, #length: In
     var componentCounter: Int32 = 0
     var component: Int32 = 0
     
-    do {
+    repeat {
         currentChar = byteArray[position] - 63
         component = Int32(currentChar & bitMask)
         coordinate |= (component << (5*componentCounter))
@@ -342,8 +342,8 @@ private func decodeLevel(encodedLevel: String) -> UInt32 {
 private func agregateScalarArray(scalars: [UnicodeScalar]) -> Int32 {
     let lastValue = Int32(scalars.last!.value)
     
-    var fiveBitComponents: [Int32] = scalars.map { scalar in
-        var value = Int32(scalar.value)
+    let fiveBitComponents: [Int32] = scalars.map { scalar in
+        let value = Int32(scalar.value)
         if value != lastValue {
             return (value - 63) ^ 0x20
         } else {
