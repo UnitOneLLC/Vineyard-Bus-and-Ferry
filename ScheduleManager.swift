@@ -135,16 +135,19 @@ class ScheduleManager : CustomStringConvertible {
         
         let request = NSMutableURLRequest(URL: NSURL(string: url!)!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 60.0)
         
-        let queue:NSOperationQueue = NSOperationQueue()
-        NSURLConnection.sendAsynchronousRequest(request, queue: queue, completionHandler:{ (response: NSURLResponse?, json: NSData?, error: NSError?) -> Void in
-
+        
+        let session = NSURLSession.sharedSession()
+        request.HTTPMethod = "POST"
+        
+        let task = session.dataTaskWithRequest(request, completionHandler: { ( data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+            
             var version: Int
             do {
-                let dico = try NSJSONSerialization.JSONObjectWithData(json!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-
+                let dico = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                
                 version = dico["version"] as! Int
                 Logger.log(fromSource: self, level: .INFO, message: "Current version for mode \(mode) is \(version)")
-
+                
                 completionHandler(version: version as Int)
             }
             catch {
@@ -154,6 +157,7 @@ class ScheduleManager : CustomStringConvertible {
             }
         })
         
+        task.resume()
     }
     
     func getVersionParameterName(forMode mode: String) -> String? {
