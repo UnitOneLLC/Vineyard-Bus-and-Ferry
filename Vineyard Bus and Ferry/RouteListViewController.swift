@@ -61,16 +61,16 @@ class RouteListViewController: IAdBannerViewController {
         }
         let segId = segue.identifier!
         
-        if segId == "showVector" {
+        if segId == "showVectorDirect" {
             if selectedVectorIndex == nil || selectedRoute == nil {
                 Logger.log(fromSource: self, level: .ERROR, message: "No route selection in segue")
                 return
             }
             
-            if let vectorVC = (segue.destinationViewController as? UINavigationController)?.viewControllers[0] as? VectorViewController? {
-                vectorVC!.route = selectedRoute
-                vectorVC!.vectorIndex = selectedVectorIndex
-                vectorVC!.itemText = itemText
+            if let vectorVC = segue.destinationViewController as?  VectorViewController {
+                vectorVC.route = selectedRoute
+                vectorVC.vectorIndex = selectedVectorIndex
+                vectorVC.itemText = itemText
             }
         }
     }

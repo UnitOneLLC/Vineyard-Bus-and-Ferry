@@ -184,15 +184,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     // MARK - MKMapViewDelegate
     
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) throws -> MKOverlayRenderer {
-        if overlay is MKPolyline {
-            let pr = MKPolylineRenderer(overlay: overlay);
-            pr.strokeColor = colorWithHexString(route.colorRGB!)
-            pr.lineWidth = 5;
-            return pr;
-        }
-        Logger.log(fromSource: self, level: .ERROR, message: "Unexpected call to mapView:rendererForOverlay")
-        throw NSError(domain: "map", code:-1 , userInfo: ["message" : "Failed to create map view"])
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+        let pr = MKPolylineRenderer(overlay: overlay);
+        pr.strokeColor = colorWithHexString(route.colorRGB!)
+        pr.lineWidth = 5;
+        return pr;
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {

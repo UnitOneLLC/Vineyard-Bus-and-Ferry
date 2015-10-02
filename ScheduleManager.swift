@@ -70,10 +70,11 @@ class ScheduleManager : CustomStringConvertible {
     }
     
     func getNameOfStoredFile(mode: String) -> String {
-        let docPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+        let docPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let docPath = docPaths[0]
         let docURL = NSURL(fileURLWithPath: docPath)
         let filePath = docURL.URLByAppendingPathComponent(mode + EXTENSION)
-        return filePath.absoluteString
+        return filePath.path!
     }
     
     func isScheduleFileStored(mode: String) -> Bool {
@@ -81,7 +82,7 @@ class ScheduleManager : CustomStringConvertible {
     }
     
     func saveScheduleToFile(data: NSData, mode: String) {
-        data.writeToFile(getNameOfStoredFile(mode), atomically: true)
+         data.writeToFile(getNameOfStoredFile(mode), atomically: true)
     }
     
     func readScheduleFromFile(mode: String) -> Schedule? {
@@ -122,12 +123,6 @@ class ScheduleManager : CustomStringConvertible {
         })
         
         task.resume()
-        
-        
-//        let queue:NSOperationQueue = NSOperationQueue()
-//        NSURLConnection.sendAsynchronousRequest(request, queue: queue, completionHandler:{ (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
-//            completionHandler(data: data)
-//        })
     }
     
     

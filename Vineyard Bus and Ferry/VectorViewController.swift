@@ -99,17 +99,17 @@ class VectorViewController: IAdBannerViewController, DaySelectionControlDelegate
         }
         let segId = segue.identifier!
         
-        if segId == "showMap" {
+        if segId == "showMapDirect" {
             if vectorIndex == nil || route == nil {
                 Logger.log(fromSource: self, level: .ERROR, message: "No route selection in segue")
                 return
             }
             
-            if let mapVC = (segue.destinationViewController as? UINavigationController)?.viewControllers[0] as? MapViewController? {
-                mapVC!.schedule = AppDelegate.theScheduleManager.scheduleForAgency(route.agency)!
-                mapVC!.route = self.route
-                mapVC!.vectorIndex = self.vectorIndex
-                mapVC!.targetStop = self.stopSelected
+            if let mapVC = segue.destinationViewController as? MapViewController {
+                mapVC.schedule = AppDelegate.theScheduleManager.scheduleForAgency(route.agency)!
+                mapVC.route = self.route
+                mapVC.vectorIndex = self.vectorIndex
+                mapVC.targetStop = self.stopSelected
                 self.stopSelected = nil
             }
         }
@@ -117,7 +117,7 @@ class VectorViewController: IAdBannerViewController, DaySelectionControlDelegate
     
     
     @IBAction func showMap(sender: AnyObject) {
-        performSegueWithIdentifier("showMap", sender: self)
+        performSegueWithIdentifier("showMapDirect", sender: self)
     }
     
     
@@ -164,7 +164,7 @@ class VectorViewController: IAdBannerViewController, DaySelectionControlDelegate
     func vectorTable(routeSelected: Route, vectorIndex: Int, stop: Stop?) {
         if stop != nil {
             stopSelected = stop
-            performSegueWithIdentifier("showMap", sender: self)
+            performSegueWithIdentifier("showMapDirect", sender: self)
         }
         else {
             self.route = routeSelected

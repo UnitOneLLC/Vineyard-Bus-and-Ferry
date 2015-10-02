@@ -119,7 +119,7 @@ extension RouteListCell: UITableViewDelegate {
         vc.selectedRoute = route
         vc.selectedVectorIndex = indexPath.row
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        vc.performSegueWithIdentifier("showVector", sender: self)
+        vc.performSegueWithIdentifier("showVectorDirect", sender: self)
     }
     
 }

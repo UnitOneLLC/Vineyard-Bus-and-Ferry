@@ -50,12 +50,12 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="transitMode" value="BUS"/>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="responsibleForInit" value="YES"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="itemNamePlural" value="Routes"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="listSegue" value="busShowRouteList"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="listSegue" value="busShowRouteListDirect"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="itemNameSingular" value="Route"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="tableView" destination="SXX-0W-7Vu" id="9dn-x5-CHi"/>
-                        <segue destination="gey-TR-qpp" kind="show" identifier="busShowRouteList" id="hGI-Zo-JaR"/>
+                        <segue destination="BTd-M0-7n6" kind="show" identifier="busShowRouteListDirect" id="RVa-Qr-A4d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -104,17 +104,17 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="responsibleForInit" value="YES"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="transitMode" value="FERRY"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="itemNamePlural" value="Ferries"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="listSegue" value="ferryShowRouteList"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="listSegue" value="ferryShowRouteListDirect"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="itemNameSingular" value="Ferry"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="tableView" destination="yVg-QA-g4Y" id="aLP-gf-xHA"/>
-                        <segue destination="gey-TR-qpp" kind="show" identifier="ferryShowRouteList" id="0sg-2i-LAl"/>
+                        <segue destination="BTd-M0-7n6" kind="show" identifier="ferryShowRouteListDirect" id="IQS-Mg-O4c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1562" y="360"/>
+            <point key="canvasLocation" x="1545" y="352"/>
         </scene>
         <!--RouteList-->
         <scene sceneID="JST-X6-2mN">
@@ -133,7 +133,7 @@
                                 <color key="backgroundColor" red="0.39607846740000002" green="0.67450982329999998" blue="0.90980398650000005" alpha="1" colorSpace="deviceRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="routeCell" id="Bg0-pv-Md7" customClass="RouteListCell" customModule="Vineyard_Bus_and_Ferry" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="114" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="50" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bg0-pv-Md7" id="1YQ-hN-tUc">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -154,12 +154,12 @@
                     <navigationItem key="navigationItem" id="Dp0-iy-JZN"/>
                     <connections>
                         <outlet property="tableView" destination="T4h-bX-z46" id="arF-Rl-Kxe"/>
-                        <segue destination="Abj-df-T1Z" kind="show" identifier="showVector" id="bhL-f9-s3i"/>
+                        <segue destination="cKb-Lj-34m" kind="show" identifier="showVectorDirect" id="SFp-e7-eME"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sUZ-bu-ygu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3337" y="-1"/>
+            <point key="canvasLocation" x="2453" y="-64"/>
         </scene>
         <!--VectorViewController-->
         <scene sceneID="2UG-YG-7Lg">
@@ -173,13 +173,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Route Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rBE-C2-sp7">
-                                <rect key="frame" x="253" y="78" width="95" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Route Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rBE-C2-sp7">
+                                <rect key="frame" x="252" y="78" width="96" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HoW-mD-X5q">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HoW-mD-X5q">
                                 <rect key="frame" x="355" y="77" width="29" height="30"/>
                                 <state key="normal" image="connect-arrow-left-right-7-white">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -210,12 +210,12 @@
                         <outlet property="reverseRouteButton" destination="HoW-mD-X5q" id="bni-9J-z3V"/>
                         <outlet property="routeTitleLabel" destination="rBE-C2-sp7" id="JFX-e4-28C"/>
                         <outlet property="routeTitleVConstraint" destination="kDh-et-D61" id="DfB-39-piY"/>
-                        <segue destination="Yyl-zc-2RY" kind="show" identifier="showMap" id="PnP-oF-Mrc"/>
+                        <segue destination="TMe-uG-rjF" kind="show" identifier="showMapDirect" id="Z1j-6i-Mw7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O3b-k2-wTW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4840" y="0.0"/>
+            <point key="canvasLocation" x="3267" y="-64"/>
         </scene>
         <!--Vector Map-->
         <scene sceneID="b78-Cf-2Zk">
@@ -276,7 +276,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L3k-G0-eba" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6542" y="0.0"/>
+            <point key="canvasLocation" x="4096" y="-64"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -300,9 +300,10 @@
         <!--BusDestinations Nav-->
         <scene sceneID="4Jo-7r-4Ih">
             <objects>
-                <navigationController title="BusDestinations Nav" automaticallyAdjustsScrollViewInsets="NO" id="3yH-e8-hT7" sceneMemberID="viewController">
+                <navigationController title="BusDestinations Nav" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="3yH-e8-hT7" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Bus" image="bus" id="acW-dT-cKf"/>
                     <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aDy-fk-gq5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -335,60 +336,6 @@
             </objects>
             <point key="canvasLocation" x="750" y="360"/>
         </scene>
-        <!--RouteList Nav-->
-        <scene sceneID="zjA-mo-I63">
-            <objects>
-                <navigationController title="RouteList Nav" automaticallyAdjustsScrollViewInsets="NO" id="gey-TR-qpp" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Jz-cd-OtN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BTd-M0-7n6" kind="relationship" relationship="rootViewController" id="w6d-EE-Hjq"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Flt-NY-wry" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2525" y="0.0"/>
-        </scene>
-        <!--VectorViewController Nav-->
-        <scene sceneID="86q-tg-Oos">
-            <objects>
-                <navigationController title="VectorViewController Nav" automaticallyAdjustsScrollViewInsets="NO" id="Abj-df-T1Z" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="L1v-uZ-t6p">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="cKb-Lj-34m" kind="relationship" relationship="rootViewController" id="nQu-pw-myE"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iOa-uA-fm9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4028" y="0.0"/>
-        </scene>
-        <!--Map View Nav-->
-        <scene sceneID="w26-e6-bgU">
-            <objects>
-                <navigationController title="Map View Nav" automaticallyAdjustsScrollViewInsets="NO" id="Yyl-zc-2RY" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cdn-wm-sOg">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="TMe-uG-rjF" kind="relationship" relationship="rootViewController" id="WSO-6S-2V9"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BbO-JG-4JY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5730" y="0.0"/>
-        </scene>
     </scenes>
     <resources>
         <image name="bus" width="32" height="32"/>
@@ -396,6 +343,6 @@
         <image name="ferry" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0sg-2i-LAl"/>
+        <segue reference="IQS-Mg-O4c"/>
     </inferredMetricsTieBreakers>
 </document>

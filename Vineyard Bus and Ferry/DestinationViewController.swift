@@ -104,16 +104,16 @@ class DestinationViewController: UIViewController {
         if let segId = segue.identifier {
             if segId == listSegue && destinationToDisplay != nil {
                 
-                if let listVC = (segue.destinationViewController as? UINavigationController)?.viewControllers[0] as? RouteListViewController? {
-                    listVC!.itemText = (single: itemNameSingular, plural: itemNamePlural)
+              if let listVC = segue.destinationViewController as? RouteListViewController {
+                    listVC.itemText = (single: itemNameSingular, plural: itemNamePlural)
                     let s = AppDelegate.theScheduleManager.scheduleForMode(transitMode)
                     if destinationToDisplay == 0 {
                         // all routes
-                        listVC!.routes = s!.routes
+                        listVC.routes = s!.routes
                     }
                     else {
                         let dest = destinations[destinationToDisplay!-1]
-                        listVC!.routes = AppDelegate.theScheduleManager.getRoutesForDestination(dest, forSchedule: s!)
+                        listVC.routes = AppDelegate.theScheduleManager.getRoutesForDestination(dest, forSchedule: s!)
                     }
                     
                 }
